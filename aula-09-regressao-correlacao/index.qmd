@@ -1,0 +1,32 @@
+---
+title: "Aula 09 — Modelos lineares: regressão e correlação"
+order: 9
+date: "2025-11-06"
+description: "Modelos lineares: regressão e correlação"
+---
+
+::: {.aula-meta}
+**Data:** 06 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-09-regressao-correlacao.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 9 (regressão).
+- Vieira, S. *Estatística básica*, caps. 5 (correlação) e 6 (regressão).
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, caps. 14 e 16.
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 11.
+
+## Recursos externos
+
+- [Vídeo da aula](https://www.youtube.com/watch?v=GXJOdV-NfjM&list=PLy2rjqiD2VP6p7RNCZ7lGU4j3CqjJD)
+- [Como fazer correlação e regressão](https://www.youtube.com/watch?v=wexf1O1q-sc)
+- [*Análises ecológicas em R*, cap. 7 (correlação) — Provete, Vancine et al.](https://analises-ecologicas.com/cap7)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

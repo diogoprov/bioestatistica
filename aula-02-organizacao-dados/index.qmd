@@ -1,0 +1,31 @@
+---
+title: "Aula 02 — Organização e apresentação de dados"
+order: 2
+date: "2025-08-14"
+description: "Organização e apresentação de dados"
+---
+
+::: {.aula-meta}
+**Data:** 14 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-02-organizacao-dados.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, cap. 2 (gráficos).
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 1 (parte 2).
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 2.
+
+## Recursos externos
+
+- [Vídeo da aula no YouTube](https://youtu.be/A4zCj4K-zWY)
+- [Blog Dynamic Ecology — mandamentos para bom gerenciamento de dados](https://dynamicecology.wordpress.com/2016/08/22/ten-commandments-for-good-data-management/)
+- [Marco Mello — como organizar uma planilha de dados](https://marcoarmello.wordpress.com/2018/02/01/dados/)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

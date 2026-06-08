@@ -1,0 +1,28 @@
+---
+title: "Aula 03 — Medidas de tendência central e dispersão"
+order: 3
+date: "2025-08-21"
+description: "Medidas de tendência central e dispersão"
+---
+
+::: {.aula-meta}
+**Data:** 21 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-03-tendencia-dispersao.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
+- Vieira, S. *Estatística básica*, cap. 4 (medidas de tendência central) e cap. 5 (medidas de dispersão).
+
+## Recursos externos
+
+_Sem recursos externos para esta aula._
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

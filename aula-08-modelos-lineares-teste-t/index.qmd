@@ -1,0 +1,33 @@
+---
+title: "Aula 08 — Modelos lineares: teste t"
+order: 8
+date: "2025-10-23"
+description: "Modelos lineares: teste t"
+---
+
+::: {.aula-meta}
+**Data:** 23 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-08-modelos-lineares-teste-t.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, caps. 10 e 11 (teste t).
+- Triola, M.F. *Introdução à estatística*, cap. 9.
+
+## Recursos externos
+
+- [Vídeo da aula — Parte I](https://www.youtube.com/watch?v=qXJSlaRW1oU)
+- [Aula prática (R)](https://www.youtube.com/watch?v=04RgF46ZsHw)
+- [Vídeo da aula — Parte II](https://youtu.be/iAtorSU4o6I)
+- [Demonstração com conjunto de dados](https://youtu.be/oYt-xZNGbOY)
+- [Lindeløv — *Common statistical tests as linear models*](https://lindeloev.github.io/tests-as-linear/)
+- [Statisty — análise estatística online (sem instalar)](https://statisty.app)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

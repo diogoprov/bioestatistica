@@ -1,0 +1,30 @@
+---
+title: "Aula 11 — Modelos lineares: análise de variância (ANOVA)"
+order: 11
+date: "2025-11-20"
+description: "Modelos lineares: análise de variância (ANOVA)"
+---
+
+::: {.aula-meta}
+**Data:** 20 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-11-anova.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 10 (ANOVA).
+- Quinn, G.P. & Keough, M.J. *Experimental Design and Data Analysis for Biologists*, cap. 8.
+- Triola, M.F. *Introdução à estatística*, cap. 12.
+- Vieira, S. *Estatística básica*, cap. 13.
+
+## Recursos externos
+
+- [Como realizar ANOVA com um fator](https://youtu.be/E_acxED30xg)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

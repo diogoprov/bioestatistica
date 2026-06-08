@@ -1,0 +1,28 @@
+---
+title: "Aula 04 — Princípios de amostragem e delineamento experimental"
+order: 4
+date: "2025-08-28"
+description: "Princípios de amostragem e delineamento experimental"
+---
+
+::: {.aula-meta}
+**Data:** 28/08 e 04/09 de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-04-amostragem.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, cap. 7 (amostragem).
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 6 e 7 (desenhos amostrais e experimentais).
+
+## Recursos externos
+
+_Sem recursos externos para esta aula._
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

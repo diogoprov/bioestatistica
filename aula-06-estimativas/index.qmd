@@ -1,0 +1,31 @@
+---
+title: "Aula 06 — Estimativa pontual e intervalar"
+order: 6
+date: "2025-10-02"
+description: "Estimativa pontual e intervalar"
+---
+
+::: {.aula-meta}
+**Data:** 02 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-06-estimativas.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, cap. 9 (estimativa pontual).
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 10 (inferência) e itens 11.6–11.7 do cap. 11.
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, caps. 7, 9 e 10.
+
+## Recursos externos
+
+- [Seeing Theory — amostragem, parâmetro e variância (interativo)](https://seeing-theory.brown.edu/basic-probability/index.html)
+- [Vídeo introdutório sobre Teorema do Limite Central](https://vimeo.com/75089338)
+- [Simulação interativa do Teorema do Limite Central (Mike Freeman)](http://mfviz.com/central-limit/)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

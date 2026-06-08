@@ -1,0 +1,29 @@
+---
+title: "Aula 01 — Introdução à estatística biológica"
+order: 1
+date: "2025-08-07"
+description: "Introdução à estatística biológica"
+---
+
+::: {.aula-meta}
+**Data:** 07 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-01-introducao.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 2.
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 1.
+
+## Recursos externos
+
+- [Vídeo da aula no YouTube](https://youtu.be/yuoSAGfLi18)
+- [Instruções para o estudo dirigido](https://youtu.be/XgcLsNGIM5k)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

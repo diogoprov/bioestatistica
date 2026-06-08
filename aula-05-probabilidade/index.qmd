@@ -1,0 +1,30 @@
+---
+title: "Aula 05 — Princípios de probabilidade e distribuições"
+order: 5
+date: "2025-09-11"
+description: "Princípios de probabilidade e distribuições"
+---
+
+::: {.aula-meta}
+**Data:** 11 e 18/09 de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-05-probabilidade.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, caps. 8 (probabilidade, distribuição normal) e 9 (distribuição binomial).
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 1 (probabilidade) e cap. sobre variáveis aleatórias.
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 5 (probabilidade).
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 4.
+
+## Recursos externos
+
+- [Zuur et al. *Mixed Effects Models and Extensions in Ecology with R*, cap. 8 (distribuições da família exponencial)](https://link.springer.com/chapter/10.1007/978-0-387-87458-6_8)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

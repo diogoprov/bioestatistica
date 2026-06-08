@@ -1,0 +1,29 @@
+---
+title: "Aula 10 — Modelos lineares generalizados: qui-quadrado"
+order: 10
+date: "2025-11-13"
+description: "Modelos lineares generalizados: qui-quadrado"
+---
+
+::: {.aula-meta}
+**Data:** 13 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-10-qui-quadrado.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Vieira, S. *Estatística básica*, cap. 12 (qui-quadrado).
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 11 (qui-quadrado).
+
+## Recursos externos
+
+- [Vídeo da aula](https://www.youtube.com/watch?v=tjuadn7WK10)
+- [Como realizar um teste de qui-quadrado](https://www.youtube.com/watch?v=L3Vmra1Pqjo)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*

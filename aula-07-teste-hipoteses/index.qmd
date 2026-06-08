@@ -1,0 +1,31 @@
+---
+title: "Aula 07 — Teste de hipóteses"
+order: 7
+date: "2025-10-16"
+description: "Teste de hipóteses"
+---
+
+::: {.aula-meta}
+**Data:** 16 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+:::
+
+## Slides
+
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-07-teste-hipoteses.pdf){.btn .btn-outline-primary}
+
+## Leituras recomendadas
+
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. sobre teste de hipóteses.
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 12.
+- Triola, M.F. *Introdução à estatística*, cap. 8.
+- Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 8.
+
+## Recursos externos
+
+- [Apostila de Marco & Paglia — tipos de teste](https://files.cercomp.ufg.br/weby/up/85/o/Apostila_de_estat%C3%ADstica.pdf)
+- [De Assis et al. 2020 — *Teste de hipótese estatística* (livro completo, OA)](https://livraria.ufersa.edu.br/wp-content/uploads/sites/165/2020/08/testes-de-hipoteses-estatisticas.pdf)
+
+---
+
+*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
+avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*
