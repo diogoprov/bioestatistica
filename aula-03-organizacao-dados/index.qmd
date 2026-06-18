@@ -1,17 +1,17 @@
 ---
-title: "Aula 02 — Organização e apresentação de dados"
-order: 2
-date: "2025-08-14"
+title: "Aula 03 — Organização e apresentação de dados"
+order: 3
+date: "2025-08-21"
 description: "Organização e apresentação de dados"
 ---
 
 ::: {.aula-meta}
-**Data:** 14 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**Data:** 21 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-02-organizacao-dados.pdf){.btn .btn-outline-primary}
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-03-organizacao-dados.pdf){.btn .btn-outline-primary}
 
 ## Leituras recomendadas
 

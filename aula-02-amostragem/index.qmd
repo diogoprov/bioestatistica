@@ -1,17 +1,17 @@
 ---
-title: "Aula 04 — Princípios de amostragem e delineamento experimental"
-order: 4
-date: "2025-08-28"
+title: "Aula 02 — Princípios de amostragem e delineamento experimental"
+order: 2
+date: "2025-08-14"
 description: "Princípios de amostragem e delineamento experimental"
 ---
 
 ::: {.aula-meta}
-**Data:** 28/08 e 04/09 de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**Data:** 14 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-04-amostragem.pdf){.btn .btn-outline-primary}
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-02-amostragem.pdf){.btn .btn-outline-primary}
 
 ## Leituras recomendadas
 

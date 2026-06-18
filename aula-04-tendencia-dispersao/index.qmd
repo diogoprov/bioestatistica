@@ -1,17 +1,17 @@
 ---
-title: "Aula 03 — Medidas de tendência central e dispersão"
-order: 3
-date: "2025-08-21"
+title: "Aula 04 — Medidas de tendência central e dispersão"
+order: 4
+date: "2025-08-28"
 description: "Medidas de tendência central e dispersão"
 ---
 
 ::: {.aula-meta}
-**Data:** 21 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**Data:** 28 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-03-tendencia-dispersao.pdf){.btn .btn-outline-primary}
+[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-04-tendencia-dispersao.pdf){.btn .btn-outline-primary}
 
 ## Leituras recomendadas
 
