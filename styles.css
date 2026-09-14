@@ -1,0 +1,31 @@
+/* Course site styles. Palette inherited from the lab site (provetelab.org)
+   so the two read as one family. */
+
+:root {
+  --bsl-accent: #1c6e8c;
+  --bsl-accent-dark: #144f64;
+  --bsl-muted: #6c757d;
+  --bsl-bg-page: #faf7f0;
+  --bsl-bg-soft: #f3eee3;
+  --bsl-border: #e3dccd;
+}
+
+html, body { background-color: var(--bsl-bg-page); }
+
+a { color: var(--bsl-accent); text-decoration: none; }
+a:hover { color: var(--bsl-accent-dark); text-decoration: underline; }
+
+.navbar { border-bottom: 1px solid var(--bsl-border); }
+
+/* Header block at the top of every aula page. */
+.aula-meta {
+  background: var(--bsl-bg-soft);
+  border-left: 3px solid var(--bsl-accent);
+  padding: .5rem .9rem;
+  margin: .8rem 0 1.5rem;
+  font-size: .92rem;
+  color: var(--bsl-muted);
+}
+.aula-meta strong { color: #2d3748; }
+
+#TOC, .toc-active a { font-size: .9rem; }

@@ -1,0 +1,47 @@
+project:
+  type: website
+  output-dir: docs
+
+website:
+  title: "Bioestatística"
+  description: "Disciplina obrigatória — Ciências Biológicas, UFMS"
+  site-url: "https://provetelab.org/bioestatistica/"
+  favicon: favicon.png
+  open-graph: true
+
+  navbar:
+    background: light
+    pinned: true
+    left:
+      - href: index.qmd
+        text: Início
+    right:
+      - text: "Biodiversity Synthesis Lab"
+        href: "https://provetelab.org/"
+      - icon: github
+        href: "https://github.com/diogoprov/bioestatistica"
+        aria-label: GitHub
+
+  page-footer:
+    background: light
+    left: |
+      Diogo B. Provete · Instituto de Biociências, UFMS
+    right: |
+      Voltar ao [site do laboratório](https://provetelab.org/).
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-in-header:
+      - text: |
+          <link rel="stylesheet"
+                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+editor: source

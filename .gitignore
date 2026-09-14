@@ -1,0 +1,12 @@
+# Rendered site - built and published by GitHub Actions, never committed.
+/docs/
+
+/.quarto/
+_site/
+**/*.quarto_ipynb
+
+.Rproj.user/
+.Rhistory
+.RData
+.Ruserdata
+*.DS_Store
