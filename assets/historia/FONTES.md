@@ -17,3 +17,5 @@ Baixadas em 2026-10-15 em versão reduzida (até 600 px de largura).
 | `gauss.jpg` | [File:Carl Friedrich Gauss 1840 by Jensen.jpg](https://commons.wikimedia.org/wiki/File:Carl_Friedrich_Gauss_1840_by_Jensen.jpg) | Christian Albrecht Jensen | Public domain |
 | `gosset.jpg` | [File:William Sealy Gosset.jpg](https://commons.wikimedia.org/wiki/File:William_Sealy_Gosset.jpg) | User  Wujaszek  on  pl.wikipedia | Public domain |
 | `bernoulli.jpg` | [File:Jakob Bernoulli.jpg](https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg) | Niklaus Bernoulli (1662-1716) | Public domain |
+| `fisher.jpg` | [File:Youngronaldfisher2.JPG](https://commons.wikimedia.org/wiki/File:Youngronaldfisher2.JPG) | Unknown author | Public domain |
+| `karl-pearson.jpg` | [File:Karl Pearson.jpg](https://commons.wikimedia.org/wiki/File:Karl_Pearson.jpg) | Unknown author | Public domain |

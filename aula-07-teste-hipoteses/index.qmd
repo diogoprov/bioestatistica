@@ -9,9 +9,41 @@ description: "Teste de hipóteses"
 **Data:** 16 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Como decidir com dados na presença de incerteza: hipóteses nula e
+alternativa, nível de significância, estatística do teste, região crítica
+e valor de *P*, os erros tipo I e II e o poder do teste. No ciclo PPDAC, o
+teste atravessa o **Problema**, o **Plano**, a **Análise** e a
+**Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-07-teste-hipoteses.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a07.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. Os retratos de Karl Pearson e Ronald Fisher são de domínio
+público, via Wikimedia Commons.
+
+## Conteúdo
+
+O roteiro em oito passos guia a aula, com o exemplo da altura de *Pinus*
+em solo argiloso e rochoso:
+
+1. **Identificar a afirmativa**: da pergunta à predição; unidade amostral.
+2. **Hipóteses nula e alternativa**.
+3. **Nível de significância**, um pouco de história e a declaração da ASA
+   sobre o valor de *P*.
+4. **Estatística do teste**: qual teste usar.
+5. **Valor crítico**, falseabilidade, erros tipo I e II e poder do teste.
+6. **Calcular a estatística do teste**: valor crítico e valor de *P*;
+   testes unicaudais e bicaudais; o teste *t* no R.
+7. **Tomada de decisão** e redação da conclusão.
+
+## Atividades
+
+- Atividade 1 (Slido): escrever H₀ e H₁ para dois cenários biológicos.
+- Atividade 2: "Decifrando o valor de *P*", em grupos.
+- [Kahoot: Teste de hipótese](https://create.kahoot.it/details/f81ec20f-f843-4cdb-957d-b2ac3922d48b).
 
 ## Leituras recomendadas
 
