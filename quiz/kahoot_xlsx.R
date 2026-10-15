@@ -2,8 +2,19 @@
 # partir das perguntas em quiz/aNN.json, as mesmas do "Teste-se" do site.
 # Colunas na ordem do modelo do Kahoot (Question, Answer 1-4, Time limit,
 # Correct answer). Rode da raiz do repositório: Rscript quiz/kahoot_xlsx.R
+# O Kahoot não importa caracteres especiais pela planilha: letras gregas e
+# símbolos viram texto (o site continua com os símbolos).
+sem_simbolos <- function(x) {
+  trocas <- c("−∞" = "-infinito", "+∞" = "+infinito", "−" = "-", "≠" = "diferente de",
+              "βx" = "beta*x", "α" = "alfa", "β" = "beta", "ε" = "erro", "μ" = "mi", "≤" = "<=", "²" = "2")
+  for (k in names(trocas)) x <- gsub(k, trocas[[k]], x, fixed = TRUE)
+  x
+}
+
 for (f in Sys.glob(here::here("quiz/a*.json"))) {
   q <- jsonlite::fromJSON(f, simplifyVector = FALSE)
+  q <- lapply(q, \(x) { x$pergunta <- sem_simbolos(x$pergunta)
+                         x$alternativas <- lapply(x$alternativas, sem_simbolos); x })
   d <- data.frame(
     `Question - max 120 characters` = vapply(q, \(x) x$pergunta, ""),
     `Answer 1 - max 75 characters`  = vapply(q, \(x) x$alternativas[[1]], ""),
