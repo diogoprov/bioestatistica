@@ -209,12 +209,12 @@ $$\text{Dados} = \text{Modelo} + \text{Erro}$$
 
 ---
 
-## O ajuste da reta, passo a passo
+## Somando os resíduos ao quadrado
 
-![](../assets/aula09-ajuste-reta.gif){height="520px" fig-align="center" fig-alt="Animação: uma reta começa horizontal e, a cada iteração de um otimizador, gira e se desloca até se ajustar aos pontos, enquanto o erro médio cai."}
+![](../assets/aula09-soma-quadrados.gif){height="540px" fig-align="center" fig-alt="Animação em duas partes com os mesmos 12 pontos. Primeiro, numa reta quase horizontal, os resíduos d1 a d12 aparecem um por um como linhas tracejadas, cada um com o seu quadrado em vermelho, e a soma SQ cresce até 62,2. Depois, na reta de mínimos quadrados, os quadrados são bem menores e a soma termina em 7,6."}
 
 ::: {.ref}
-Animação de Diogo B. Provete, feita no R com `optim()` e o pacote gganimate (a mesma da Aula 9).
+Animação feita em R com dados simulados ([`R/animacoes.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/animacoes.R)). A mesma da Aula 9. Inspirada na animação de [*Linear regression: an overview*](https://medium.com/@novus_afk/linear-regression-an-overview-13d37a6bc4dd).
 :::
 
 ---
