@@ -1,0 +1,987 @@
+---
+title: "Modelos lineares: análise de variância (ANOVA)"
+subtitle: "Aula 11 · Bioestatística · Ciências Biológicas/UFMS"
+author: "Diogo B. Provete"
+date: 2025-11-20
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt
+format:
+  revealjs:
+    theme: [default, theme.scss]
+    slide-number: c/t
+    show-slide-number: all
+    auto-stretch: false
+    preview-links: auto
+    history: false
+    footer: "Bioestatística · Ciências Biológicas/UFMS"
+    code-overflow: wrap
+    fig-align: center
+    width: 1250
+    height: 750
+knitr:
+  opts_chunk:
+    dev.args:
+      bg: "#faf7f0"
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  fig-width: 10
+  fig-height: 4.4
+---
+
+```{r}
+#| label: setup
+source(here::here("R/ppdac.R"))
+source(here::here("R/aula11.R"))
+av_atv <- summary(aov(y ~ grupo, data = atividade))[[1]]
+```
+
+## Hoje
+
+1. Por que ANOVA?
+2. A ANOVA como modelo linear
+3. Particionando a variância: o teste F
+4. Exemplo biológico: esponjas e raízes de mangue
+5. Testes *post-hoc*
+6. ANOVA fatorial e ANCOVA
+
+::: {.nota}
+As figuras desta aula foram geradas em R com dados simulados, exceto os
+dados da atividade e os dos girinos da aula prática. O retrato de Fisher é
+de domínio público. O código está em
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) no
+repositório da disciplina.
+:::
+
+---
+
+## Onde estamos no ciclo PPDAC
+
+```{r}
+#| fig-width: 6.4
+#| fig-height: 5.1
+#| out-width: "45%"
+#| fig-alt: "Ciclo PPDAC com as etapas Análise e Conclusão destacadas nas suas cores; as demais em cinza."
+ppdac_plot(destaque = c("Análise", "Conclusão"))
+```
+
+A última ferramenta de **Análise** do curso: comparar as médias de três ou
+mais grupos, com o mesmo modelo linear do teste *t* e da regressão.
+
+---
+
+## Ao final da aula você será capaz de:
+
+1. Definir a análise de variância (ANOVA) e seu propósito na comparação das
+   médias de três ou mais grupos.
+2. Explicar as principais premissas (pressupostos) da ANOVA.
+3. Descrever o conceito fundamental de partição da variância.
+4. Ler e interpretar os componentes de uma tabela de ANOVA de um fator.
+5. Formular uma conclusão com base nos resultados da ANOVA de um estudo
+   biológico.
+6. Entender o propósito dos testes *a posteriori* (*post-hoc*) após um
+   resultado significativo na ANOVA.
+
+::: {.nota}
+**Aula baseada em:** Quinn & Keough, *Experimental design and data
+analysis for biologists*, cap. 6; Vieira, *Introdução à bioestatística*,
+cap. 13; Triola, *Introdução à estatística*, cap. 12; Bussab & Morettin,
+*Estatística básica*, cap. 15; Gotelli & Ellison, *Princípios de
+estatística em ecologia*, cap. 10.
+:::
+
+# 1. Por que ANOVA? {.secao}
+
+[Problema]{.ppdac-etapa .problema} → [Análise]{.ppdac-etapa .analise}
+
+---
+
+## Antes, um pouco de história...
+
+:::: {.columns}
+::: {.column width="30%"}
+![Ronald Aylmer Fisher, em 1913](../assets/historia/fisher.jpg){width="85%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
+:::
+::: {.column width="70%"}
+- **1919:** Fisher usa o termo "variância" e decompõe a variação de um
+  caráter entre parentes, no artigo sobre herança mendeliana.
+- **1925:** em *Statistical methods for research workers*, apresenta a
+  análise de variância, desenvolvida nos experimentos agrícolas da estação
+  de Rothamsted, na Inglaterra.
+:::
+::::
+
+::: {.ref}
+Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433. Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd. Retrato: domínio público, via Wikimedia Commons.
+:::
+
+---
+
+## Questão biológica
+
+- Imaginem que um ecólogo queira testar se a **taxa média de crescimento
+  das raízes de mangue** é diferente quando expostas a **duas espécies
+  distintas de esponjas**, um **controle com uma esponja falsa** e um
+  **grupo sem esponja**.
+- Com quatro grupos, como podemos determinar estatisticamente se existe uma
+  diferença real no crescimento médio entre eles?
+
+---
+
+## Problema de +2 categorias
+
+::: {.definicao}
+Realizar múltiplos testes *t* entre todos os pares de grupos é
+problemático.
+:::
+
+::: {.definicao}
+Inflaciona a probabilidade de cometer um erro do tipo I (encontrar
+incorretamente uma diferença significativa).
+:::
+
+::: {.definicao}
+Nestes casos, devemos usar uma **análise de variância (ANOVA)**.
+:::
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+**Com quatro grupos, quantos testes *t* seriam necessários para comparar
+todos os pares? E qual o problema disso, com α = 0,05 em cada teste?**
+
+A. 4 testes; nenhum problema, cada teste tem 5% de erro.
+
+B. 6 testes; a chance de pelo menos um falso positivo fica bem acima de 5%.
+
+C. 6 testes; a chance de erro continua 5%, porque α não muda.
+
+D. 3 testes; basta comparar cada grupo com o controle.
+:::
+
+Votem sozinhos (A, B, C ou D, com a mão ou com cartões). Depois discutam
+com quem está ao lado por 2 minutos e votem de novo.
+
+::: {.fragment}
+::: {.definicao}
+**B.** São 4 × 3 / 2 = 6 pares. Se H₀ for verdadeira e os testes fossem
+independentes, a chance de ao menos um falso positivo seria
+1 − 0,95⁶ ≈ `r num_br(1 - .95^6, 2)`, e não 0,05. A ANOVA testa todas as
+médias de uma vez, com um único α.
+:::
+:::
+
+# 2. A ANOVA como modelo linear {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Modelo linear
+
+- A melhor pergunta que um cientista pode fazer é: "Qual modelo matemático
+  descreve a relação entre minhas variáveis?"
+
+$$\text{Dados} = \text{Modelo} + \text{Erro}$$
+
+- **Dados:** sua variável de resposta contínua (ex.: altura da planta,
+  diversidade de espécies).
+- **Modelo:** a sua hipótese científica expressa matematicamente. É a nossa
+  melhor tentativa de explicar a variação nos dados.
+- **Erro:** a variação que nosso modelo não consegue explicar (variação
+  aleatória ou residual).
+
+---
+
+## Modelo linear
+
+- Nosso trabalho como cientistas é construir o melhor modelo possível para
+  minimizar o erro e explicar a maior parte da variação nos dados.
+- A ANOVA é simplesmente o nome que damos quando construímos um modelo
+  linear usando **um preditor categórico**.
+- Já sabemos como lidar com este tipo de variável (fator) usando variáveis
+  *dummy* para traduzir.
+
+---
+
+## Quadrado médio dos resíduos
+
+$$QM_{Res} = \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{n - 2}$$
+
+Critério de otimização para ajuste da reta de regressão (mínimos
+quadrados): a reta escolhida é a que deixa a menor soma dos quadrados dos
+resíduos (Aula 9).
+
+---
+
+## Equação do modelo linear passo a passo
+
+$$\text{Dados} = \text{modelo} + \text{erro}$$
+
+::: {.fragment}
+$$y_i = \underbrace{\alpha + \beta x_i}_{\text{modelo}} + \underbrace{\varepsilon_i}_{\text{erro}}$$
+:::
+
+::: {.fragment}
+$$\underbrace{y_i}_{\text{variável resposta}} = \underbrace{\alpha}_{\text{intercepto}} + \underbrace{\beta}_{\text{inclinação (slope)}}\; \underbrace{x_i}_{\text{variável preditora}} + \varepsilon_i$$
+:::
+
+---
+
+## ANOVA: modelo linear com preditor categórico
+
+:::: {.columns}
+::: {.column width="45%"}
+Agora, e se nosso preditor X não for contínuo? E se ele for categórico,
+como "Tipo de Fertilizante" (A, B, C) ou "Nível de Zinco" (Baixo, Médio,
+Alto)?
+:::
+::: {.column width="55%"}
+```{r}
+#| fig-width: 7
+#| fig-height: 5
+#| fig-alt: "Boxplots da diversidade de diatomáceas em riachos com quatro níveis de zinco (BACK, LOW, MED e HIGH): os três primeiros são parecidos, e o nível HIGH tem diversidade menor."
+fig_diatomaceas()
+```
+:::
+::::
+
+::: {.ref}
+Inspirado na Figura 6.6 de Quinn & Keough 2023; dados simulados.
+:::
+
+---
+
+## Variação entre e dentro dos grupos
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| fig-alt: "Dois painéis com quatro grupos. À esquerda, os pontos de cada grupo se espalham muito, mas as médias são iguais: alta variação dentro dos grupos e baixa entre eles. À direita, os pontos de cada grupo ficam colados na média, e as médias são bem diferentes: baixa variação dentro e alta entre os grupos."
+fig_variacao()
+```
+
+::: {.nota}
+No primeiro exemplo, toda a variação é residual, ou seja, não explicada
+pelos grupos, mas sim por outros fatores agindo dentro dos grupos.
+:::
+
+::: {.ref}
+Inspirado em tabela de Quinn & Keough; dados simulados.
+:::
+
+---
+
+## ANOVA: modelo linear com preditor categórico
+
+:::: {.columns}
+::: {.column width="40%"}
+Não podemos calcular uma única "inclinação" para categorias. Em vez disso,
+nosso modelo precisa descrever os dados usando as **médias de cada grupo**.
+
+O grupo BACK é usado como **referência**: o intercepto α é a sua média, e
+cada β é a diferença entre a média de um grupo e a de BACK.
+:::
+::: {.column width="60%"}
+```{r}
+#| fig-width: 7.5
+#| fig-height: 5
+#| fig-alt: "Os pontos dos quatro grupos de zinco. Uma linha azul horizontal marca a média do grupo BACK, o intercepto alfa. Setas vermelhas vão dessa linha até a média de cada um dos outros grupos: são os coeficientes beta 1, beta 2 e beta 3."
+fig_dummy_grupos()
+```
+:::
+::::
+
+::: {.ref}
+Inspirado em [Lindeløv, *Common statistical tests are linear models*](https://lindeloev.github.io/tests-as-linear/).
+:::
+
+---
+
+## Duas formas equivalentes de escrever o modelo
+
+**O modelo de médias por célula:**
+
+$$y_{ij} = \mu_i + \varepsilon_{ij}$$
+
+O valor de uma observação individual ($y_{ij}$) é igual à média do seu
+grupo ($\mu_i$) mais algum erro ($\varepsilon_{ij}$). Por exemplo, a
+diversidade de diatomáceas numa unidade amostral é o valor médio para
+aquele nível de zinco mais a variação residual daquela unidade.
+
+**O modelo de efeitos** (formato de regressão):
+
+$$y_{ij} = \mu + \alpha_i + \varepsilon_{ij}$$
+
+O valor de uma observação é a média geral de todos os dados ($\mu$), mais
+o efeito específico de pertencer ao grupo *i* ($\alpha_i$), mais o erro
+aleatório.
+
+---
+
+## O modelo de efeitos
+
+- O "efeito" ($\alpha_i$) é simplesmente **a diferença entre a média do
+  grupo *i* e a média geral**.
+- Ambos os modelos são matematicamente equivalentes e descrevem o mesmo
+  fenômeno.
+- O modelo de efeitos é útil porque se parece mais com a estrutura
+  intercepto + efeito da regressão.
+
+# 3. Particionando a variância: o teste F {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Como a ANOVA funciona {.smaller}
+
+Para uma ANOVA de um fator, a variação total (soma de quadrados) é dividida
+em duas partes:
+
+- **Variação entre grupos:** variação entre as médias amostrais de cada
+  grupo. Reflete a influência do fator experimental ou do tratamento.
+  - Por exemplo, se diferentes fertilizantes tiverem um efeito forte, a
+    altura média das plantas de cada grupo será muito diferente, e a
+    variação "entre grupos" será grande.
+- **Variação dentro dos grupos (ou residual/erro):** mede a variação
+  aleatória e não explicada entre as observações individuais dentro de
+  cada grupo. Isso é considerado o "ruído" ou erro experimental nos dados.
+
+---
+
+## Como a ANOVA funciona
+
+- O princípio fundamental da ANOVA é que esses componentes são
+  **aditivos**:
+
+$$SQ_{Total} = SQ_{Entre\ grupos} + SQ_{Dentro\ grupos}$$
+
+- Soma de quadrados:
+
+$$\sum (x - \bar{x})^2$$
+
+- No entanto, grupos com mais amostras podem ter variação maior
+- Temos de dividir a soma de quadrados pelos graus de liberdade: este é o
+  **quadrado médio (QM)**
+
+---
+
+## A estatística F
+
+A ANOVA compara a variação entre os grupos com a variação dentro dos
+grupos usando a estatística F (também chamada de razão F):
+
+$$F = \frac{\text{Variância } \textbf{entre} \text{ as amostras}}{\text{Variância } \textbf{dentro} \text{ das amostras}} = \frac{QM_{grupos}}{QM_{Resíduos}}$$
+
+- Se a estatística F for **grande**, a variação entre os grupos é muito
+  maior do que a variação aleatória dentro dos grupos. Isso sugere que o
+  tratamento teve um efeito real.
+- Se a estatística F for **próxima de 1**, a variação entre os grupos é
+  semelhante à variação aleatória, sugerindo que quaisquer diferenças entre
+  as médias dos grupos são provavelmente devidas ao acaso.
+
+---
+
+## Da estatística F à decisão
+
+```{r}
+#| fig-width: 9
+#| fig-height: 4.6
+#| out-width: "75%"
+#| fig-alt: "Fluxograma em duas colunas. Se as médias amostrais são todas próximas, o F é pequeno e o P grande, e deixamos de rejeitar a igualdade das médias populacionais. Se pelo menos uma média é muito diferente, o F é grande e o P pequeno, e rejeitamos a igualdade das médias."
+fig_fluxo_F()
+```
+
+::: {.ref}
+Inspirado na Figura 12.2 de Triola.
+:::
+
+---
+
+## Tabela de ANOVA {.smaller}
+
+| Causa de variação | GL | SQ | QM | F |
+|---|---|---|---|---|
+| Grupos (entre) | $t - 1$ | $SQG$ | $QMG = SQG/(t - 1)$ | $F = QMG/QMR$ |
+| Resíduo (dentro) | $n - t$ | $SQR$ | $QMR = SQR/(n - t)$ | |
+| Total | $n - 1$ | $SQT$ | | |
+
+Para calcular à mão, com $C = \dfrac{\left(\sum_i \sum_j x_{ij}\right)^2}{N}$:
+
+$$SQT = \sum_i \sum_j x_{ij}^2 - C \qquad SQG = \sum_i \frac{\left(\sum_j x_{ij}\right)^2}{n_i} - C \qquad SQR = SQT - SQG$$
+
+::: {.ref}
+Tabela 13.4 de Vieira; Tabela 15.5 de Bussab & Morettin.
+:::
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+**Uma ANOVA deu F = 0,9. Isso significa que:**
+
+A. as médias dos grupos são muito diferentes.
+
+B. a variação entre os grupos é parecida com a variação dentro deles; as
+diferenças entre médias são compatíveis com o acaso.
+
+C. houve um erro de cálculo, porque F não pode ser menor que 1.
+
+D. o modelo explica 90% da variação dos dados.
+:::
+
+Votem sozinhos (A, B, C ou D, com a mão ou com cartões). Depois discutam
+com quem está ao lado por 2 minutos e votem de novo.
+
+::: {.fragment}
+::: {.definicao}
+**B.** F é a razão entre o QM dos grupos e o QM dos resíduos. Perto de 1,
+as duas variâncias se equivalem. F pode ser menor que 1 (C), e não é uma
+proporção de variação explicada (D): isso é o R².
+:::
+:::
+
+---
+
+## O teste F como uma comparação de modelos {.smaller}
+
+A hipótese nula na ANOVA (H₀: $\mu_1 = \mu_2 = \mu_3 = \ldots$) pode ser
+vista como uma comparação entre dois modelos:
+
+- **O modelo completo** (nossa hipótese): inclui o preditor categórico. Ele
+  assume que as médias dos grupos são diferentes.
+  - $y_{ij} = \mu + \alpha_i + \varepsilon_{ij}$
+  - A variação não explicada por este modelo é a soma dos quadrados do
+    resíduo ($SQ_{Res}$).
+- **O modelo reduzido** (ou nulo): assume que o preditor categórico não tem
+  efeito (ou seja, todos os $\alpha_i$ são zero). Essencialmente, ele assume
+  que todas as observações vêm de uma única população com uma única média.
+  - $y_{ij} = \mu + \varepsilon_{ij}$
+  - A variação não explicada por este modelo é a soma dos quadrados total
+    ($SQ_{Total}$), pois a melhor previsão para qualquer ponto é
+    simplesmente a média geral.
+
+---
+
+## O teste F como uma comparação de modelos
+
+- O teste F avalia se o modelo completo é significativamente melhor em
+  explicar a variação dos dados do que o modelo reduzido. A melhora na
+  explicação, ou seja, a redução no erro, é a soma dos quadrados entre
+  grupos ($SQ_{Grupos}$):
+
+$$SQ_{grupos} = SQ_{Total}(\text{erro do modelo nulo}) - SQ_{Res}(\text{erro do modelo completo})$$
+
+- Portanto, a tabela de ANOVA é, na verdade, um resumo da comparação entre
+  esses dois modelos.
+
+---
+
+## Premissas da ANOVA {.smaller}
+
+Para que o teste F forneça um valor de *P* confiável, os dados devem
+atender a três premissas:
+
+- **Independência:** as amostras são aleatórias, e as observações dentro e
+  entre os grupos são independentes umas das outras.
+- **Normalidade:** as populações das quais as amostras são retiradas são
+  aproximadamente normalmente distribuídas. A ANOVA é geralmente robusta a
+  violações moderadas desta premissa, especialmente com tamanhos de amostra
+  iguais ou quase iguais.
+- **Homogeneidade de variâncias** (homocedasticidade): as variâncias de
+  cada grupo são aproximadamente iguais. Esta é uma premissa crítica, e
+  violações podem afetar seriamente a confiabilidade do teste F,
+  particularmente se os tamanhos das amostras forem desiguais.
+
+# 4. Exemplo biológico: esponjas e raízes de mangue {.secao}
+
+[Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+
+---
+
+## Efeito de esponjas no crescimento de manguezal {.smaller}
+
+Um ecólogo marinho está estudando as raízes de mangue em um estuário. Ele
+percebe que diferentes espécies de esponjas se fixam nessas raízes e
+suspeita que a presença de certas esponjas pode afetar a taxa de
+crescimento das raízes. Para investigar isso, ele estabelece um
+experimento com quatro condições nas raízes:
+
+- **Grupo controle (sem esponja):** raízes sem nenhuma esponja.
+- **Esponja falsa (controle de manipulação):** raízes com uma esponja
+  artificial de espuma (para controlar o efeito físico da presença da
+  esponja, mas sem a biologia da esponja viva).
+- **Esponja tipo A:** raízes com a espécie de esponja *Haliclona* sp.
+- **Esponja tipo B:** raízes com a espécie de esponja *Tedania* sp.
+
+O ecólogo mede a **taxa de crescimento das raízes** em cada uma dessas
+condições. A pergunta é: o "tipo de esponja" (ou a ausência dela) tem um
+efeito significativo na taxa média de crescimento das raízes de mangue?
+
+::: {.ref}
+Ellison, A.M., Farnsworth, E.J. & Twilley, R.R. 1996. [Facultative mutualism between red mangroves and root-fouling sponges in Belizean mangal](https://doi.org/10.2307/2265744). *Ecology* 77:2431–2444.
+:::
+
+---
+
+## A tabela de ANOVA do experimento
+
+::: {.tabela-grande}
+| Fonte | Graus de liberdade (gl) | Soma de quadrados (SQ) | Quadrado médio (QM) | F | *P* |
+|---|---|---|---|---|---|
+| Tratamentos | 3 | 2,602 | 0,867 | 5,286 | 0,003 |
+| Resíduo | 52 | 8,551 | 0,164 | | |
+| Total | 55 | 11,153 | | | |
+:::
+
+::: {.fragment}
+- **QM = SQ / gl:** 2,602 / 3 = 0,867 e 8,551 / 52 = 0,164.
+- **F = QM dos tratamentos / QM do resíduo:** 0,867 / 0,164 = 5,286.
+:::
+
+::: {.ref}
+Tabela 10.12 de Gotelli & Ellison, com os dados de Ellison et al. 1996.
+:::
+
+---
+
+## Atividade: decodificando a tabela de ANOVA {.smaller}
+
+::: {.atividade}
+**Instruções:** em pequenos grupos, vocês realizarão um cálculo
+simplificado de ANOVA usando um conjunto de dados fictício que compara
+quatro grupos (A, B, C, D) com cinco observações cada.
+
+| Grupo A | Grupo B | Grupo C | Grupo D |
+|---|---|---|---|
+| 25 | 31 | 22 | 33 |
+| 26 | 25 | 26 | 29 |
+| 20 | 28 | 28 | 31 |
+| 23 | 27 | 25 | 34 |
+| 21 | 24 | 29 | 28 |
+| **Média = 23** | **Média = 27** | **Média = 26** | **Média = 31** |
+
+**Tarefa:** preencham a tabela de ANOVA calculando cada componente. Usem as
+médias fornecidas e o guia de cálculo passo a passo do livro da Sonia
+Vieira.
+
+| Fonte de variação | SQ | GL | QM | F |
+|---|---|---|---|---|
+| Entre grupos | | | | |
+| Resíduo (dentro dos grupos) | | | | |
+| Total | | | | |
+:::
+
+---
+
+## Atividade: decodificando a tabela de ANOVA {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+- **Graus de liberdade**
+  - De grupos: *t* − 1
+  - Do total: *n* − 1
+  - Do resíduo: (*n* − 1) − (*t* − 1)
+- Soma dos quadrados total
+- Soma dos quadrados dos grupos
+- Soma dos quadrados dos resíduos
+- Quadrado médio dos grupos
+- Quadrado médio dos resíduos
+- F
+:::
+::: {.column width="55%"}
+::: {.fragment}
+```{r}
+tab <- data.frame(
+  Fonte = c("Entre grupos", "Resíduo", "Total"),
+  SQ = num_br(c(av_atv[["Sum Sq"]], sum(av_atv[["Sum Sq"]])), 1),
+  GL = c(av_atv[["Df"]], sum(av_atv[["Df"]])),
+  QM = c(num_br(av_atv[["Mean Sq"]], 2), ""),
+  F = c(num_br(av_atv[["F value"]][1], 2), "", ""))
+knitr::kable(tab, align = "lcccc")
+```
+
+*P* = `r num_br(av_atv[["Pr(>F)"]][1], 3)`
+:::
+:::
+::::
+
+---
+
+## Interpretando os resultados: teste de hipótese {.smaller}
+
+- **Hipótese nula (H₀):** as médias de todos os grupos são iguais
+  ($\mu_A = \mu_B = \mu_C = \mu_D$).
+- **Hipótese alternativa (H₁):** *pelo menos uma* média de grupo é
+  diferente das outras.
+- **O valor de *P*:** assim como em outros testes, o valor de *P* informa a
+  probabilidade de observar uma estatística F tão grande quanto a que você
+  obteve, se a hipótese nula fosse verdadeira. Um valor de *P* pequeno
+  (tipicamente ≤ 0,05) fornece evidências para rejeitar a hipótese nula.
+  - No exemplo da atividade, a estatística F de 7,80 resulta em um valor de
+    *P* de 0,002. Como 0,002 < 0,05, nós rejeitamos a hipótese nula e
+    concluímos que há uma diferença entre as médias dos quatro grupos.
+- **Uma limitação crucial:** o teste F da ANOVA nos diz que as médias dos
+  grupos não são todas iguais, mas não nos diz *quais* grupos específicos
+  são diferentes uns dos outros. O grupo D é diferente do A? Existe
+  diferença entre B e C? Para descobrir, precisamos realizar testes
+  *post-hoc* ("após o fato").
+
+---
+
+## Hipóteses
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.4
+#| out-width: "80%"
+#| fig-alt: "Dois gráficos de barras do peso em três tratamentos. Hipótese nula: as três barras têm a mesma altura. Hipótese alternativa: as barras têm alturas diferentes."
+fig_hipoteses_barras()
+```
+
+---
+
+## Mesmo resultado, interpretações diferentes
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.8
+#| out-width: "78%"
+#| fig-alt: "Quatro gráficos de barras com três grupos (sem manipulação, controle e tratamento). A: médias parecidas, sem efeito do tratamento. B: só o tratamento é maior. C: controle e tratamento são maiores que a não manipulação, um efeito da manipulação. D: as três médias aumentam em escada."
+fig_cenarios_controle()
+```
+
+Resultados da ANOVA podem ser idênticos, mas a interpretação depende do
+**padrão das médias dos grupos** em particular.
+
+::: {.ref}
+Inspirado na Figura 10.2 de Gotelli & Ellison; dados fictícios.
+:::
+
+---
+
+## Atividade: interpretando uma ANOVA do mundo real (20 minutos) {.smaller}
+
+:::: {.columns}
+::: {.column width="50%"}
+Vamos retornar ao estudo de crescimento de raízes de mangue de Ellison et
+al. (1996). Eles testaram os efeitos de um controle não manipulado, uma
+esponja falsa de espuma e duas espécies de esponjas vivas (*Haliclona* e
+*Tedania*) no crescimento das raízes (tabela de ANOVA três slides atrás).
+
+- As raízes não manipuladas tiveram um crescimento significativamente mais
+  lento do que as raízes com qualquer uma das duas espécies de esponjas
+  vivas (*Haliclona* e *Tedania*).
+- Não houve diferença no crescimento entre as duas espécies de esponjas
+  vivas, ou entre as esponjas vivas e o controle de espuma.
+:::
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6.5
+#| fig-height: 4.8
+#| fig-alt: "Barras da taxa média de crescimento das raízes em quatro grupos, com barras de erro e letras: sem manipulação (a) é a menor; espuma (ab), Haliclona (b) e Tedania (b) são maiores. Grupos que não compartilham letra diferem pelo teste de Tukey."
+fig_mangue()
+```
+
+Grupos com a mesma letra não diferem pelo teste de Tukey.
+:::
+::::
+
+::: {.ref}
+Inspirado na Figura 10.5 de Gotelli & Ellison (dados de Ellison et al. 1996); médias ilustrativas.
+:::
+
+---
+
+## Atividade: interpretando uma ANOVA do mundo real {.smaller}
+
+::: {.atividade}
+**Perguntas para discussão em grupo:**
+
+1. Olhando para a linha "Tipo de esponja" na tabela de ANOVA, qual é a
+   sua conclusão geral sobre o efeito do tipo de esponja no crescimento das
+   raízes de mangue? O que o valor de *P* significa neste contexto?
+2. O que os resultados do teste *post-hoc* nos dizem sobre quais tipos de
+   esponja são os mais importantes? Eles detalham a explicação fornecida
+   pelo seu modelo geral.
+3. Com base em todos os resultados, qual é a conclusão biológica que o
+   ecólogo marinho pode tirar sobre o impacto de *Haliclona* sp. e de
+   *Tedania* sp. no crescimento das raízes de mangue? Qual é o papel da
+   esponja falsa neste estudo?
+:::
+
+# 5. Testes *post-hoc* {.secao}
+
+[Conclusão]{.ppdac-etapa .conclusao}
+
+---
+
+## Testes *post-hoc*
+
+São testes que comparam cada par de grupos para descobrir onde estão as
+diferenças. Exemplos comuns incluem:
+
+- **Teste HSD de Tukey** (diferença honesta significativa): um dos testes
+  mais utilizados para comparações par a par.
+
+$$HSD = q \sqrt{\frac{1}{2}\left(\frac{1}{n_i} + \frac{1}{n_j}\right) QM_{residual}}$$
+
+  *q* é o valor de uma tabela estatística da distribuição da amplitude
+  *studentizada*.
+- **Teste de Bonferroni:** outro método, que ajusta o valor de *P* para cada
+  comparação para controlar a taxa de erro geral do experimento.
+
+::: {.nota}
+O original trazia a fórmula sem o fator 1/2 dentro da raiz. Com *q* da
+tabela da amplitude *studentizada*, a forma de Tukey-Kramer leva esse
+fator.
+:::
+
+---
+
+## Testes *post-hoc* como análise dos parâmetros do modelo {.smaller}
+
+- Se a comparação de modelos (o teste F) nos diz que o nosso preditor
+  categórico é importante (*P* ≤ 0,05), o próximo passo é investigar
+  *como* ele é importante.
+- Os testes *post-hoc* não são um passo separado; eles examinam os
+  parâmetros do nosso modelo ajustado.
+- No modelo de efeitos, testamos se os $\alpha_i$ são diferentes uns dos
+  outros.
+- De forma mais direta, testamos hipóteses sobre as diferenças entre as
+  médias dos grupos, como H₀: $\mu_A - \mu_B = 0$.
+- Testes como o HSD de Tukey fazem exatamente isso: eles calculam
+  intervalos de confiança para as diferenças entre cada par de médias.
+- A diferença crucial é que eles usam o $QM_{Res}$ do modelo geral (uma
+  estimativa de variância mais robusta, pois usa todos os dados) e ajustam
+  os níveis de significância para o problema de comparações múltiplas.
+
+---
+
+## Tukey nos dados da atividade
+
+:::: {.columns}
+::: {.column width="45%"}
+```{r}
+#| fig-width: 5.5
+#| fig-height: 4.8
+#| fig-alt: "Os cinco valores de cada grupo da atividade, com a média marcada: A em 23, B em 27, C em 26 e D em 31."
+fig_atividade()
+```
+:::
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6.5
+#| fig-height: 4.8
+#| fig-alt: "Intervalos de confiança de 95% de Tukey para as diferenças entre os seis pares de grupos. Só os pares D−A e D−C têm intervalos que não cruzam o zero, em vermelho."
+fig_tukey()
+```
+:::
+::::
+
+Só D difere de A e de C. A ANOVA disse que *alguma* média difere; o Tukey
+diz **quais**.
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+**Uma ANOVA com quatro grupos deu *P* = 0,002. O que podemos concluir?**
+
+A. Todos os quatro grupos têm médias diferentes entre si.
+
+B. Pelo menos uma média difere das outras; um teste *post-hoc* mostra
+quais.
+
+C. Só o grupo com a maior média é diferente.
+
+D. Nenhuma conclusão é possível sem um teste *t* para cada par.
+:::
+
+Votem sozinhos (A, B, C ou D, com a mão ou com cartões). Depois discutam
+com quem está ao lado por 2 minutos e votem de novo.
+
+::: {.fragment}
+::: {.definicao}
+**B.** A hipótese alternativa da ANOVA é que *pelo menos uma* média
+difere. Na atividade, o Tukey mostrou que só D difere de A e de C; B e C,
+por exemplo, não diferem. Testes *t* separados (D) inflariam o erro tipo I.
+:::
+:::
+
+# 6. ANOVA fatorial e ANCOVA {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Breve introdução à ANOVA fatorial {.smaller}
+
+- Às vezes, os biólogos querem investigar o efeito de dois fatores ao mesmo
+  tempo. Por exemplo:
+  - Fator 1 (linha): sexo (feminino vs. masculino)
+  - Fator 2 (coluna): faixa etária (18–29, 30–49, 50–80)
+- Isso requer uma **ANOVA de dois fatores** (*two-way ANOVA*). Uma
+  característica fundamental desta análise é que ela nos permite testar um
+  **efeito de interação**.
+- **Efeito de interação:** uma interação ocorre se o efeito de um fator
+  muda dependendo do nível do outro fator.
+  - Exemplo: se um fertilizante aumenta o crescimento em condições de sol,
+    mas diminui o crescimento em condições de sombra, há uma interação
+    entre fertilizante e luz.
+- **O procedimento para uma ANOVA de dois fatores é testar primeiro a
+  interação. Se ela for significativa, você não pode interpretar os
+  efeitos principais de cada fator de forma independente.**
+
+---
+
+## O procedimento da ANOVA de dois fatores
+
+```{r}
+#| fig-width: 9
+#| fig-height: 5.4
+#| out-width: "68%"
+#| fig-alt: "Fluxograma: primeiro, teste a interação com F igual ao QM da interação sobre o QM do erro. Se houver efeito de interação, pare e não interprete os efeitos principais isoladamente. Se não houver, teste o fator das linhas e depois o fator das colunas, cada um com o seu F."
+fig_fluxo_fatorial()
+```
+
+::: {.ref}
+Inspirado na Figura 12.4 de Triola.
+:::
+
+---
+
+## Visualizando interações
+
+- Gráficos de interação são usados para visualizar isso.
+  - Linhas paralelas sugerem que não há interação.
+  - Linhas não paralelas ou que se cruzam sugerem um possível efeito de
+    interação.
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.2
+#| out-width: "85%"
+#| fig-alt: "Dois gráficos de interação do crescimento médio ao sol e à sombra, com e sem fertilizante. À esquerda, as linhas são paralelas: sem interação. À direita, as linhas se cruzam: o fertilizante ajuda ao sol e atrapalha à sombra."
+fig_tipos_interacao()
+```
+
+---
+
+## Na aula prática: girinos, predador e alimento
+
+:::: {.columns}
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6.6
+#| fig-height: 5
+#| fig-alt: "Gráfico de interação da massa média de girinos na metamorfose. Sem pista de predador, a massa cai pouco do alimento alto para o baixo, de cerca de 117 para 107 mg. Com predador, cai muito, de cerca de 103 para 57 mg: as linhas não são paralelas."
+fig_interacao_girinos()
+```
+:::
+::: {.column width="45%"}
+- 32 girinos criados com pista química de predador ausente ou presente e
+  alimento alto ou baixo (8 por combinação).
+- **O efeito do predador sobre a massa depende do nível de alimento?** As
+  linhas não paralelas sugerem que sim.
+- Na aula prática, vocês ajustam essa ANOVA de dois fatores no jamovi.
+:::
+::::
+
+::: {.ref}
+Dados fictícios, criados para a aula prática ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
+:::
+
+---
+
+## ANCOVA: tratamento e covariável
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.6
+#| out-width: "88%"
+#| fig-alt: "Seis gráficos de Y contra uma covariável X, com retas para controle e tratamento. A: retas planas e iguais. B: retas inclinadas e iguais, só a covariável importa. C: retas planas em alturas diferentes, só o tratamento importa. D: retas inclinadas e paralelas em alturas diferentes. E: retas que se cruzam, a ordem dos tratamentos se inverte. F: retas com inclinações diferentes que não se cruzam."
+fig_ancova()
+```
+
+::: {.ref}
+Inspirado na Figura 10.4 de Gotelli & Ellison; dados simulados.
+:::
+
+---
+
+## ANOVA de dois fatores como modelo linear
+
+- A mesma lógica se aplica quando temos mais de um preditor categórico. Um
+  modelo com dois fatores pode ser escrito como:
+
+$$y_{ijk} = \mu + \alpha_i + \beta_j + (\alpha\beta)_{ij} + \varepsilon_{ijk}$$
+
+- Onde:
+  - $\alpha_i$ é o efeito do fator A (ex.: sexo).
+  - $\beta_j$ é o efeito do fator B (ex.: faixa etária).
+  - $(\alpha\beta)_{ij}$ é o termo de interação. Ele representa o efeito que
+    é único à combinação específica dos níveis dos fatores *i* e *j*.
+
+---
+
+## ANOVA de dois fatores como modelo linear
+
+O teste de hipóteses na ANOVA de dois fatores é uma série de comparações de
+modelos:
+
+1. Primeiro, comparamos o modelo completo (com interação) a um modelo sem a
+   interação, para ver se a interação é significativa.
+2. Se não for, comparamos o modelo sem interação a modelos que removem cada
+   fator principal, para testar seus efeitos.
+
+---
+
+## Recapitulação
+
+- A ANOVA é uma ferramenta fundamental para comparar as médias de 3 ou mais
+  grupos.
+- Ela funciona *particionando a variância* em componentes sistemáticos
+  (entre grupos) e aleatórios (dentro dos grupos).
+- Um resultado F significativo indica que pelo menos uma média de grupo é
+  diferente e deve ser seguido por testes *post-hoc* para identificar quais
+  grupos diferem.
+- Lembre-se sempre de verificar as premissas do teste e visualizar seus
+  dados para interpretar corretamente seus resultados.
+
+---
+
+## Recapitulação
+
+- A ANOVA nada mais é do que ajustar um modelo linear com um preditor
+  categórico.
+- O teste F é uma comparação que pergunta: "O meu modelo, que inclui as
+  informações dos grupos, explica mais variação do que um modelo que usa
+  apenas a média geral?"
+- Testes *post-hoc* são uma maneira de investigar os parâmetros do nosso
+  modelo ajustado para entender onde estão as diferenças significativas.
+- Essa abordagem unifica a ANOVA com a regressão, fornecendo uma base
+  conceitual mais forte para entender a análise de dados em biologia.
+
+---
+
+## Referências {.smaller}
+
+::: {.nota}
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*.
+- Ellison, A.M., Farnsworth, E.J. & Twilley, R.R. 1996. [Facultative mutualism between red mangroves and root-fouling sponges in Belizean mangal](https://doi.org/10.2307/2265744). *Ecology* 77:2431–2444.
+- Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433.
+- Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd.
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*.
+- Lindeløv, J.K. *Common statistical tests are linear models*. <https://lindeloev.github.io/tests-as-linear/>
+- Quinn, G.P. & Keough, M.J. 2023. *Experimental design and data analysis for biologists*, 2ª ed. Cambridge University Press.
+- Triola, M.F. 2024. *Introdução à estatística*. LTC.
+- Vieira, S. *Introdução à bioestatística*.
+:::

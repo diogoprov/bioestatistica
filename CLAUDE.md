@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1, 3, 4, 5, 6, 7, 8, 9 e 10 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3, 4, 5, 6, 7, 8, 9, 10 e 11 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -40,15 +40,15 @@ mudar os parâmetros e ver o que acontece.
 | 8 | `aula-08-modelos-lineares-teste-t` | **`slides/a08.qmd` ✔** | `Aula 8 - Teste t.pptx` |
 | 9 | `aula-09-regressao-correlacao` | **`slides/a09.qmd` ✔** | `Aula 9 - Regressão linear.pptx` |
 | 10 | `aula-10-qui-quadrado` | **`slides/a10.qmd` ✔** | `Aula 10 - qui-quadrado.pptx` |
-| 11 | `aula-11-anova` | PDF | `Aula 11 - ANOVA.pptx` |
+| 11 | `aula-11-anova` | **`slides/a11.qmd` ✔** | `Aula 11 - ANOVA.pptx` |
 
 Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 11**
-(original: `Aula 11 - ANOVA.pptx`), que não tem Kahoot. Na pasta há os
-exercícios de ANOVA e o `aula_pratica_ANOVA.zip`.
+**As 11 aulas estão convertidas.** O próximo passo combinado é remodelar o
+site inteiro para ficar coerente com os slides em Quarto, corrigir erros e
+modernizar (veja a memória do projeto).
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -243,7 +243,8 @@ continua em `slides/`, então não apague os PDFs.
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
 - **Dados reais de domínio público** ficam em `data/`, com a origem em
   `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
-  Aula 9). Leia com `read.csv(here::here("data/..."))`.
+  Aula 9). Os dados didáticos do curso também ficam ali (`data/girinos_2x2.csv`,
+  da aula prática de ANOVA). Leia com `read.csv(here::here("data/..."))`.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
 - **Subscritos Unicode (H₀, H₁) não aparecem nas figuras do R**: a fonte do

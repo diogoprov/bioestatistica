@@ -9,9 +9,39 @@ description: "Modelos lineares: análise de variância (ANOVA)"
 **Data:** 20 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+A ANOVA como um modelo linear com um preditor categórico: a partição da
+variância, o teste F como comparação de modelos, os testes *post-hoc* e uma
+introdução à ANOVA de dois fatores (interação) e à ANCOVA. O exemplo é o
+experimento de Ellison et al. (1996) com esponjas e raízes de mangue. No
+ciclo PPDAC, é **Análise** e **Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-11-anova.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a11.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. O retrato de Fisher é de domínio público, via Wikimedia
+Commons.
+
+## Conteúdo
+
+1. **Por que ANOVA?** Fisher e o problema de comparar mais de dois grupos.
+2. **A ANOVA como modelo linear**: variáveis *dummy*, modelo de médias e
+   modelo de efeitos.
+3. **Particionando a variância**: a tabela de ANOVA e o teste F.
+4. **Exemplo biológico**: esponjas e o crescimento de raízes de mangue.
+5. **Testes *post-hoc***: Tukey e Bonferroni.
+6. **ANOVA fatorial e ANCOVA**: interação e covariáveis.
+
+## Atividades
+
+- Três perguntas para a turma (*peer instruction*): comparações múltiplas,
+  o significado de F e o que a ANOVA conclui.
+- Decodificando a tabela de ANOVA (quatro grupos, cinco observações cada).
+- Interpretando uma ANOVA do mundo real (20 minutos): esponjas e mangue.
+- Aula prática: ANOVA de dois fatores no jamovi com os dados dos girinos
+  ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
 
 ## Leituras recomendadas
 
