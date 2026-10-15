@@ -19,7 +19,7 @@ Você **não precisa saber R** para começar. A primeira lição parte do zero.
        playsinline controls style="width:100%; max-width:720px; border-radius:6px;">
 </video>
 <figcaption class="figure-caption">
-Início da lição Primeiros Passos. Repare no erro em <code>2ˆ10</code>: em
+Início de uma lição no swirl. Repare no erro em <code>2ˆ10</code>: em
 teclados com acentuação o circunflexo pode sair como outro caractere, que o R
 não reconhece. Se acontecer, tecle <code>^</code> e depois espaço.
 </figcaption>
@@ -32,7 +32,7 @@ Faça as lições nesta ordem:
 
 | Quando | Lição no swirl | Duração | O que pratica |
 |:---:|---|:---:|---|
-| até a [aula 04](aula-04-tendencia-dispersao/index.qmd) | Primeiros Passos | ~20 min | R como calculadora, objetos, `mean()`, ler a planilha de dados, `summary()`, `table()`, dados ausentes |
+| depois das aulas [03](aula-03-organizacao-dados/index.qmd) e [04](aula-04-tendencia-dispersao/index.qmd) | Primeiros Passos em Bioestatística | ~30 min | R como calculadora, objetos e vetores; média, mediana e moda, e o efeito de um valor extremo; variância, desvio padrão, quartis e coeficiente de variação; dados ausentes; histograma e boxplot; tabelas de frequência e de contingência |
 | depois das aulas [05](aula-05-probabilidade/index.qmd) a [07](aula-07-teste-hipoteses/index.qmd) | Inferência por Simulação | ~35 min | sortear amostras de uma população conhecida; distribuição amostral e Teorema do Limite Central; erro padrão; o que os 95% do intervalo de confiança querem dizer; valor-p por permutação; significância estatística × relevância biológica |
 | depois das aulas [08](aula-08-modelos-lineares-teste-t/index.qmd) a [11](aula-11-anova/index.qmd) | Testes como Modelos Lineares | ~40 min | regressão, correlação, teste t, ANOVA e qui-quadrado como um único modelo linear, com o mesmo valor-p saindo por caminhos diferentes |
 
