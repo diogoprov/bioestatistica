@@ -5,7 +5,33 @@ date: "2027-02-23"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."
 gancho: "O que o valor de P diz, e o que ele não diz?"
 etapas: [problema, plano, analise, conclusao]
+# "Brinque com o código" roda o R no navegador (webR, extensão quarto-live).
+format:
+  live-html:
+    # live-html não herda as opções de `html` do _quarto.yml; repetidas aqui.
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-after-body: ../_teste-se.html
+engine: knitr
+webr:
+  packages: [ggplot2, dplyr, tidyr, patchwork, tibble, purrr, here]
+  resources:
+    - ../R/tema.R
+    - ../R/aula02_pergunta.R
+    - ../R/aula07.R
+resources:
+  - ../R/tema.R
+  - ../R/aula02_pergunta.R
+  - ../R/aula07.R
 ---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ::: {.aula-meta}
 **Terça-feira, 23 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
@@ -82,17 +108,28 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código da figura dos erros tipo I e II está em
-[`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
-Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
-rode no console do R:
+O R roda aqui mesmo, no seu navegador, sem instalar nada. Na primeira vez,
+a página leva cerca de um minuto para baixar o R e os pacotes; espere a
+mensagem de carregamento sumir.
 
-```r
-source("R/aula07.R")
-fig_alfa_beta(efeito = 1, n = 50)
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+# Carrega as funções da aula (os arquivos de R/ chegam pelo `resources`).
+for (f in c("R/tema.R", "R/aula02_pergunta.R", "R/aula07.R")) source(f, local = TRUE)
 ```
 
-Mude `efeito`, `n` e `alfa`. O que faz o poder do teste crescer?
+A figura dos erros tipo I e II, da Aula 7. Mude `efeito`, `n` e `alfa` e
+clique em **Run Code**. O que faz o poder do teste crescer?
+
+```{webr}
+fig_alfa_beta(efeito = 0.5, n = 20, alfa = 0.05)
+```
+
+O código está em
+[`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
+Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
 ## Recursos externos
 

@@ -296,6 +296,15 @@ continua em `slides/`, então não apague os PDFs.
   da aula prática de ANOVA). Leia com `read.csv(here::here("data/..."))`.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
+- **R no navegador (webR, extensão quarto-live em `_extensions/r-wasm/`)**:
+  piloto no "Brinque com o código" da Aula 7 (só nas páginas, não nos
+  slides). A página usa `format: live-html` + `engine: knitr`, inclui
+  `_extensions/r-wasm/live/_knitr.qmd`, lista os pacotes em `webr: packages`
+  e os arquivos de `R/` em `webr: resources` e `resources`. O `live-html`
+  não herda as opções de `html` do `_quarto.yml` (tema, `styles.css`,
+  `_teste-se.html`): elas vão repetidas no YAML da página. Uma célula
+  oculta faz `source(f, local = TRUE)` dos arquivos de `R/`; sem
+  `local = TRUE`, as funções não ficam visíveis para as outras células.
 - **Subscritos Unicode (H₀, H₁) não aparecem nas figuras do R**: a fonte do
   dispositivo gráfico não tem o glifo. Nas figuras, escreva H0 e H1; no
   texto dos slides, H₀ e H₁ funcionam.
