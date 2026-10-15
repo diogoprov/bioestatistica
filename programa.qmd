@@ -1,0 +1,76 @@
+---
+title: "Programa da disciplina"
+subtitle: "Bioestatística — Ciências Biológicas, UFMS"
+toc: true
+toc-depth: 2
+---
+
+::: {.aula-meta}
+**68 horas-aula** · disciplina obrigatória do bacharelado e da licenciatura
+em Ciências Biológicas · **Docente:** Diogo B. Provete
+:::
+
+## Ementa
+
+Introdução à estatística. Probabilidade. Representação da variação:
+parâmetros estatísticos e principais distribuições de probabilidade.
+Estimativas, testes de hipóteses e significância. Modelos lineares:
+teste t, ANOVA, regressão linear, correlação, e modelos lineares
+generalizados (qui-quadrado).
+
+## Objetivos de aprendizagem
+
+Ao final da disciplina, o(a) aluno(a) deve ser capaz de:
+
+- Identificar o tipo de dado e a distribuição apropriada para descrevê-lo;
+- Planejar uma coleta com delineamento amostral adequado à pergunta;
+- Escolher, executar e interpretar um teste de hipóteses dentro do arcabouço
+  dos modelos lineares;
+- Comunicar resultados estatísticos em linguagem biológica clara.
+
+## Avaliação
+
+A nota final segue a fórmula (P1 + P2) / 2, em que:
+
+- **P1** — Prova escrita
+- **P2** — Questionários ao longo do semestre
+- **PO** — Prova substitutiva optativa (substitui a menor das anteriores)
+
+Quizzes, prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br).
+
+## Bibliografia básica
+
+- Callegari-Jacques, S.M. 2003. *Bioestatística: princípios e aplicações.*
+  Porto Alegre: ArtMed.
+- Gotelli, N.J. & Ellison, A.M. 2010. *Princípios de estatística em
+  ecologia.* Porto Alegre: Artmed.
+- Magnusson, W. & Mourão, G. 2005. *Estatística sem matemática: a ligação
+  entre as questões e a análise.* 2ª ed. Londrina: Editora Planta.
+
+## Bibliografia complementar
+
+- Bussab, W.O. & Morettin, P.A. 2017. *Estatística básica.* 9ª ed. São Paulo:
+  Saraiva.
+- Quinn, G.P. & Keough, M.J. 2023. *Experimental Design and Data Analysis for
+  Biologists.* 2ª ed. Cambridge University Press.
+- Sokal, R. & Rohlf, J. 1994. *Biometry.* 3ª ed. New York: WH Freeman.
+- Triola, M.F. *Introdução à estatística.* <!-- TODO: ano e edição -->
+- Vieira, S. 2018. *Estatística básica.* 2ª ed. São Paulo: Cengage Learning.
+- Vieira, S. 2010. *Bioestatística: tópicos avançados.* 3ª ed. Rio de Janeiro:
+  Elsevier.
+- Zar, J.H. 2009. *Biostatistical analysis.* 5ª ed. New York: Pearson.
+
+## Recursos online
+
+- [Wickham, H.; Çetinkaya-Rundel, M. & Grolemund, G. *R para Ciência de
+  Dados* (2ª ed.)](https://pt.r4ds.hadley.nz/)
+- [Faria, P.D. *Introdução à Linguagem R: seus fundamentos e sua
+  prática.*](https://pedro-faria.netlify.app/pt/publication/book/introducao_linguagem_r/)
+- [da Silva, F.R.; Gonçalves-Souza, T.; Paterno, G.; Provete, D.B.;
+  Vancine, M.A. *Análises ecológicas no R.*](https://analises-ecologicas.com)
+- [Mello & Peternelli. *Conhecendo o R: uma visão mais que
+  estatística.*](https://www.locus.ufv.br/handle/123456789/13598)
+
+---
+
+*Volta para o [índice do curso](index.qmd).*

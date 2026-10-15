@@ -257,9 +257,10 @@ continua em `slides/`, então não apague os PDFs.
 ## Build e publicação
 
 - O site é publicado por GitHub Actions (`.github/workflows/publish.yml`),
-  que roda **só o Quarto, sem R**. O comentário no topo do workflow diz que
-  não há chunks executáveis, mas isso está desatualizado: os chunks existem
-  e funcionam graças ao `freeze`.
+  que roda **só o Quarto, sem R**: os chunks funcionam graças ao `freeze`.
+  A página inicial também tem um chunk (o diagrama PPDAC).
+- Os PDFs antigos de `slides/` não têm mais link, mas entram em
+  `resources` no `_quarto.yml` para que URLs antigas continuem valendo.
 - `freeze: auto` está ligado. O resultado da execução fica em `_freeze/`,
   que **é versionado**. Por isso, depois de mudar um `.qmd` com código ou
   uma função em `R/`, renderize **localmente** e commite `_freeze/` junto:

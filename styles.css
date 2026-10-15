@@ -1,31 +1,112 @@
-/* Course site styles. Palette inherited from the lab site (provetelab.org)
-   so the two read as one family. */
+/* =========================================================
+   Bioestatística — Ciências Biológicas/UFMS
+   Paleta herdada do site do Biodiversity Synthesis Lab
+   (provetelab.org) para manter identidade visual.
+   ========================================================= */
 
 :root {
-  --bsl-accent: #1c6e8c;
+  --bsl-accent: #1c6e8c;          /* teal profundo — água/biodiversidade */
   --bsl-accent-dark: #144f64;
   --bsl-muted: #6c757d;
-  --bsl-bg-page: #faf7f0;
+  --bsl-bg-page: #faf7f0;         /* creme de papel */
   --bsl-bg-soft: #f3eee3;
+  --bsl-bg-card: #ffffff;
   --bsl-border: #e3dccd;
 }
 
 html, body { background-color: var(--bsl-bg-page); }
 
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue",
+               Helvetica, Arial, "Liberation Sans", sans-serif;
+  line-height: 1.65;
+  color: #2d3748;
+}
+
+/* --- Navbar --- */
+.navbar {
+  border-bottom: 1px solid var(--bsl-border);
+  padding-top: .4rem;
+  padding-bottom: .4rem;
+  font-size: .95rem;
+  background-color: #fdfaf3 !important;
+}
+.navbar-brand { font-weight: 600; letter-spacing: .2px; font-size: 1.05rem; }
+.navbar .nav-link { font-weight: 500; color: #2d3748; }
+.navbar .nav-link:hover, .navbar .nav-link:focus { color: var(--bsl-accent); }
+
+/* --- Links --- */
 a { color: var(--bsl-accent); text-decoration: none; }
 a:hover { color: var(--bsl-accent-dark); text-decoration: underline; }
 
-.navbar { border-bottom: 1px solid var(--bsl-border); }
-
-/* Header block at the top of every aula page. */
-.aula-meta {
-  background: var(--bsl-bg-soft);
-  border-left: 3px solid var(--bsl-accent);
-  padding: .5rem .9rem;
-  margin: .8rem 0 1.5rem;
-  font-size: .92rem;
-  color: var(--bsl-muted);
+/* --- Cabeçalhos --- */
+h1, h2, h3, h4 { color: #1a202c; font-weight: 600; }
+h2 {
+  border-bottom: 1px solid var(--bsl-border);
+  padding-bottom: .3rem;
+  margin-top: 2rem;
 }
-.aula-meta strong { color: #2d3748; }
 
-#TOC, .toc-active a { font-size: .9rem; }
+/* --- Faixa de metadados no topo de cada aula --- */
+.aula-meta {
+  background-color: var(--bsl-bg-soft);
+  border-left: 3px solid var(--bsl-accent);
+  padding: .55rem .9rem;
+  margin-bottom: 1.4rem;
+  font-size: .92rem;
+  color: #4a5568;
+  border-radius: 0 4px 4px 0;
+}
+
+/* --- Tabela do cronograma --- */
+.quarto-listing table { font-size: .95rem; background-color: var(--bsl-bg-card); }
+.quarto-listing table thead th {
+  border-bottom: 2px solid var(--bsl-accent);
+  color: #1a202c;
+}
+
+/* --- Blocos de código --- */
+pre.sourceCode {
+  background-color: #fdfcf8;
+  border: 1px solid var(--bsl-border);
+  border-radius: 4px;
+}
+
+/* --- Callouts --- */
+div.callout { border-radius: 4px; }
+
+/* --- Botões --- */
+.btn-outline-primary {
+  color: var(--bsl-accent);
+  border-color: var(--bsl-accent);
+}
+.btn-outline-primary:hover {
+  background-color: var(--bsl-accent);
+  border-color: var(--bsl-accent);
+  color: #fff;
+}
+
+/* --- Selos das etapas do ciclo PPDAC ---
+   Mesmas cores de `cores_ppdac` (R/tema.R) e de `$ppdac-*`
+   (slides/theme.scss): se mudar uma, mude nas três.
+   Uso: [Plano]{.ppdac-etapa .plano} */
+.ppdac-etapa {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .3px;
+  padding: .1rem .5rem;
+  border-radius: 3px;
+  color: #fff;
+  background-color: var(--bsl-accent);
+  vertical-align: middle;
+}
+.ppdac-etapa.problema  { background-color: #a15e3f; }
+.ppdac-etapa.plano     { background-color: #1c6e8c; }
+.ppdac-etapa.dados     { background-color: #527238; }
+.ppdac-etapa.analise   { background-color: #96661f; }
+.ppdac-etapa.conclusao { background-color: #6b4c8a; }
+
+/* A data de cada aula já aparece na faixa .aula-meta; o bloco
+   "Data de publicação" do título seria repetido. */
+.quarto-title-meta { display: none !important; }

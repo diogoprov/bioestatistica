@@ -2,11 +2,11 @@
 title: "Aula 02 — Princípios de amostragem e delineamento experimental"
 order: 2
 date: "2025-08-14"
-description: "Princípios de amostragem e delineamento experimental"
+description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."
 ---
 
 ::: {.aula-meta}
-**Data:** 14 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**14 de agosto de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
 :::
 
 Como formular uma pergunta que dá para testar, o que conta como réplica,
@@ -37,6 +37,13 @@ repositório.
 6. **Delineamentos clássicos**: desenho de regressão, intercalação, blocos
    aleatorizados, aninhado, parcelas subdivididas, medidas repetidas e BACI.
 
+## Atividades
+
+- "Será que a poluição afeta os girinos?": reescrever a pergunta até ela
+  poder ser testada.
+- Nitrogênio do solo e crescimento de *Pinus*: como delinear o estudo.
+- Consultoria em delineamento: em grupos, atender quatro clientes.
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 7 (amostragem).
@@ -51,10 +58,6 @@ simulada desta aula, o estudo com confundimento e a pseudorréplica. Ela é a
 vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
-
-## Recursos externos
-
-_Sem recursos externos para esta aula._
 
 ---
 
