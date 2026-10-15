@@ -216,8 +216,11 @@ continua em `slides/`, então não apague os PDFs.
   `quiz/aNN.json` (alternativas já embaralhadas, `correta` de 1 a 4). Elas
   alimentam o quiz da página (`::: {.quiz-teste-se data-quiz="../quiz/aNN.json"}`,
   script em `_teste-se.html`) e as planilhas de importação do Kahoot em
-  `quiz/kahoot/` (gere com `Rscript quiz/kahoot_xlsx.R`, que usa `writexl`).
-  O Kahoot limita a pergunta a 120 caracteres e cada alternativa a 75.
+  `quiz/kahoot/`, já no modelo oficial do Kahoot. Para gerar de novo, baixe
+  o modelo (support.kahoot.com, artigo 115002812547) e rode
+  `python3 quiz/kahoot_xlsx.py modelo.xlsx`. O Kahoot limita a pergunta a
+  120 caracteres e cada alternativa a 75, e não importa caracteres
+  especiais (o script troca letras gregas e símbolos por texto).
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 

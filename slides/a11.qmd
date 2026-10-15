@@ -209,6 +209,16 @@ $$\text{Dados} = \text{Modelo} + \text{Erro}$$
 
 ---
 
+## O ajuste da reta, passo a passo
+
+![](../assets/aula09-ajuste-reta.gif){height="520px" fig-align="center" fig-alt="Animação: uma reta começa horizontal e, a cada iteração de um otimizador, gira e se desloca até se ajustar aos pontos, enquanto o erro médio cai."}
+
+::: {.ref}
+Animação de Diogo B. Provete, feita no R com `optim()` e o pacote gganimate (a mesma da Aula 9).
+:::
+
+---
+
 ## Quadrado médio dos resíduos
 
 $$QM_{Res} = \frac{\sum_{i=1}^{n} (y_i - \hat{y}_i)^2}{n - 2}$$
