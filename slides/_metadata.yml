@@ -1,0 +1,6 @@
+# Vale para todos os decks de slides/. O selo da etapa do PPDAC aparece no
+# canto de cada slide, copiado do slide de seção (# Título {.secao}) do
+# bloco em que o slide está.
+format:
+  revealjs:
+    include-after-body: _selo-etapa.html

@@ -1,5 +1,5 @@
 ---
-title: "Aula 08 — Modelos lineares: teste t"
+title: "Aula 8 — Introdução aos modelos lineares: teste t de Student"
 order: 8
 date: "2025-10-23"
 description: "Teste t para uma amostra, para duas amostras e para dados pareados; o teste t como um modelo linear."
@@ -26,6 +26,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 repositório. Duas figuras vêm do livro [*Análises ecológicas no
 R*](https://paternogbc.github.io/livro_aer/) (CC BY-NC 4.0), e as
 silhuetas, do PhyloPic (CC0).
+
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. O teste *t* compara médias: uma amostra contra um valor, duas amostras independentes ou dados pareados.
+2. Pressupostos: independência, normalidade e variâncias homogêneas (se não forem, use a correção de Welch).
+3. Todo teste *t* é um **modelo linear** *y* = α + β*x* + ε com *x* *dummy*: β é a diferença entre as médias.
+
+**Erro comum:** usar o teste para amostras independentes em dados pareados, como as mesmas áreas antes e depois da queimada.
+:::
 
 ## Conteúdo
 
@@ -58,6 +68,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a reta com intercepto e inclinação está em
+[`R/aula08.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula08.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula08.R")
+fig_reta_parametros(a = 5, b = -1)
+```
+
+Mude `a` (intercepto) e `b` (inclinação). O que muda na reta com cada um?
 
 ## Recursos externos
 

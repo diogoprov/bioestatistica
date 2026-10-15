@@ -1,5 +1,5 @@
 ---
-title: "Aula 07 — Teste de hipóteses"
+title: "Aula 7 — Testes de hipótese em estatística"
 order: 7
 date: "2025-10-16"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."
@@ -25,6 +25,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório. Os retratos de Karl Pearson e Ronald Fisher são de domínio
 público, via Wikimedia Commons.
+
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. H₀ é a hipótese de nenhum efeito; o teste pergunta quão incomuns seriam os dados se H₀ fosse verdadeira.
+2. **Valor de *P***: probabilidade de um resultado tão ou mais extremo que o observado, supondo H₀ verdadeira.
+3. **Erro tipo I** (rejeitar H₀ verdadeira, α) e **tipo II** (não rejeitar H₀ falsa, β); o **poder** (1 − β) cresce com *n* e com o tamanho do efeito.
+
+**Erro comum:** "aceitar H₀", ou ler *P* > 0,05 como prova de que não há efeito. O certo é "não rejeitar H₀".
+:::
 
 ## Conteúdo
 
@@ -62,10 +72,24 @@ Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
 
+## Brinque com o código
+
+O código de a figura dos erros tipo I e II está em
+[`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula07.R")
+fig_alfa_beta(efeito = 1, n = 50)
+```
+
+Mude `efeito`, `n` e `alfa`. O que faz o poder do teste crescer?
+
 ## Recursos externos
 
 - [Apostila de Marco & Paglia — tipos de teste](https://files.cercomp.ufg.br/weby/up/85/o/Apostila_de_estat%C3%ADstica.pdf)
-<!-- TODO: o PDF de De Assis et al. 2020 (UFERSA) saiu do ar (404 em out/2026); recolocar se houver novo endereço. -->
+- [Assis, J.P.; Sousa, R.P. & Linhares, P.C.F. 2020. *Testes de hipóteses estatísticas*. Mossoró: EdUFERSA (livro completo, acesso aberto)](https://livraria.ufersa.edu.br/testes-de-hipoteses-estatisticas/)
 
 ---
 

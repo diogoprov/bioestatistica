@@ -1,5 +1,5 @@
 ---
-title: "Aula 06 — Estimativa pontual e intervalar"
+title: "Aula 6 — Estimativa pontual e intervalar"
 order: 6
 date: "2025-10-02"
 description: "Estimativa pontual, Lei dos Grandes Números e erro padrão; Teorema do Limite Central; intervalos de confiança."
@@ -24,6 +24,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório. A silhueta de tilápia é do PhyloPic (CC0) e o retrato de
 Jacob Bernoulli é de domínio público, via Wikimedia Commons.
+
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. Uma estatística muda de amostra para amostra; a **distribuição amostral** descreve essa variação.
+2. **Erro padrão** da média = *s* / √*n*: a incerteza cai com a raiz do tamanho da amostra.
+3. Pelo **Teorema do Limite Central**, médias de amostras grandes têm distribuição aproximadamente normal, o que sustenta o intervalo de confiança.
+
+**Erro comum:** dizer que um IC de 95% tem 95% de chance de conter a média verdadeira. Quem acerta em 95% das vezes é o método, ao longo de muitas amostras.
+:::
 
 ## Conteúdo
 
@@ -61,6 +71,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de os intervalos de confiança de amostras repetidas está em
+[`R/aula06.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula06.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula06.R")
+fig_ic_repetidos(k = 100)
+```
+
+Aumente `k` (o número de amostras). Que fração dos intervalos contém a média verdadeira?
 
 ## Recursos externos
 

@@ -74,11 +74,32 @@ As aulas alternam exposição curta e **aprendizagem ativa**:
 ## Brinque com o código
 
 Todas as figuras dos slides foram geradas em R, quase sempre com dados
-simulados. O código está na pasta
+simulados, e o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
-repositório, um arquivo por bloco de cada aula. Abra no RStudio, mude um
-parâmetro (o tamanho da amostra, a média, o desvio-padrão) e veja o que
-acontece com a figura. É um bom jeito de criar intuição.
+repositório, um arquivo por aula (ou por bloco da aula). Cada página de
+aula tem uma seção **Brinque com o código** com uma figura para mexer.
+Para rodar no seu computador:
+
+1. Baixe o repositório: em
+   <https://github.com/diogoprov/bioestatistica>, clique em
+   **Code → Download ZIP** e descompacte a pasta.
+2. No RStudio, instale os pacotes (uma vez só):
+
+   ```r
+   install.packages(c("ggplot2", "dplyr", "tidyr", "purrr", "tibble",
+                      "patchwork", "ape", "here"))
+   ```
+
+3. Aponte o R para a pasta baixada (menu **Session → Set Working
+   Directory → Choose Directory…**) e rode o comando da aula, por exemplo:
+
+   ```r
+   source("R/aula05.R")
+   fig_arvore_teste(prev = 0.2)
+   ```
+
+Mude um parâmetro (o tamanho da amostra, a média, o desvio-padrão) e veja o
+que acontece com a figura. É um bom jeito de criar intuição.
 
 ## Dúvidas
 

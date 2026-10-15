@@ -18,15 +18,15 @@ fica em `R/`, um arquivo por bloco da aula.
 | Aula | Tópico |
 |-----:|--------|
 | 1 | Introdução à estatística biológica |
-| 2 | Princípios de amostragem e delineamento experimental |
+| 2 | Amostragem e delineamento |
 | 3 | Organização e apresentação de dados |
-| 4 | Medidas de tendência central e dispersão |
-| 5 | Princípios de probabilidade e distribuições |
+| 4 | Medidas de tendência central e de dispersão |
+| 5 | Probabilidade, variáveis aleatórias e principais distribuições |
 | 6 | Estimativa pontual e intervalar |
-| 7 | Teste de hipóteses |
-| 8 | Modelos lineares: teste t |
-| 9 | Modelos lineares: regressão e correlação |
-| 10 | Modelos lineares generalizados: qui-quadrado |
+| 7 | Testes de hipótese em estatística |
+| 8 | Introdução aos modelos lineares: teste t de Student |
+| 9 | Modelos lineares: regressão (e correlação) linear |
+| 10 | Modelos lineares generalizados: teste de qui-quadrado |
 | 11 | Modelos lineares: análise de variância (ANOVA) |
 
 ## Como o site é construído

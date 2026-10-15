@@ -1,5 +1,5 @@
 ---
-title: "Aula 01 — Introdução à estatística biológica"
+title: "Aula 1 — Introdução à estatística biológica"
 order: 1
 date: "2025-08-07"
 description: "O que é estatística e de onde vem a incerteza; população, amostra, parâmetro e tipos de variáveis; o ciclo PPDAC."
@@ -25,6 +25,16 @@ dados simulados; o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório. As imagens históricas são de domínio público, via Wikimedia
 Commons.
+
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. Estatística é o estudo da variação: medir, descrever e tirar conclusões apesar dela.
+2. **Parâmetro** descreve a população e quase nunca é conhecido; **estatística** é calculada na amostra e serve para estimá-lo.
+3. Variáveis são quantitativas (discretas ou contínuas) ou qualitativas (nominais ou ordinais), e o tipo de variável orienta a análise.
+
+**Erro comum:** tratar a média de uma amostra como se fosse o valor da população, sem nenhuma incerteza.
+:::
 
 ## Conteúdo
 
@@ -53,6 +63,20 @@ Commons.
 
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 2.
 - Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 1.
+
+## Brinque com o código
+
+O código de a figura da população e da amostra está em
+[`R/aula01.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula01.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula01.R")
+fig_populacao_amostra(n_am = 50)
+```
+
+Troque `n_am` (o tamanho da amostra) e `seed` (o sorteio). Com que tamanho a amostra começa a lembrar a população?
 
 ## Recursos externos
 

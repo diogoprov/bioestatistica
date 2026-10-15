@@ -196,6 +196,25 @@ Na Aula 2, a página também ganhou um parágrafo de resumo (com a etapa do
 PPDAC) e uma seção `## Conteúdo` que lista os blocos. O PDF antigo da Aula 2
 continua em `slides/`, então não apague os PDFs.
 
+### Site (depois da remodelação de out/2026)
+
+- **Páginas:** `index.qmd` (curso em uma frase, PPDAC, trilha, cronograma
+  em cartões), `comece-aqui.qmd`, `programa.qmd` e, no menu "Estudar",
+  `exercicios-swirl.qmd`, `revisao.qmd` (resumos e Kahoots) e
+  `glossario.qmd`. Estilos em `styles.css`.
+- **YAML de cada aula:** `description` (o conteúdo do cartão), `gancho`
+  (a pergunta do cartão) e `etapas` (lista com `problema`, `plano`,
+  `dados`, `analise` e `conclusao`). Os cartões vêm de `_cronograma.ejs`.
+- **Esqueleto da página:** faixa `.aula-meta` com data e selos, resumo,
+  Slides, Em 3 minutos (três ideias e um erro comum), Conteúdo,
+  Atividades, Leituras, swirl, Brinque com o código e Recursos externos.
+- **Selo da etapa nos slides:** `slides/_metadata.yml` inclui
+  `slides/_selo-etapa.html` em todos os decks. O selo do canto é copiado do
+  slide de seção (`# N. Título {.secao}`) do bloco, então cada seção
+  precisa dos seus selos.
+- Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
+  `index.qmd`, que é escrita à mão.
+
 ## Regras de conteúdo
 
 - **Figuras só com dados simulados.** Não use figuras copiadas de livros ou
@@ -241,6 +260,11 @@ continua em `slides/`, então não apague os PDFs.
   Se não der para verificar, deixe `<!-- TODO: referência -->` e avise.
   Na Aula 2 entraram assim Wild & Pfannkuch 1999, Wiens 1989,
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
+- **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em
+  domínio público do Commons com legenda própria, na classe `.meme` de
+  `slides/theme.scss` (imagens em `assets/memes/`, fontes em
+  `assets/memes/FONTES.md`), ou refaça o formato em R, como o *galaxy brain*
+  da Aula 8 (`fig_galaxy_brain()` em `R/aula08.R`).
 - **Dados reais de domínio público** ficam em `data/`, com a origem em
   `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
   Aula 9). Os dados didáticos do curso também ficam ali (`data/girinos_2x2.csv`,

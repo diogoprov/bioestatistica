@@ -179,3 +179,31 @@ a.cartao-link:hover { text-decoration: none; }
   color: #4a5568;
   margin-bottom: 0;
 }
+
+/* --- Trilha do PPDAC na página inicial --- */
+.trilha-ppdac {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: .6rem;
+  margin: .8rem 0 1.5rem;
+}
+.trilha-etapa {
+  background-color: var(--bsl-bg-card);
+  border: 1px solid var(--bsl-border);
+  border-top: 4px solid var(--bsl-accent);
+  border-radius: 4px;
+  padding: .55rem .7rem .4rem;
+  font-size: .86rem;
+}
+.trilha-etapa.problema  { border-top-color: #a15e3f; }
+.trilha-etapa.plano     { border-top-color: #1c6e8c; }
+.trilha-etapa.dados     { border-top-color: #527238; }
+.trilha-etapa.analise   { border-top-color: #96661f; }
+.trilha-etapa.conclusao { border-top-color: #6b4c8a; }
+.trilha-etapa p { margin: .2rem 0 .35rem; color: #4a5568; }
+.trilha-etapa ul { padding-left: 1rem; margin-bottom: .2rem; }
+.trilha-etapa li { margin-bottom: .2rem; line-height: 1.3; }
+
+/* --- Caixa "Em 3 minutos" nas páginas das aulas --- */
+.em-3-minutos { border-left-color: var(--bsl-accent) !important; }
+.em-3-minutos ol { margin-bottom: .5rem; }

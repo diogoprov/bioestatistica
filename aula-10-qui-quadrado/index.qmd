@@ -1,5 +1,5 @@
 ---
-title: "Aula 10 — Modelos lineares generalizados: qui-quadrado"
+title: "Aula 10 — Modelos lineares generalizados: teste de qui-quadrado"
 order: 10
 date: "2025-11-13"
 description: "Qui-quadrado de aderência e de independência; o qui-quadrado como modelo log-linear; teste exato de Fisher e teste G."
@@ -25,6 +25,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório. A ilustração das ervilhas de Mendel é CC BY e a silhueta da
 rã, do PhyloPic (CC0).
+
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. O **qui-quadrado** compara contagens observadas com as esperadas em cada categoria.
+2. **Aderência** testa uma proporção teórica (como 9:3:3:1); **independência** testa a associação numa tabela de contingência.
+3. Com frequências esperadas pequenas, use o **teste exato de Fisher**.
+
+**Erro comum:** aplicar o qui-quadrado a porcentagens ou médias em vez de contagens.
+:::
 
 ## Conteúdo
 
@@ -54,6 +64,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a distribuição qui-quadrado com a região crítica está em
+[`R/aula10.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula10.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula10.R")
+fig_qui_quadrado(gl = 10)
+```
+
+Mude `gl` (graus de liberdade) e `alfa`. Para onde vai o valor crítico?
 
 ## Recursos externos
 
