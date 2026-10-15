@@ -58,6 +58,7 @@ Commons.
   ou inferencial, parâmetro ou estatística, e tipos de variáveis.
 - Atividade prática: adivinhação de idades a partir de fotografias, em
   grupos.
+- [Kahoot: Introdução à estatística para biólogos](https://create.kahoot.it/details/f7bf73e0-37ad-4ef6-bc08-04c068028b17).
 
 ## Teste-se
 

@@ -1115,6 +1115,12 @@ Inspirado na Figura 6.9 de Quinn & Keough (dados de Loyn 1987).
 
 ---
 
+## Kahoot! {.secao}
+
+[Kahoot: Correlação, regressão e armadilhas na análise de dados](https://create.kahoot.it/details/747d4b86-8cb4-4d54-93af-6aba4f7c3a0d)
+
+---
+
 ## Referências {.smaller}
 
 ::: {.nota}

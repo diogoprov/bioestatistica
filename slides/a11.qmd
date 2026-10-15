@@ -1013,6 +1013,12 @@ modelos:
 
 ---
 
+## Kahoot! {.secao}
+
+[Kahoot: ANOVA, ANCOVA e testes de hipóteses](https://create.kahoot.it/details/07605bb6-f29e-4e74-92a5-3390ee797242)
+
+---
+
 ## Referências {.smaller}
 
 ::: {.nota}

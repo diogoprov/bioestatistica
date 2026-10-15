@@ -55,6 +55,7 @@ repositório.
   poder ser testada.
 - Nitrogênio do solo e crescimento de *Pinus*: como delinear o estudo.
 - Consultoria em delineamento: em grupos, atender quatro clientes.
+- [Kahoot: Estatística, amostragem e delineamento experimental](https://create.kahoot.it/details/0eb9e376-fd88-4802-93c3-e613f655bec1).
 
 ## Teste-se
 

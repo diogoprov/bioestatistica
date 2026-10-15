@@ -956,6 +956,12 @@ meta-analysis? Make the reach of your research broader and longer lasting.
 
 ---
 
+## Kahoot! {.secao}
+
+[Kahoot: Gráficos, tabelas e armadilhas na visualização de dados](https://create.kahoot.it/details/0aab1775-914f-406c-acde-60851dc3f446)
+
+---
+
 ## Referências {.smaller}
 
 ::: {.nota}

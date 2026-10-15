@@ -54,6 +54,7 @@ Commons.
 - Interpretando uma ANOVA do mundo real (20 minutos): esponjas e mangue.
 - Aula prática: ANOVA de dois fatores no jamovi com os dados dos girinos
   ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
+- [Kahoot: ANOVA, ANCOVA e testes de hipóteses](https://create.kahoot.it/details/07605bb6-f29e-4e74-92a5-3390ee797242).
 
 ## Teste-se
 
