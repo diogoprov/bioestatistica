@@ -1,14 +1,14 @@
 ---
 title: "Aula 3 — Organização e apresentação de dados"
 order: 3
-date: "2027-02-17"
+date: "2027-02-16"
 description: "Planilhas bem organizadas; tabelas de frequência e de contingência; tipos de gráficos e como escolher entre eles."
 gancho: "Por que um gráfico de pizza quase nunca é a melhor escolha?"
 etapas: [dados, analise]
 ---
 
 ::: {.aula-meta}
-**Quarta-feira, 17 de fevereiro de 2027** · [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise}
+**Terça-feira, 16 de fevereiro de 2027** · [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise}
 :::
 
 Como organizar os dados numa planilha e apresentá-los em tabelas e

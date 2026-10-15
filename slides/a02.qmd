@@ -2,7 +2,7 @@
 title: "Amostragem e delineamento"
 subtitle: "Aula 2 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2027-02-16
+date: 2027-02-15
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

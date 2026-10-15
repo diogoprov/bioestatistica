@@ -1,14 +1,14 @@
 ---
 title: "Aula 11 — Modelos lineares: análise de variância (ANOVA)"
 order: 11
-date: "2027-02-27"
+date: "2027-02-26"
 description: "A ANOVA como modelo linear; partição da variância e teste F; testes post-hoc; ANOVA fatorial e ANCOVA."
 gancho: "Por que não fazer vários testes t para comparar quatro grupos?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**Sábado, 27 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Sexta-feira, 26 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 A ANOVA como um modelo linear com um preditor categórico: a partição da

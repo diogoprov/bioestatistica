@@ -2,7 +2,7 @@
 title: "Organização e apresentação de dados"
 subtitle: "Aula 3 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2027-02-17
+date: 2027-02-16
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:
