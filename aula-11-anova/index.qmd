@@ -125,6 +125,8 @@ for (f in c("R/tema.R", "R/aula02_pergunta.R", "R/aula11.R")) source(f, local = 
 Aumente `n` e troque `seed`. Por que a mesma diferença entre médias fica mais convincente? Edite o código e clique em **Run Code**.
 
 ```{webr}
+#| fig-width: 10
+#| fig-height: 5
 fig_variacao(n = 30)
 ```
 
