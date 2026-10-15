@@ -18,6 +18,14 @@ description: "Modelos lineares generalizados: qui-quadrado"
 - Vieira, S. *Estatística básica*, cap. 12 (qui-quadrado).
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 11 (qui-quadrado).
 
+## Exercício no R (swirl)
+
+Pratique no console do R com a lição **Testes como Modelos Lineares**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
+por ela.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Vídeo da aula](https://www.youtube.com/watch?v=tjuadn7WK10)

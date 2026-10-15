@@ -1,0 +1,113 @@
+---
+title: "Exercícios interativos no R (swirl)"
+subtitle: "Lições para fazer no próprio console do R, com correção a cada resposta"
+toc: true
+---
+
+O [swirl](https://swirlstats.com) é um pacote que ensina R dentro do
+console: ele faz uma pergunta, você digita o comando, e ele confere a
+resposta antes de seguir. As lições abaixo acompanham as aulas de
+Bioestatística e usam dados reais: a tolerância ao calor de anuros ao longo
+de gradientes altitudinais na Mata Atlântica (Bovo et al. 2023,
+*Integrative Organismal Biology* 5: obad009).
+
+Você **não precisa saber R** para começar. A primeira lição parte do zero.
+
+```{=html}
+<figure class="figure">
+<video src="swirl-demo.mp4" poster="swirl-demo.jpg" autoplay loop muted
+       playsinline controls style="width:100%; max-width:720px; border-radius:6px;">
+</video>
+<figcaption class="figure-caption">
+Início da lição Primeiros Passos. Repare no erro em <code>2ˆ10</code>: em
+teclados com acentuação o circunflexo pode sair como outro caractere, que o R
+não reconhece. Se acontecer, tecle <code>^</code> e depois espaço.
+</figcaption>
+</figure>
+```
+
+## Lições
+
+Faça as lições nesta ordem:
+
+| Quando | Lição no swirl | Duração | O que pratica |
+|:---:|---|:---:|---|
+| até a [aula 04](aula-04-tendencia-dispersao/index.qmd) | Primeiros Passos | ~20 min | R como calculadora, objetos, `mean()`, ler a planilha de dados, `summary()`, `table()`, dados ausentes |
+| depois das aulas [05](aula-05-probabilidade/index.qmd) a [07](aula-07-teste-hipoteses/index.qmd) | Inferência por Simulação | ~35 min | sortear amostras de uma população conhecida; distribuição amostral e Teorema do Limite Central; erro padrão; o que os 95% do intervalo de confiança querem dizer; valor-p por permutação; significância estatística × relevância biológica |
+| depois das aulas [08](aula-08-modelos-lineares-teste-t/index.qmd) a [11](aula-11-anova/index.qmd) | Testes como Modelos Lineares | ~40 min | regressão, correlação, teste t, ANOVA e qui-quadrado como um único modelo linear, com o mesmo valor-p saindo por caminhos diferentes |
+
+: {tbl-colwidths="[18,22,10,50]"}
+
+O curso instalado também traz lições da disciplina de pós-graduação
+[Introdução à Linguagem R](https://provetelab.org/intro-r/exercicios-swirl.html).
+Você pode ignorá-las, ou fazê-las por conta própria se quiser ir além.
+
+## 1. Instalar o R e o RStudio (uma vez só)
+
+1. Instale o **R** a partir do [CRAN](https://cran.r-project.org/),
+   escolhendo o seu sistema (Windows, macOS ou Linux).
+2. Instale o **RStudio Desktop**, gratuito, a partir do
+   [site da Posit](https://posit.co/download/rstudio-desktop/).
+3. Abra o **RStudio** (não o R). O painel com o sinal `>` é o **console**:
+   é ali que você vai digitar os comandos abaixo.
+
+## 2. Instalar as lições (uma vez só)
+
+Copie e cole no console, uma linha de cada vez:
+
+```r
+install.packages("swirl")
+library(swirl)
+select_language("portuguese", append_rprofile = TRUE)
+install_course_url("https://github.com/diogoprov/Introducao_a_Linguagem_R/zipball/main")
+```
+
+- O `append_rprofile = TRUE` grava a escolha do idioma. Sem ele, os menus
+  do swirl voltam para o inglês quando o R é reiniciado.
+- Use `install_course_url()` com o endereço acima, e **não**
+  `install_course_github()`: esta última pode falhar por tempo esgotado.
+
+## 3. Fazer uma lição
+
+```r
+library(swirl)
+swirl()
+```
+
+O swirl pergunta seu nome, mostra a lista de cursos e você escolhe
+**Introducao a Linguagem R** e depois a lição.
+
+| Quando aparece | Faça |
+|---|---|
+| `...` no fim do texto | aperte Enter para seguir |
+| o sinal `>` | digite o comando e aperte Enter |
+| alternativas numeradas | digite o número da resposta |
+
+| Comando | O que faz |
+|---|---|
+| `skip()` | pula a pergunta atual (o swirl roda a resposta por você) |
+| `play()` / `nxt()` | sai da lição para experimentar à vontade no console, e volta |
+| `bye()` | sai guardando o progresso; na próxima vez você retoma de onde parou |
+| `main()` | volta ao menu principal |
+
+Os gráficos aparecem na aba **Plots** do RStudio.
+
+Para atualizar as lições quando houver versão nova:
+
+```r
+uninstall_course("Introducao_a_Linguagem_R")
+install_course_url("https://github.com/diogoprov/Introducao_a_Linguagem_R/zipball/main")
+```
+
+## Código-fonte e citação
+
+As lições ficam no repositório
+[{{< fa brands github >}} diogoprov/Introducao_a_Linguagem_R](https://github.com/diogoprov/Introducao_a_Linguagem_R),
+sob licença CC BY 4.0. Para citar:
+
+> Provete, D.B. *Introdução à Linguagem R — lições interativas no swirl*.
+> Zenodo. <https://doi.org/10.5281/zenodo.22782697>
+
+---
+
+*Volta para o [índice do curso](index.qmd).*

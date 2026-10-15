@@ -20,6 +20,14 @@ description: "Modelos lineares: análise de variância (ANOVA)"
 - Triola, M.F. *Introdução à estatística*, cap. 12.
 - Vieira, S. *Estatística básica*, cap. 13.
 
+## Exercício no R (swirl)
+
+Pratique no console do R com a lição **Testes como Modelos Lineares**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
+por ela.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Como realizar ANOVA com um fator](https://youtu.be/E_acxED30xg)

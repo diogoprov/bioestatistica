@@ -20,6 +20,14 @@ description: "Modelos lineares: regressão e correlação"
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, caps. 14 e 16.
 - Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 11.
 
+## Exercício no R (swirl)
+
+Pratique no console do R com a lição **Testes como Modelos Lineares**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
+por ela.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Vídeo da aula](https://www.youtube.com/watch?v=GXJOdV-NfjM&list=PLy2rjqiD2VP6p7RNCZ7lGU4j3CqjJD)

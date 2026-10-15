@@ -20,6 +20,14 @@ description: "Princípios de probabilidade e distribuições"
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 5 (probabilidade).
 - Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 4.
 
+## Exercício no R (swirl)
+
+Pratique no console do R com a lição **Inferência por Simulação**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
+por ela.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Zuur et al. *Mixed Effects Models and Extensions in Ecology with R*, cap. 8 (distribuições da família exponencial)](https://link.springer.com/chapter/10.1007/978-0-387-87458-6_8)

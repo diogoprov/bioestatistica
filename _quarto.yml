@@ -1,6 +1,9 @@
 project:
   type: website
   output-dir: docs
+  resources:
+    - swirl-demo.mp4
+    - swirl-demo.jpg
   render:
     - "*.qmd"
     - "aula-*/index.qmd"
@@ -20,6 +23,8 @@ website:
     left:
       - href: index.qmd
         text: Início
+      - href: exercicios-swirl.qmd
+        text: Exercícios no R
     right:
       - text: "Biodiversity Synthesis Lab"
         href: "https://provetelab.org/"

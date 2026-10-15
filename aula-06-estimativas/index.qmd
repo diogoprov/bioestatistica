@@ -19,6 +19,14 @@ description: "Estimativa pontual e intervalar"
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 10 (inferência) e itens 11.6–11.7 do cap. 11.
 - Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, caps. 7, 9 e 10.
 
+## Exercício no R (swirl)
+
+Pratique no console do R com a lição **Inferência por Simulação**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
+por ela.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Seeing Theory — amostragem, parâmetro e variância (interativo)](https://seeing-theory.brown.edu/basic-probability/index.html)
