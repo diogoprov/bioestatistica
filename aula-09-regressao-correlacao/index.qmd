@@ -5,7 +5,35 @@ date: "2027-02-25"
 description: "Correlação de Pearson; regressão linear simples e mínimos quadrados; tabela de ANOVA, R² e diagnóstico dos resíduos."
 gancho: "Por que os filhos de pais muito altos tendem a ser mais baixos que os pais?"
 etapas: [analise, conclusao]
+# "Brinque com o código" roda o R no navegador (webR, extensão quarto-live).
+format:
+  live-html:
+    # live-html não herda as opções de `html` do _quarto.yml; repetidas aqui.
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-after-body: ../_teste-se.html
+engine: knitr
+webr:
+  packages: [ggplot2, dplyr, tidyr, patchwork, tibble, purrr, here]
+  resources:
+    - ../R/tema.R
+    - ../R/aula02_pergunta.R
+    - ../R/aula09.R
+    - ../data/galton.csv
+resources:
+  - ../R/tema.R
+  - ../R/aula02_pergunta.R
+  - ../R/aula09.R
+  - ../data/galton.csv
 ---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ::: {.aula-meta}
 **Quinta-feira, 25 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
@@ -79,17 +107,27 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código dos quatro padrões de correlação está em
-[`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
-Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
-rode no console do R:
+O R roda aqui mesmo, no seu navegador, sem instalar nada. Na primeira vez,
+a página leva cerca de um minuto para baixar o R e os pacotes; espere a
+mensagem de carregamento sumir.
 
-```r
-source("R/aula09.R")
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+# Carrega as funções da aula (os arquivos de R/ chegam pelo `resources`).
+for (f in c("R/tema.R", "R/aula02_pergunta.R", "R/aula09.R")) source(f, local = TRUE)
+```
+
+Compare `n = 10` com o padrão (`n = 40`) e troque `seed`. Quanto o *r* varia em amostras pequenas? Edite o código e clique em **Run Code**.
+
+```{webr}
 fig_correlacoes(n = 10)
 ```
 
-Compare `n = 10` com o padrão (`n = 40`) e troque `seed`. Quanto o *r* varia em amostras pequenas?
+O código dos quatro padrões de correlação está em
+[`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
+Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
 ## Recursos externos
 

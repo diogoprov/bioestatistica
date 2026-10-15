@@ -5,7 +5,31 @@ date: "2027-02-15"
 description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."
 gancho: "Medir 50 girinos do mesmo aquário é ter 50 réplicas?"
 etapas: [problema, plano]
+# "Brinque com o código" roda o R no navegador (webR, extensão quarto-live).
+format:
+  live-html:
+    # live-html não herda as opções de `html` do _quarto.yml; repetidas aqui.
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-after-body: ../_teste-se.html
+engine: knitr
+webr:
+  packages: [ggplot2, dplyr, tidyr, patchwork, tibble, purrr, here]
+  resources:
+    - ../R/tema.R
+    - ../R/aula02_pergunta.R
+resources:
+  - ../R/tema.R
+  - ../R/aula02_pergunta.R
 ---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ::: {.aula-meta}
 **Segunda-feira, 15 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
@@ -83,17 +107,27 @@ vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
 
 ## Brinque com o código
 
-O código da figura da mesma diferença real com três tamanhos de amostra está em
-[`R/aula02_pergunta.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula02_pergunta.R).
-Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
-rode no console do R:
+O R roda aqui mesmo, no seu navegador, sem instalar nada. Na primeira vez,
+a página leva cerca de um minuto para baixar o R e os pacotes; espere a
+mensagem de carregamento sumir.
 
-```r
-source("R/aula02_pergunta.R")
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+# Carrega as funções da aula (os arquivos de R/ chegam pelo `resources`).
+for (f in c("R/tema.R", "R/aula02_pergunta.R")) source(f, local = TRUE)
+```
+
+Diminua `dif` (a diferença real entre os grupos) e aumente `ns`. Quantas réplicas você precisa para enxergar uma diferença pequena? Edite o código e clique em **Run Code**.
+
+```{webr}
 fig_tamanho_amostra(ns = c(5, 20, 100), dif = 0.5)
 ```
 
-Diminua `dif` (a diferença real entre os grupos) e aumente `ns`. Quantas réplicas você precisa para enxergar uma diferença pequena?
+O código da figura da mesma diferença real com três tamanhos de amostra está em
+[`R/aula02_pergunta.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula02_pergunta.R).
+Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
 ---
 

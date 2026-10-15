@@ -297,8 +297,9 @@ continua em `slides/`, então não apague os PDFs.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
 - **R no navegador (webR, extensão quarto-live em `_extensions/r-wasm/`)**:
-  piloto no "Brinque com o código" da Aula 7 (só nas páginas, não nos
-  slides). A página usa `format: live-html` + `engine: knitr`, inclui
+  o "Brinque com o código" das 11 páginas de aula roda no navegador (só
+  nas páginas, não nos slides). As Aulas 9 e 11 também levam os CSVs de
+  `data/` em `resources`. A página usa `format: live-html` + `engine: knitr`, inclui
   `_extensions/r-wasm/live/_knitr.qmd`, lista os pacotes em `webr: packages`
   e os arquivos de `R/` em `webr: resources` e `resources`. O `live-html`
   não herda as opções de `html` do `_quarto.yml` (tema, `styles.css`,

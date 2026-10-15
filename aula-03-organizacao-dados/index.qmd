@@ -5,7 +5,31 @@ date: "2027-02-16"
 description: "Planilhas bem organizadas; tabelas de frequência e de contingência; tipos de gráficos e como escolher entre eles."
 gancho: "Por que um gráfico de pizza quase nunca é a melhor escolha?"
 etapas: [dados, analise]
+# "Brinque com o código" roda o R no navegador (webR, extensão quarto-live).
+format:
+  live-html:
+    # live-html não herda as opções de `html` do _quarto.yml; repetidas aqui.
+    theme: cosmo
+    css: ../styles.css
+    toc: true
+    toc-location: right
+    toc-depth: 3
+    anchor-sections: true
+    smooth-scroll: true
+    link-external-newwindow: true
+    include-after-body: ../_teste-se.html
+engine: knitr
+webr:
+  packages: [ggplot2, dplyr, tidyr, patchwork, tibble, purrr, here]
+  resources:
+    - ../R/tema.R
+    - ../R/aula03.R
+resources:
+  - ../R/tema.R
+  - ../R/aula03.R
 ---
+
+{{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
 
 ::: {.aula-meta}
 **Terça-feira, 16 de fevereiro de 2027** · [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise}
@@ -80,17 +104,27 @@ confere cada resposta.
 
 ## Brinque com o código
 
-O código dos histogramas com larguras de classe diferentes está em
-[`R/aula03.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula03.R).
-Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
-rode no console do R:
+O R roda aqui mesmo, no seu navegador, sem instalar nada. Na primeira vez,
+a página leva cerca de um minuto para baixar o R e os pacotes; espere a
+mensagem de carregamento sumir.
 
-```r
-source("R/aula03.R")
+```{webr}
+#| edit: false
+#| echo: false
+#| output: false
+# Carrega as funções da aula (os arquivos de R/ chegam pelo `resources`).
+for (f in c("R/tema.R", "R/aula03.R")) source(f, local = TRUE)
+```
+
+Mude `larguras`. Com classes largas demais, que detalhe da distribuição some? Edite o código e clique em **Run Code**.
+
+```{webr}
 fig_histograma_larguras(larguras = c(1, 3, 15))
 ```
 
-Mude `larguras`. Com classes largas demais, que detalhe da distribuição some?
+O código dos histogramas com larguras de classe diferentes está em
+[`R/aula03.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula03.R).
+Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
 ## Recursos externos
 

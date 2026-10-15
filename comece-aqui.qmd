@@ -77,8 +77,12 @@ Todas as figuras dos slides foram geradas em R, quase sempre com dados
 simulados, e o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório, um arquivo por aula (ou por bloco da aula). Cada página de
-aula tem uma seção **Brinque com o código** com uma figura para mexer.
-Para rodar no seu computador:
+aula tem uma seção **Brinque com o código** com uma figura para mexer: o R
+roda no próprio navegador (webR), sem instalar nada, e funciona também no
+celular. Na primeira visita, a página leva cerca de um minuto para baixar
+o R e os pacotes.
+
+Se preferir rodar no seu computador:
 
 1. Baixe o repositório: em
    <https://github.com/diogoprov/bioestatistica>, clique em
