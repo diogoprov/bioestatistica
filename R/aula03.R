@@ -519,3 +519,131 @@ fig_linha <- function() {
          caption = "Dados fictícios.") +
     tema_aula(15)
 }
+
+# ---------------------------------------------------------------------------
+# Como escolher o gráfico: árvore redesenhada do esquema de R.S. Olson
+# (inspirado em A. Abela; tradução do IBPAD), com uma miniatura de gráfico
+# em cada folha, como no original. Os dados das miniaturas são inventados.
+# ---------------------------------------------------------------------------
+icone <- function(g, nome, cond, cor) {
+  g + labs(title = nome, subtitle = cond) +
+    theme_void(base_size = 10) +
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
+          panel.background = element_rect(fill = "white", colour = cor, linewidth = .6),
+          plot.title = element_text(size = 10.5, face = "bold", colour = cor, hjust = .5),
+          plot.subtitle = element_text(size = 9, colour = "#4a5568", hjust = .5,
+                                       margin = margin(b = 2)),
+          plot.margin = margin(3, 4, 3, 4), legend.position = "none",
+          aspect.ratio = .62)
+}
+
+fig_escolha_grafico <- function() {
+  cc <- c(Comparação = cores[["accent"]], Relação = cores[["verde"]],
+          Distribuição = cores[["ocre"]], Composição = cores[["ferrugem"]])
+  tons <- function(cor) grDevices::colorRampPalette(c("white", cor))(5)[2:5]
+  k4 <- tibble::tibble(x = factor(1:4), y = c(3, 5, 4, 6))
+  t8 <- tibble::tibble(t = 1:8, y = c(2, 3, 2.6, 4, 3.6, 5, 4.7, 6))
+  pilha <- tidyr::expand_grid(x = factor(1:4), g = factor(1:3)) |>
+    mutate(y = c(3, 2, 1, 2, 3, 2, 4, 2, 2, 3, 3, 3))
+  area <- tidyr::expand_grid(t = 1:8, g = factor(1:3)) |>
+    mutate(y = rep(c(2, 1.5, 1), 8) + rep(c(0, .3, .5, .4, .8, 1, .9, 1.2), each = 3) * c(1, .5, .2))
+
+  # --- Comparação
+  cor <- cc[["Comparação"]]
+  comp <- list(
+    icone(ggplot(k4, aes(x, y)) + geom_col(fill = cor, width = .6), "Colunas", "poucas categorias", cor),
+    icone(ggplot(tibble::tibble(x = factor(1:6), y = c(6, 5, 4.5, 3, 2.5, 1.5)), aes(y, x)) +
+            geom_col(fill = cor, width = .6), "Barras", "vários itens", cor),
+    icone(ggplot(tibble::tibble(x0 = c(0, 1.2, 3), x1 = c(1, 2.8, 3.6), y = c(3, 5, 4))) +
+            geom_rect(aes(xmin = x0, xmax = x1, ymin = 0, ymax = y), fill = cor),
+          "Colunas de\nlargura variável", "duas variáveis por item", cor),
+    icone(ggplot(tidyr::expand_grid(c = 1:3, r = 1:3) |> mutate(h = runif(9, .2, .8))) +
+            geom_tile(aes(c, r), fill = NA, colour = "#c9c2b3", width = 1, height = 1) +
+            geom_rect(aes(xmin = c - .3, xmax = c + .3, ymin = r - .4, ymax = r - .4 + h), fill = cor),
+          "Tabela com\ngráficos", "muitas categorias", cor),
+    icone(ggplot(t8, aes(t, y)) + geom_line(colour = cor, linewidth = 1), "Linha",
+          "ao longo do tempo", cor),
+    icone(ggplot(tibble::tibble(a = seq(0, 2 * pi, length.out = 7)[-7] + pi / 2,
+                                r = c(4, 6, 3, 5, 2.5, 4.5))) +
+            geom_polygon(aes(r * cos(a), r * sin(a)), fill = NA, colour = cor, linewidth = 1) +
+            annotate("segment", x = 0, y = 0, xend = 6.3 * cos(seq(0, 2 * pi, length.out = 7)[-7] + pi / 2),
+                     yend = 6.3 * sin(seq(0, 2 * pi, length.out = 7)[-7] + pi / 2),
+                     colour = "#d8d2c4") +
+            coord_equal(), "Radar", "dados cíclicos", cor))
+
+  # --- Relação
+  cor <- cc[["Relação"]]
+  set.seed(2)
+  xy <- tibble::tibble(x = runif(15)) |> mutate(y = x + rnorm(15, 0, .15), s = runif(15))
+  rel <- list(
+    icone(ggplot(xy, aes(x, y)) + geom_point(colour = cor, size = 1.3), "Dispersão", "duas variáveis", cor),
+    icone(ggplot(xy, aes(x, y, size = s)) + geom_point(colour = cor, alpha = .6) +
+            scale_size(range = c(1, 5)), "Bolhas", "três variáveis", cor))
+
+  # --- Distribuição
+  cor <- cc[["Distribuição"]]
+  dist <- list(
+    icone(ggplot(tibble::tibble(x = 1:7, y = c(1, 3, 5, 7, 5, 3, 1)), aes(x, y)) +
+            geom_col(fill = cor, width = 1, colour = "white"), "Histograma\nde colunas",
+          "poucas observações", cor),
+    icone(ggplot(tibble::tibble(x = seq(-3, 3, .1)), aes(x, dnorm(x))) +
+            geom_area(fill = cor, alpha = .35) + geom_line(colour = cor, linewidth = 1),
+          "Histograma\nde linha", "muitas observações", cor),
+    icone(ggplot(xy, aes(x, y)) + geom_point(colour = cor, size = 1.3), "Dispersão",
+          "duas variáveis", cor),
+    icone(ggplot(tidyr::expand_grid(x = seq(-2, 2, .1), y = seq(-2, 2, .1)) |>
+                   mutate(z = exp(-(x^2 + y^2) / 2)), aes(x, y, fill = z)) +
+            geom_raster() + scale_fill_gradient(low = "white", high = cor),
+          "Superfície", "três variáveis", cor))
+
+  # --- Composição
+  cor <- cc[["Composição"]]
+  tc <- scale_fill_manual(values = tons(cor)[2:4])
+  compo <- list(
+    icone(ggplot(pilha, aes(x, y, fill = g)) + geom_col(width = .6) + tc,
+          "Colunas\nempilhadas", "poucas obs. no tempo", cor),
+    icone(ggplot(pilha, aes(x, y, fill = g)) + geom_col(width = .6, position = "fill") + tc,
+          "Colunas\nempilhadas 100%", "só diferenças relativas", cor),
+    icone(ggplot(area, aes(t, y, fill = g)) + geom_area() + tc,
+          "Área\nempilhada", "muitas obs. no tempo", cor),
+    icone(ggplot(area, aes(t, y, fill = g)) + geom_area(position = "fill") + tc,
+          "Área\nempilhada 100%", "só diferenças relativas", cor),
+    icone(ggplot(tibble::tibble(g = factor(1:3), y = c(5, 3, 2)), aes("", y, fill = g)) +
+            geom_col(width = 1, colour = "white") + coord_polar("y") + tc,
+          "Pizza", "fração simples do total", cor) + theme(aspect.ratio = 1),
+    icone(ggplot(tibble::tibble(x = 1:4, y0 = c(0, 4, 6, 0), y1 = c(4, 6, 5, 5))) +
+            geom_rect(aes(xmin = x - .35, xmax = x + .35, ymin = y0, ymax = y1), fill = cor),
+          "Cascata", "acumulação ou subtração", cor),
+    icone(ggplot(tibble::tibble(x = factor(rep(1:3, each = 3)), g = factor(rep(1:3, 3)),
+                                y = c(5, 3, 2, 2, 4, 4, 3, 3, 4)), aes(x, y, fill = g)) +
+            geom_col(position = "fill", width = .8, colour = "white") + tc,
+          "Empilhado 100%\ncom subconjuntos", "conjuntos de conjuntos", cor))
+
+  # cabeçalho: a pergunta e as quatro categorias, alinhadas com os blocos
+  larg <- c(2, 1, 2, 3)
+  centros <- (cumsum(larg) - larg / 2)
+  cab <- tibble::tibble(cat = names(cc), x = centros, cor = unname(cc))
+  topo <- ggplot() +
+    annotate("segment", x = sum(larg) / 2, y = 1.55, xend = cab$x, yend = .62,
+             colour = cores[["neutro"]], linewidth = 1,
+             arrow = arrow(length = unit(.22, "cm"), type = "closed")) +
+    annotate("label", x = sum(larg) / 2, y = 1.75, label = "O que você deseja mostrar?",
+             fill = cores[["texto"]], colour = "white", fontface = "bold", size = 5.4,
+             label.padding = unit(.5, "lines"), linewidth = 0) +
+    geom_label(data = cab, aes(x, .4, label = cat, fill = cor), colour = "white",
+               fontface = "bold", size = 5, label.padding = unit(.4, "lines"), linewidth = 0) +
+    scale_fill_identity() +
+    coord_cartesian(xlim = c(0, sum(larg)), ylim = c(.2, 2), expand = FALSE, clip = "off") +
+    theme_void() +
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+
+  bloco <- function(icones, ncol, nrow = 3) {
+    vazio <- nrow * ncol - length(icones)
+    wrap_plots(c(icones, rep(list(plot_spacer()), vazio)), ncol = ncol, nrow = nrow)
+  }
+  corpo <- wrap_plots(
+    bloco(comp, 2), bloco(rel, 1), bloco(dist, 2), bloco(compo, 3),
+    nrow = 1, widths = larg)
+  (topo / corpo + plot_layout(heights = c(.7, 4))) &
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+}

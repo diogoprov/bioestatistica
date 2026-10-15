@@ -857,47 +857,20 @@ Inspirado em Quinn & Keough, cap. 17.
 
 ---
 
-## Como escolher qual gráfico usar? {.smaller}
+## Como escolher qual gráfico usar?
 
-Comece pela pergunta: **o que você deseja mostrar?**
+```{r}
+#| fig-width: 13
+#| fig-height: 5.6
+#| out-width: "100%"
+#| fig-alt: "Árvore de decisão com uma miniatura de gráfico em cada folha a partir da pergunta o que você deseja mostrar, com quatro ramos. Comparação: por item (colunas, barras, tabela com gráficos, colunas de largura variável) ou ao longo do tempo (linha, radar, colunas). Relação: dispersão para duas variáveis, bolhas para três. Distribuição: histograma para uma variável, dispersão para duas, superfície para três. Composição: colunas ou áreas empilhadas ao longo do tempo; pizza, cascata ou empilhado 100% para composição estática."
+fig_escolha_grafico()
+```
 
-:::: {.columns}
-::: {.column width="25%"}
-::: {.definicao}
-**Comparação**
-
-Entre itens: barras, pirulito.
-
-Ao longo do tempo: linha.
+::: {.ref}
+Esquema de Randal S. Olson, inspirado no trabalho de A. Abela; tradução do
+IBPAD (2016), <https://ibpad.com.br/ciencia-dados/qual-e-o-grafico-mais-adequado/>.
 :::
-:::
-::: {.column width="25%"}
-::: {.definicao}
-**Relação**
-
-Duas variáveis quantitativas: dispersão.
-:::
-:::
-::: {.column width="25%"}
-::: {.definicao}
-**Distribuição**
-
-Uma variável: histograma, pontos, boxplot.
-
-Várias categorias: boxplots lado a lado.
-:::
-:::
-::: {.column width="25%"}
-::: {.definicao}
-**Composição**
-
-Partes de um todo: pizza (poucas categorias), treemap, barras empilhadas.
-:::
-:::
-::::
-
-<!-- TODO: referência. O esquema do original é um "chart chooser" sem
-crédito no slide; confirmar a fonte antes de citar. -->
 
 ---
 
