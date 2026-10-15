@@ -273,6 +273,12 @@ continua em `slides/`, então não apague os PDFs.
   Se não der para verificar, deixe `<!-- TODO: referência -->` e avise.
   Na Aula 2 entraram assim Wild & Pfannkuch 1999, Wiens 1989,
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
+- **Exceções autorizadas pelo Diogo** (com crédito no slide), em
+  `assets/terceiros/` (fontes em `assets/terceiros/FONTES.md`): a Tabela 1
+  da apostila de Paglia & De Marco e a tirinha xkcd 552 (CC BY-NC), na
+  Aula 9. Digitalizações de obras do século XIX tiradas dos `.pptx` (as
+  figuras de Galton de 1886 e 1888) também valem, porque estão em domínio
+  público.
 - **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em
   domínio público do Commons com legenda própria, na classe `.meme` de
   `slides/theme.scss` (imagens em `assets/memes/`, fontes em
