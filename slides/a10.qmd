@@ -2,7 +2,7 @@
 title: "Modelos lineares generalizados"
 subtitle: "Aula 10 · Teste de qui-quadrado · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-11-13
+date: 2027-02-26
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

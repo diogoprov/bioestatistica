@@ -2,7 +2,7 @@
 title: "Introdução à estatística biológica"
 subtitle: "Aula 1 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-08-07
+date: 2027-02-15
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

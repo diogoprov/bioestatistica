@@ -1,14 +1,14 @@
 ---
 title: "Aula 9 — Modelos lineares: regressão (e correlação) linear"
 order: 9
-date: "2025-11-06"
+date: "2027-02-25"
 description: "Correlação de Pearson; regressão linear simples e mínimos quadrados; tabela de ANOVA, R² e diagnóstico dos resíduos."
 gancho: "Por que os filhos de pais muito altos tendem a ser mais baixos que os pais?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**06 de novembro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Quinta-feira, 25 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Correlação e regressão linear simples, a partir dos dados com que Galton

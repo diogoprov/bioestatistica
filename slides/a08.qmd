@@ -2,7 +2,7 @@
 title: "Introdução aos modelos lineares"
 subtitle: "Aula 8 · Teste *t* de Student · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-10-23
+date: 2027-02-24
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

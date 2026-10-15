@@ -1,14 +1,14 @@
 ---
 title: "Aula 7 — Testes de hipótese em estatística"
 order: 7
-date: "2025-10-16"
+date: "2027-02-23"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."
 gancho: "O que o valor de P diz, e o que ele não diz?"
 etapas: [problema, plano, analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**16 de outubro de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Terça-feira, 23 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Como decidir com dados na presença de incerteza: hipóteses nula e

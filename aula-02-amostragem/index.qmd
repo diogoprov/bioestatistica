@@ -1,14 +1,14 @@
 ---
 title: "Aula 2 — Amostragem e delineamento"
 order: 2
-date: "2025-08-14"
+date: "2027-02-16"
 description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."
 gancho: "Medir 50 girinos do mesmo aquário é ter 50 réplicas?"
 etapas: [problema, plano]
 ---
 
 ::: {.aula-meta}
-**14 de agosto de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
+**Terça-feira, 16 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
 :::
 
 Como formular uma pergunta que dá para testar, o que conta como réplica,

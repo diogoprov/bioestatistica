@@ -2,7 +2,7 @@
 title: "Probabilidade, variáveis aleatórias e principais distribuições"
 subtitle: "Aula 5 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-09-11
+date: 2027-02-19
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

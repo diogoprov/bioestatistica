@@ -2,7 +2,7 @@
 title: "Testes de hipótese em estatística"
 subtitle: "Aula 7 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-10-16
+date: 2027-02-23
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

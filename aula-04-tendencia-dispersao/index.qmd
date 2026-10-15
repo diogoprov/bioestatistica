@@ -1,14 +1,14 @@
 ---
 title: "Aula 4 — Medidas de tendência central e de dispersão"
 order: 4
-date: "2025-08-28"
+date: "2027-02-18"
 description: "Média, mediana e moda; amplitude, quartis, variância, desvio-padrão e coeficiente de variação; a forma das distribuições."
 gancho: "Dois grupos com a mesma média podem ser completamente diferentes?"
 etapas: [analise]
 ---
 
 ::: {.aula-meta}
-**28 de agosto de 2025** · [Análise]{.ppdac-etapa .analise}
+**Quinta-feira, 18 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise}
 :::
 
 Como resumir um conjunto de dados com poucos números: onde fica o centro
