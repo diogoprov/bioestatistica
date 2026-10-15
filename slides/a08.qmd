@@ -575,7 +575,8 @@ fig_reta_parametros()
 ```
 
 ::: {.ref}
-Redesenhada a partir de uma figura de livro-texto do original (Figura 9.1).
+Inspirado na Figura 9.1 de Quinn & Keough, *Experimental design and data
+analysis for biologists*.
 :::
 
 ---
