@@ -1,6 +1,11 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - "*.qmd"
+    - "aula-*/index.qmd"
+    - "slides/*.qmd"
+    - "!README.md"
 
 website:
   title: "Bioestatística"
@@ -43,5 +48,20 @@ format:
       - text: |
           <link rel="stylesheet"
                 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+knitr:
+  opts_chunk:
+    dev.args:
+      bg: "#faf7f0"
+
+# Os slides têm chunks de R que geram as figuras. Com freeze, o resultado
+# fica em _freeze/ (versionado) e o CI renderiza só com o Quarto, sem R.
+# Depois de mudar um .qmd com código, rode `quarto render` localmente e
+# commite _freeze/ junto.
+lang: pt
+execute:
+  freeze: auto
+  warning: false
+  message: false
 
 editor: source

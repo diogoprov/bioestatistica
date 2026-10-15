@@ -9,7 +9,10 @@ Mato Grosso do Sul.
 ## O que há aqui
 
 Onze aulas, cada uma em sua própria pasta com a página correspondente
-(`index.qmd`). Os slides em PDF ficam em `slides/`.
+(`index.qmd`). Os slides ficam em `slides/`: em PDF para as aulas ainda não
+convertidas, e em Quarto/revealjs (`slides/aNN.qmd`) para as convertidas,
+com figuras geradas em R a partir de dados simulados. O código das figuras
+fica em `R/`, um arquivo por bloco da aula.
 
 | Aula | Tópico |
 |-----:|--------|
@@ -39,8 +42,21 @@ quarto preview      # pré-visualiza com recarga automática
 quarto render       # gera docs/
 ```
 
-Estas páginas não contêm blocos de código executável, então o render precisa
-apenas do Quarto — nem R é necessário.
+Os slides convertidos têm blocos de R. O projeto usa `freeze: auto`, e o
+resultado da execução fica em `_freeze/`, que **é versionado**. O CI usa
+esse resultado e precisa só do Quarto. Ao mudar um `.qmd` com código ou
+uma função em `R/`, renderize localmente e commite `_freeze/` junto:
+
+```bash
+quarto render slides/a02.qmd
+```
+
+Pacotes usados: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
+`patchwork`, `ape`, `here` e `knitr`.
+
+Se você mudar só uma função em `R/`, o Quarto não percebe que o `.qmd`
+precisa ser executado de novo. Renderize o arquivo explicitamente, como
+acima.
 
 ## Origem
 

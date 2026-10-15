@@ -9,14 +9,39 @@ description: "Princípios de amostragem e delineamento experimental"
 **Data:** 14 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Como formular uma pergunta que dá para testar, o que conta como réplica,
+como escolher onde amostrar e como montar um experimento que permita
+separar causa de coincidência. Na linguagem do ciclo PPDAC, esta aula
+cobre o **Problema** e o **Plano**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-02-amostragem.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a02.html){.btn .btn-outline-primary}
+
+Todas as figuras dos slides são geradas em R a partir de dados simulados.
+O código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório.
+
+## Conteúdo
+
+1. **Tudo começa com uma boa pergunta**: pergunta, hipótese científica e
+   estatística, predições e a expressão gráfica de cada hipótese.
+2. **Réplica, unidade amostral e independência**: quantas réplicas, e
+   pseudorréplica espacial, temporal e filogenética.
+3. **Escala e controles**: grão, extensão e confundimento espacial.
+4. **Técnicas de amostragem**: aleatória simples, estratificada e
+   sistemática, comparadas numa floresta simulada.
+5. **Estudos observacionais e experimentais**: confundimento e
+   aleatorização.
+6. **Delineamentos clássicos**: desenho de regressão, intercalação, blocos
+   aleatorizados, aninhado, parcelas subdivididas, medidas repetidas e BACI.
 
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 7 (amostragem).
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 6 e 7 (desenhos amostrais e experimentais).
+- Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.
 
 ## Recursos externos
 
