@@ -61,6 +61,7 @@ Commons.
 - Quinn, G.P. & Keough, M.J. *Experimental Design and Data Analysis for Biologists*, cap. 8.
 - Triola, M.F. *Introdução à estatística*, cap. 12.
 - Vieira, S. *Estatística básica*, cap. 13.
+- Field, A. [*An Adventure in Statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
 
 ## Exercício no R (swirl)
 

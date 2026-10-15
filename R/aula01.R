@@ -105,39 +105,6 @@ fig_previsao <- function(seed = 3) {
 }
 
 # ---------------------------------------------------------------------------
-# Dois modelos para a mesma população: um ignora a incerteza, o outro a
-# incorpora e comunica. Redesenho com dados simulados da Figura I de
-# Simmonds et al. (2024).
-# ---------------------------------------------------------------------------
-fig_incerteza_modelos <- function(seed = 8) {
-  set.seed(seed)
-  anos <- 0:25
-  m1 <- tibble::tibble(ano = anos, y = 2.1 + as.numeric(arima.sim(list(ar = .3), length(anos), sd = .22)),
-                       modelo = "Modelo 1")
-  m2 <- tibble::tibble(ano = anos, y = 1 + as.numeric(arima.sim(list(ar = .3), length(anos), sd = .12)),
-                       modelo = "Modelo 2") |>
-    mutate(li = y - .35 - .01 * ano, ls = y + .35 + .01 * ano)
-  cor_m <- c(`Modelo 1` = "#2b4fd8", `Modelo 2` = "#8e44ad")
-  ggplot() +
-    geom_ribbon(data = m2, aes(ano, ymin = li, ymax = ls), fill = cor_m[["Modelo 2"]],
-                alpha = .3) +
-    geom_hline(yintercept = 1, linetype = "22", colour = cores[["texto"]]) +
-    geom_line(data = bind_rows(m1, select(m2, ano, y, modelo)),
-              aes(ano, y, colour = modelo), linewidth = 1.6) +
-    annotate("point", x = 22, y = 1.45, colour = "#d98a3d", size = 4) +
-    annotate("text", x = 25.6, y = c(2.1, 1), hjust = 0, size = 4.6,
-             lineheight = .95, colour = cores[["texto"]],
-             label = c("Não incorpora\nincerteza", "Incorpora e\ncomunica incerteza")) +
-    scale_colour_manual(values = cor_m, name = NULL) +
-    scale_x_continuous(expand = expansion(mult = c(.02, .02))) +
-    coord_cartesian(xlim = c(0, 25), ylim = c(0, 3), clip = "off") +
-    labs(x = "Ano", y = "Taxa de crescimento\npopulacional",
-         caption = "Tracejado: a taxa média verdadeira, igual nos dois modelos. Ponto laranja: uma observação.") +
-    tema_aula(14) +
-    theme(plot.margin = margin(5, 150, 5, 5), legend.position = "top")
-}
-
-# ---------------------------------------------------------------------------
 # População e amostra: amostragem num sentido, inferência no outro.
 # ---------------------------------------------------------------------------
 fig_populacao_amostra <- function(seed = 4, n_pop = 400, n_am = 15) {

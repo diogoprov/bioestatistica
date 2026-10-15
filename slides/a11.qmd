@@ -89,7 +89,8 @@ mais grupos, com o mesmo modelo linear do teste *t* e da regressão.
 analysis for biologists*, cap. 6; Vieira, *Introdução à bioestatística*,
 cap. 13; Triola, *Introdução à estatística*, cap. 12; Bussab & Morettin,
 *Estatística básica*, cap. 15; Gotelli & Ellison, *Princípios de
-estatística em ecologia*, cap. 10.
+estatística em ecologia*, cap. 10; Field, [*An adventure in
+statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
 :::
 
 # 1. Por que ANOVA? {.secao}
@@ -977,6 +978,7 @@ modelos:
 ::: {.nota}
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.
 - Ellison, A.M., Farnsworth, E.J. & Twilley, R.R. 1996. [Facultative mutualism between red mangroves and root-fouling sponges in Belizean mangal](https://doi.org/10.2307/2265744). *Ecology* 77:2431–2444.
+- Field, A. 2022. *An adventure in statistics*, 2ª ed. SAGE. <https://www.statisticsadventure.com>
 - Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433.
 - Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd.
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*.
