@@ -124,6 +124,12 @@ continua em `slides/`, então não apague os PDFs.
 - **Figuras só com dados simulados.** Não use figuras copiadas de livros ou
   artigos. Uma figura do original que venha de outra fonte deve ser
   **refeita em R** ou substituída por uma explicação.
+- **Exceção: imagens sob CC0 ou CC-BY** (por exemplo, silhuetas do
+  [PhyloPic](https://www.phylopic.org)) podem ser usadas, sempre com o
+  crédito de autor e licença num `::: {.nota}` do slide. Ficam em
+  `assets/`. Na Aula 2, o pictograma `assets/aula02-tres-cenarios.svg`
+  (os três cenários de pseudorréplica) foi feito assim, adaptado do E7 de
+  Análise de Dados Univariados.
 - O conteúdo segue o pptx original. Melhorias de didática são bem-vindas,
   mas mudanças de escopo precisam ser combinadas antes.
 - **Não invente referências, DOIs nem URLs.** Use as que já estão no
