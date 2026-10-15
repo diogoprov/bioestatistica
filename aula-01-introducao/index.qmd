@@ -9,9 +9,39 @@ description: "Introdução à estatística biológica"
 **Data:** 07 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+O que é estatística e de onde vem a incerteza, como o empirismo
+científico chegou à ideia de tirar conclusões a partir de dados, os
+conceitos básicos (população, amostra, parâmetro, estatística, tipos de
+variáveis) e o ciclo PPDAC, que organiza a disciplina inteira.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-01-introducao.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a01.html){.btn .btn-outline-primary}
+
+As figuras dos slides são esquemas redesenhados ou foram geradas em R com
+dados simulados; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. As imagens históricas são de domínio público, via Wikimedia
+Commons.
+
+## Conteúdo
+
+1. **A disciplina**: plano, avaliação e leituras.
+2. **O que é estatística**: incerteza, variabilidade, sinal e ruído, e por
+   que previsões precisam comunicar incerteza.
+3. **Breve histórico**: de al-Haytham a Bacon e Hobbes, e o ciclo do método
+   científico.
+4. **Áreas da estatística**: descritiva, probabilidade e inferencial.
+5. **Definições e conceitos**: parâmetro, estatística, notação, população,
+   amostra e espaço amostral.
+6. **Tipos de variáveis**: quantitativas (discretas e contínuas) e
+   qualitativas (nominais e ordinais).
+7. **A estatística na pesquisa biológica**: o ciclo PPDAC e as
+   recomendações do GAISE.
+8. **Atividade prática**: adivinhação de idades.
+
+Três perguntas para a turma, com votação e discussão em duplas, estão
+espalhadas pelos slides.
 
 ## Leituras recomendadas
 
