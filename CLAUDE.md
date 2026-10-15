@@ -22,14 +22,15 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- A **Aula 2** é a única convertida até agora e serve de modelo para as
-  demais.
+- **out/2026**: Aulas 2 e 1 convertidas, nesta ordem. A Aula 2 serve de
+  modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
+  entrou junto com a Aula 1.
 
 ## Situação das aulas
 
 | Aula | Pasta | Slides hoje | Original (.pptx) |
 |-----:|-------|-------------|------------------|
-| 1 | `aula-01-introducao` | PDF | `Aula 1 - Intodução.pptx` |
+| 1 | `aula-01-introducao` | **`slides/a01.qmd` ✔** | `Aula 1 - Intodução.pptx` |
 | 2 | `aula-02-amostragem` | **`slides/a02.qmd` ✔** | `Aula 2 - Delineamento amostral.pptx` |
 | 3 | `aula-03-organizacao-dados` | PDF | `Aula 4 - organizacao e visualizacao dados.pptx` |
 | 4 | `aula-04-tendencia-dispersao` | PDF | `Aula 3 - medidas tendencia central.pptx` |
@@ -45,9 +46,53 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-Ainda não há uma ordem combinada para as próximas conversões. A sugestão é
-seguir a sequência do curso (Aula 1, depois 3, e assim por diante).
-Confirme com o Diogo antes de começar.
+As conversões seguem a sequência do curso: a próxima é a **Aula 3**.
+
+### Fonte da conversão: sempre o `.pptx` mais recente
+
+Use o `.pptx` da pasta do OneDrive, não o PDF de `slides/`. Os PDFs do
+repositório são de 2025, e alguns `.pptx` foram atualizados depois. A Aula
+2 foi convertida do PDF antigo e teve de ser completada depois com os
+slides novos do `.pptx`. Extraia também as notas do apresentador, que vão
+para `::: {.nota}`.
+
+### Preserve o original
+
+Mantenha ao máximo o texto dos slides (corrija só erros óbvios de
+digitação) e todos os esquemas e figuras, redesenhados em R. Uma figura só
+sai quando não tem como ser refeita nem existe versão com licença aberta;
+nesse caso, troque por texto ou referência.
+
+### Aprendizagem ativa (inegociável)
+
+- Todas as atividades do original ficam, em caixas `::: {.atividade}`.
+- **Kahoot**: o perfil público é
+  <https://create.kahoot.it/profiles/1d311cc2-3d7f-4365-96a5-af3d40f3f73a>.
+  Mantenha o Kahoot da aula com um link para
+  `https://create.kahoot.it/details/<id>`. Mapa atual (numeração do site):
+
+  | Aula | Kahoot | id |
+  |-----:|--------|----|
+  | 1, 2, 3, 9, 11 | (não há) | |
+  | 4 | Revisão média e variância | `44148d47-cfae-4aaf-af68-81710e641a21` |
+  | 5 | Probabilidade e distribuições de probabilidade | `c2996a96-77cb-49bc-a526-b2393a950a38` |
+  | 6 | Intervalo de confiança | `5a154caf-a064-4482-9305-3970ebf3bdc6` |
+  | 6 | Estimativa pontual e intervalar | `d308b304-73c3-45ee-80ff-df00e7760a7a` |
+  | 7 | Teste de hipótese | `f81ec20f-f843-4cdb-957d-b2ac3922d48b` |
+  | 8 | Teste t | `095cb8f0-fc9f-437a-9449-105b02de0750` |
+  | 8 | Introdução aos Modelos Lineares | `dfd7caf5-696f-4d48-8d54-cdfb347ae74c` |
+  | 10 | Qui-quadrado e Teste G | `24e6dd0f-ab42-4583-9b42-602515a0843c` |
+  | revisão | Revisão estatística descritiva e inferencial | `41366a84-3e6e-4131-b17c-646ae6fbb2f8` |
+
+- **Slido**: os `.pptx` das aulas 4 e 7 (numeração do site) têm slides de
+  enquete do Slido, sem link de evento. O equivalente nos slides em Quarto
+  são as **perguntas para a turma**.
+- **Perguntas para a turma** (*peer instruction*), usadas onde não há Kahoot
+  ou Slido: um slide `## Pergunta para a turma {.smaller}` com a pergunta e
+  quatro alternativas numa caixa `.atividade`; a instrução "votem sozinhos,
+  discutam com quem está ao lado e votem de novo"; e a resposta com a
+  justificativa num `::: {.fragment}` com `.definicao`. Veja os três
+  exemplos em `slides/a01.qmd`.
 
 ### Onde estão os originais (no Mac)
 
@@ -71,8 +116,10 @@ A pasta também tem material de apoio útil:
 
 - `slides/a02.qmd`: os slides (~1140 linhas, 59 slides `##`)
 - `slides/theme.scss`: o tema compartilhado por todas as aulas
-- `R/tema.R`: paleta `cores`, `cores_niveis`, `cores_solo` e `tema_aula(base = 15, conceitual = FALSE)`
-- `R/ppdac.R`: `ppdac_plot(destaque = c(...))`, o diagrama do ciclo com as etapas da aula destacadas
+- `R/tema.R`: paletas `cores`, `cores_ppdac`, `cores_niveis`, `cores_solo` e `tema_aula(base = 15, conceitual = FALSE)`
+- `R/ppdac.R`: `ppdac_plot(destaque = c(...))`, o diagrama do ciclo com as
+  etapas da aula destacadas, e `ppdac_topicos(list(Problema = ..., ...))`, o
+  ciclo com os tópicos de cada etapa
 - `R/aula02_pergunta.R`, `R/aula02_amostragem.R`, `R/aula02_delineamento.R`:
   **um arquivo R por bloco da aula**, só com funções que desenham as figuras
 - `aula-02-amostragem/index.qmd`: a página da aula, com botão para os slides
@@ -94,12 +141,20 @@ e `author: "Diogo B. Provete"`. A data vem do `index.qmd` da aula.
    dizendo que todas as figuras foram geradas em R com dados simulados e
    apontando para `R/` no GitHub.
 3. `## Onde estamos no ciclo PPDAC`, com `ppdac_plot(destaque = ...)`.
-4. Cada bloco abre com `# N. Título {.secao}` seguido de
-   `[Etapa]{.ppdac-etapa}` (por exemplo `[Plano → Dados]{.ppdac-etapa}`).
-5. Classes do tema disponíveis: `.secao`, `.ppdac-etapa`, `.definicao`,
+4. Cada bloco abre com `# N. Título {.secao}` seguido do selo da etapa,
+   `[Plano]{.ppdac-etapa .plano}`. Duas etapas viram dois selos:
+   `[Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados}`. As classes
+   de etapa são `.problema`, `.plano`, `.dados`, `.analise` e `.conclusao`.
+5. **Identidade visual do PPDAC:** cada etapa tem uma cor fixa, a mesma no
+   diagrama (`cores_ppdac` em `R/tema.R`) e nos selos (`$ppdac-*` em
+   `slides/theme.scss`). Problema `#a15e3f`, Plano `#1c6e8c`, Dados
+   `#527238`, Análise `#96661f`, Conclusão `#6b4c8a`. Se mudar uma cor, mude
+   nos dois lugares. Use essas cores sempre que uma figura se referir a uma
+   etapa do ciclo.
+6. Classes do tema disponíveis: `.secao`, `.ppdac-etapa`, `.definicao`,
    `.nota`, `.ref` (referências em itálico pequeno), `.atividade`,
    `.tabela-grande`, `.codigo-compacto`, `.smaller`, `.columns`/`.column`.
-6. Toda figura leva `fig-alt` descritivo em português.
+7. Toda figura leva `fig-alt` descritivo em português.
 
 ### Página da aula (`aula-NN-*/index.qmd`)
 
@@ -130,6 +185,11 @@ continua em `slides/`, então não apague os PDFs.
   `assets/`. Na Aula 2, o pictograma `assets/aula02-tres-cenarios.svg`
   (os três cenários de pseudorréplica) foi feito assim, adaptado do E7 de
   Análise de Dados Univariados.
+- **Domínio público** também vale (por exemplo, retratos e frontispícios
+  históricos do Wikimedia Commons). Confira a licença na API do Commons
+  (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão
+  reduzida para `assets/historia/` e registre arquivo, original, autor e
+  licença em `assets/historia/FONTES.md`. **CC BY-SA não serve.**
 - O conteúdo segue o pptx original. Melhorias de didática são bem-vindas,
   mas mudanças de escopo precisam ser combinadas antes.
 - **Não invente referências, DOIs nem URLs.** Use as que já estão no
