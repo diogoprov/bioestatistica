@@ -1,14 +1,14 @@
 ---
 title: "Aula 7 — Testes de hipótese em estatística"
 order: 7
-date: "2025-10-16"
+date: "2027-02-23"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."
 gancho: "O que o valor de P diz, e o que ele não diz?"
 etapas: [problema, plano, analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**16 de outubro de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Terça-feira, 23 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Como decidir com dados na presença de incerteza: hipóteses nula e
@@ -74,7 +74,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a figura dos erros tipo I e II está em
+O código da figura dos erros tipo I e II está em
 [`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

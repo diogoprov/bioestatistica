@@ -207,3 +207,30 @@ a.cartao-link:hover { text-decoration: none; }
 /* --- Caixa "Em 3 minutos" nas páginas das aulas --- */
 .em-3-minutos { border-left-color: var(--bsl-accent) !important; }
 .em-3-minutos ol { margin-bottom: .5rem; }
+
+/* --- Quiz "Teste-se" (_teste-se.html) --- */
+.teste-se-pergunta {
+  background-color: var(--bsl-bg-card);
+  border: 1px solid var(--bsl-border);
+  border-radius: 6px;
+  padding: .8rem 1rem .5rem;
+  margin-bottom: .8rem;
+}
+.teste-se-pergunta > p:first-child { margin-bottom: .5rem; }
+.teste-se-opcoes { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: .4rem; }
+.teste-se-opcoes button {
+  text-align: left;
+  background: var(--bsl-bg-soft);
+  border: 1px solid var(--bsl-border);
+  border-radius: 4px;
+  padding: .45rem .7rem;
+  font-size: .92rem;
+  color: #2d3748;
+  cursor: pointer;
+}
+.teste-se-opcoes button:hover:not(:disabled) { border-color: var(--bsl-accent); }
+.teste-se-opcoes button:disabled { cursor: default; opacity: .75; }
+.teste-se-opcoes button.certa { background: #e3efd9; border-color: #527238; opacity: 1; font-weight: 600; }
+.teste-se-opcoes button.errada { background: #f6dede; border-color: #a33; opacity: 1; }
+.teste-se-explicacao { font-size: .9rem; color: #4a5568; margin: .55rem 0 .2rem; }
+.teste-se-placar { font-weight: 600; margin: .4rem 0 .6rem; }

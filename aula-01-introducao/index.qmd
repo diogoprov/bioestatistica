@@ -1,14 +1,14 @@
 ---
 title: "Aula 1 — Introdução à estatística biológica"
 order: 1
-date: "2025-08-07"
+date: "2027-02-15"
 description: "O que é estatística e de onde vem a incerteza; população, amostra, parâmetro e tipos de variáveis; o ciclo PPDAC."
 gancho: "Se a previsão era de 70% de chuva e fez sol, a meteorologia errou?"
 etapas: [problema, plano, dados, analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**07 de agosto de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Segunda-feira, 15 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 O que é estatística e de onde vem a incerteza, como o empirismo
@@ -59,6 +59,14 @@ Commons.
 - Atividade prática: adivinhação de idades a partir de fotografias, em
   grupos.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a01.json"}
+:::
+
 ## Leituras recomendadas
 
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 2.
@@ -66,7 +74,7 @@ Commons.
 
 ## Brinque com o código
 
-O código de a figura da população e da amostra está em
+O código da figura da população e da amostra está em
 [`R/aula01.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula01.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

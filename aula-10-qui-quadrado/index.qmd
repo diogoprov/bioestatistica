@@ -1,14 +1,14 @@
 ---
 title: "Aula 10 — Modelos lineares generalizados: teste de qui-quadrado"
 order: 10
-date: "2025-11-13"
+date: "2027-02-26"
 description: "Qui-quadrado de aderência e de independência; o qui-quadrado como modelo log-linear; teste exato de Fisher e teste G."
 gancho: "As cores de um pacote de balas seguem a proporção que o fabricante promete?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**13 de novembro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Sexta-feira, 26 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Quando os dados são contagens em categorias: o teste de qui-quadrado de
@@ -67,7 +67,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a distribuição qui-quadrado com a região crítica está em
+O código da distribuição qui-quadrado com a região crítica está em
 [`R/aula10.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula10.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

@@ -212,6 +212,12 @@ continua em `slides/`, então não apague os PDFs.
   `slides/_selo-etapa.html` em todos os decks. O selo do canto é copiado do
   slide de seção (`# N. Título {.secao}`) do bloco, então cada seção
   precisa dos seus selos.
+- **Teste-se e Kahoot:** as perguntas das Aulas 1, 2, 3, 9 e 11 ficam em
+  `quiz/aNN.json` (alternativas já embaralhadas, `correta` de 1 a 4). Elas
+  alimentam o quiz da página (`::: {.quiz-teste-se data-quiz="../quiz/aNN.json"}`,
+  script em `_teste-se.html`) e as planilhas de importação do Kahoot em
+  `quiz/kahoot/` (gere com `Rscript quiz/kahoot_xlsx.R`, que usa `writexl`).
+  O Kahoot limita a pergunta a 120 caracteres e cada alternativa a 75.
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 

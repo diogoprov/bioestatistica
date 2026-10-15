@@ -1,14 +1,14 @@
 ---
 title: "Aula 11 — Modelos lineares: análise de variância (ANOVA)"
 order: 11
-date: "2025-11-20"
+date: "2027-02-27"
 description: "A ANOVA como modelo linear; partição da variância e teste F; testes post-hoc; ANOVA fatorial e ANCOVA."
 gancho: "Por que não fazer vários testes t para comparar quatro grupos?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**20 de novembro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Sábado, 27 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 A ANOVA como um modelo linear com um preditor categórico: a partição da
@@ -55,6 +55,14 @@ Commons.
 - Aula prática: ANOVA de dois fatores no jamovi com os dados dos girinos
   ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a11.json"}
+:::
+
 ## Leituras recomendadas
 
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 10 (ANOVA).
@@ -73,7 +81,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a variação entre e dentro dos grupos está em
+O código da variação entre e dentro dos grupos está em
 [`R/aula11.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula11.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

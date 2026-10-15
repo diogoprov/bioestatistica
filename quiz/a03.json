@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "Numa planilha bem organizada:",
+  "alternativas": [
+   "Totais ficam no meio dos dados",
+   "Cores marcam os tratamentos",
+   "Cada linha é uma observação e cada coluna, uma variável",
+   "Cada aba guarda um grupo diferente"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Uma observação por linha e uma variável por coluna: é o formato que os programas de análise leem direto."
+ },
+ {
+  "pergunta": "Qual é um erro comum ao planilhar dados?",
+  "alternativas": [
+   "Juntar duas variáveis numa coluna (ex.: \"12 g, macho\")",
+   "Usar uma coluna para cada variável",
+   "Guardar as unidades num arquivo de metadados",
+   "Usar nomes de colunas curtos"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Massa e sexo são duas variáveis e precisam de duas colunas."
+ },
+ {
+  "pergunta": "Que codificação visual lemos com mais precisão?",
+  "alternativas": [
+   "Ângulo",
+   "Área",
+   "Intensidade de cor",
+   "Posição numa escala comum"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Comparamos posições alinhadas com muito mais precisão do que ângulos ou áreas. Por isso barras e pontos costumam vencer a pizza."
+ },
+ {
+  "pergunta": "Para mostrar a distribuição de uma variável contínua, use:",
+  "alternativas": [
+   "Um histograma",
+   "Um gráfico de pizza",
+   "Um treemap",
+   "Uma tabela de contingência"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "O histograma mostra onde os valores se concentram e a forma da distribuição."
+ },
+ {
+  "pergunta": "Num histograma, classes largas demais:",
+  "alternativas": [
+   "Escondem detalhes da forma da distribuição",
+   "Mostram mais detalhes",
+   "Aumentam o número de observações",
+   "Mudam a média dos dados"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Com poucas classes, picos e assimetrias somem; com classes estreitas demais, o gráfico fica serrilhado."
+ },
+ {
+  "pergunta": "Num boxplot, a linha dentro da caixa é a:",
+  "alternativas": [
+   "Média",
+   "Amplitude",
+   "Moda",
+   "Mediana"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "A linha central é a mediana; a caixa vai do 1º ao 3º quartil."
+ },
+ {
+  "pergunta": "Num boxplot, pontos isolados além dos bigodes indicam:",
+  "alternativas": [
+   "O número de observações",
+   "Erros de digitação, sempre",
+   "A média de cada grupo",
+   "Valores atípicos (outliers)"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "São valores muito afastados do resto. Valem uma checagem, mas não são necessariamente erros."
+ },
+ {
+  "pergunta": "Para relacionar duas variáveis contínuas, use:",
+  "alternativas": [
+   "Um gráfico de pizza",
+   "Um gráfico de dispersão",
+   "Um treemap",
+   "Um gráfico de barras empilhadas"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Cada ponto é uma observação com um valor de X e um de Y; o gráfico mostra a forma da relação."
+ },
+ {
+  "pergunta": "Por que desconfiar do gráfico de barras com barra de erro (\"dinamite\")?",
+  "alternativas": [
+   "Ele só serve para porcentagens",
+   "Ele esconde a distribuição e o número de dados",
+   "Ele não mostra a média",
+   "Ele exige dados pareados"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Conjuntos de dados muito diferentes produzem a mesma barra. Mostre os pontos, ou use boxplot."
+ },
+ {
+  "pergunta": "Quando preferir uma tabela a um gráfico?",
+  "alternativas": [
+   "Para mostrar uma tendência no tempo",
+   "Para comparar a forma de distribuições",
+   "Para mostrar a relação entre duas variáveis",
+   "Quando o leitor precisa dos valores exatos"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Tabelas servem para consultar números exatos; gráficos, para mostrar padrões e comparações."
+ }
+]

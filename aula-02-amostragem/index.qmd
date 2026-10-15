@@ -1,14 +1,14 @@
 ---
 title: "Aula 2 — Amostragem e delineamento"
 order: 2
-date: "2025-08-14"
+date: "2027-02-16"
 description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."
 gancho: "Medir 50 girinos do mesmo aquário é ter 50 réplicas?"
 etapas: [problema, plano]
 ---
 
 ::: {.aula-meta}
-**14 de agosto de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
+**Terça-feira, 16 de fevereiro de 2027** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano}
 :::
 
 Como formular uma pergunta que dá para testar, o que conta como réplica,
@@ -56,10 +56,19 @@ repositório.
 - Nitrogênio do solo e crescimento de *Pinus*: como delinear o estudo.
 - Consultoria em delineamento: em grupos, atender quatro clientes.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a02.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 7 (amostragem).
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 6 e 7 (desenhos amostrais e experimentais).
+- Quinn, G.P. & Keough, M.J. *Experimental Design and Data Analysis for Biologists*, cap. 3.
 - Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.
 
 ## Exercício no R (swirl)
@@ -73,7 +82,7 @@ vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
 
 ## Brinque com o código
 
-O código de a figura da mesma diferença real com três tamanhos de amostra está em
+O código da figura da mesma diferença real com três tamanhos de amostra está em
 [`R/aula02_pergunta.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula02_pergunta.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

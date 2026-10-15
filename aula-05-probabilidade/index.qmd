@@ -1,14 +1,14 @@
 ---
 title: "Aula 5 — Probabilidade, variáveis aleatórias e principais distribuições"
 order: 5
-date: "2025-09-11"
+date: "2027-02-19"
 description: "Regras da probabilidade e probabilidade condicional; variáveis aleatórias; as distribuições binomial, Poisson e normal."
 gancho: "Um sapo deu positivo num teste \"90% preciso\". Qual a chance de ele estar doente?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**11 e 18 de setembro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Sexta-feira, 19 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 A linguagem da incerteza: o que é probabilidade e como calculá-la, o que
@@ -79,7 +79,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a árvore de "O teste que mente" está em
+O código da árvore de "O teste que mente" está em
 [`R/aula05.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula05.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

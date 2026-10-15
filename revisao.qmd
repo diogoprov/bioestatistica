@@ -8,7 +8,7 @@ toc: true
 
 1. **Leia o "Em 3 minutos" de cada aula**: três ideias-chave e um erro
    comum. Se uma ideia não fizer sentido, volte aos slides daquela aula.
-2. **Refaça os Kahoots** da tabela abaixo.
+2. **Refaça os Kahoots** da tabela abaixo e os **Teste-se** das aulas que não têm Kahoot.
 3. **Faça as lições do swirl** que faltam ([Exercícios no R](exercicios-swirl.qmd)).
 4. **Confira os termos** que ainda confundem no [glossário](glossario.qmd).
 
@@ -49,10 +49,15 @@ Os Kahoots usados em sala ficam no
 
 : {tbl-colwidths="[10,90]"}
 
-As Aulas 1, 3, 9 e 11 não têm Kahoot, mas têm **perguntas para a turma**
-nos slides, que servem do mesmo jeito: abra os slides, procure os títulos
-"Pergunta para a turma", responda e avance (tecla →) para ver a resposta
-comentada. Na Aula 2, revise pelas atividades em grupo.
+As Aulas 1, 2, 3, 9 e 11 não têm Kahoot, mas a página de cada uma tem um
+**Teste-se** com dez perguntas e respostas comentadas:
+[Aula 1](aula-01-introducao/index.qmd#teste-se),
+[Aula 2](aula-02-amostragem/index.qmd#teste-se),
+[Aula 3](aula-03-organizacao-dados/index.qmd#teste-se),
+[Aula 9](aula-09-regressao-correlacao/index.qmd#teste-se) e
+[Aula 11](aula-11-anova/index.qmd#teste-se). Os slides dessas aulas também
+têm **perguntas para a turma**: procure os títulos "Pergunta para a turma",
+responda e avance (tecla →) para ver a resposta.
 
 ---
 

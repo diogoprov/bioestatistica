@@ -1,14 +1,14 @@
 ---
 title: "Aula 6 — Estimativa pontual e intervalar"
 order: 6
-date: "2025-10-02"
+date: "2027-02-22"
 description: "Estimativa pontual, Lei dos Grandes Números e erro padrão; Teorema do Limite Central; intervalos de confiança."
 gancho: "Cinco redes no mesmo lago, cinco médias diferentes: qual delas está certa?"
 etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**02 de outubro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+**Segunda-feira, 22 de fevereiro de 2027** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Da amostra para a população: a estimativa pontual como melhor palpite, a
@@ -74,7 +74,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de os intervalos de confiança de amostras repetidas está em
+O código dos intervalos de confiança de amostras repetidas está em
 [`R/aula06.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula06.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

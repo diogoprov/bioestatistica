@@ -2,7 +2,7 @@
 title: "Modelos lineares: regressão (e correlação) linear"
 subtitle: "Aula 9 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-11-06
+date: 2027-02-25
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

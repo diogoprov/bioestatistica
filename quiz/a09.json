@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "O coeficiente de correlação de Pearson (r) varia entre:",
+  "alternativas": [
+   "0 e 1",
+   "−∞ e +∞",
+   "0 e 100",
+   "−1 e 1"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "r = 1 é associação linear positiva perfeita, r = −1 negativa perfeita e r = 0 ausência de associação linear."
+ },
+ {
+  "pergunta": "Um r = −0,9 indica:",
+  "alternativas": [
+   "Associação linear negativa fraca",
+   "Nenhuma associação",
+   "Associação linear negativa forte",
+   "Que X causa a queda de Y"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "O sinal dá a direção e o valor absoluto, a força. Correlação não diz nada sobre causa."
+ },
+ {
+  "pergunta": "Qual é a lição do quarteto de Anscombe?",
+  "alternativas": [
+   "O mesmo r pode vir de padrões muito diferentes: faça o gráfico",
+   "O r não muda com outliers",
+   "Correlações altas são sempre lineares",
+   "Quatro pontos bastam para uma regressão"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Os quatro conjuntos têm médias, variâncias e r quase iguais, mas formas completamente diferentes."
+ },
+ {
+  "pergunta": "Países que consomem mais chocolate têm mais prêmios Nobel. Isso mostra que:",
+  "alternativas": [
+   "Prêmios Nobel aumentam o consumo de chocolate",
+   "Chocolate melhora a cognição",
+   "A correlação deve estar errada",
+   "Correlação não implica causalidade"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Uma terceira variável, como a riqueza do país, pode explicar as duas. Correlação sozinha não mostra causa."
+ },
+ {
+  "pergunta": "Galton chamou de \"regressão\" o fato de que:",
+  "alternativas": [
+   "A altura dos filhos não depende da dos pais",
+   "A altura diminui com a idade",
+   "Os filhos são sempre mais altos que os pais",
+   "Filhos de pais muito altos tendem a ser menos altos que os pais"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "É a regressão à média: valores extremos numa geração tendem a ficar mais perto da média na seguinte."
+ },
+ {
+  "pergunta": "Em y = α + βx + ε, o que é β?",
+  "alternativas": [
+   "A correlação entre x e y",
+   "O valor de y quando x = 0",
+   "A mudança média em y para cada unidade de x",
+   "O erro do modelo"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "β é a inclinação. O valor de y quando x = 0 é o intercepto α."
+ },
+ {
+  "pergunta": "O método dos mínimos quadrados escolhe a reta que:",
+  "alternativas": [
+   "Liga o primeiro e o último ponto",
+   "Maximiza a correlação",
+   "Minimiza a soma dos quadrados dos resíduos",
+   "Passa pelo maior número de pontos"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Resíduo = observado − predito. A reta de mínimos quadrados é a que torna a soma dos resíduos ao quadrado a menor possível."
+ },
+ {
+  "pergunta": "Um R² = 0,64 significa que:",
+  "alternativas": [
+   "64% dos pontos estão sobre a reta",
+   "64% da variação de y é explicada pelo modelo",
+   "A inclinação é 0,64",
+   "O valor de P é 0,64"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "R² é a fração da variação total de y explicada pela regressão."
+ },
+ {
+  "pergunta": "No teste da regressão, a hipótese nula é:",
+  "alternativas": [
+   "β = 0",
+   "α = 0",
+   "β ≠ 0",
+   "R² = 1"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Se β = 0, x não muda a média de y: a reta é horizontal."
+ },
+ {
+  "pergunta": "Resíduos em forma de funil indicam:",
+  "alternativas": [
+   "Variância não constante (heterocedasticidade)",
+   "Que os dados são independentes",
+   "Que o modelo está perfeito",
+   "Que a relação é negativa"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "O espalhamento dos resíduos cresce com o valor predito: o pressuposto de variância constante foi violado."
+ }
+]

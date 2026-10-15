@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "Por que a estatística é necessária na biologia?",
+  "alternativas": [
+   "Os organismos variam, e é preciso separar sinal de ruído",
+   "Ela prova hipóteses com certeza absoluta",
+   "Os dados biológicos são sempre exatos",
+   "Ela serve só para fazer gráficos"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Indivíduos, populações e ambientes variam. A estatística mede essa variação e ajuda a distinguir um padrão real (sinal) do acaso (ruído)."
+ },
+ {
+  "pergunta": "A riqueza média de anfíbios em TODAS as lagoas do Pantanal é um(a):",
+  "alternativas": [
+   "Amostra",
+   "Variável qualitativa",
+   "Parâmetro",
+   "Estatística"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Uma medida que descreve a população inteira é um parâmetro. Quase nunca o conhecemos: estimamos com uma estatística calculada na amostra."
+ },
+ {
+  "pergunta": "Um pesquisador mediu 50 sapos de uma população. Esses 50 sapos são:",
+  "alternativas": [
+   "O parâmetro",
+   "O espaço amostral",
+   "A amostra",
+   "A população"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "A amostra é a parte da população que de fato medimos."
+ },
+ {
+  "pergunta": "O número de ovos por desova é uma variável:",
+  "alternativas": [
+   "Qualitativa nominal",
+   "Qualitativa ordinal",
+   "Quantitativa discreta",
+   "Quantitativa contínua"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Contagens assumem só valores inteiros: são quantitativas discretas."
+ },
+ {
+  "pergunta": "A massa corporal (g) de um lagarto é uma variável:",
+  "alternativas": [
+   "Quantitativa contínua",
+   "Qualitativa ordinal",
+   "Qualitativa nominal",
+   "Quantitativa discreta"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Medidas como massa e comprimento podem assumir qualquer valor num intervalo: são quantitativas contínuas."
+ },
+ {
+  "pergunta": "A cor da pelagem (preta, marrom ou malhada) é uma variável:",
+  "alternativas": [
+   "Qualitativa ordinal",
+   "Quantitativa discreta",
+   "Qualitativa nominal",
+   "Quantitativa contínua"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "São categorias sem ordem natural entre elas: qualitativa nominal."
+ },
+ {
+  "pergunta": "O estágio de desenvolvimento (inicial, intermediário, final) é uma variável:",
+  "alternativas": [
+   "Quantitativa contínua",
+   "Qualitativa ordinal",
+   "Qualitativa nominal",
+   "Quantitativa discreta"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "São categorias com uma ordem natural: qualitativa ordinal."
+ },
+ {
+  "pergunta": "Qual destas frases é de estatística DESCRITIVA?",
+  "alternativas": [
+   "A média nas 30 lagoas amostradas foi 4,2 espécies",
+   "Lagoas maiores tendem a ter mais espécies na região",
+   "A riqueza de espécies difere entre os biomas",
+   "A média regional está entre 3,8 e 4,6, com 95% de confiança"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "A descritiva resume os dados que temos. As outras frases generalizam da amostra para a população: são inferência."
+ },
+ {
+  "pergunta": "Qual é a ordem das etapas do ciclo PPDAC?",
+  "alternativas": [
+   "Dados, Análise, Problema, Plano, Conclusão",
+   "Problema, Plano, Dados, Análise, Conclusão",
+   "Plano, Problema, Dados, Conclusão, Análise",
+   "Problema, Dados, Plano, Análise, Conclusão"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Primeiro a pergunta (Problema), depois como coletar (Plano), a coleta (Dados), o modelo (Análise) e o que podemos afirmar (Conclusão)."
+ },
+ {
+  "pergunta": "Em que etapa do PPDAC decidimos quantas amostras coletar e como?",
+  "alternativas": [
+   "Dados",
+   "Plano",
+   "Análise",
+   "Problema"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "O Plano define o delineamento: o que medir, onde, como e quantas vezes."
+ }
+]

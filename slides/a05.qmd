@@ -2,7 +2,7 @@
 title: "Probabilidade, variáveis aleatórias e principais distribuições"
 subtitle: "Aula 5 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2025-09-11
+date: 2027-02-19
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:
@@ -756,8 +756,8 @@ fig_altura_z()
 fig_tres_intervalos()
 ```
 
-Porque, para distribuições simétricas, **95% dos dados estão a até 2
-desvios-padrão da média**.
+Porque, numa distribuição normal (ou aproximadamente normal, em forma de
+sino), **cerca de 95% dos dados estão a até 2 desvios-padrão da média**.
 
 ::: {.ref}
 Inspirado em Triola, M.F. *Introdução à estatística*, Figura 3-3.
