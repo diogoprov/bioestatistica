@@ -93,8 +93,6 @@ ppdac_topicos(list(
 ))
 ```
 
----
-
 # 1. Tudo começa com uma boa pergunta {.secao}
 
 [Problema]{.ppdac-etapa .problema}
@@ -276,8 +274,6 @@ responde a estas questões:
 Cada questão que ficou sem resposta é uma decisão que o Plano vai ter de
 tomar mesmo assim, só que mais tarde e sem critério.
 :::
-
----
 
 # 2. Réplica, unidade amostral e independência {.secao}
 
@@ -484,8 +480,6 @@ Folhas da mesma árvore são **subamostras**: melhoram a estimativa daquela
 florestas, é preciso replicar árvores, e para generalizar sobre "florestas
 deste tipo", é preciso replicar florestas.
 
----
-
 # 3. Escala e controles {.secao}
 
 [Plano]{.ppdac-etapa .plano}
@@ -554,8 +548,6 @@ No desenho da esquerda, qualquer diferença entre tratamento e controle
 pode ser efeito da **temperatura**, e não da remoção de néctar. No da
 direita, o sorteio espalha os dois tipos de parcela pelo gradiente, e a
 temperatura deixa de andar junto com o tratamento.
-
----
 
 # 4. Técnicas de amostragem {.secao}
 
@@ -697,8 +689,6 @@ Sulcos de plantio, dunas e ondulações do terreno criam padrões periódicos
 que nem sempre são visíveis. Se o intervalo da amostragem coincide com o
 período, a estimativa fica **enviesada**, e repetir a amostragem não
 resolve o problema.
-
----
 
 # 5. Estudos observacionais e experimentais {.secao}
 
@@ -870,8 +860,6 @@ crescimento de *Pinus*?
 ::::
 
 Em seguida, **uma pessoa de cada grupo** apresenta o delineamento (5 min).
-
----
 
 # 6. Os delineamentos clássicos {.secao}
 
@@ -1126,8 +1114,6 @@ controle, aleatorização, bloco, aninhamento, BACI.
 ::: {.fragment}
 ... Mas isso já é uma história para a próxima aula.
 :::
-
----
 
 # Fechamento {.secao}
 

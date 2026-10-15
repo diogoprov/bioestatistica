@@ -74,8 +74,6 @@ sua cor, e vocês vão revê-las a disciplina inteira.
 Wild, C.J. & Pfannkuch, M. 1999. *International Statistical Review* 67:223–248.
 :::
 
----
-
 # 1. A disciplina {.secao}
 
 ---
@@ -150,8 +148,6 @@ Wild, C.J. & Pfannkuch, M. 1999. *International Statistical Review* 67:223–248
 :::
 :::
 ::::
-
----
 
 # 2. O que é estatística {.secao}
 
@@ -290,8 +286,6 @@ sabe, e a faixa dele contém a taxa verdadeira.
 Redesenhado com dados simulados a partir da Figura I de Simmonds, E.G. et
 al. 2024. *Trends in Ecology & Evolution* 39:328–337.
 :::
-
----
 
 # 3. Breve histórico {.secao}
 
@@ -461,8 +455,6 @@ fig_metodo_cientifico("teoria")
 fig_metodo_cientifico("estatistica")
 ```
 
----
-
 # 4. Áreas da estatística {.secao}
 
 ---
@@ -531,8 +523,6 @@ com quem está ao lado por 2 minutos e votem de novo.
 região, a partir da amostra. As outras resumem os próprios dados.
 :::
 :::
-
----
 
 # 5. Definições e conceitos {.secao}
 
@@ -671,8 +661,6 @@ pesquisador quer estimar.
 :::
 :::
 
----
-
 # 6. Tipos de variáveis {.secao}
 
 ---
@@ -743,8 +731,6 @@ são uma medida. Número de ovos é quantitativa discreta, comprimento é
 quantitativa contínua, e espécie é qualitativa nominal.
 :::
 :::
-
----
 
 # 7. A estatística na pesquisa biológica {.secao}
 
@@ -867,8 +853,6 @@ Kahoots ao longo da disciplina.
 - **Apresentação dos resultados:** comunicação das conclusões por meio de
   tabelas, gráficos e texto, de forma clara e eficaz, para públicos
   científicos e não científicos.
-
----
 
 # Atividade prática {.secao}
 

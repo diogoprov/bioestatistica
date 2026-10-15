@@ -93,8 +93,6 @@ de qualquer teste (**Análise**).
 :::
 ::::
 
----
-
 # 1. Análise exploratória e planilhas {.secao}
 
 [Dados]{.ppdac-etapa .dados}
@@ -118,8 +116,6 @@ de qualquer teste (**Análise**).
   - Uma unidade amostral em cada linha
 - **Variáveis nas colunas**
   - Tratamentos experimentais, variáveis preditoras
-
----
 
 # 2. Tabelas {.secao}
 
@@ -389,8 +385,6 @@ variáveis são duas: **sexo** (qualitativa) e **massa** (quantitativa). A
 opção A é exatamente o formato "como não planilhar".
 :::
 :::
-
----
 
 # 3. Tipos de gráficos {.secao}
 
@@ -848,8 +842,6 @@ fig_linha()
 ::: {.ref}
 Inspirado em Quinn & Keough, cap. 17.
 :::
-
----
 
 # 4. Como escolher? {.secao}
 

@@ -111,8 +111,6 @@ ppdac_topicos(list(
 :::
 ::::
 
----
-
 # O dilema da nutricionista de capivaras {.secao}
 
 [Análise]{.ppdac-etapa .analise}
@@ -187,8 +185,6 @@ parecidos entre si?**
 Respondam no Slido da turma: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>.
 
 Guardem as respostas: voltamos às capivaras no fim da aula.
-
----
 
 # 1. Medidas de tendência central {.secao}
 
@@ -419,8 +415,6 @@ fig_ninhos(mutante = TRUE, linhas = TRUE)
 :::
 
 **Quando um biólogo poderia preferir usar uma ou outra?**
-
----
 
 # 2. Medidas de variabilidade {.secao}
 
@@ -818,8 +812,6 @@ fig_remedios()
 
 A Droga X tem média puxada para cima por um único paciente (15 h); a Droga
 Y tem média e mediana parecidas (7 h) e muito menos variação.
-
----
 
 # 3. A forma das distribuições {.secao}
 

@@ -100,8 +100,6 @@ alimenta os intervalos de confiança e os testes das próximas aulas.
 :::
 ::::
 
----
-
 # 1. A linguagem da incerteza {.secao}
 
 [Análise]{.ppdac-etapa .analise}
@@ -284,8 +282,6 @@ independentes). 4. P(Aa | dominante) = (1/2) / (3/4) = **2/3**
 :::
 :::
 
----
-
 # 2. Quando a probabilidade engana {.secao}
 
 [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
@@ -378,8 +374,6 @@ Esse é o raciocínio do **teorema de Bayes**. A versão com fórmula, e a
 comparação entre as abordagens frequentista e bayesiana, estão em **Para
 saber mais**.
 
----
-
 # 3. Variáveis aleatórias {.secao}
 
 [Análise]{.ppdac-etapa .analise}
@@ -434,8 +428,6 @@ fig_relacoes(c("Binomial", "Poisson", "Normal"))
 ```
 
 São muitas, e todas aparentadas. Hoje ficamos com as três em vermelho.
-
----
 
 # 4. Três modelos para a vida do girino {.secao}
 
@@ -855,8 +847,6 @@ atipicamente leve.
 :::
 :::
 
----
-
 # 5. Qual distribuição usar? {.secao}
 
 [Análise]{.ppdac-etapa .analise}
@@ -907,8 +897,6 @@ fig_guia_distribuicao()
   - **Binomial:** quantos dos *n* girinos são predados.
   - **Poisson:** quantas presas um girino captura num intervalo.
   - **Normal:** o tamanho do corpo dos girinos de uma poça.
-
----
 
 # Para saber mais {.secao}
 
