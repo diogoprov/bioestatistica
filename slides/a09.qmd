@@ -124,6 +124,47 @@ Galton, F. 1886. [Regression towards mediocrity in hereditary stature](https://d
 
 ---
 
+## Galton, 1886: a regressão à média
+
+:::: {.columns}
+::: {.column width="30%"}
+![](../assets/historia/galton-1886-titulo.png){width="100%" fig-alt="Página de título do artigo Regression towards Mediocrity in Hereditary Stature, de Francis Galton, na seção Anthropological Miscellanea."}
+
+- Os filhos de pais muito altos ou muito baixos ficam, em média, mais
+  perto da média da população: a **regressão à média**.
+:::
+::: {.column width="70%"}
+![](../assets/historia/galton-1886-prancha.png){width="100%" fig-alt="Prancha original de Galton, de 1886. À esquerda, o gráfico Rate of regression in hereditary stature: a altura dos filhos varia menos que a dos pais, e as duas retas mostram que, quando os pais são mais altos que a média, os filhos tendem a ser mais baixos que eles, e vice-versa. À direita, o Forecaster of stature, um aparelho de polias para prever a altura do filho a partir da do pai e da mãe."}
+:::
+::::
+
+::: {.ref}
+Galton, F. 1886. [Regression towards mediocrity in hereditary stature](https://doi.org/10.2307/2841583). *The Journal of the Anthropological Institute of Great Britain and Ireland* 15:246. Digitalização do original, domínio público.
+:::
+
+---
+
+## Galton, 1888: estatura e antebraço
+
+:::: {.columns}
+::: {.column width="45%"}
+![](../assets/historia/galton-1888-titulo.jpg){width="100%" fig-alt="Anúncio da sessão de 20 de dezembro de 1888 da Royal Society, com o artigo Co-relations and their Measurement, chiefly from Anthropometric Data, de Francis Galton."}
+
+- Galton mede a estatura e o comprimento do antebraço (*cubit*) das
+  mesmas pessoas e descobre que a regressão vale nas duas direções: nasce
+  a ideia de **correlação**.
+:::
+::: {.column width="55%"}
+![](../assets/historia/galton-1888-estatura-cubito.jpg){width="100%" fig-alt="Gráfico original de Galton, Stature and cubit: uma grade com duas retas tracejadas, a linha das estaturas e a linha dos antebraços, cruzando-se no centro."}
+:::
+::::
+
+::: {.ref}
+Galton, F. [Co-relations and their measurement, chiefly from anthropometric data](https://doi.org/10.1098/rspl.1888.0082). *Proceedings of the Royal Society of London* 45:135–145. Digitalizações do original, domínio público.
+:::
+
+---
+
 ## Os dados de Galton
 
 ```{r}
@@ -138,8 +179,10 @@ fig_galton()
 
 ---
 
-## Breve histórico
+## Breve histórico {.smaller}
 
+:::: {.columns}
+::: {.column width="62%"}
 - A diferença entre um filho e seus dois pais numa dada característica é
   proporcional ao desvio de seus pais da média da população.
 - Por exemplo, se seus pais são, cada um, 2 cm mais altos que a média dos
@@ -151,6 +194,15 @@ fig_galton()
 - Logo, a altura dos filhos estaria **regredindo à média**.
 - Em seguida, K. Pearson trabalha no problema da correlação e regressão,
   derivando o **coeficiente de correlação** (*r*).
+:::
+::: {.column width="38%"}
+![A lei da regressão de Galton: a reta dos filhos (menos inclinada) e a dos pais](../assets/historia/galton-regressao-psm-1902.png){width="100%" fig-alt="Diagrama antigo em preto e branco com uma grade de −3 a 3 e duas retas que se cruzam na origem: a mais inclinada é a dos pais, e a menos inclinada, a dos filhos, que regridem em direção à média."}
+:::
+::::
+
+::: {.ref}
+Diagrama: C.H. Eigenmann, *Popular Science Monthly* 61 (1902), a partir de Galton; domínio público, via Wikimedia Commons.
+:::
 
 ::: {.nota}
 O original dizia que o filho seria mais baixo que os pais "por um fator
@@ -181,25 +233,12 @@ Galton, F. [Co-relations and their measurement, chiefly from anthropometric data
 
 ---
 
-## Qual teste usar? {.smaller}
+## Qual teste usar?
 
-| Variável dependente | Variável independente | Teste |
-|---|---|---|
-| Quantitativa | 1 categórica com 2 níveis | Teste *t* (teste U) |
-| Quantitativa | 1 categórica com + 2 níveis | ANOVA 1 fator (Kruskal-Wallis) |
-| Quantitativa | 2 categóricas | ANOVA 2 fatores (Friedman¹) |
-| Quantitativa | 1 quantitativa | **Regressão simples (correlação de Spearman)** |
-| Quantitativa | 2 ou mais quantitativas | **Regressão múltipla** |
-| Quantitativa | 1 categórica e 1 ou mais quantitativas | ANCOVA |
-| Categórica | 1 categórica | Qui-quadrado²; teste G² |
-| Categórica | 2 ou mais categóricas | Log-linear² |
-
-(1) No caso de amostras dependentes. (2) Esses testes eventualmente
-verificam não a relação de dependência entre variáveis, mas sim a
-associação entre elas.
+![](../assets/terceiros/paglia-demarco-tabela1.png){width="88%" fig-align="center" fig-alt="Tabela 1 da apostila de Paglia e De Marco, com sugestões de testes estatísticos conforme o tipo de variável dependente e independente: teste t, ANOVA de um e dois fatores, regressão simples e múltipla, ANCOVA, qui-quadrado, teste G e log-linear, com os equivalentes não paramétricos entre parênteses."}
 
 ::: {.ref}
-Tabela 1 da apostila de Paglia & De Marco.
+Tabela 1 de Paglia & De Marco, [*Apostila de estatística*](https://files.cercomp.ufg.br/weby/up/85/o/Apostila_de_estat%C3%ADstica.pdf) (UFG). Reproduzida com crédito.
 :::
 
 # 2. Correlação linear {.secao}
@@ -310,11 +349,13 @@ fig_chocolate()
   ciência: uma terceira variável explica as duas.
 - Uma correlação alta não diz qual variável causa a outra, nem se alguma
   causa.
+
+![](../assets/terceiros/xkcd-552-correlation.png){width="100%" fig-alt="Tirinha xkcd em três quadros. Um homem diz: eu achava que correlação implicava causalidade. Depois fiz um curso de estatística e agora não acho mais. A mulher responde: parece que o curso ajudou. Ele: bem, talvez."}
 :::
 ::::
 
 ::: {.ref}
-Inspirado em Messerli, F.H. 2012. [Chocolate consumption, cognitive function, and Nobel laureates](https://doi.org/10.1056/NEJMon1211064). *New England Journal of Medicine* 367:1562–1564; dados fictícios.
+Inspirado em Messerli, F.H. 2012. [Chocolate consumption, cognitive function, and Nobel laureates](https://doi.org/10.1056/NEJMon1211064). *New England Journal of Medicine* 367:1562–1564; dados fictícios. Tirinha: Randall Munroe, [xkcd 552, "Correlation"](https://xkcd.com/552/), CC BY-NC 2.5.
 :::
 
 ---
@@ -1101,6 +1142,12 @@ Inspirado na Figura 6.9 de Quinn & Keough (dados de Loyn 1987).
   e num resíduo
   - R² mede o quanto o(s) preditor(es) explicam a variável resposta
 - **Atenção para os pressupostos!**
+
+---
+
+## Kahoot! {.secao}
+
+[Kahoot: Correlação, regressão e armadilhas na análise de dados](https://create.kahoot.it/details/747d4b86-8cb4-4d54-93af-6aba4f7c3a0d)
 
 ---
 

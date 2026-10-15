@@ -888,6 +888,12 @@ Kahoots ao longo da disciplina.
 
 ---
 
+## Kahoot! {.secao}
+
+[Kahoot: Introdução à estatística para biólogos](https://create.kahoot.it/details/f7bf73e0-37ad-4ef6-bc08-04c068028b17)
+
+---
+
 ## Referências {.smaller}
 
 ::: {.nota}

@@ -90,7 +90,9 @@ aplicar isso numa aula.
 
   | Aula | Kahoot | id |
   |-----:|--------|----|
-  | 1, 2, 3, 9, 11 | (não há) | |
+  | 1 | Introdução à estatística para biólogos | `f7bf73e0-37ad-4ef6-bc08-04c068028b17` |
+  | 2 | Estatística, amostragem e delineamento experimental | `0eb9e376-fd88-4802-93c3-e613f655bec1` |
+  | 3 | Gráficos, tabelas e armadilhas na visualização de dados | `0aab1775-914f-406c-acde-60851dc3f446` |
   | 4 | Revisão média e variância | `44148d47-cfae-4aaf-af68-81710e641a21` |
   | 5 | Probabilidade e distribuições de probabilidade | `c2996a96-77cb-49bc-a526-b2393a950a38` |
   | 6 | Intervalo de confiança | `5a154caf-a064-4482-9305-3970ebf3bdc6` |
@@ -98,7 +100,9 @@ aplicar isso numa aula.
   | 7 | Teste de hipótese | `f81ec20f-f843-4cdb-957d-b2ac3922d48b` |
   | 8 | Teste t | `095cb8f0-fc9f-437a-9449-105b02de0750` |
   | 8 | Introdução aos Modelos Lineares | `dfd7caf5-696f-4d48-8d54-cdfb347ae74c` |
+  | 9 | Correlação, regressão e armadilhas na análise de dados | `747d4b86-8cb4-4d54-93af-6aba4f7c3a0d` |
   | 10 | Qui-quadrado e Teste G | `24e6dd0f-ab42-4583-9b42-602515a0843c` |
+  | 11 | ANOVA, ANCOVA e testes de hipóteses | `07605bb6-f29e-4e74-92a5-3390ee797242` |
   | revisão | Revisão estatística descritiva e inferencial | `41366a84-3e6e-4131-b17c-646ae6fbb2f8` |
 
 - **Slido**: os `.pptx` das aulas 4 e 7 (numeração do site) têm enquetes do
@@ -269,6 +273,12 @@ continua em `slides/`, então não apague os PDFs.
   Se não der para verificar, deixe `<!-- TODO: referência -->` e avise.
   Na Aula 2 entraram assim Wild & Pfannkuch 1999, Wiens 1989,
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
+- **Exceções autorizadas pelo Diogo** (com crédito no slide), em
+  `assets/terceiros/` (fontes em `assets/terceiros/FONTES.md`): a Tabela 1
+  da apostila de Paglia & De Marco e a tirinha xkcd 552 (CC BY-NC), na
+  Aula 9. Digitalizações de obras do século XIX tiradas dos `.pptx` (as
+  figuras de Galton de 1886 e 1888) também valem, porque estão em domínio
+  público.
 - **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em
   domínio público do Commons com legenda própria, na classe `.meme` de
   `slides/theme.scss` (imagens em `assets/memes/`, fontes em

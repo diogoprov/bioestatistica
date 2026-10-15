@@ -50,8 +50,9 @@ público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tre
 
 ## Atividades
 
-Três perguntas para a turma (*peer instruction*): o quarteto de Anscombe,
-a interpretação do R² e os padrões nos resíduos.
+- Três perguntas para a turma (*peer instruction*): o quarteto de
+  Anscombe, a interpretação do R² e os padrões nos resíduos.
+- [Kahoot: Correlação, regressão e armadilhas na análise de dados](https://create.kahoot.it/details/747d4b86-8cb4-4d54-93af-6aba4f7c3a0d).
 
 ## Teste-se
 

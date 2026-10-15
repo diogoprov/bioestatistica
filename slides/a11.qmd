@@ -102,32 +102,50 @@ statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
 ## Antes, um pouco de história...
 
 :::: {.columns}
-::: {.column width="30%"}
-![Ronald Aylmer Fisher, em 1913](../assets/historia/fisher.jpg){width="85%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
+::: {.column width="24%"}
+![Ronald Aylmer Fisher, em 1913](../assets/historia/fisher.jpg){width="95%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
 :::
-::: {.column width="70%"}
+::: {.column width="46%"}
 - **1919:** Fisher usa o termo "variância" e decompõe a variação de um
   caráter entre parentes, no artigo sobre herança mendeliana.
 - **1925:** em *Statistical methods for research workers*, apresenta a
   análise de variância, desenvolvida nos experimentos agrícolas da estação
   de Rothamsted, na Inglaterra.
 :::
+::: {.column width="30%"}
+![Rothamsted Manor, sede da estação experimental, em 1907](../assets/historia/rothamsted-1907.jpg){width="100%" fig-alt="Fotografia antiga em preto e branco de um casarão de tijolos com várias chaminés e um gramado em frente: Rothamsted Manor, visto do sudoeste."}
+
+![*Statistical methods for research workers*, 2ª ed. (1928)](../assets/historia/fisher-statistical-methods-1928.jpg){height="190px" fig-alt="Folha de rosto do livro Statistical Methods for Research Workers, de R. A. Fisher, edição da Oliver and Boyd."}
+:::
 ::::
 
 ::: {.ref}
-Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433. Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd. Retrato: domínio público, via Wikimedia Commons.
+Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433. Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd. Retrato, folha de rosto (2ª ed., 1928) e foto de Rothamsted (Charles Latham, *In English Homes*, 1907): domínio público, via Wikimedia Commons.
 :::
 
 ---
 
 ## Questão biológica
 
+:::: {.columns}
+::: {.column width="55%"}
 - Imaginem que um ecólogo queira testar se a **taxa média de crescimento
   das raízes de mangue** é diferente quando expostas a **duas espécies
   distintas de esponjas**, um **controle com uma esponja falsa** e um
   **grupo sem esponja**.
 - Com quatro grupos, como podemos determinar estatisticamente se existe uma
   diferença real no crescimento médio entre eles?
+:::
+::: {.column width="45%"}
+![](../assets/fotos/mangue-raizes-noaa.jpg){height="250px" fig-alt="Foto meio dentro, meio fora d'água de um manguezal: acima da superfície, a copa e as raízes aéreas; abaixo, as raízes-escora mergulhadas na água."}
+
+![](../assets/fotos/tedania-ignis-noaa.jpg){height="170px" fig-alt="Um pedaço de esponja-de-fogo, Tedania ignis, de cor alaranjada, ao lado de uma régua de 15 cm."}
+:::
+::::
+
+::: {.ref}
+Fotos: raízes de mangue e a esponja *Tedania ignis*, uma das espécies do experimento. NOAA, domínio público, via Wikimedia Commons.
+:::
 
 ---
 
@@ -250,6 +268,8 @@ $$\underbrace{y_i}_{\text{variável resposta}} = \underbrace{\alpha}_{\text{inte
 Agora, e se nosso preditor X não for contínuo? E se ele for categórico,
 como "Tipo de Fertilizante" (A, B, C) ou "Nível de Zinco" (Baixo, Médio,
 Alto)?
+
+![Diatomáceas, por Ernst Haeckel (1904)](../assets/fotos/haeckel-diatomaceas-1904.jpg){height="300px" fig-alt="Prancha de Ernst Haeckel com dezenas de diatomáceas desenhadas em preto e branco, de formas circulares, estreladas e alongadas."}
 :::
 ::: {.column width="55%"}
 ```{r}
@@ -262,7 +282,7 @@ fig_diatomaceas()
 ::::
 
 ::: {.ref}
-Inspirado na Figura 6.6 de Quinn & Keough 2023; dados simulados.
+Inspirado na Figura 6.6 de Quinn & Keough 2023; dados simulados. Prancha 4 de Haeckel, *Kunstformen der Natur* (1904), domínio público, via Wikimedia Commons.
 :::
 
 ---
@@ -990,6 +1010,12 @@ modelos:
   modelo ajustado para entender onde estão as diferenças significativas.
 - Essa abordagem unifica a ANOVA com a regressão, fornecendo uma base
   conceitual mais forte para entender a análise de dados em biologia.
+
+---
+
+## Kahoot! {.secao}
+
+[Kahoot: ANOVA, ANCOVA e testes de hipóteses](https://create.kahoot.it/details/07605bb6-f29e-4e74-92a5-3390ee797242)
 
 ---
 
