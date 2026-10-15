@@ -21,3 +21,5 @@ Baixadas em 2026-10-15 em versão reduzida (até 600 px de largura).
 | `karl-pearson.jpg` | [File:Karl Pearson.jpg](https://commons.wikimedia.org/wiki/File:Karl_Pearson.jpg) | Unknown author | Public domain |
 | `galton.jpg` | [File:Sir Francis Galton, 1890s.jpg](https://commons.wikimedia.org/wiki/File:Sir_Francis_Galton,_1890s.jpg) | Eveleen Myers (née Tennant) | Public domain |
 | `galton-pearson-1909.jpg` | [File:Karl Pearson; Sir Francis Galton.jpg](https://commons.wikimedia.org/wiki/File:Karl_Pearson;_Sir_Francis_Galton.jpg) | Unknown author | Public domain |
+| `fisher-statistical-methods-1928.jpg` | [File:Statistical Methods for Research Workers (Book Cover).jpeg](https://commons.wikimedia.org/wiki/File:Statistical_Methods_for_Research_Workers_(Book_Cover).jpeg) | R. A. Fisher (folha de rosto da 2ª ed., 1928) | Public domain |
+| `rothamsted-1907.jpg` | [File:In English Homes Vol 2 Rothamsted Hertfordshire from the south-west 31295007279283 0336.jpg](https://commons.wikimedia.org/wiki/File:In_English_Homes_Vol_2_Rothamsted_Hertfordshire_from_the_south-west_31295007279283_0336.jpg) | Charles Latham (1847–1912), *In English Homes* | Public domain |
