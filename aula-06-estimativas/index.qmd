@@ -2,11 +2,13 @@
 title: "Aula 06 — Estimativa pontual e intervalar"
 order: 6
 date: "2025-10-02"
-description: "Estimativa pontual e intervalar"
+description: "Estimativa pontual, Lei dos Grandes Números e erro padrão; Teorema do Limite Central; intervalos de confiança."
+gancho: "Cinco redes no mesmo lago, cinco médias diferentes: qual delas está certa?"
+etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**Data:** 02 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**02 de outubro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 Da amostra para a população: a estimativa pontual como melhor palpite, a
@@ -44,7 +46,7 @@ Jacob Bernoulli é de domínio público, via Wikimedia Commons.
   para médias e para proporções.
 - [Kahoot: Intervalo de confiança](https://create.kahoot.it/details/5a154caf-a064-4482-9305-3970ebf3bdc6).
 - [Kahoot: Estimativa pontual e intervalar](https://create.kahoot.it/details/d308b304-73c3-45ee-80ff-df00e7760a7a).
-- Lista: item 11.6 do cap. 11 de Morettin & Bussab; exercícios 14 a 16 e 20.
+- Lista: item 11.6 do cap. 11 de Bussab & Morettin; exercícios 14 a 16 e 20.
 
 ## Leituras recomendadas
 

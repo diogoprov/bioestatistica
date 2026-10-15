@@ -1,7 +1,9 @@
 name: Render & deploy course site
 
-# This course has no executable code chunks at all, so the render needs
-# nothing but Quarto — no R, no knitr, no Chrome.
+# The slides have R chunks, but `freeze: auto` stores their results in
+# _freeze/ (committed). The render here reuses them and needs only Quarto:
+# no R, no knitr, no Chrome. Re-render locally and commit _freeze/ after
+# changing a .qmd with code or a function in R/.
 
 on:
   push:

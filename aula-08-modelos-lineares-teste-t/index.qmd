@@ -2,11 +2,13 @@
 title: "Aula 08 — Modelos lineares: teste t"
 order: 8
 date: "2025-10-23"
-description: "Modelos lineares: teste t"
+description: "Teste t para uma amostra, para duas amostras e para dados pareados; o teste t como um modelo linear."
+gancho: "O peixe nativo e a espécie invasora têm mesmo tamanhos diferentes, ou foi acaso?"
+etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**Data:** 23 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**23 de outubro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 O teste *t* de Student para uma amostra, para duas amostras

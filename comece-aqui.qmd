@@ -1,0 +1,92 @@
+---
+title: "Comece aqui"
+subtitle: "Como usar este site e aproveitar a disciplina"
+toc: true
+---
+
+::: {.callout-tip appearance="minimal"}
+**Para alunos matriculados:** este site tem os materiais públicos do curso.
+Quizzes, prazos, notas e avisos da turma ficam no
+[Moodle UFMS](https://ava.ufms.br).
+:::
+
+## Antes da primeira aula
+
+1. **Não é preciso instalar nada** para acompanhar as aulas: os slides
+   abrem no navegador, no computador ou no celular.
+2. **Traga o celular carregado.** Em várias aulas a turma vota em
+   perguntas, responde Kahoots e envia respostas pelo Slido.
+3. **Dê uma olhada no [programa](programa.qmd)**: ementa, objetivos,
+   avaliação e bibliografia.
+4. Se quiser praticar no R, siga o roteiro dos
+   [exercícios no swirl](exercicios-swirl.qmd). Não é obrigatório saber R
+   antes: a primeira lição parte do zero.
+
+## O fio condutor: o ciclo PPDAC
+
+A disciplina segue as etapas de uma pesquisa de verdade:
+[Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} →
+[Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise} →
+[Conclusão]{.ppdac-etapa .conclusao}. Cada aula mostra, com esses selos, em
+que etapa ela vive. Quando ficar perdido, pergunte-se: *em que etapa do
+ciclo eu estou, e que pergunta essa etapa responde?*
+
+## Como usar os slides
+
+Os slides abrem pelo botão **Abrir slides** da página de cada aula. Algumas
+teclas úteis:
+
+| Tecla | O que faz |
+|:---:|---|
+| → ou espaço | avança para o próximo slide |
+| **F** | tela cheia |
+| **S** | abre as notas do professor numa janela à parte |
+| **O** ou **Esc** | mostra todos os slides de uma vez, para achar um assunto |
+| **M** | abre o menu, com o sumário da aula |
+| **E** | modo de impressão; depois use *Imprimir → Salvar como PDF* |
+| **?** | lista todos os atalhos |
+
+: {tbl-colwidths="[25,75]"}
+
+No celular, deslize para os lados para trocar de slide.
+
+## Como são as aulas
+
+As aulas alternam exposição curta e **aprendizagem ativa**:
+
+- **Perguntas para a turma.** Você vota sozinho, discute com quem está ao
+  lado e vota de novo. Errar na primeira votação faz parte: é na discussão
+  que o conceito assenta.
+- **Atividades em grupo**, muitas vezes com dados coletados na própria
+  sala (a altura da turma, as cores de um pacote de balas).
+- **Kahoot e Slido**, para revisar e tirar dúvidas no fim da aula.
+
+## Como estudar cada aula
+
+1. **Antes:** leia o resumo e a lista de conteúdo na página da aula.
+2. **Durante:** participe das votações e das atividades; os slides ficam
+   no site, então não é preciso copiar tudo.
+3. **Depois:** reveja os slides (as notas do professor, tecla **S**, trazem
+   explicações extras), faça a leitura recomendada e, quando houver, a
+   lição no swirl. Algumas aulas terminam com uma seção **Para saber mais**,
+   com o material mais formal.
+
+## Brinque com o código
+
+Todas as figuras dos slides foram geradas em R, quase sempre com dados
+simulados. O código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório, um arquivo por bloco de cada aula. Abra no RStudio, mude um
+parâmetro (o tamanho da amostra, a média, o desvio-padrão) e veja o que
+acontece com a figura. É um bom jeito de criar intuição.
+
+## Dúvidas
+
+Dúvidas sobre a matéria: em sala, no Moodle ou por e-mail
+([diogo.provete@ufms.br](mailto:diogo.provete@ufms.br)). Encontrou um erro
+no site ou nos slides? Avise por e-mail ou abra uma *issue* no
+[GitHub](https://github.com/diogoprov/bioestatistica/issues).
+
+---
+
+*Volta para o [índice do curso](index.qmd).*

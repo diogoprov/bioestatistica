@@ -4,6 +4,9 @@ project:
   resources:
     - swirl-demo.mp4
     - swirl-demo.jpg
+    # PDFs da versão de 2025: nenhuma página aponta para eles, mas são
+    # publicados para não quebrar links antigos.
+    - "slides/*.pdf"
   render:
     - "*.qmd"
     - "aula-*/index.qmd"
@@ -17,27 +20,38 @@ website:
   favicon: favicon.png
   open-graph: true
 
+  repo-url: "https://github.com/diogoprov/bioestatistica"
+
   navbar:
     background: light
     pinned: true
+    collapse-below: lg
+    title: "Bioestatística"
     left:
       - href: index.qmd
         text: Início
+      - href: comece-aqui.qmd
+        text: Comece aqui
+      - href: programa.qmd
+        text: Programa
       - href: exercicios-swirl.qmd
         text: Exercícios no R
     right:
-      - text: "Biodiversity Synthesis Lab"
-        href: "https://provetelab.org/"
       - icon: github
         href: "https://github.com/diogoprov/bioestatistica"
         aria-label: GitHub
+      - icon: house-door
+        href: "https://provetelab.org/"
+        aria-label: Biodiversity Synthesis Lab
 
   page-footer:
     background: light
     left: |
-      Diogo B. Provete · Instituto de Biociências, UFMS
+      © Diogo B. Provete · Biodiversity Synthesis Lab · Instituto de Biociências, UFMS
+    center: |
+      Conteúdo sob [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/deed.pt-br), exceto onde indicado
     right: |
-      Voltar ao [site do laboratório](https://provetelab.org/).
+      Built with [Quarto](https://quarto.org).
 
 format:
   html:
@@ -49,10 +63,6 @@ format:
     anchor-sections: true
     smooth-scroll: true
     link-external-newwindow: true
-    include-in-header:
-      - text: |
-          <link rel="stylesheet"
-                href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 knitr:
   opts_chunk:

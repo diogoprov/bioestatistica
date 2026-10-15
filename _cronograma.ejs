@@ -1,0 +1,17 @@
+<%
+// Cartões do cronograma na página inicial. Cada aula traz no YAML:
+// `gancho` (a pergunta do cartão) e `etapas` (as etapas do PPDAC, com as
+// classes de .ppdac-etapa em styles.css). Sem indentação nem linhas em
+// branco no HTML: o Quarto passa a saída pelo leitor de markdown.
+%>
+<div class="cartoes-aulas list">
+<% for (const item of items) { %><div class="cartao-aula" <%= metadataAttrs(item) %>>
+<div class="cartao-topo">
+<span class="cartao-numero">Aula <%= item.order %></span>
+<span class="cartao-etapas"><% for (const e of (item.etapas || [])) { %><span class="ppdac-etapa <%= e %>"><%= ({problema: "Problema", plano: "Plano", dados: "Dados", analise: "Análise", conclusao: "Conclusão"})[e] || e %></span><% } %></span>
+</div>
+<div class="cartao-titulo"><a class="cartao-link" href="<%- item.path %>"><%= item.title.replace(/^Aula \d+ — /, "") %></a></div>
+<% if (item.gancho) { %><p class="cartao-gancho"><%= item.gancho %></p><% } %>
+<p class="cartao-conteudo"><%= item.description %></p>
+</div><% } %>
+</div>

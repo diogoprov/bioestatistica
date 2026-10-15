@@ -9,9 +9,10 @@ Mato Grosso do Sul.
 ## O que há aqui
 
 Onze aulas, cada uma em sua própria pasta com a página correspondente
-(`index.qmd`). Os slides ficam em `slides/`: em PDF para as aulas ainda não
-convertidas, e em Quarto/revealjs (`slides/aNN.qmd`) para as convertidas,
-com figuras geradas em R a partir de dados simulados. O código das figuras
+(`index.qmd`). Os slides ficam em `slides/aNN.qmd`, em Quarto/revealjs,
+com figuras geradas em R a partir de dados simulados. Os PDFs da versão
+anterior (2025) continuam em `slides/` e são publicados para não quebrar
+links antigos. O código das figuras
 fica em `R/`, um arquivo por bloco da aula.
 
 | Aula | Tópico |

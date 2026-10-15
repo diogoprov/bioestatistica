@@ -2,11 +2,13 @@
 title: "Aula 04 — Medidas de tendência central e dispersão"
 order: 4
 date: "2025-08-28"
-description: "Medidas de tendência central e dispersão"
+description: "Média, mediana e moda; amplitude, quartis, variância, desvio-padrão e coeficiente de variação; a forma das distribuições."
+gancho: "Dois grupos com a mesma média podem ser completamente diferentes?"
+etapas: [analise]
 ---
 
 ::: {.aula-meta}
-**Data:** 28 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**28 de agosto de 2025** · [Análise]{.ppdac-etapa .analise}
 :::
 
 Como resumir um conjunto de dados com poucos números: onde fica o centro
@@ -44,9 +46,12 @@ repositório.
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
 - Vieira, S. *Estatística básica*, cap. 4 (medidas de tendência central) e cap. 5 (medidas de dispersão).
 
-## Recursos externos
+## Exercício no R (swirl)
 
-_Sem recursos externos para esta aula._
+Pratique no console do R com a lição **Primeiros Passos em Bioestatística**: o swirl faz as perguntas e
+confere cada resposta.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
 
 ---
 

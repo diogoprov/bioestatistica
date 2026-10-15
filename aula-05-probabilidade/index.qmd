@@ -2,11 +2,13 @@
 title: "Aula 05 — Princípios de probabilidade e distribuições"
 order: 5
 date: "2025-09-11"
-description: "Princípios de probabilidade e distribuições"
+description: "Regras da probabilidade e probabilidade condicional; variáveis aleatórias; as distribuições binomial, Poisson e normal."
+gancho: "Um sapo deu positivo num teste \"90% preciso\". Qual a chance de ele estar doente?"
+etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**Data:** 11 e 18/09 de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**11 e 18 de setembro de 2025** · [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 A linguagem da incerteza: o que é probabilidade e como calculá-la, o que
@@ -53,7 +55,7 @@ tabela de modelos contínuos.
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, caps. 8 (probabilidade, distribuição normal) e 9 (distribuição binomial).
-- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 1 (probabilidade) e cap. sobre variáveis aleatórias.
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 1 (probabilidade) e 2 (variáveis aleatórias e distribuições de probabilidade).
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 5 (probabilidade).
 - Gonick, L. & Smith, W. *The Cartoon Guide to Statistics*, cap. 4.
 

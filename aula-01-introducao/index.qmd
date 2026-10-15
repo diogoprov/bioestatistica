@@ -2,11 +2,13 @@
 title: "Aula 01 — Introdução à estatística biológica"
 order: 1
 date: "2025-08-07"
-description: "Introdução à estatística biológica"
+description: "O que é estatística e de onde vem a incerteza; população, amostra, parâmetro e tipos de variáveis; o ciclo PPDAC."
+gancho: "Se a previsão era de 70% de chuva e fez sol, a meteorologia errou?"
+etapas: [problema, plano, dados, analise, conclusao]
 ---
 
 ::: {.aula-meta}
-**Data:** 07 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
+**07 de agosto de 2025** · [Problema]{.ppdac-etapa .problema} → [Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados} → [Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
 :::
 
 O que é estatística e de onde vem a incerteza, como o empirismo
@@ -40,8 +42,12 @@ Commons.
    recomendações do GAISE.
 8. **Atividade prática**: adivinhação de idades.
 
-Três perguntas para a turma, com votação e discussão em duplas, estão
-espalhadas pelos slides.
+## Atividades
+
+- Três perguntas para a turma (*peer instruction*): estatística descritiva
+  ou inferencial, parâmetro ou estatística, e tipos de variáveis.
+- Atividade prática: adivinhação de idades a partir de fotografias, em
+  grupos.
 
 ## Leituras recomendadas
 
