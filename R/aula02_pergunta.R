@@ -308,8 +308,13 @@ fig_sinal_filogenetico <- function(seed = 249) {
                  colour = cores[["texto"]], linewidth = .7) +
     geom_point(data = pontas, aes(x, y, colour = clado), size = 3.4) +
     scale_colour_manual(values = cor_clado, guide = "none") +
+    # sem folga, os pontos das pontas saem cortados na borda de cima
+    scale_x_continuous(expand = expansion(mult = .06)) +
+    scale_y_continuous(expand = expansion(mult = c(.03, .08))) +
+    coord_cartesian(clip = "off") +
     theme_void() +
-    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
+          plot.margin = margin(12, 12, 12, 12))
 
   r_tot <- cor(d$x, d$y)
   gb <- ggplot(d, aes(x, y)) +
@@ -319,11 +324,12 @@ fig_sinal_filogenetico <- function(seed = 249) {
                 linewidth = .9) +
     geom_point(aes(colour = clado), size = 3.4) +
     scale_colour_manual(values = cor_clado, name = NULL) +
-    annotate("label", x = -Inf, y = Inf, hjust = -.05, vjust = 1.2,
-             label = sprintf("todas as espécies: r = %.2f", r_tot),
-             size = 4.6, fill = cores[["papel"]], linewidth = 0) +
-    labs(x = "Caráter X", y = "Caráter Y") +
-    tema_aula(14)
+    # o r vai no subtítulo: um rótulo dentro do painel cobria os pontos
+    scale_y_continuous(expand = expansion(mult = .08)) +
+    labs(x = "Caráter X", y = "Caráter Y",
+         subtitle = sprintf("Todas as espécies juntas: r = %.2f", r_tot)) +
+    tema_aula(14) +
+    theme(plot.margin = margin(8, 12, 8, 8))
   ga + gb + plot_layout(widths = c(1, 1.15))
 }
 

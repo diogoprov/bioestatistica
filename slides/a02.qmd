@@ -410,39 +410,44 @@ diferença: o evento que separou os dois clados.
 
 ---
 
-## São delineamentos válidos? {.smaller}
+## Três cenários {.smaller}
 
-::: {.atividade}
-**Cenário 1.** Para testar um novo suplemento para ganho de massa, um
-biólogo dá o suplemento a **um único rato** e o pesa todos os dias durante
-um mês. Ele considera cada dia como uma réplica.
+Cinco minutos, em duplas: são delineamentos válidos ou casos de
+pseudorréplica?
 
-**Cenário 2.** Para ver se formigas preferem iscas com açúcar ou com
-proteína, uma pesquisadora coloca 10 iscas de cada tipo em **um único
-formigueiro** e conta as formigas em cada isca após uma hora.
+![](../assets/aula02-tres-cenarios.svg){fig-align="center" width="97%" fig-alt="Três cartões. Cenário 1: um rato recebe um suplemento e é pesado todos os dias por um mês; 1 rato, 30 pesagens, n igual a 30? Cenário 2: 10 iscas de açúcar e 10 de proteína no mesmo formigueiro; 1 formigueiro, 10 iscas de cada, n igual a 10? Cenário 3: tamanho das folhas em duas florestas, uma árvore em cada; 1 árvore, 50 folhas, n igual a 50?"}
 
-**Cenário 3.** Uma cientista quer comparar o tamanho das folhas de árvores
-em duas florestas. Ela coleta 50 folhas de **uma única árvore** na floresta
-A e 50 folhas de **uma única árvore** na floresta B, e compara as médias.
+::: {.definicao}
+A pergunta que resolve os três: qual é a unidade que foi de fato
+**replicada no fator que me interessa**?
 :::
 
-Discutam em duplas: qual é a unidade amostral em cada caso? Quantas
-réplicas independentes existem de fato?
+::: {.nota}
+Silhuetas do [PhyloPic](https://www.phylopic.org), todas sob CC0 1.0:
+*Rattus norvegicus* por Arcadia Science, *Solenopsis invicta* por
+Richard J. Harris e a folha de *Quercus petraea* por Pablo Castro
+Sánchez-Bermejo.
+:::
 
 ---
 
-## Os três cenários
+## Os três são o mesmo erro
 
-| Cenário | O que foi tratado como réplica | Unidade amostral de fato | *n* real |
-|---|---|---|---|
-| 1 | 30 dias de pesagem | o rato | 1 |
-| 2 | 10 iscas de cada tipo | o formigueiro | 1 |
-| 3 | 50 folhas por floresta | a árvore (ou a floresta) | 1 |
+Em todos, o que se replicou foi a **medida**, não a unidade que recebe o
+tratamento. O rato é um, o formigueiro é um, a árvore é uma.
 
-Nos três há **pseudorréplica**. No cenário 1 não dá para separar o efeito
-do suplemento do crescimento normal do rato. No 2, a preferência pode ser
-só daquela colônia. No 3, a diferença pode ser entre as duas árvores, e
-não entre as florestas.
+- **Cenário 1:** trinta pesagens dizem muito sobre aquele rato e quase
+  nada sobre o suplemento. Nem dá para separar o efeito do suplemento do
+  crescimento normal do animal.
+- **Cenário 2:** a preferência pode ser só daquela colônia.
+- **Cenário 3:** a diferença pode ser entre as duas árvores, e não entre
+  as florestas.
+
+::: {.nota}
+Nenhum deles é erro de conta: as medidas existem e estão corretas. O que
+não existe é a informação que o *n* promete. E isso não se conserta na
+análise: ou o delineamento replicou a unidade certa, ou não replicou.
+:::
 
 ---
 
