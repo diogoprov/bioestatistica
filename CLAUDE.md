@@ -71,6 +71,17 @@ públicos verificáveis (como o Censo 2010 da Aula 3) podem ser mantidos. Uma fi
 sai quando não tem como ser refeita nem existe versão com licença aberta;
 nesse caso, troque por texto ou referência.
 
+### Aulas pesadas: aula enxuta + "Para saber mais"
+
+Quando a aula fica pesada demais para o tempo (como a Aula 5), o material
+formal sai do fluxo da aula, mas **não some**: vai para uma seção final
+`# Para saber mais {.secao}`, no fim do deck. Na Aula 5 foram para lá os
+axiomas, o teorema de Bayes algébrico, as fórmulas com integral, a *t* de
+Student e a tabela de modelos contínuos. No lugar entram ganchos e
+atividades (moeda real × inventada, aniversários, "O teste que mente") e um
+fio condutor biológico (a vida do girino). Combine com o Diogo antes de
+aplicar isso numa aula.
+
 ### Aprendizagem ativa (inegociável)
 
 - Todas as atividades do original ficam, em caixas `::: {.atividade}`.
@@ -198,6 +209,15 @@ continua em `slides/`, então não apague os PDFs.
 - Silhuetas do PhyloPic ficam em `assets/phylopic/`, com autor e licença em
   `assets/phylopic/FONTES.md`. A API exige o parâmetro `build` (consulte
   `https://api.phylopic.org/`, que redireciona para `/?build=N`).
+- **Artigos com licença CC BY** podem ter a figura original reproduzida, com
+  crédito. Confira o campo `license` em `api.crossref.org/works/<DOI>`. Dos
+  artigos usados nos originais, são CC BY 4.0: Simmonds et al. 2024 (TREE),
+  Gerstner et al. 2017 (MEE) e Weissgerber et al. 2015 (PLOS Biology). Não
+  são: Nature Methods (Krzywinski & Altman), Wiley/ESA (Hurlbert 1984,
+  Ives & Zhu 2006) e JASA (Cleveland & McGill 1984). Livros-texto (Vieira,
+  Triola, Bussab & Morettin, Gotelli & Ellison, Zar, Quinn & Keough, Ruxton
+  & Colegrave) não têm licença aberta: as figuras deles continuam sendo
+  redesenhadas.
 - **Domínio público** também vale (por exemplo, retratos e frontispícios
   históricos do Wikimedia Commons). Confira a licença na API do Commons
   (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão

@@ -39,18 +39,21 @@ source(here::here("R/aula05.R"))
 
 ## Hoje
 
-1. Fundamentos da probabilidade, e a atividade de genética
-2. Variáveis aleatórias e distribuições de probabilidade
-3. Distribuições discretas: Bernoulli, binomial e Poisson, e o Kahoot
-4. A distribuição normal e o escore-Z, e a dinâmica "O normal e o raro"
-5. Como escolher qual distribuição usar
+O fio condutor é **a vida de um girino**: sobreviver, comer, crescer.
+
+1. A linguagem da incerteza
+2. Quando a probabilidade engana
+3. Variáveis aleatórias
+4. Três modelos para a vida do girino: binomial, Poisson e normal
+5. Qual distribuição usar, e para onde cada uma volta no curso
 
 ::: {.nota}
-As figuras desta aula foram geradas em R (as distribuições são calculadas,
-não desenhadas à mão); os retratos históricos são de domínio público. O
-código está em
+As figuras desta aula foram geradas em R (as distribuições são calculadas
+ou simuladas, não desenhadas à mão); os retratos históricos são de domínio
+público. O código está em
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) no
-repositório da disciplina.
+repositório. O material mais formal (axiomas, teorema de Bayes, fórmulas
+com integrais, a *t* de Student) está no fim, em **Para saber mais**.
 :::
 
 ---
@@ -66,7 +69,8 @@ ppdac_plot(destaque = c("Análise", "Conclusão"))
 ```
 
 A probabilidade é a linguagem com que a **Análise** passa da amostra para
-a população, e com que a **Conclusão** diz quanta incerteza resta.
+a população, e com que a **Conclusão** diz quanta incerteza resta. Ela
+alimenta os intervalos de confiança e os testes das próximas aulas.
 
 ---
 
@@ -98,9 +102,37 @@ a população, e com que a **Conclusão** diz quanta incerteza resta.
 
 ---
 
-# 1. Fundamentos da probabilidade {.secao}
+# 1. A linguagem da incerteza {.secao}
 
 [Análise]{.ppdac-etapa .analise}
+
+---
+
+## Gancho: quem jogou a moeda de verdade? (5 min)
+
+::: {.atividade}
+- **Metade da turma** inventa, de cabeça, uma sequência de 30 lançamentos
+  de moeda (cara ou coroa) e anota no papel.
+- **A outra metade** joga uma moeda de verdade 30 vezes e anota.
+- Misturem as folhas. Será que o professor consegue adivinhar quais
+  sequências são reais?
+:::
+
+---
+
+## O acaso de verdade parece agrupado
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| out-width: "90%"
+#| fig-alt: "Duas sequências de 100 lançamentos em quatro linhas de quadrados: cara em azul, coroa em bege. A sequência A tem trechos longos da mesma face, com até 8 repetições seguidas. A sequência B alterna muito, com no máximo 3 repetições."
+fig_moeda_sequencias()
+```
+
+Uma das duas é real (simulada no R); a outra imita o que fazemos quando
+inventamos. Qual é qual? [A **A** é a real: sequências longas, de 5 a 8
+iguais, são comuns no acaso de verdade; quem inventa evita repetir.]{.fragment}
 
 ---
 
@@ -112,6 +144,7 @@ a população, e com que a **Conclusão** diz quanta incerteza resta.
   - A herança de um alelo específico de um gene.
   - O sexo de um filhote.
   - A captura de um animal em uma armadilha.
+  - Um girino ser ou não predado numa poça.
 
 ---
 
@@ -157,97 +190,47 @@ recessivo.
 
 ---
 
-## Definições de probabilidade: clássica
-
-- **Clássica:** todos os resultados são igualmente prováveis.
-
-$$P(E) = \frac{\text{número de resultados favoráveis}}{\text{número total de resultados}}$$
-
-- *Exemplo:* a probabilidade de um descendente de um cruzamento Aa × Aa
-  ser "aa" é 1/4.
-
----
-
-## Definições de probabilidade: axiomática {.smaller}
-
-- **Axiomática:** define 3 axiomas que qualquer medida de probabilidade
-  deve obedecer para ser matematicamente consistente.
-  - **Axioma 1: não negatividade.** A probabilidade de qualquer evento A
-    é um número não negativo: $P(A) \geq 0$
-  - **Axioma 2: normalização.** A probabilidade do espaço amostral
-    completo é 1: $P(S) = 1$
-  - **Axioma 3: aditividade contável.** Para qualquer sequência enumerável
-    de eventos disjuntos dois a dois ($A_i \cap A_j = \emptyset$ para
-    $i \neq j$), a probabilidade da união é a soma das probabilidades
-    individuais:
-
-$$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
-
----
-
-## Definições de probabilidade: frequentista e bayesiana {.smaller}
-
-- **Frequentista:** baseada na frequência relativa de um evento em um
-  **grande número de repetições**
-
-$$P(E) = \lim_{n \to \infty} \frac{n(E)}{n}$$
-
-  - *Exemplo:* se em 1.000 nascimentos em um hospital 510 são meninos, a
-    probabilidade de nascer um menino é estimada em 0,51.
-- **Bayesiana:** probabilidade é uma medida do **grau de crença** ou
-  confiança na veracidade de uma proposição, **com base nas informações**
-  e evidências **disponíveis**
-  - Não é uma propriedade física e objetiva do mundo (como a frequência de
-    caras em uma moeda), mas sim uma representação do nosso estado de
-    conhecimento (ou incerteza) sobre algo
-  - A principal força da abordagem bayesiana é sua capacidade de
-    atualizar crenças. À medida que novas evidências surgem, podemos usar
-    um mecanismo formal para revisar nossa probabilidade inicial.
-
----
-
-## Teorema de Bayes {.smaller}
+## Duas intuições de probabilidade
 
 :::: {.columns}
-::: {.column width="76%"}
-$$P(H \mid E) = \frac{P(E \mid H)\, P(H)}{P(E)}$$
+::: {.column width="45%"}
+::: {.definicao}
+**Clássica:** todos os resultados são igualmente prováveis.
 
-Onde:
+$$P(E) = \frac{\text{resultados favoráveis}}{\text{total de resultados}}$$
 
-- **P(H|E): probabilidade a posteriori.** É o que queremos descobrir: a
-  nossa **crença atualizada** na hipótese H, *depois* de observar a
-  evidência E.
-- **P(H): probabilidade a priori.** É a nossa **crença inicial** na
-  hipótese H, *antes* de considerarmos a nova evidência.
-- **P(E|H): verossimilhança.** A probabilidade de observar a evidência E,
-  *assumindo que a hipótese H é verdadeira*.
-- **P(E): evidência marginal.** A probabilidade total de observar a
-  evidência E. Atua como uma constante de normalização.
-
-O fluxo de pensamento é: **crença inicial (prior) + nova evidência
-(verossimilhança) → crença atualizada (posterior)**.
+No cruzamento Aa × Aa, P(aa) = 1/4.
 :::
-::: {.column width="24%"}
-![Retrato tradicionalmente atribuído a Thomas Bayes](../assets/historia/bayes.gif){fig-alt="Gravura de um homem de peruca e roupas escuras, tradicionalmente identificado como Thomas Bayes."}
 
-::: {.nota}
-Domínio público, via Wikimedia Commons. A autenticidade do retrato é
-incerta.
+::: {.definicao}
+**Frequentista:** a frequência relativa de um evento num grande número de
+repetições. Se em 1.000 nascimentos 510 são meninos, estimamos
+P(menino) = 0,51.
 :::
+:::
+::: {.column width="55%"}
+```{r}
+#| fig-width: 6.6
+#| fig-height: 5
+#| fig-alt: "Proporção de caras ao longo de 1000 lançamentos em três sequências simuladas, em escala logarítmica: no começo as proporções saltam entre 0 e 1; depois de algumas centenas de lançamentos as três ficam perto de 0,5."
+fig_convergencia()
+```
 :::
 ::::
 
 ---
 
-## Comparação entre frequentista e bayesiana {.smaller}
+## As três regras sensatas
 
-| Característica | Abordagem frequentista | Abordagem bayesiana |
-|---|---|---|
-| **Definição principal** | Frequência relativa de um evento em um grande número de ensaios repetidos. | Grau de crença ou confiança na veracidade de uma proposição. |
-| **Natureza** | Objetiva (a probabilidade é uma propriedade do mundo físico). | Subjetiva (a probabilidade é um estado de conhecimento de um observador). |
-| **O que descreve?** | A taxa com que eventos ocorrem em experimentos. | A incerteza sobre qualquer proposição, seja ela repetível ou não. |
-| **Parâmetros do modelo** | Parâmetros (como a média μ) são constantes fixas, mas desconhecidas. | Parâmetros são variáveis aleatórias sobre as quais temos crenças (distribuições). |
-| **Resultado principal** | Intervalos de confiança e valores-p. | Distribuições de probabilidade a posteriori para os parâmetros. |
+1. Uma probabilidade **nunca é negativa**.
+2. A probabilidade de **todos os resultados possíveis juntos é 1**.
+3. Para eventos que **não podem acontecer juntos**, as probabilidades
+   **somam**.
+
+::: {.nota}
+São os três axiomas de Kolmogorov, em linguagem do dia a dia. A versão
+formal está em **Para saber mais**.
+:::
 
 ---
 
@@ -265,10 +248,6 @@ incerta.
   - **Eventos dependentes:** $P(A \text{ e } B) = P(A) \cdot P(B \mid A)$
     - *Exemplo:* probabilidade de sortear duas bolas vermelhas sem
       reposição.
-- **Probabilidade condicional:** a probabilidade de um evento A ocorrer,
-  **dado que** o evento B já ocorreu: $P(A \mid B) = P(A \text{ e } B) / P(B)$
-  - *Exemplo:* a probabilidade de um indivíduo ter uma doença, dado que o
-    teste deu positivo.
 
 ---
 
@@ -281,20 +260,6 @@ incerta.
 #| fig-alt: "Quatro diagramas de Venn com o espaço amostral S: a união de A e B sombreada; a interseção de A e B sombreada; o complemento de A, tudo fora de A, sombreado; e dois círculos separados, eventos mutuamente excludentes."
 fig_venn()
 ```
-
----
-
-## Probabilidade condicional
-
-```{r}
-#| fig-width: 11
-#| fig-height: 4
-#| fig-alt: "À esquerda, o espaço amostral Ω com os eventos A, em azul, e B, em vermelho, e a interseção A∩B sombreada. À direita, só o círculo B com a parte A∩B sombreada: quando sabemos que B ocorreu, B passa a ser o novo espaço amostral."
-fig_condicional()
-```
-
-Saber que B ocorreu **encolhe o espaço amostral** para B. A pergunta passa
-a ser: dentro de B, que fração é A?
 
 ---
 
@@ -315,13 +280,107 @@ Num cruzamento **Aa × Aa**, em que **a** é recessivo, calculem em duplas:
 1. 1/4. 2. P(AA) + P(Aa) = 1/4 + 1/2 = **3/4** (adição, eventos
 mutuamente exclusivos). 3. 1/4 × 1/4 = **1/16** (multiplicação, eventos
 independentes). 4. P(Aa | dominante) = (1/2) / (3/4) = **2/3**
-(probabilidade condicional).
+(probabilidade condicional, a seguir).
 :::
 :::
 
 ---
 
-# 2. Variáveis aleatórias e distribuições de probabilidade {.secao}
+# 2. Quando a probabilidade engana {.secao}
+
+[Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+
+---
+
+## Aposta: aniversários na sala
+
+::: {.atividade}
+**Qual a chance de pelo menos duas pessoas nesta sala fazerem aniversário
+no mesmo dia?**
+
+Votem antes de ver a resposta: menos de 10%, entre 10% e 50%, ou mais de
+50%?
+:::
+
+::: {.fragment}
+```{r}
+#| fig-width: 10
+#| fig-height: 3.6
+#| out-width: "78%"
+#| fig-alt: "Curva da probabilidade de pelo menos duas pessoas fazerem aniversário no mesmo dia, de 2 a 60 pessoas: passa de 50% com 23 pessoas e chega a 71% com 30 pessoas."
+fig_aniversario()
+```
+:::
+
+---
+
+## Probabilidade condicional
+
+**A chance muda quando já sabemos de algo.** A probabilidade de um evento
+A ocorrer, **dado que** o evento B já ocorreu:
+
+$$P(A \mid B) = \frac{P(A \text{ e } B)}{P(B)}$$
+
+```{r}
+#| fig-width: 11
+#| fig-height: 3.2
+#| out-width: "78%"
+#| fig-alt: "À esquerda, o espaço amostral Ω com os eventos A, em azul, e B, em vermelho, e a interseção A∩B sombreada. À direita, só o círculo B com a parte A∩B sombreada: quando sabemos que B ocorreu, B passa a ser o novo espaço amostral."
+fig_condicional()
+```
+
+*Exemplo:* a probabilidade de um indivíduo ter uma doença, **dado que** o
+teste deu positivo.
+
+---
+
+## Atividade: "O teste que mente" (12 min) {.smaller}
+
+::: {.atividade}
+Em grupos, sem fórmula, só contando:
+
+- Imaginem **1000 sapos**. **2%** têm quitridiomicose.
+- O teste detecta **90%** dos infectados.
+- Mas dá **10% de falso-positivo** nos sapos sadios.
+
+**Um sapo deu positivo. Qual a chance de ele estar infectado?**
+
+Dica: quantos sapos infectados há? Quantos deles dão positivo? Quantos
+sadios dão positivo mesmo assim?
+:::
+
+---
+
+## O teste que mente: a resposta
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5
+#| out-width: "84%"
+#| fig-alt: "Árvore de frequências: 1000 sapos se dividem em 20 infectados (2%) e 980 sadios. Dos 20 infectados, 18 dão positivo e 2 negativo. Dos 980 sadios, 98 dão positivo e 882 negativo. Dos 116 positivos, só 18 estão infectados: 16%."
+fig_arvore_teste()
+```
+
+O teste é "90% preciso", mas um positivo significa só **cerca de 16%** de
+chance de infecção, porque a doença é rara e os falsos-positivos dos sapos
+sadios são muitos.
+
+---
+
+## Vocês acabaram de fazer inferência bayesiana
+
+::: {.definicao}
+**Crença inicial** (2% dos sapos infectados) + **nova evidência** (o teste
+deu positivo) → **crença atualizada** (16%).
+:::
+
+Esse é o raciocínio do **teorema de Bayes**. A versão com fórmula, e a
+comparação entre as abordagens frequentista e bayesiana, estão em **Para
+saber mais**.
+
+---
+
+# 3. Variáveis aleatórias {.secao}
 
 [Análise]{.ppdac-etapa .analise}
 
@@ -332,36 +391,35 @@ independentes). 4. P(Aa | dominante) = (1/2) / (3/4) = **2/3**
 - Uma **variável aleatória (v.a.)** é uma variável cujo valor é uma
   realização (resultado) de um experimento aleatório (ex.: sorteio)
 - **Tipos de variáveis aleatórias:**
-  - **Discreta:** assume um número *finito* ou contável de valores.
-    - Exemplos: número de filhotes em uma ninhada; número de colônias de
+  - **Discreta:** assume um número *finito* ou contável de valores (ela
+    **conta**).
+    - Exemplos: número de girinos predados numa poça; número de presas
+      que um girino come; número de filhotes em uma ninhada; colônias de
       bactérias em uma placa de Petri.
-  - **Contínua:** pode assumir qualquer valor *em um intervalo*.
-    - Exemplos: altura de uma planta; peso de um animal; concentração de
-      uma substância no sangue.
+  - **Contínua:** pode assumir qualquer valor *em um intervalo* (ela
+    **mede**).
+    - Exemplos: comprimento do corpo de um girino; peso de um animal;
+      concentração de uma substância no sangue.
 
 ---
 
-## Variáveis aleatórias
+## Esperança e variância, por intuição
 
-- **Funções:**
-  - Discretas: função de probabilidade $P(X = x)$
-  - Contínuas: função densidade de probabilidade $f(x)$
-- **Medidas:**
-  - **Esperança (média):**
-    - $E(X) = \sum x \, P(X = x)$ (discreta)
-    - $E(X) = \int x \, f(x) \, dx$ (contínua)
-  - **Variância:** $\mathrm{Var}(X) = E[X^2] - (E[X])^2$
+- **Esperança (média), $E(X)$:** o valor médio que a variável assume **no
+  longo prazo**, se repetíssemos o experimento muitas vezes.
+- **Variância, $\mathrm{Var}(X)$:** **o quanto** os valores se espalham em
+  torno dessa média.
 
----
+::: {.definicao}
+Uma **distribuição de probabilidade** descreve como as probabilidades se
+distribuem sobre os valores de uma variável aleatória. Para v.a. discretas
+é uma lista dos valores possíveis e suas probabilidades; para contínuas, é
+uma curva de densidade.
+:::
 
-## Distribuição de probabilidade
-
-- Uma **distribuição de probabilidade** descreve como as probabilidades
-  se distribuem sobre os valores de uma variável aleatória.
-- Para v.a. discretas, é uma lista de todos os valores possíveis e suas
-  probabilidades.
-- Para v.a. contínuas, é descrita por uma curva de densidade de
-  probabilidade.
+::: {.nota}
+As fórmulas de $E(X)$ e $\mathrm{Var}(X)$ estão em **Para saber mais**.
+:::
 
 ---
 
@@ -371,173 +429,131 @@ independentes). 4. P(Aa | dominante) = (1/2) / (3/4) = **2/3**
 #| fig-width: 13
 #| fig-height: 6.2
 #| out-width: "100%"
-#| fig-alt: "Rede de quinze distribuições de probabilidade ligadas por linhas, cada uma com uma miniatura: uniforme, Bernoulli, hipergeométrica, binomial, geométrica, binomial negativa e Poisson, com barras; exponencial, log-normal, normal, qui-quadrado, Weibull, t de Student, gama e beta, com curvas."
-fig_relacoes()
+#| fig-alt: "Rede de quinze distribuições de probabilidade ligadas por linhas, cada uma com uma miniatura, com a binomial, a Poisson e a normal destacadas em vermelho: as três desta aula."
+fig_relacoes(c("Binomial", "Poisson", "Normal"))
 ```
+
+São muitas, e todas aparentadas. Hoje ficamos com as três em vermelho.
 
 ---
 
-## Variáveis aleatórias contínuas
-
-```{r}
-#| fig-width: 13
-#| fig-height: 6.2
-#| out-width: "100%"
-#| fig-alt: "A mesma rede com as distribuições contínuas destacadas em vermelho: exponencial, log-normal, normal, qui-quadrado, Weibull, t de Student, gama e beta."
-fig_relacoes("continuas")
-```
-
----
-
-## Variáveis aleatórias discretas
-
-```{r}
-#| fig-width: 13
-#| fig-height: 6.2
-#| out-width: "100%"
-#| fig-alt: "A mesma rede com as distribuições discretas destacadas em vermelho: uniforme, Bernoulli, hipergeométrica, binomial, geométrica, binomial negativa e Poisson."
-fig_relacoes("discretas")
-```
-
----
-
-## Binomial
-
-```{r}
-#| fig-width: 13
-#| fig-height: 6.2
-#| out-width: "100%"
-#| fig-alt: "A mesma rede com a binomial destacada."
-fig_relacoes("Binomial")
-```
-
----
-
-## Poisson
-
-```{r}
-#| fig-width: 13
-#| fig-height: 6.2
-#| out-width: "100%"
-#| fig-alt: "A mesma rede com a Poisson destacada."
-fig_relacoes("Poisson")
-```
-
----
-
-## Normal: a distribuição mais importante
-
-```{r}
-#| fig-width: 13
-#| fig-height: 6.2
-#| out-width: "100%"
-#| fig-alt: "A mesma rede com a normal destacada e a nota: a distribuição mais importante para descrever variáveis aleatórias contínuas."
-fig_relacoes("Normal")
-```
-
----
-
-# 3. Distribuições discretas {.secao}
+# 4. Três modelos para a vida do girino {.secao}
 
 [Análise]{.ppdac-etapa .analise}
 
 ---
 
-## Distribuição de Bernoulli
+## Bernoulli: o girino sobrevive ou é predado
 
 - **Definição:** experimento com dois resultados (sucesso/fracasso)
 - **Parâmetro:** *p* (probabilidade de sucesso)
-- **Exemplo biológico:** sobrevivência de um organismo após tratamento
+- **Exemplo biológico:** um girino sobreviver ou não a um dia na poça; a
+  sobrevivência de um organismo após um tratamento
 
 ```{r}
 #| fig-width: 11
 #| fig-height: 3.8
-#| fig-alt: "Distribuição de Bernoulli com p = 0,7. À esquerda, a função de probabilidade: uma haste de altura 0,3 em 0 (fracasso) e outra de 0,7 em 1 (sucesso). À direita, a função de distribuição acumulada, em degraus: 0 antes de 0, 0,3 entre 0 e 1, e 1 a partir de 1."
+#| fig-alt: "Distribuição de Bernoulli com p = 0,7. À esquerda, a função de probabilidade: uma haste de altura 0,3 em 0 (fracasso) e outra de 0,7 em 1 (sucesso). À direita, a função de distribuição acumulada, em degraus."
 fig_bernoulli()
 ```
 
 ---
 
-## Distribuição binomial {.smaller}
+## Distribuição binomial: muitos girinos {.smaller}
 
-- Modelo para v.a. discretas.
+- E se forem **n** girinos? Quantos são predados? Somamos Bernoullis.
 - **Condições para usar a binomial:**
   - Número fixo de tentativas ($n$).
   - Cada tentativa tem apenas dois resultados possíveis (sucesso ou
     fracasso).
   - A probabilidade de sucesso ($p$) é a mesma em todas as tentativas.
   - As tentativas são independentes.
-- **Fórmula:**
+- **Fórmula** (para mostrar, não para decorar):
 
 $$P(X = x) = \binom{n}{x} p^x (1 - p)^{n - x}$$
 
-- **Exemplos em biologia:**
-  - Herança mendeliana (proporção de fenótipos)
-  - Um casal tem 5 filhos. Qual a probabilidade de que exatamente 3 sejam
-    meninos (considerando $p = 0{,}5$)?
-    [$\binom{5}{3} 0{,}5^5 = 10/32 \approx 0{,}31$]{.fragment}
-  - Sucesso/fracasso em experimentos de germinação
+- **Exemplos em biologia:** herança mendeliana (proporção de fenótipos);
+  sucesso/fracasso em experimentos de germinação; um casal com 5 filhos,
+  exatamente 3 meninos? [$\binom{5}{3} 0{,}5^5 = 10/32 \approx 0{,}31$]{.fragment}
 
 ---
 
-## Distribuição binomial
+## A binomial aparece sozinha, por simulação
 
 ```{r}
-#| fig-width: 10
-#| fig-height: 4.6
-#| out-width: "78%"
-#| fig-alt: "Gráfico de barras da distribuição binomial com n = 8 e p = 0,25: a probabilidade de 0 a 8 filhotes doentes numa ninhada, com o pico em 2 filhotes (0,311)."
-fig_binomial(8, .25, "Número de filhotes doentes na ninhada")
+#| fig-width: 12
+#| fig-height: 4.4
+#| fig-alt: "Três histogramas do número de girinos predados por poça, com 6 girinos e probabilidade de predação 0,3, para 10, 100 e 10.000 poças simuladas. Com 10 poças o histograma é irregular; com 10.000 ele coincide com os pontos vermelhos da fórmula da binomial."
+fig_binomial_simulada()
 ```
 
-Um gene recessivo causa uma doença com 25% de chance em descendentes de
-pais portadores. O gráfico mostra a probabilidade do número de filhotes
-doentes numa ninhada de 8.
+Simulamos poças com 6 girinos, cada um com 30% de chance de ser predado
+por uma larva de odonata. Quanto mais poças, mais o histograma se parece
+com a fórmula: **a distribuição é o comportamento de longo prazo do
+sorteio.**
 
 ---
 
 ## Distribuição binomial: exemplo 1 {.smaller}
 
 ::: {.atividade}
-Seja X uma variável aleatória com o número de caras em 12 lançamentos de
-uma moeda honesta. Qual a probabilidade de sair 5 caras em 12
-lançamentos?
-
-[$P(X = 5) = \binom{12}{5} 0{,}5^{12} = 792 / 4.096 \approx 0{,}193$]{.fragment}
-:::
-
-::: {.atividade}
 Há uma probabilidade de 0,3 de um girino, ao forragear em um corpo
 d'água, ser predado por uma larva de odonata. Determine as probabilidades
 de que, dentre seis girinos que estão forrageando no corpo d'água, 0, 1,
-2, 3, 4, 5 ou 6 sejam predados.
+2, 3, 4, 5 ou 6 sejam predados. **k?** **n?** **p?**
+:::
 
-**k?** **n?** **p?**
+::: {.fragment}
+**k** = 0, 1, 2, 3, 4, 5 e 6; **n** = 6; **p** = 0,3
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.6
+#| out-width: "74%"
+#| fig-alt: "Gráfico de barras da binomial com n = 6 e p = 0,3: as probabilidades de 0 a 6 girinos predados são 0,118; 0,303; 0,324; 0,185; 0,060; 0,010 e 0,001."
+fig_binomial(6, .3, "Número de girinos predados (k)")
+```
 :::
 
 ---
 
-## Distribuição binomial: exemplo 1
-
-**k** = 0, 1, 2, 3, 4, 5 e 6; **n** = 6; **p** = 0,3
-
-$$f(k; n, p) = \binom{n}{k} p^k (1 - p)^{n - k}$$
+## Binomial e Mendel
 
 ```{r}
 #| fig-width: 10
-#| fig-height: 4.2
+#| fig-height: 4.4
 #| out-width: "80%"
-#| fig-alt: "Gráfico de barras da binomial com n = 6 e p = 0,3: as probabilidades de 0 a 6 girinos predados são 0,118; 0,303; 0,324; 0,185; 0,060; 0,010 e 0,001."
-fig_binomial(6, .3, "Número de girinos predados (k)")
+#| fig-alt: "Gráfico de barras da binomial com n = 8 e p = 0,25: a probabilidade de 0 a 8 girinos albinos numa desova de 8, com o pico em 2 (0,311)."
+fig_binomial(8, .25, "Número de girinos albinos (aa) entre 8")
 ```
+
+Pais Aa × Aa: cada girino tem 1/4 de chance de ser albino (aa). O gráfico
+mostra a probabilidade do número de albinos entre 8 girinos de uma
+desova.
 
 ---
 
-## Distribuição de Poisson {.smaller}
+## Distribuição binomial: exemplo 2
+
+::: {.atividade}
+Seja X uma variável aleatória com o número de caras em 12 lançamentos de
+uma moeda honesta (a do nosso gancho). Qual a probabilidade de sair 5
+caras em 12 lançamentos?
+:::
+
+::: {.fragment}
+::: {.definicao}
+$$P(X = 5) = \binom{12}{5} 0{,}5^{12} = \frac{792}{4.096} \approx 0{,}193$$
+:::
+:::
+
+---
+
+## Distribuição de Poisson: quantas presas por hora? {.smaller}
 
 - Modelo para v.a. discretas.
-- Usada para modelar o número de ocorrências de um evento em um intervalo
-  fixo de tempo ou espaço.
+- Usada para modelar o **número de ocorrências** de um evento em um
+  **intervalo fixo** de tempo ou espaço.
 - **Condições:**
   - Os eventos ocorrem a uma taxa média constante ($\lambda$).
   - Os eventos são independentes.
@@ -545,73 +561,59 @@ fig_binomial(6, .3, "Número de girinos predados (k)")
 
 $$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$$
 
-- **Exemplos em biologia:**
-  - Número de mutações em um gene por geração.
-  - Número de ninhos de uma espécie de ave por hectare de floresta.
-  - Contagem de células em quadrantes microscópicos.
-  - Ocorrência de espécies em áreas delimitadas.
-
----
-
-## Distribuição de Poisson
-
-```{r}
-#| fig-width: 10
-#| fig-height: 4.6
-#| out-width: "76%"
-#| fig-alt: "Gráfico de barras da Poisson com λ = 3: a probabilidade de encontrar de 0 a 8 ninhos num quilômetro quadrado, com os picos em 2 e 3 ninhos (0,224 cada)."
-fig_poisson(3, 8, "Número de ninhos por km²")
-```
-
-Em média, um biólogo encontra 3 ninhos de uma ave rara por km² numa
-reserva. O gráfico mostra a probabilidade de encontrar um certo número de
-ninhos num km² qualquer.
-
----
-
-## Distribuição de Poisson: exemplo 1
-
-- Suponha que observamos o número de visitas de borboletas em uma flor
-  durante um período de 15 minutos.
-- A probabilidade de uma borboleta chegar é a mesma para quaisquer dois
-  períodos de tempo de igual comprimento.
-- A visita ou não de uma borboleta em qualquer período de tempo é
-  independente da visita ou não de uma outra borboleta em qualquer outro
-  período de tempo.
+- **Exemplos em biologia:** presas que um girino captura por hora;
+  número de mutações em um gene por geração; número de ninhos de uma
+  espécie de ave por hectare; contagem de células em quadrantes
+  microscópicos; ocorrência de espécies em áreas delimitadas.
 
 ---
 
 ## Distribuição de Poisson: exemplo 1 {.smaller}
 
-Suponha que o número médio de borboletas que visitam a flor no período de
-15 minutos é 10. Então:
+Um girino captura, em média, **10 presas** (larvas de mosquito) a cada 15
+minutos. As capturas acontecem a uma taxa constante e são independentes
+umas das outras.
 
-$$P(x) = \frac{\lambda^x e^{-\lambda}}{x!} = \frac{10^x e^{-10}}{x!}$$
-
-X: número de borboletas que chegam em qualquer período de 15 minutos. A
-probabilidade de 5 chegadas em 15 minutos é:
-
-$$P(X = 5) = \frac{10^5 e^{-10}}{5!} = 0{,}0378$$
+$$P(x) = \frac{10^x e^{-10}}{x!} \qquad P(X = 5) = \frac{10^5 e^{-10}}{5!} = 0{,}0378$$
 
 ```{r}
 #| fig-width: 10
 #| fig-height: 3.4
-#| out-width: "78%"
-#| fig-alt: "Gráfico de barras da Poisson com λ = 10, de 0 a 20 borboletas, com a barra de 5 borboletas em vermelho."
-fig_poisson(10, 20, "Borboletas em 15 minutos", destaque = 5, rotulos = FALSE)
+#| out-width: "76%"
+#| fig-alt: "Gráfico de barras da Poisson com λ = 10, de 0 a 20 presas em 15 minutos, com a barra de 5 presas em vermelho."
+fig_poisson(10, 20, "Presas capturadas em 15 minutos", destaque = 5, rotulos = FALSE)
 ```
+
+::: {.nota}
+No original, o mesmo cálculo era feito com as visitas de borboletas a uma
+flor em 15 minutos.
+:::
 
 ---
 
-## Distribuição binomial e Poisson
+## Distribuição de Poisson: no espaço
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.4
+#| out-width: "76%"
+#| fig-alt: "Gráfico de barras da Poisson com λ = 3: a probabilidade de encontrar de 0 a 8 larvas de odonata num metro quadrado de poça, com os picos em 2 e 3 larvas (0,224 cada)."
+fig_poisson(3, 8, "Larvas de odonata por m² de poça")
+```
+
+Em média há 3 larvas de odonata (os predadores dos girinos) por m² de
+poça. O gráfico mostra a probabilidade de encontrar um certo número delas
+num m² qualquer.
+
+---
+
+## Binomial e Poisson
 
 $$X \sim B(n, p)$$
 
 Se **n** for grande e **p** for pequeno, o evento é raro. Na prática:
-$n \geq 50$ ou 100 e $np < 5$ ou 10.
-
-Neste caso, a distribuição binomial é muito parecida com a de Poisson,
-com $\lambda = np$.
+$n \geq 50$ ou 100 e $np < 5$ ou 10. Neste caso, a binomial é muito
+parecida com a Poisson, com $\lambda = np$.
 
 ```{r}
 #| fig-width: 10
@@ -654,28 +656,21 @@ Sem Kahoot: em duplas, digam se cada contagem segue melhor uma
 
 ---
 
-# 4. A distribuição normal {.secao}
-
-[Análise]{.ppdac-etapa .analise}
-
----
-
-## A distribuição normal {.smaller}
+## A distribuição normal: o tamanho do girino {.smaller}
 
 :::: {.columns}
 ::: {.column width="74%"}
 - A mais importante das distribuições contínuas.
 - A curva normal (ou gaussiana) tem forma de sino, simétrica em torno da
   média.
-- A importância da distribuição normal como um modelo de fenômenos
-  quantitativos se deve em parte ao Teorema do Limite Central.
 - **Parâmetros:**
   - Média ($\mu$): centro da distribuição.
   - Desvio-padrão ($\sigma$): dispersão dos dados.
-- **Exemplos em biologia:**
-  - Altura e peso de indivíduos em uma população.
-  - Pressão sanguínea.
-  - Comprimento das asas de uma espécie de borboleta.
+- **Exemplos em biologia:** comprimento do corpo de girinos de uma poça;
+  altura e peso de indivíduos em uma população; pressão sanguínea;
+  comprimento das asas de uma espécie de borboleta.
+- Por que ela aparece em todo lugar? Por causa do **Teorema do Limite
+  Central**, assunto da próxima aula.
 :::
 ::: {.column width="26%"}
 ![Carl Friedrich Gauss (1777–1855), em retrato de 1840](../assets/historia/gauss.jpg){fig-alt="Retrato a óleo de Carl Friedrich Gauss idoso, de boina preta."}
@@ -688,30 +683,28 @@ C.A. Jensen; domínio público, via Wikimedia Commons.
 
 ---
 
-## A curva da vida: a distribuição normal
-
-Muitas variáveis contínuas na biologia, como altura, peso e pressão
-sanguínea, seguem a famosa "curva em sino". Ela é simétrica em torno da
-média ($\mu$), e sua dispersão é medida pelo desvio-padrão ($\sigma$).
+## A curva da vida: a regra empírica
 
 ```{r}
 #| fig-width: 10
 #| fig-height: 4.4
 #| out-width: "85%"
-#| fig-alt: "Curva normal da altura de plantas com média 30 cm e desvio-padrão 5 cm, com três faixas: de 25 a 35 cm (68% das plantas), de 20 a 40 cm (95%) e de 15 a 45 cm (99,7%)."
+#| fig-alt: "Curva normal do comprimento de girinos com média 30 mm e desvio-padrão 4 mm, com três faixas: de 26 a 34 mm (68% dos girinos), de 22 a 38 mm (95%) e de 18 a 42 mm (99,7%)."
 fig_normal_empirica()
 ```
 
+Cerca de **68%** dos valores ficam a 1 desvio-padrão da média, **95%** a
+2, e **99,7%** a 3.
+
 ---
 
-## Variando a média (tendência central)
+## Variando a média e a variância
 
 ```{r}
-#| fig-width: 10
-#| fig-height: 4.6
-#| out-width: "85%"
-#| fig-alt: "Três curvas normais iguais, com desvio-padrão 1, centradas em 0, 1 e 2: mudar a média só desloca a curva."
-fig_normal_media()
+#| fig-width: 12
+#| fig-height: 4.4
+#| fig-alt: "À esquerda, três curvas normais iguais deslocadas para médias 0, 1 e 2: mudar a média só desloca a curva. À direita, três curvas centradas em zero com desvios-padrão 1, 1,5 e 2: quanto maior o desvio-padrão, mais baixa e larga a curva."
+fig_normal_media() | fig_normal_variancia()
 ```
 
 ::: {.ref}
@@ -720,202 +713,59 @@ Redesenhado a partir de Zar, J.H. *Biostatistical analysis*.
 
 ---
 
-## Variando a variância (medida de dispersão)
-
-```{r}
-#| fig-width: 10
-#| fig-height: 4.6
-#| out-width: "85%"
-#| fig-alt: "Três curvas normais centradas em zero com desvios-padrão 1, 1,5 e 2: quanto maior o desvio-padrão, mais baixa e mais larga a curva."
-fig_normal_variancia()
-```
-
-::: {.ref}
-Redesenhado a partir de Zar, J.H. *Biostatistical analysis*.
-:::
-
----
-
-## Distribuição *t* de Student
-
-:::: {.columns}
-::: {.column width="70%"}
-- Usada quando $\sigma$ **é desconhecido** e **as amostras são pequenas**
-- Importante em testes de hipóteses
-
-$$E(t) = 0, \qquad \mathrm{Var}(t) = \frac{\nu}{\nu - 2}, \quad \nu > 2$$
-
-```{r}
-#| fig-width: 8
-#| fig-height: 3.1
-#| fig-alt: "A normal padrão, tracejada, e duas distribuições t com 2 e 5 graus de liberdade: as t são mais baixas no centro e têm caudas mais pesadas."
-fig_t_normal()
-```
-:::
-::: {.column width="30%"}
-![William Sealy Gosset, o "Student", químico da cervejaria Guinness](../assets/historia/gosset.jpg){fig-alt="Fotografia de William Sealy Gosset."}
-
-::: {.nota}
-Domínio público, via Wikimedia Commons.
-:::
-:::
-::::
-
----
-
-## Modelos para variáveis contínuas {.smaller}
-
-| Modelo | $f(x)$ | Parâmetros | $E(X)$ | $\mathrm{Var}(X)$ |
-|---|---|---|---|---|
-| Uniforme | $\frac{1}{\beta - \alpha}$, $\alpha < x < \beta$ | $\alpha, \beta$ | $\frac{\alpha + \beta}{2}$ | $\frac{(\beta - \alpha)^2}{12}$ |
-| Exponencial | $\frac{1}{\beta} e^{-x/\beta}$, $x > 0$ | $\beta$ | $\beta$ | $\beta^2$ |
-| Normal | $\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}$ | $\mu, \sigma$ | $\mu$ | $\sigma^2$ |
-| Gama | | $\alpha, \beta > 0$ | $\alpha\beta$ | $\alpha\beta^2$ |
-| Qui-quadrado | | $\nu$ | $\nu$ | $2\nu$ |
-| *t* de Student | | $\nu$ | $0$ | $\frac{\nu}{\nu - 2}$ |
-| *F* de Snedecor | | $\nu_1, \nu_2$ | $\frac{\nu_2}{\nu_2 - 2}$ | $\frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2 - 2)^2(\nu_2 - 4)}$ |
-
-::: {.ref}
-Adaptado da Tabela 7.2 de Bussab, W.O. & Morettin, P.A. *Estatística
-básica*.
-:::
-
----
-
-## Usos e aplicações da distribuição normal {.secao}
-
----
-
-## A importância da distribuição normal padrão {.smaller}
+## A distribuição normal padrão e o escore-Z {.smaller}
 
 - A **distribuição normal padrão** tem média 0 e desvio-padrão 1.
 - Podemos converter qualquer variável normal para a normal padrão usando o
-  **escore-Z**:
+  **escore-Z**: a quantos desvios-padrão da média um valor está.
 
 $$Z = \frac{X - \mu}{\sigma}$$
 
-- O escore-Z nos diz quantos desvios-padrão um valor está da média.
-- **Aplicação:** podemos calcular a probabilidade de um valor ocorrer em
-  qualquer distribuição normal.
-  - *Exemplo:* se a altura média dos homens em uma população é 175 cm, com
-    desvio-padrão de 7 cm, qual a probabilidade de um homem ter mais de
-    182 cm?
+- **Aplicação:** calcular a probabilidade de um valor ocorrer em qualquer
+  distribuição normal.
+  - *Exemplo:* numa poça, o comprimento médio dos girinos é 30 mm, com
+    desvio-padrão de 4 mm. Qual a probabilidade de um girino ter mais de
+    34 mm?
 
----
-
-## Cálculo passo a passo do escore-Z
-
-- Fórmula: $Z = \dfrac{X - \mu}{\sigma}$
-- **X** = o valor que queremos investigar (182 cm)
-- **μ** = a média da população (175 cm)
-- **σ** = o desvio-padrão da população (7 cm)
-- **Passo 1: calcular o escore-Z**
-  1. Z = (182 − 175) / 7
-  2. Z = 7 / 7
-  3. **Z = 1**
-- Isso significa que a altura de 182 cm está exatamente **1 desvio-padrão
-  acima da média**.
-
----
-
-## Cálculo passo a passo do escore-Z
-
-- Agora, usamos as propriedades da curva normal padrão:
-- A curva é simétrica, e 50% dos valores estão acima da média e 50%
-  abaixo.
-
-```{r}
-#| fig-width: 8
-#| fig-height: 4
-#| out-width: "68%"
-#| fig-alt: "Curva normal com as duas metades sombreadas em tons diferentes, cada uma com 0,5 da área; no topo, média = mediana = moda."
-fig_normal_simetria()
-```
-
-::: {.ref}
-Inspirado na Figura 8.4 de Vieira, *Introdução à bioestatística*.
+::: {.nota}
+No original, o exemplo era a altura dos homens: média de 175 cm,
+desvio-padrão de 7 cm, mais de 182 cm. As contas são as mesmas.
 :::
 
 ---
 
-## Cálculo passo a passo do escore-Z
+## Cálculo passo a passo do escore-Z {.smaller}
 
-- Pela "regra empírica" (68–95–99,7), sabemos que aproximadamente **68%**
-  dos valores estão dentro de 1 desvio-padrão da média (entre Z = −1 e
-  Z = 1).
-- Como a curva é simétrica, metade dessa área (34%) está entre a média
-  (Z = 0) e Z = 1.
-
-```{r}
-#| fig-width: 10
-#| fig-height: 4
-#| out-width: "78%"
-#| fig-alt: "Curva normal padrão dividida em faixas de um desvio-padrão, com as porcentagens: 34,1% de cada lado entre a média e 1σ, 13,6% entre 1σ e 2σ, 2,1% entre 2σ e 3σ e 0,1% além de 3σ."
-fig_regra_empirica()
-```
-
----
-
-## Cálculo passo a passo do escore-Z
-
-- Se 50% de todos os homens têm altura acima da média e 34% estão entre a
-  média e 182 cm (Z = 1), a probabilidade de um homem ter mais de 182 cm é
-  a área restante na cauda superior da curva.
-- Probabilidade = 50% − 34% = **16%**
+- **Passo 1: calcular o escore-Z**
+  - Z = (34 − 30) / 4 = 4 / 4 = **1**: o girino de 34 mm está
+    exatamente 1 desvio-padrão acima da média.
+- **Passo 2: usar a curva normal padrão**
+  - A curva é simétrica: 50% dos valores estão acima da média.
+  - Pela regra empírica, cerca de 68% estão entre Z = −1 e Z = 1; metade
+    disso, **34%**, entre a média e Z = 1.
+- **Passo 3:** 50% − 34% = **16%**
 
 ```{r}
 #| fig-width: 10
-#| fig-height: 3.4
-#| out-width: "66%"
-#| fig-alt: "Curva normal da altura dos homens, média 175 cm e desvio-padrão 7 cm, com a área acima de 182 cm em vermelho: cerca de 15,9%."
+#| fig-height: 3
+#| out-width: "58%"
+#| fig-alt: "Curva normal do comprimento dos girinos, média 30 mm e desvio-padrão 4 mm, com a área acima de 34 mm em vermelho: cerca de 15,9%."
 fig_altura_z()
 ```
 
-**Resposta:** a probabilidade de um homem selecionado ao acaso nessa
-população ter mais de 182 cm de altura é de aproximadamente **16%**.
-
 ---
 
-## Escore-Z
-
-**Conceito:** distância a que um valor observado está da média, em
-unidades de desvio-padrão.
-
-$$Z = \frac{\overbrace{x}^{\text{valor observado}} - \overbrace{\mu}^{\text{valor médio}}}{\underbrace{\sigma}_{\text{desvio-padrão}}}$$
-
----
-
-## Escore-Z: da escala original para a escala padrão
+## Por que isso é importante? {.smaller}
 
 ```{r}
 #| fig-width: 11
-#| fig-height: 4.8
-#| fig-alt: "Quinze pessoas como pontos na escala da pressão arterial, em mmHg, e logo abaixo os mesmos pontos na escala do escore-Z, centrada em zero. Uma pessoa com 100 mmHg, em vermelho, fica cerca de 1,7 desvio-padrão abaixo da média."
-fig_escore_z()
-```
-
-Um desvio de 10 mmHg é pouco ou é muito? Depende do desvio-padrão. O
-escore-Z responde em unidades comparáveis.
-
-::: {.ref}
-Inspirado no tutorial de escore-Z do DATAtab,
-<https://datatab.net/tutorial/z-score>.
-:::
-
----
-
-## Por que isso é importante?
-
-```{r}
-#| fig-width: 11
-#| fig-height: 3.4
+#| fig-height: 3
 #| fig-alt: "Três curvas normais padrão com as áreas centrais sombreadas: 68% entre −1σ e 1σ, 95% entre −2σ e 2σ e 99,7% entre −3σ e 3σ."
 fig_tres_intervalos()
 ```
 
-Porque, para distribuições simétricas, sabemos que **95% dos dados
-estarão a uma distância de 2 desvios-padrão da média**. Valores além disso
-são "significativamente" baixos ou altos.
+Porque, para distribuições simétricas, **95% dos dados estão a até 2
+desvios-padrão da média**.
 
 ::: {.ref}
 Inspirado em Triola, M.F. *Introdução à estatística*, Figura 3-3.
@@ -925,17 +775,23 @@ Inspirado em Triola, M.F. *Introdução à estatística*, Figura 3-3.
 
 ## Por que isso é importante?
 
-Permite **comparar amostras vindas de populações diferentes**.
+Porque o escore-Z permite **comparar valores vindos de populações
+diferentes**:
 
 ```{r}
 #| fig-width: 11
 #| fig-height: 4.2
-#| fig-alt: "Duas curvas normais do comprimento de girinos: na lagoa A, média 70 mm e desvio-padrão 10 mm, com um girino de 80 mm; na lagoa B, média 140 mm e desvio-padrão 20 mm, com um girino de 160 mm. Os dois girinos têm Z = 1."
+#| fig-alt: "Duas curvas normais do comprimento de girinos: na lagoa A, média 70 mm e desvio-padrão 10 mm, com um girino de 80 mm; na lagoa B, média 140 mm e desvio-padrão 20 mm, com um girino de 160 mm. Os dois têm Z = 1."
 fig_comparar_z()
 ```
 
 Os dois girinos têm tamanhos muito diferentes, mas cada um está
 **exatamente 1 desvio-padrão acima** da média da sua lagoa.
+
+::: {.ref}
+Inspirado no tutorial de escore-Z do DATAtab,
+<https://datatab.net/tutorial/z-score>.
+:::
 
 ---
 
@@ -1001,19 +857,9 @@ atipicamente leve.
 
 ---
 
-# 5. Como escolher qual distribuição usar? {.secao}
+# 5. Qual distribuição usar? {.secao}
 
 [Análise]{.ppdac-etapa .analise}
-
----
-
-## Comparação entre distribuições {.smaller}
-
-| Distribuição | Tipo de variável | Parâmetros-chave | Média ($\mu$) | Variância ($\sigma^2$) | Caso de uso biológico clássico |
-|---|---|---|---|---|---|
-| Binomial | Discreta | $n$ (ensaios), $p$ (prob. de sucesso) | $np$ | $np(1 - p)$ | Número de indivíduos infectados em uma amostra de $n$. |
-| Poisson | Discreta | $\lambda$ (taxa média) | $\lambda$ | $\lambda$ | Número de mutações raras em uma fita de DNA. |
-| Normal | Contínua | $\mu$ (média), $\sigma$ (desvio-padrão) | $\mu$ | $\sigma^2$ | Distribuição de uma característica quantitativa como altura ou peso. |
 
 ---
 
@@ -1029,15 +875,243 @@ fig_guia_distribuicao()
 
 ---
 
-## Recapitulando
+## Comparação entre distribuições {.smaller}
 
-- **Probabilidade:** a linguagem da incerteza.
-- **Variáveis aleatórias:** discretas e contínuas.
+| Distribuição | Tipo de variável | Parâmetros-chave | Média ($\mu$) | Variância ($\sigma^2$) | Caso de uso biológico clássico |
+|---|---|---|---|---|---|
+| Binomial | Discreta | $n$ (ensaios), $p$ (prob. de sucesso) | $np$ | $np(1 - p)$ | Número de indivíduos infectados em uma amostra de $n$. |
+| Poisson | Discreta | $\lambda$ (taxa média) | $\lambda$ | $\lambda$ | Número de mutações raras em uma fita de DNA. |
+| Normal | Contínua | $\mu$ (média), $\sigma$ (desvio-padrão) | $\mu$ | $\sigma^2$ | Distribuição de uma característica quantitativa como altura ou peso. |
+
+---
+
+## Para onde cada uma volta no curso
+
+- **Normal** → Teorema do Limite Central e intervalos de confiança
+  (Aula 6), testes e a *t* de Student (Aulas 7 e 8), regressão e ANOVA
+  (Aulas 9 e 11).
+- **Poisson** → dados de contagem, qui-quadrado (Aula 10) e, na
+  pós-graduação, os modelos lineares generalizados.
+- **Binomial** → proporções, Mendel e o qui-quadrado de aderência
+  (Aula 10).
+
+---
+
+## Recapitulando pelo girino
+
+- **Probabilidade:** a linguagem da incerteza. O acaso de verdade parece
+  agrupado, e a intuição falha (aniversários, teste que mente).
+- **Variáveis aleatórias:** discretas (contam) e contínuas (medem).
 - **Distribuições de probabilidade:** modelos para o comportamento de
   variáveis aleatórias.
-  - **Binomial:** contagem de sucessos em *n* tentativas.
-  - **Poisson:** contagem de eventos em um intervalo.
-  - **Normal:** modelo para dados contínuos e simétricos.
+  - **Binomial:** quantos dos *n* girinos são predados.
+  - **Poisson:** quantas presas um girino captura num intervalo.
+  - **Normal:** o tamanho do corpo dos girinos de uma poça.
+
+---
+
+# Para saber mais {.secao}
+
+A parte mais formal da aula, para consulta.
+
+---
+
+## Definições de probabilidade: axiomática {.smaller}
+
+- **Axiomática:** define 3 axiomas que qualquer medida de probabilidade
+  deve obedecer para ser matematicamente consistente.
+  - **Axioma 1: não negatividade.** A probabilidade de qualquer evento A
+    é um número não negativo: $P(A) \geq 0$
+  - **Axioma 2: normalização.** A probabilidade do espaço amostral
+    completo é 1: $P(S) = 1$
+  - **Axioma 3: aditividade contável.** Para qualquer sequência enumerável
+    de eventos disjuntos dois a dois ($A_i \cap A_j = \emptyset$ para
+    $i \neq j$), a probabilidade da união é a soma das probabilidades
+    individuais:
+
+$$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
+
+---
+
+## Definições de probabilidade: frequentista e bayesiana {.smaller}
+
+- **Frequentista:** baseada na frequência relativa de um evento em um
+  **grande número de repetições**
+
+$$P(E) = \lim_{n \to \infty} \frac{n(E)}{n}$$
+
+- **Bayesiana:** probabilidade é uma medida do **grau de crença** ou
+  confiança na veracidade de uma proposição, **com base nas informações**
+  e evidências **disponíveis**
+  - Não é uma propriedade física e objetiva do mundo (como a frequência de
+    caras em uma moeda), mas sim uma representação do nosso estado de
+    conhecimento (ou incerteza) sobre algo
+  - A principal força da abordagem bayesiana é sua capacidade de
+    atualizar crenças. À medida que novas evidências surgem, podemos usar
+    um mecanismo formal para revisar nossa probabilidade inicial.
+
+---
+
+## Teorema de Bayes {.smaller}
+
+:::: {.columns}
+::: {.column width="76%"}
+$$P(H \mid E) = \frac{P(E \mid H)\, P(H)}{P(E)}$$
+
+- **P(H|E): probabilidade a posteriori.** A nossa **crença atualizada** na
+  hipótese H, *depois* de observar a evidência E.
+- **P(H): probabilidade a priori.** A nossa **crença inicial** na
+  hipótese H, *antes* da nova evidência.
+- **P(E|H): verossimilhança.** A probabilidade de observar a evidência E,
+  *assumindo que a hipótese H é verdadeira*.
+- **P(E): evidência marginal.** A probabilidade total de observar a
+  evidência E; atua como uma constante de normalização.
+
+No teste que mente: $P(\text{infectado} \mid +) = \frac{0{,}9 \times 0{,}02}{0{,}9 \times 0{,}02 + 0{,}1 \times 0{,}98} = \frac{0{,}018}{0{,}116} \approx 0{,}16$.
+:::
+::: {.column width="24%"}
+![Retrato tradicionalmente atribuído a Thomas Bayes](../assets/historia/bayes.gif){fig-alt="Gravura de um homem de peruca e roupas escuras, tradicionalmente identificado como Thomas Bayes."}
+
+::: {.nota}
+Domínio público, via Wikimedia Commons. A autenticidade do retrato é
+incerta.
+:::
+:::
+::::
+
+---
+
+## Comparação entre frequentista e bayesiana {.smaller}
+
+| Característica | Abordagem frequentista | Abordagem bayesiana |
+|---|---|---|
+| **Definição principal** | Frequência relativa de um evento em um grande número de ensaios repetidos. | Grau de crença ou confiança na veracidade de uma proposição. |
+| **Natureza** | Objetiva (a probabilidade é uma propriedade do mundo físico). | Subjetiva (a probabilidade é um estado de conhecimento de um observador). |
+| **O que descreve?** | A taxa com que eventos ocorrem em experimentos. | A incerteza sobre qualquer proposição, seja ela repetível ou não. |
+| **Parâmetros do modelo** | Parâmetros (como a média μ) são constantes fixas, mas desconhecidas. | Parâmetros são variáveis aleatórias sobre as quais temos crenças (distribuições). |
+| **Resultado principal** | Intervalos de confiança e valores-p. | Distribuições de probabilidade a posteriori para os parâmetros. |
+
+---
+
+## Esperança e variância: as fórmulas
+
+- **Funções:**
+  - Discretas: função de probabilidade $P(X = x)$
+  - Contínuas: função densidade de probabilidade $f(x)$
+- **Esperança (média):**
+  - $E(X) = \sum x \, P(X = x)$ (discreta)
+  - $E(X) = \int x \, f(x) \, dx$ (contínua)
+- **Variância:** $\mathrm{Var}(X) = E[X^2] - (E[X])^2$
+
+---
+
+## Variáveis aleatórias contínuas
+
+```{r}
+#| fig-width: 13
+#| fig-height: 6.2
+#| out-width: "100%"
+#| fig-alt: "A rede de distribuições com as contínuas destacadas em vermelho: exponencial, log-normal, normal, qui-quadrado, Weibull, t de Student, gama e beta."
+fig_relacoes("continuas")
+```
+
+---
+
+## Variáveis aleatórias discretas
+
+```{r}
+#| fig-width: 13
+#| fig-height: 6.2
+#| out-width: "100%"
+#| fig-alt: "A rede de distribuições com as discretas destacadas em vermelho: uniforme, Bernoulli, hipergeométrica, binomial, geométrica, binomial negativa e Poisson."
+fig_relacoes("discretas")
+```
+
+---
+
+## Distribuição *t* de Student
+
+:::: {.columns}
+::: {.column width="70%"}
+- Usada quando $\sigma$ **é desconhecido** e **as amostras são pequenas**
+- Importante em testes de hipóteses (volta nas Aulas 6 a 8)
+
+$$E(t) = 0, \qquad \mathrm{Var}(t) = \frac{\nu}{\nu - 2}, \quad \nu > 2$$
+
+```{r}
+#| fig-width: 8
+#| fig-height: 3.1
+#| fig-alt: "A normal padrão, tracejada, e duas distribuições t com 2 e 5 graus de liberdade: as t são mais baixas no centro e têm caudas mais pesadas."
+fig_t_normal()
+```
+:::
+::: {.column width="30%"}
+![William Sealy Gosset, o "Student", químico da cervejaria Guinness](../assets/historia/gosset.jpg){fig-alt="Fotografia de William Sealy Gosset."}
+
+::: {.nota}
+Domínio público, via Wikimedia Commons.
+:::
+:::
+::::
+
+---
+
+## Modelos para variáveis contínuas {.smaller}
+
+| Modelo | $f(x)$ | Parâmetros | $E(X)$ | $\mathrm{Var}(X)$ |
+|---|---|---|---|---|
+| Uniforme | $\frac{1}{\beta - \alpha}$, $\alpha < x < \beta$ | $\alpha, \beta$ | $\frac{\alpha + \beta}{2}$ | $\frac{(\beta - \alpha)^2}{12}$ |
+| Exponencial | $\frac{1}{\beta} e^{-x/\beta}$, $x > 0$ | $\beta$ | $\beta$ | $\beta^2$ |
+| Normal | $\frac{1}{\sigma\sqrt{2\pi}} e^{-\frac{1}{2}\left(\frac{x - \mu}{\sigma}\right)^2}$ | $\mu, \sigma$ | $\mu$ | $\sigma^2$ |
+| Gama | | $\alpha, \beta > 0$ | $\alpha\beta$ | $\alpha\beta^2$ |
+| Qui-quadrado | | $\nu$ | $\nu$ | $2\nu$ |
+| *t* de Student | | $\nu$ | $0$ | $\frac{\nu}{\nu - 2}$ |
+| *F* de Snedecor | | $\nu_1, \nu_2$ | $\frac{\nu_2}{\nu_2 - 2}$ | $\frac{2\nu_2^2(\nu_1 + \nu_2 - 2)}{\nu_1(\nu_2 - 2)^2(\nu_2 - 4)}$ |
+
+::: {.ref}
+Adaptado da Tabela 7.2 de Bussab, W.O. & Morettin, P.A. *Estatística
+básica*.
+:::
+
+---
+
+## Escore-Z: a fórmula, parte por parte
+
+**Conceito:** distância a que um valor observado está da média, em
+unidades de desvio-padrão.
+
+$$Z = \frac{\overbrace{x}^{\text{valor observado}} - \overbrace{\mu}^{\text{valor médio}}}{\underbrace{\sigma}_{\text{desvio-padrão}}}$$
+
+```{r}
+#| fig-width: 8
+#| fig-height: 3
+#| out-width: "50%"
+#| fig-alt: "Curva normal com as duas metades sombreadas em tons diferentes, cada uma com 0,5 da área; no topo, média = mediana = moda."
+fig_normal_simetria()
+```
+
+::: {.ref}
+Inspirado na Figura 8.4 de Vieira, *Introdução à bioestatística*.
+:::
+
+---
+
+## Escore-Z: mais duas figuras
+
+```{r}
+#| fig-width: 11
+#| fig-height: 3.9
+#| fig-alt: "Quinze pessoas como pontos na escala da pressão arterial e, logo abaixo, os mesmos pontos na escala do escore-Z, centrada em zero; uma pessoa com 100 mmHg, em vermelho, fica cerca de 1,7 desvio-padrão abaixo da média."
+fig_escore_z()
+```
+
+```{r}
+#| fig-width: 10
+#| fig-height: 2.2
+#| out-width: "54%"
+#| fig-alt: "Curva normal padrão dividida em faixas de um desvio-padrão, com 34,1%, 13,6%, 2,1% e 0,1% de cada lado."
+fig_regra_empirica()
+```
 
 ---
 

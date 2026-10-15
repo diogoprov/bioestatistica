@@ -147,10 +147,12 @@ fig_relacoes <- function(destaque = NULL) {
       curvas[[i]] <- tibble::tibble(id = nos$id[i], x = seq(x0, x1, length.out = length(yy)), y = y0 + yy)
     }
   }
+  # destaque: NULL, "discretas", "continuas" ou um ou mais nomes de distribuições
+  grupo <- length(destaque) == 1 && destaque %in% c("discretas", "continuas")
   realce <- if (is.null(destaque)) character(0) else
-    if (destaque == "discretas") nos$id[nos$tipo == "d"] else
-      if (destaque == "continuas") nos$id[nos$tipo == "c"] else destaque
-  rot_grupo <- if (!is.null(destaque) && destaque %in% c("discretas", "continuas"))
+    if (grupo && destaque == "discretas") nos$id[nos$tipo == "d"] else
+      if (grupo) nos$id[nos$tipo == "c"] else destaque
+  rot_grupo <- if (grupo)
     c(discretas = "Variáveis aleatórias discretas", continuas = "Variáveis aleatórias contínuas")[[destaque]]
   nos <- mutate(nos, realce = id %in% realce)
   g <- ggplot() +
@@ -166,7 +168,7 @@ fig_relacoes <- function(destaque = NULL) {
   if (!is.null(rot_grupo))
     g <- g + annotate("text", x = 12.6, y = .2, label = rot_grupo, colour = vermelho,
                       fontface = "bold", size = 5, hjust = 1)
-  if (!is.null(destaque) && destaque == "Normal")
+  if (identical(destaque, "Normal"))
     g <- g + annotate("segment", x = 2.6, y = .55, xend = 3.6, yend = 2.02, colour = vermelho,
                       linewidth = .9, arrow = arrow(length = unit(.25, "cm"), type = "closed")) +
       annotate("text", x = -.8, y = .3, label = "A distribuição mais importante para\ndescrever variáveis aleatórias contínuas",
@@ -238,7 +240,8 @@ fig_binom_poisson <- function(n = 100, prob = .03) {
 # ---------------------------------------------------------------------------
 # Distribuição normal.
 # ---------------------------------------------------------------------------
-fig_normal_empirica <- function(mu = 30, s = 5) {
+fig_normal_empirica <- function(mu = 30, s = 4, xlab = "Comprimento do girino (mm)",
+                                quem = "dos girinos", un = "mm") {
   x <- seq(mu - 4 * s, mu + 4 * s, length.out = 400)
   d <- tibble::tibble(x = x, y = dnorm(x, mu, s))
   faixa <- function(k, rot) geom_ribbon(data = filter(d, abs(x - mu) <= k * s) |> mutate(f = rot),
@@ -251,9 +254,9 @@ fig_normal_empirica <- function(mu = 30, s = 5) {
                                  "±3σ (99,7%)" = "#f4b6c2"),
                       breaks = c("±1σ (68%)", "±2σ (95%)", "±3σ (99,7%)"), name = NULL) +
     scale_x_continuous(breaks = seq(mu - 3 * s, mu + 3 * s, by = s)) +
-    labs(x = "Altura da planta (cm)", y = NULL,
-         caption = sprintf("μ = %d cm, σ = %d cm: a maioria das plantas tem entre %d e %d cm.",
-                           mu, s, mu - s, mu + s)) +
+    labs(x = xlab, y = NULL,
+         caption = sprintf("μ = %d %s, σ = %d %s: 68%% %s têm entre %d e %d %s.",
+                           mu, un, s, un, quem, mu - s, mu + s, un)) +
     tema_aula(15) + theme(axis.text.y = element_blank(), legend.position = "top")
 }
 
@@ -321,19 +324,19 @@ fig_regra_empirica <- function() {
     tema_aula(15) + theme(axis.text.y = element_blank(), panel.grid = element_blank())
 }
 
-fig_altura_z <- function(mu = 175, s = 7, corte = 182) {
+fig_altura_z <- function(mu = 30, s = 4, corte = 34, xlab = "Comprimento do girino (mm)") {
   x <- seq(mu - 4 * s, mu + 4 * s, length.out = 400)
   d <- tibble::tibble(x = x, y = dnorm(x, mu, s))
   ggplot(d, aes(x, y)) +
     geom_ribbon(data = filter(d, x >= corte), aes(ymin = 0, ymax = y), fill = vermelho, alpha = .7) +
     geom_line(linewidth = 1) +
     geom_vline(xintercept = mu, linetype = "22", colour = cores[["neutro"]]) +
-    annotate("text", x = corte + 4, y = dnorm(corte, mu, s) * .55,
+    annotate("text", x = corte + .6 * s, y = dnorm(corte, mu, s) * .55,
              label = sprintf("P(X > %d) ≈ %s%%", corte, num_br(100 * pnorm(corte, mu, s, lower.tail = FALSE), 1)),
              hjust = 0, size = 5, colour = vermelho) +
     scale_x_continuous(breaks = mu + (-3:3) * s,
                        labels = paste0(mu + (-3:3) * s, "\n(Z = ", -3:3, ")")) +
-    labs(x = "Altura (cm)", y = NULL) +
+    labs(x = xlab, y = NULL) +
     tema_aula(15) + theme(axis.text.y = element_blank())
 }
 
@@ -423,4 +426,121 @@ fig_guia_distribuicao <- function() {
     annotate("text", x = 3.6, y = -.05, label = "eventos num intervalo\nde tempo ou espaço", size = 3.6, lineheight = .9) +
     folha(7.4, 1.05, "Normal", "#c9a227", u, dnorm(u * 2.7), FALSE) +
     coord_equal(xlim = c(-.8, 9.9), ylim = c(-.5, 6.5)) + fundo
+}
+
+# ---------------------------------------------------------------------------
+# Gancho: o acaso de verdade parece agrupado. Uma sequência real de 100
+# lançamentos ao lado de uma "inventada", que alterna demais.
+# ---------------------------------------------------------------------------
+maior_sequencia <- function(v) max(rle(v)$lengths)
+
+fig_moeda_sequencias <- function(seed = 12, n = 100) {
+  set.seed(seed)
+  real <- sample(c("Ca", "Co"), n, replace = TRUE)
+  # inventada: quem inventa evita repetir; aqui, troca de face com prob. 0,75
+  # e nunca deixa passar de 3 iguais seguidas
+  inv <- character(n); inv[1] <- "Ca"; rep_atual <- 1
+  for (i in 2:n) {
+    troca <- rep_atual >= 3 || runif(1) < .75
+    inv[i] <- if (troca) setdiff(c("Ca", "Co"), inv[i - 1]) else inv[i - 1]
+    rep_atual <- if (troca) 1 else rep_atual + 1
+  }
+  d <- bind_rows(tibble::tibble(i = seq_len(n), face = real, seq = "A"),
+                 tibble::tibble(i = seq_len(n), face = inv, seq = "B")) |>
+    mutate(linha = (i - 1) %/% 25, col = (i - 1) %% 25)
+  rot <- tibble::tibble(seq = c("A", "B"),
+                        lab = sprintf("Sequência %s: maior repetição = %d",
+                                      c("A", "B"), c(maior_sequencia(real), maior_sequencia(inv))))
+  ggplot(d, aes(col, -linha, fill = face)) +
+    geom_tile(width = .9, height = .9) +
+    scale_fill_manual(values = c(Ca = cores[["accent"]], Co = "#e6e0d3"),
+                      labels = c(Ca = "cara", Co = "coroa"), name = NULL) +
+    facet_wrap(~seq, ncol = 1, labeller = as_labeller(setNames(rot$lab, rot$seq))) +
+    coord_equal() +
+    theme_void(base_size = 15) +
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
+          strip.text = element_text(face = "bold", margin = margin(b = 4, t = 6)),
+          legend.position = "bottom")
+}
+
+# A frequência relativa estabiliza: três sequências de lançamentos.
+fig_convergencia <- function(seed = 3, lances = 1000) {
+  set.seed(seed)
+  d <- purrr::map_dfr(1:3, \(k) tibble::tibble(n = seq_len(lances), serie = paste("Sequência", k),
+                                              p = cumsum(rbinom(lances, 1, .5)) / seq_len(lances)))
+  ggplot(d, aes(n, p, colour = serie)) +
+    geom_hline(yintercept = .5, linetype = "22", colour = cores[["texto"]]) +
+    geom_line(linewidth = .8) +
+    scale_x_log10(breaks = c(1, 10, 100, 1000)) +
+    scale_colour_manual(values = c(cores[["accent"]], cores[["ferrugem"]], cores[["verde"]]), name = NULL) +
+    labs(x = "Número de lançamentos (escala log)", y = "Proporção de caras") +
+    tema_aula(15)
+}
+
+# O problema do aniversário.
+fig_aniversario <- function(n_turma = 30) {
+  d <- tibble::tibble(n = 2:60) |> mutate(p = purrr::map_dbl(n, \(k) pbirthday(k)))
+  pt <- filter(d, n == n_turma)
+  ggplot(d, aes(n, p)) +
+    geom_hline(yintercept = .5, linetype = "22", colour = cores[["neutro"]]) +
+    geom_line(colour = cores[["accent"]], linewidth = 1.3) +
+    geom_point(data = pt, colour = vermelho, size = 4) +
+    annotate("label", x = pt$n + 2, y = pt$p - .08, hjust = 0, size = 5, colour = vermelho,
+             linewidth = 0, fill = cores[["papel"]],
+             label = sprintf("%d pessoas: %s%%", pt$n, num_br(100 * pt$p, 0))) +
+    scale_y_continuous(labels = function(x) paste0(round(100 * x), "%"), limits = c(0, 1)) +
+    labs(x = "Número de pessoas na sala",
+         y = "P(pelo menos dois\nno mesmo dia)") +
+    tema_aula(15)
+}
+
+# "O teste que mente": árvore de frequências naturais com 1000 sapos.
+fig_arvore_teste <- function(n = 1000, prev = .02, sens = .9, fp = .1) {
+  inf <- n * prev; sad <- n - inf
+  vp <- inf * sens; fn <- inf - vp; fpos <- sad * fp; vn <- sad - fpos
+  nos <- tibble::tibble(
+    x = c(5, 2.5, 7.5, 1.3, 3.7, 6.3, 8.7),
+    y = c(3, 1.8, 1.8, .5, .5, .5, .5),
+    lab = c(sprintf("%d sapos", n),
+            sprintf("%g infectados\n(%g%%)", inf, 100 * prev), sprintf("%g sadios", sad),
+            sprintf("%g positivos", vp), sprintf("%g negativos", fn),
+            sprintf("%g positivos", fpos), sprintf("%g negativos", vn)),
+    cor = c(cores[["texto"]], cores[["ferrugem"]], cores[["verde"]],
+            vermelho, "#8a8172", vermelho, "#8a8172"))
+  lig <- tibble::tibble(x0 = c(5, 5, 2.5, 2.5, 7.5, 7.5), y0 = c(3, 3, 1.8, 1.8, 1.8, 1.8),
+                        x1 = c(2.5, 7.5, 1.3, 3.7, 6.3, 8.7), y1 = c(1.8, 1.8, .5, .5, .5, .5),
+                        lab = c("2%", "98%", "detecta 90%", "10%", "falso-positivo 10%", "90%"))
+  ggplot() +
+    geom_segment(data = lig, aes(x0, y0 - .3, xend = x1, yend = y1 + .3), colour = cores[["neutro"]],
+                 linewidth = .9) +
+    geom_label(data = lig, aes((x0 + x1) / 2, (y0 + y1) / 2, label = lab), size = 4.6,
+               linewidth = 0, fill = cores[["papel"]], colour = "#4a5568") +
+    geom_label(data = nos, aes(x, y, label = lab, fill = cor), colour = "white", fontface = "bold",
+               size = 4.6, lineheight = .9, label.padding = unit(.45, "lines"), linewidth = 0) +
+    scale_fill_identity() +
+    annotate("text", x = 5, y = -.45, size = 5.4, colour = vermelho, fontface = "bold",
+             label = sprintf("Positivos: %g + %g = %g.   P(infectado | positivo) = %g / %g ≈ %s%%",
+                             vp, fpos, vp + fpos, vp, vp + fpos, num_br(100 * vp / (vp + fpos), 0))) +
+    coord_cartesian(xlim = c(0, 10), ylim = c(-.7, 3.4), clip = "off") +
+    theme_void() +
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+}
+
+# Binomial construída por simulação: muitas poças com 6 girinos cada.
+fig_binomial_simulada <- function(seed = 4, n = 6, prob = .3, pocas = c(10, 100, 10000)) {
+  set.seed(seed)
+  d <- purrr::map_dfr(pocas, \(m) tibble::tibble(k = rbinom(m, n, prob), m = m)) |>
+    count(m, k) |> group_by(m) |> mutate(f = n / sum(n)) |> ungroup() |>
+    mutate(painel = factor(sprintf("%s poças simuladas", format(m, big.mark = ".")),
+                           sprintf("%s poças simuladas", format(pocas, big.mark = "."))))
+  teo <- tidyr::crossing(painel = levels(d$painel), k = 0:n) |>
+    mutate(painel = factor(painel, levels(d$painel)), p = dbinom(k, n, prob))
+  ggplot(d, aes(k, f)) +
+    geom_col(fill = cor_discreta, width = .7) +
+    geom_point(data = teo, aes(k, p), colour = vermelho, size = 2.6) +
+    facet_wrap(~painel) +
+    scale_x_continuous(breaks = 0:n) +
+    labs(x = "Girinos predados por poça (de 6)", y = "Proporção das poças",
+         caption = "Barras: simulação. Pontos vermelhos: a fórmula da binomial (n = 6, p = 0,3).") +
+    tema_aula(14)
 }

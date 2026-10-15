@@ -25,18 +25,28 @@ via Wikimedia Commons.
 
 ## Conteúdo
 
-1. **Fundamentos da probabilidade**: definições clássica, axiomática,
-   frequentista e bayesiana; teorema de Bayes; regras da adição, da
-   multiplicação e probabilidade condicional.
-2. **Variáveis aleatórias e distribuições de probabilidade**.
-3. **Distribuições discretas**: Bernoulli, binomial e Poisson.
-4. **A distribuição normal**: média, variância, *t* de Student e o
-   escore-Z.
-5. **Como escolher qual distribuição usar**.
+O fio condutor é a vida de um girino: sobreviver, comer, crescer.
+
+1. **A linguagem da incerteza**: o acaso de verdade parece agrupado; as
+   intuições clássica e frequentista; as regras da probabilidade.
+2. **Quando a probabilidade engana**: o problema do aniversário,
+   probabilidade condicional e "O teste que mente", inferência bayesiana
+   sem fórmula.
+3. **Variáveis aleatórias**: discretas e contínuas; esperança e variância.
+4. **Três modelos para a vida do girino**: binomial (construída por
+   simulação), Poisson e normal, com a regra empírica e o escore-Z.
+5. **Qual distribuição usar**, e para onde cada uma volta no curso.
+
+No fim dos slides, **Para saber mais** traz a parte formal: axiomas,
+teorema de Bayes, fórmulas de esperança e variância, a *t* de Student e a
+tabela de modelos contínuos.
 
 ## Atividades
 
+- Quem jogou a moeda de verdade? (sequências reais e inventadas)
+- Aposta dos aniversários na sala.
 - Probabilidade na genética (cruzamento Aa × Aa).
+- "O teste que mente": 1000 sapos e um teste de quitridiomicose.
 - [Kahoot: Probabilidade e distribuições de probabilidade](https://create.kahoot.it/details/c2996a96-77cb-49bc-a526-b2393a950a38).
 - Dinâmica "O normal e o raro", com o escore-Z.
 
