@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1, 3, 4, 5, 6 e 7 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3, 4, 5, 6, 7 e 8 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -37,7 +37,7 @@ mudar os parâmetros e ver o que acontece.
 | 5 | `aula-05-probabilidade` | **`slides/a05.qmd` ✔** | `Aula 5 - Probabilidade e distribuições.pptx` |
 | 6 | `aula-06-estimativas` | **`slides/a06.qmd` ✔** | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
 | 7 | `aula-07-teste-hipoteses` | **`slides/a07.qmd` ✔** | `Aula 7 - Teste de hipótese.pptx` |
-| 8 | `aula-08-modelos-lineares-teste-t` | PDF | `Aula 8 - Teste t.pptx` |
+| 8 | `aula-08-modelos-lineares-teste-t` | **`slides/a08.qmd` ✔** | `Aula 8 - Teste t.pptx` |
 | 9 | `aula-09-regressao-correlacao` | PDF | `Aula 9 - Regressão linear.pptx` |
 | 10 | `aula-10-qui-quadrado` | PDF | `Aula 10 - qui-quadrado.pptx` |
 | 11 | `aula-11-anova` | PDF | `Aula 11 - ANOVA.pptx` |
@@ -46,9 +46,10 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 8**
-(original: `Aula 8 - Teste t.pptx`), que tem os Kahoots "Teste t" e
-"Introdução aos Modelos Lineares".
+As conversões seguem a sequência do curso: a próxima é a **Aula 9**
+(original: `Aula 9 - Regressão linear.pptx`), que não tem Kahoot. Na pasta
+há a gravação `Aula regressão.mp3`, o `animate-lm-optimization.R` e os GIFs
+da animação do ajuste da reta.
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -103,7 +104,8 @@ aplicar isso numa aula.
 
 - **Slido**: os `.pptx` das aulas 4 e 7 (numeração do site) têm enquetes do
   Slido. Mantenha a pergunta do original numa caixa `.atividade` com o link
-  do evento da turma (na Aula 4: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>)
+  do evento da turma (na Aula 4: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>; na Aula 7:
+  <https://app.sli.do/event/c8RFbj984d5b8J7d15PigR>)
   e uma alternativa sem Slido; enquetes de múltipla escolha viram
   **perguntas para a turma** com a resposta em fragmento.
 - **Perguntas para a turma** (*peer instruction*), usadas onde não há Kahoot
@@ -209,7 +211,8 @@ continua em `slides/`, então não apague os PDFs.
 - Silhuetas do PhyloPic ficam em `assets/phylopic/`, com autor e licença em
   `assets/phylopic/FONTES.md`. A API exige o parâmetro `build` (consulte
   `https://api.phylopic.org/`, que redireciona para `/?build=N`).
-- **Artigos com licença CC BY** podem ter a figura original reproduzida, com
+- **Figura com licença CC BY (ou CC0): use a original, não refaça.** Artigos
+  com licença CC BY têm a figura original reproduzida, com
   crédito. Confira o campo `license` em `api.crossref.org/works/<DOI>`. Dos
   artigos usados nos originais, são CC BY 4.0: Simmonds et al. 2024 (TREE),
   Gerstner et al. 2017 (MEE) e Weissgerber et al. 2015 (PLOS Biology). Não
@@ -218,6 +221,11 @@ continua em `slides/`, então não apague os PDFs.
   Triola, Bussab & Morettin, Gotelli & Ellison, Zar, Quinn & Keough, Ruxton
   & Colegrave) não têm licença aberta: as figuras deles continuam sendo
   redesenhadas.
+- **Figuras do livro *Análises ecológicas no R*** (Da Silva et al. 2022,
+  CC BY-NC 4.0; o Diogo é coautor) podem ser usadas como estão, com
+  crédito, em `assets/livro-aer/` (fontes em `assets/livro-aer/FONTES.md`).
+  As figuras ficam em <https://paternogbc.github.io/livro_aer/>; o teste
+  *t* está no cap. 7.
 - **Domínio público** também vale (por exemplo, retratos e frontispícios
   históricos do Wikimedia Commons). Confira a licença na API do Commons
   (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão

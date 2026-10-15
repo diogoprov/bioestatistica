@@ -9,9 +9,40 @@ description: "Modelos lineares: teste t"
 **Data:** 23 de outubro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+O teste *t* de Student para uma amostra, para duas amostras
+independentes e para dados pareados, com seus pressupostos; e a virada da
+aula: todos eles são casos particulares de um único **modelo linear**, a
+mesma moldura da ANOVA e da regressão. No ciclo PPDAC, é **Análise** e
+**Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-08-modelos-lineares-teste-t.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a08.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. Duas figuras vêm do livro [*Análises ecológicas no
+R*](https://paternogbc.github.io/livro_aer/) (CC BY-NC 4.0), e as
+silhuetas, do PhyloPic (CC0).
+
+## Conteúdo
+
+1. **O teste *t***: hipóteses, nível de significância e erros.
+2. **Teste *t* para uma amostra**: hipóteses uni e bicaudais, a
+   estatística *t* e a tomada de decisão.
+3. **Duas amostras**: independentes (variâncias homogêneas ou Welch) e
+   pareadas, com exemplos de rãs, lagartos-de-chifre, melros e queimadas.
+4. **Qual teste usar** e como interpretar; pressupostos.
+5. **O teste *t* como modelo linear**: intercepto, inclinação, variáveis
+   *dummy* e a ponte para a ANOVA.
+
+## Atividades
+
+- Pense-pareie-compartilhe: hipóteses para o peixe nativo e a espécie
+  invasora.
+- [Kahoot: Teste t](https://create.kahoot.it/details/095cb8f0-fc9f-437a-9449-105b02de0750).
+- Desafio do coeficiente: ler a saída de um modelo linear.
+- [Kahoot: Introdução aos Modelos Lineares](https://create.kahoot.it/details/dfd7caf5-696f-4d48-8d54-cdfb347ae74c).
 
 ## Leituras recomendadas
 
