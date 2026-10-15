@@ -9,9 +9,36 @@ description: "Princípios de probabilidade e distribuições"
 **Data:** 11 e 18/09 de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+A linguagem da incerteza: o que é probabilidade e como calculá-la, o que
+são variáveis aleatórias, e as três distribuições que mais aparecem em
+biologia, a binomial, a Poisson e a normal, com o escore-Z. Na linguagem
+do ciclo PPDAC, é a base da **Análise** e da **Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-05-probabilidade.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a05.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. Os retratos de Bayes, Gauss e Gosset são de domínio público,
+via Wikimedia Commons.
+
+## Conteúdo
+
+1. **Fundamentos da probabilidade**: definições clássica, axiomática,
+   frequentista e bayesiana; teorema de Bayes; regras da adição, da
+   multiplicação e probabilidade condicional.
+2. **Variáveis aleatórias e distribuições de probabilidade**.
+3. **Distribuições discretas**: Bernoulli, binomial e Poisson.
+4. **A distribuição normal**: média, variância, *t* de Student e o
+   escore-Z.
+5. **Como escolher qual distribuição usar**.
+
+## Atividades
+
+- Probabilidade na genética (cruzamento Aa × Aa).
+- [Kahoot: Probabilidade e distribuições de probabilidade](https://create.kahoot.it/details/c2996a96-77cb-49bc-a526-b2393a950a38).
+- Dinâmica "O normal e o raro", com o escore-Z.
 
 ## Leituras recomendadas
 

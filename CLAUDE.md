@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1, 3 e 4 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3, 4 e 5 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -34,7 +34,7 @@ mudar os parâmetros e ver o que acontece.
 | 2 | `aula-02-amostragem` | **`slides/a02.qmd` ✔** | `Aula 2 - Delineamento amostral.pptx` |
 | 3 | `aula-03-organizacao-dados` | **`slides/a03.qmd` ✔** | `Aula 4 - organizacao e visualizacao dados.pptx` |
 | 4 | `aula-04-tendencia-dispersao` | **`slides/a04.qmd` ✔** | `Aula 3 - medidas tendencia central.pptx` |
-| 5 | `aula-05-probabilidade` | PDF | `Aula 5 - Probabilidade e distribuições.pptx` |
+| 5 | `aula-05-probabilidade` | **`slides/a05.qmd` ✔** | `Aula 5 - Probabilidade e distribuições.pptx` |
 | 6 | `aula-06-estimativas` | PDF | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
 | 7 | `aula-07-teste-hipoteses` | PDF | `Aula 7 - Teste de hipótese.pptx` |
 | 8 | `aula-08-modelos-lineares-teste-t` | PDF | `Aula 8 - Teste t.pptx` |
@@ -46,9 +46,11 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 5**
-(original: `Aula 5 - Probabilidade e distribuições.pptx`), que tem o Kahoot
-"Probabilidade e distribuições de probabilidade".
+As conversões seguem a sequência do curso: a próxima é a **Aula 6**
+(original: `Aula 6 - Estimativas.pptx`; há também
+`Aula 6 - Distribuicoes estatisticas.pptx`, mais antigo), que tem os
+Kahoots "Intervalo de confiança" e "Estimativa pontual e intervalar". Há a
+gravação `Aula Estimativa pontual.mp3` na pasta.
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 

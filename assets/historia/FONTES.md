@@ -13,3 +13,6 @@ Baixadas em 2026-10-15 em versão reduzida (até 600 px de largura).
 | `al-haytham.jpg` | [File:Ibn al-Haytham crop.jpg](https://commons.wikimedia.org/wiki/File:Ibn_al-Haytham_crop.jpg) | Adolph Boÿ, engraved by Jeremias Falck. Used as the frontispiece to Johannes Hev | Public domain |
 | `nightingale-rosa-1858.jpg` | [File:Nightingale-mortality.jpg](https://commons.wikimedia.org/wiki/File:Nightingale-mortality.jpg) | Florence Nightingale | Public domain |
 | `nightingale.jpg` | [File:Florence Nightingale by Henry Hering, 1858.jpg](https://commons.wikimedia.org/wiki/File:Florence_Nightingale_by_Henry_Hering,_1858.jpg) | Hering | Public domain |
+| `bayes.gif` | [File:Thomas Bayes.gif](https://commons.wikimedia.org/wiki/File:Thomas_Bayes.gif) | Unknown author Unknown author | Public domain |
+| `gauss.jpg` | [File:Carl Friedrich Gauss 1840 by Jensen.jpg](https://commons.wikimedia.org/wiki/File:Carl_Friedrich_Gauss_1840_by_Jensen.jpg) | Christian Albrecht Jensen | Public domain |
+| `gosset.jpg` | [File:William Sealy Gosset.jpg](https://commons.wikimedia.org/wiki/File:William_Sealy_Gosset.jpg) | User  Wujaszek  on  pl.wikipedia | Public domain |
