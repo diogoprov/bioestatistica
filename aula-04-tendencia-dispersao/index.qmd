@@ -51,6 +51,14 @@ repositório.
 - Enquetes e dúvidas no [Slido da turma](https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX).
 - [Kahoot: Revisão média e variância](https://create.kahoot.it/details/44148d47-cfae-4aaf-af68-81710e641a21).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a04.json"}
+:::
+
 ## Leituras recomendadas
 
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.

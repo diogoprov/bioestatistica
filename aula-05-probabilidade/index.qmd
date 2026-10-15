@@ -62,6 +62,14 @@ tabela de modelos contínuos.
 - [Kahoot: Probabilidade e distribuições de probabilidade](https://create.kahoot.it/details/c2996a96-77cb-49bc-a526-b2393a950a38).
 - Dinâmica "O normal e o raro", com o escore-Z.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a05.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, caps. 8 (probabilidade, distribuição normal) e 9 (distribuição binomial).

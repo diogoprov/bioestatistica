@@ -52,6 +52,14 @@ rã, do PhyloPic (CC0).
 - Atividade 3: "O revisor de periódico" (qui-quadrado ou Fisher?).
 - [Kahoot: Qui-quadrado e Teste G](https://create.kahoot.it/details/24e6dd0f-ab42-4583-9b42-602515a0843c).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a10.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 12 (qui-quadrado).

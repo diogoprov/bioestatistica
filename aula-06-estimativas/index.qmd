@@ -58,6 +58,14 @@ Jacob Bernoulli é de domínio público, via Wikimedia Commons.
 - [Kahoot: Estimativa pontual e intervalar](https://create.kahoot.it/details/d308b304-73c3-45ee-80ff-df00e7760a7a).
 - Lista: item 11.6 do cap. 11 de Bussab & Morettin; exercícios 14 a 16 e 20.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a06.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 9 (estimativa pontual).

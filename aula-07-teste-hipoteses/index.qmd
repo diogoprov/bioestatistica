@@ -57,6 +57,14 @@ em solo argiloso e rochoso:
 - Atividade 2: "Decifrando o valor de *P*", em grupos.
 - [Kahoot: Teste de hipótese](https://create.kahoot.it/details/f81ec20f-f843-4cdb-957d-b2ac3922d48b).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a07.json"}
+:::
+
 ## Leituras recomendadas
 
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 4 (enquadramento e teste de hipóteses).

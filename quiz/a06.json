@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "A fórmula da média amostral, x̄ = Σx / n, é:",
+  "alternativas": [
+   "Um parâmetro",
+   "Uma estimativa",
+   "Um estimador",
+   "Um erro padrão"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "O estimador é a regra de cálculo; a estimativa é o número que sai quando aplicamos a regra a uma amostra; o parâmetro é o valor da população."
+ },
+ {
+  "pergunta": "Cinco grupos pescaram no mesmo lago e cada um obteve uma média diferente. Isso mostra que:",
+  "alternativas": [
+   "Alguém errou a conta",
+   "As estimativas variam de amostra para amostra",
+   "O lago tem cinco populações",
+   "A média não serve para estimar"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "É a variação amostral. A distribuição amostral descreve como uma estatística varia entre amostras."
+ },
+ {
+  "pergunta": "O erro padrão da média é:",
+  "alternativas": [
+   "s / √n",
+   "s × n",
+   "s²",
+   "s / n²"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Ele mede quanto a média varia entre amostras e cai com a raiz do tamanho da amostra."
+ },
+ {
+  "pergunta": "Se quadruplicarmos o tamanho da amostra, o erro padrão da média:",
+  "alternativas": [
+   "Cai para um quarto",
+   "Não muda",
+   "Dobra",
+   "Cai pela metade"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "√4 = 2: o erro padrão fica dividido por 2."
+ },
+ {
+  "pergunta": "O que diz a Lei dos Grandes Números?",
+  "alternativas": [
+   "Amostras grandes são sempre normais",
+   "Com n maior, a média amostral se aproxima da média da população",
+   "Devemos tirar muitas amostras pequenas",
+   "A variância cresce com n"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "É o tamanho n de uma amostra que importa: quanto maior, mais perto x̄ fica de μ."
+ },
+ {
+  "pergunta": "O Teorema do Limite Central garante que:",
+  "alternativas": [
+   "Toda população é normal",
+   "O IC sempre contém μ",
+   "Médias de amostras grandes têm distribuição aproximadamente normal",
+   "s é igual a σ"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Vale mesmo quando a população não é normal, desde que n seja grande o bastante."
+ },
+ {
+  "pergunta": "Qual a interpretação correta de um IC de 95%?",
+  "alternativas": [
+   "Há 95% de chance de μ estar neste intervalo",
+   "95% dos dados estão no intervalo",
+   "Repetindo o procedimento muitas vezes, 95% dos intervalos conteriam μ",
+   "A média amostral tem 95% de chance de estar certa"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Quem acerta em 95% das vezes é o método. Um intervalo específico contém ou não contém μ, como o círculo do arqueiro."
+ },
+ {
+  "pergunta": "Passar o nível de confiança de 95% para 99%, com a mesma amostra, deixa o IC:",
+  "alternativas": [
+   "Mais estreito",
+   "Igual",
+   "Mais largo",
+   "Sem margem de erro"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Para ter mais confiança de capturar μ, a 'rede' precisa ser maior: o valor crítico sobe de 1,96 para 2,58."
+ },
+ {
+  "pergunta": "Num alvo, os tiros caíram todos juntos, mas longe do centro. Isso é:",
+  "alternativas": [
+   "Baixo viés e baixa variância",
+   "Alto viés e baixa variância",
+   "Baixo viés e alta variância",
+   "Alto viés e alta variância"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Agrupados é preciso (baixa variância); longe do centro é enviesado (pouca acurácia)."
+ },
+ {
+  "pergunta": "Qual é o valor crítico de z para um IC de 95% bilateral?",
+  "alternativas": [
+   "1,645",
+   "2,576",
+   "1,96",
+   "0,05"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Deixa 2,5% em cada cauda da normal padrão. 1,645 é para 90% e 2,576 para 99%."
+ }
+]

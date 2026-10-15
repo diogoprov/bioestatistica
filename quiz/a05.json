@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "No cruzamento Aa × Aa, qual a probabilidade de um filhote aa?",
+  "alternativas": [
+   "1/2",
+   "3/4",
+   "1/4",
+   "1/3"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Os quatro resultados igualmente prováveis são AA, Aa, aA e aa: só um em quatro é aa."
+ },
+ {
+  "pergunta": "Qual a probabilidade de dois filhotes seguidos serem machos, se cada um tem 1/2 de chance?",
+  "alternativas": [
+   "1/4",
+   "1/2",
+   "1",
+   "3/4"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Eventos independentes: multiplica-se as probabilidades, 1/2 × 1/2 = 1/4."
+ },
+ {
+  "pergunta": "No cruzamento Aa × Aa, qual a probabilidade de um filhote ser AA ou aa?",
+  "alternativas": [
+   "1/4",
+   "1/16",
+   "3/4",
+   "1/2"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "AA e aa são mutuamente exclusivos: soma-se 1/4 + 1/4 = 1/2."
+ },
+ {
+  "pergunta": "Uma probabilidade sempre fica:",
+  "alternativas": [
+   "Entre −1 e 1",
+   "Entre 0 e 1",
+   "Acima de 0,5",
+   "Entre 0 e 100"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Zero é impossível e 1 é certo. Em porcentagem, vai de 0 a 100%, mas como número fica entre 0 e 1."
+ },
+ {
+  "pergunta": "2% dos sapos têm quitridiomicose; o teste detecta 90% dos infectados e dá 10% de falso positivo. Um sapo deu positivo. Chance de estar infectado?",
+  "alternativas": [
+   "90%",
+   "Cerca de 16%",
+   "2%",
+   "10%"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Em 1000 sapos: 18 positivos verdadeiros e 98 falsos positivos. 18 de 116 positivos ≈ 16%. A prevalência baixa pesa muito."
+ },
+ {
+  "pergunta": "Numa sala com 30 pessoas, a chance de duas fazerem aniversário no mesmo dia é de cerca de:",
+  "alternativas": [
+   "8%",
+   "30%",
+   "50%",
+   "70%"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Com 30 pessoas há 435 pares possíveis; a chance de pelo menos uma coincidência passa de 70%."
+ },
+ {
+  "pergunta": "Qual destas situações NÃO é binomial?",
+  "alternativas": [
+   "Número de girinos predados entre 6, cada um com p = 0,3",
+   "Número de caras em 10 lances de moeda",
+   "Número de sementes germinadas em 20, com p constante",
+   "Número de tentativas até o primeiro sucesso, com p mudando a cada vez"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "A binomial exige n fixo, dois resultados, p constante e independência. Aqui n não é fixo e p muda."
+ },
+ {
+  "pergunta": "Número de presas que uma libélula captura por hora: qual distribuição descreve melhor?",
+  "alternativas": [
+   "Normal",
+   "Poisson",
+   "Binomial com n = 2",
+   "Uniforme"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "A Poisson descreve contagens de eventos num intervalo fixo, com taxa média constante."
+ },
+ {
+  "pergunta": "Numa distribuição normal, cerca de quantos % dos valores ficam a até 2 desvios-padrão da média?",
+  "alternativas": [
+   "68%",
+   "50%",
+   "95%",
+   "99,7%"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Regra empírica: 68% a 1 dp, 95% a 2 dp e 99,7% a 3 dp. Além de 2 dp é raro."
+ },
+ {
+  "pergunta": "A altura média é 170 cm, com desvio-padrão de 6 cm. Qual o escore-z de 182 cm?",
+  "alternativas": [
+   "2",
+   "12",
+   "1,2",
+   "0,5"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "z = (182 − 170) / 6 = 2: a pessoa está 2 desvios-padrão acima da média."
+ }
+]

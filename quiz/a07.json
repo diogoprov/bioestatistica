@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "A hipótese nula (H₀) é, em geral, a de que:",
+  "alternativas": [
+   "O efeito existe",
+   "Não há efeito ou diferença",
+   "O pesquisador está certo",
+   "A amostra é grande"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "H₀ é a afirmação cética, de igualdade; o teste busca evidências contra ela."
+ },
+ {
+  "pergunta": "O valor de P é a probabilidade de:",
+  "alternativas": [
+   "H₀ ser verdadeira",
+   "H₁ ser verdadeira",
+   "Obter um resultado tão ou mais extremo que o observado, se H₀ for verdadeira",
+   "O resultado ser fruto só do acaso"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "P supõe H₀ verdadeira; ele não mede a probabilidade de a hipótese ser verdadeira (princípio 2 da ASA)."
+ },
+ {
+  "pergunta": "Com α = 0,05, um experimento deu P = 0,03. A decisão é:",
+  "alternativas": [
+   "Rejeitar H₀",
+   "Aceitar H₀",
+   "Aumentar α",
+   "Repetir até dar P maior"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Como P ≤ α, rejeitamos H₀: o resultado é estatisticamente significante."
+ },
+ {
+  "pergunta": "O erro do tipo I é:",
+  "alternativas": [
+   "Não rejeitar H₀ falsa",
+   "Errar a conta",
+   "Rejeitar H₀ verdadeira",
+   "Usar o teste errado"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "É o falso positivo, e sua probabilidade máxima é α. Não rejeitar H₀ falsa é o erro tipo II (β)."
+ },
+ {
+  "pergunta": "O poder de um teste é:",
+  "alternativas": [
+   "α",
+   "1 − α",
+   "β",
+   "1 − β"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Poder é a probabilidade de rejeitar H₀ quando ela é falsa, isto é, de detectar um efeito que existe."
+ },
+ {
+  "pergunta": "Qual destas ações aumenta o poder do teste?",
+  "alternativas": [
+   "Diminuir o tamanho amostral",
+   "Aumentar o tamanho amostral",
+   "Diminuir α para 0,001",
+   "Aumentar a variabilidade"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Mais dados diminuem o erro padrão e o β. Reduzir α ou ter mais variabilidade diminui o poder."
+ },
+ {
+  "pergunta": "Um teste deu P = 0,25. A conclusão correta é:",
+  "alternativas": [
+   "H₀ é verdadeira",
+   "Não há evidência suficiente para rejeitar H₀",
+   "O efeito é de 25%",
+   "Rejeitamos H₀"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Não rejeitar não é provar H₀: os dados apenas não trazem evidência suficiente contra ela."
+ },
+ {
+  "pergunta": "Quando se deve decidir entre um teste unicaudal e um bicaudal?",
+  "alternativas": [
+   "Depois de ver os dados",
+   "Quando P der perto de 0,05",
+   "Antes do experimento, com base na teoria",
+   "Tanto faz"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Escolher depois de ver os dados é p-hacking; sem razão teórica para uma direção, o bicaudal é o padrão."
+ },
+ {
+  "pergunta": "Com t = 1,80 e 29 gl (α = 0,05), o teste bicaudal (t crítico ±2,045) e o unicaudal (+1,699) concluem:",
+  "alternativas": [
+   "Os dois rejeitam H₀",
+   "Nenhum rejeita H₀",
+   "Só o bicaudal rejeita H₀",
+   "Só o unicaudal rejeita H₀"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "1,80 fica entre 1,699 e 2,045: o mesmo dado é significativo no unicaudal e não no bicaudal."
+ },
+ {
+  "pergunta": "O que o nível de significância α e o valor de P têm de diferente?",
+  "alternativas": [
+   "α é escolhido antes dos dados; P é calculado com os dados",
+   "São a mesma coisa",
+   "P é escolhido antes; α é calculado",
+   "α é sempre maior que P"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "α é a regra do jogo; P é o resultado da partida, que comparamos com α."
+ }
+]

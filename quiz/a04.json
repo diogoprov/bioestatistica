@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "Qual medida de tendência central é a menos afetada por valores extremos?",
+  "alternativas": [
+   "Média",
+   "Mediana",
+   "Amplitude",
+   "Variância"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "A mediana depende só da posição dos dados ordenados; um valor extremo muda a média, mas quase não muda a mediana."
+ },
+ {
+  "pergunta": "Qual é a moda do conjunto 2, 3, 3, 5, 7?",
+  "alternativas": [
+   "2",
+   "4",
+   "3",
+   "5"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "A moda é o valor mais frequente: o 3 aparece duas vezes."
+ },
+ {
+  "pergunta": "Na variância amostral, por que dividimos por n − 1 e não por n?",
+  "alternativas": [
+   "Porque a amostra sempre tem um valor errado",
+   "Para a variância sair em porcentagem",
+   "Porque os desvios em torno da média amostral somam zero: só n − 1 são livres",
+   "Para a variância ficar maior que o desvio-padrão"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "São os graus de liberdade: fixada a média, o último desvio fica determinado. Dividir por n − 1 corrige a subestimativa da variância da população."
+ },
+ {
+  "pergunta": "Em que unidade sai o desvio-padrão de massas medidas em gramas?",
+  "alternativas": [
+   "Gramas",
+   "Gramas ao quadrado",
+   "Porcentagem",
+   "Não tem unidade"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "O desvio-padrão é a raiz da variância, que está em g²; por isso volta à unidade original dos dados."
+ },
+ {
+  "pergunta": "Para comparar a variabilidade do comprimento (mm) com a da massa (g) de girinos, o melhor é usar:",
+  "alternativas": [
+   "A amplitude",
+   "A variância",
+   "O coeficiente de variação",
+   "A mediana"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "O CV divide o desvio-padrão pela média e não tem unidade, então compara variáveis em escalas diferentes."
+ },
+ {
+  "pergunta": "Dois lotes de capivaras têm o mesmo peso médio depois da dieta. O que falta saber para compará-los?",
+  "alternativas": [
+   "A dispersão dos pesos em cada lote",
+   "Nada: médias iguais, lotes iguais",
+   "A moda",
+   "O tamanho da maior capivara"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Posição e dispersão são independentes: lotes com a mesma média podem ter variações muito diferentes."
+ },
+ {
+  "pergunta": "Numa distribuição assimétrica à direita (cauda longa para os valores altos):",
+  "alternativas": [
+   "A média é menor que a mediana",
+   "A média é maior que a mediana",
+   "Média e mediana são sempre iguais",
+   "Não existe mediana"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Os valores altos da cauda puxam a média para cima, mas não a mediana."
+ },
+ {
+  "pergunta": "A caixa de um boxplot vai:",
+  "alternativas": [
+   "Do mínimo ao máximo",
+   "Da média menos um desvio-padrão à média mais um",
+   "Do primeiro ao terceiro quartil",
+   "Da moda à mediana"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "A caixa mostra os 50% centrais dos dados (o intervalo interquartil); a linha dentro dela é a mediana."
+ },
+ {
+  "pergunta": "A soma dos desvios de cada valor em relação à média é sempre:",
+  "alternativas": [
+   "Igual à variância",
+   "Positiva",
+   "Igual a n",
+   "Zero"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Os desvios positivos e negativos se anulam. Por isso a variância usa os desvios ao quadrado."
+ },
+ {
+  "pergunta": "Qual a média de 2, 4, 6, 8 e 10?",
+  "alternativas": [
+   "5",
+   "6",
+   "8",
+   "30"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Soma 30 dividida por 5 valores: 6. Aqui média e mediana coincidem, porque os dados são simétricos."
+ }
+]

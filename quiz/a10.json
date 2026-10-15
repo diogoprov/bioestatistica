@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "O teste de qui-quadrado é usado com:",
+  "alternativas": [
+   "Médias de variáveis contínuas",
+   "Contagens em categorias",
+   "Correlações",
+   "Porcentagens"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Os dados devem ser frequências (contagens), não porcentagens nem proporções."
+ },
+ {
+  "pergunta": "Mendel espera 9:3:3:1. Em 160 sementes, quantas amarelas/lisas (9/16) são esperadas?",
+  "alternativas": [
+   "90",
+   "45",
+   "9",
+   "100"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "E = 9/16 × 160 = 90."
+ },
+ {
+  "pergunta": "Num teste de aderência com 4 categorias, quantos graus de liberdade?",
+  "alternativas": [
+   "4",
+   "1",
+   "3",
+   "16"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "gl = k − 1 = 3."
+ },
+ {
+  "pergunta": "Numa tabela de contingência com 3 linhas e 2 colunas, os graus de liberdade são:",
+  "alternativas": [
+   "5",
+   "6",
+   "1",
+   "2"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "gl = (linhas − 1) × (colunas − 1) = 2 × 1 = 2."
+ },
+ {
+  "pergunta": "No teste de independência, a frequência esperada de uma célula é:",
+  "alternativas": [
+   "Total da linha × total da coluna / total geral",
+   "Total geral / número de células",
+   "Observado − esperado",
+   "Total da linha / total da coluna"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "Se as variáveis forem independentes, cada célula é proporcional aos totais da sua linha e da sua coluna."
+ },
+ {
+  "pergunta": "Um χ² calculado próximo de zero indica que:",
+  "alternativas": [
+   "Há forte associação",
+   "O teste falhou",
+   "Os observados estão próximos dos esperados",
+   "Deve-se rejeitar H₀"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Pouco desajuste entre O e E: provavelmente não rejeitamos H₀."
+ },
+ {
+  "pergunta": "Uma tabela 2 × 2 com 12 sementes tem frequências esperadas menores que 5. O melhor teste é:",
+  "alternativas": [
+   "Qui-quadrado",
+   "Teste t",
+   "Teste exato de Fisher",
+   "ANOVA"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Com amostras pequenas ou E < 5, o teste exato de Fisher é o apropriado."
+ },
+ {
+  "pergunta": "No teste de independência, a hipótese nula é que:",
+  "alternativas": [
+   "As duas variáveis são independentes",
+   "As médias são iguais",
+   "Há associação entre as variáveis",
+   "Os dados são normais"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "H₀: não há associação. Rejeitá-la indica que as variáveis estão associadas."
+ },
+ {
+  "pergunta": "Qual a principal vantagem do teste G sobre o qui-quadrado?",
+  "alternativas": [
+   "Não precisa de contagens",
+   "Funciona com médias",
+   "É sempre mais significativo",
+   "Os valores de G podem ser somados e decompostos"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "O G vem da razão de verossimilhança e é aditivo, útil em delineamentos com vários fatores."
+ },
+ {
+  "pergunta": "Por que o qui-quadrado pode ser visto como um modelo log-linear?",
+  "alternativas": [
+   "Porque usa médias",
+   "Porque os efeitos de linha e coluna se somam na escala do log das contagens",
+   "Porque é uma regressão simples",
+   "Porque os dados são normais"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "log(N) = α + β_linha + β_coluna; o χ² mede quanto os dados fogem desse modelo sem interação."
+ }
+]

@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "Para comparar a média de uma amostra com um valor de referência, como 15 cm, usa-se:",
+  "alternativas": [
+   "Teste t para uma amostra",
+   "Teste t pareado",
+   "ANOVA",
+   "Qui-quadrado"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "O teste t para uma amostra compara x̄ com μ₀: t = (x̄ − μ₀) / (s/√n)."
+ },
+ {
+  "pergunta": "A massa de 13 aves foi medida antes e depois de um implante. Qual teste?",
+  "alternativas": [
+   "t para amostras independentes",
+   "Qui-quadrado",
+   "t pareado",
+   "Teste F"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "As medidas estão ligadas aos mesmos indivíduos; o teste usa a diferença dentro de cada par."
+ },
+ {
+  "pergunta": "Dois grupos independentes com variâncias claramente diferentes. Qual teste t usar?",
+  "alternativas": [
+   "Com variância combinada",
+   "Pareado",
+   "Para uma amostra",
+   "De Welch"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "O teste de Welch não combina as variâncias e ajusta os graus de liberdade."
+ },
+ {
+  "pergunta": "Qual teste verifica se as variâncias de dois grupos são iguais?",
+  "alternativas": [
+   "Teste F",
+   "Teste t",
+   "Teste de Tukey",
+   "Teste G"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "A hipótese nula do teste F é σ₁² = σ₂²."
+ },
+ {
+  "pergunta": "No teste t com variância combinada, com n₁ = 10 e n₂ = 12, os graus de liberdade são:",
+  "alternativas": [
+   "22",
+   "11",
+   "20",
+   "21"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "gl = n₁ + n₂ − 2 = 20."
+ },
+ {
+  "pergunta": "O teste t pareado é equivalente a:",
+  "alternativas": [
+   "Uma ANOVA de dois fatores",
+   "Um teste t para uma amostra aplicado às diferenças",
+   "Um qui-quadrado",
+   "Uma regressão múltipla"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Ele testa se a média das diferenças é zero: H₀: μd = 0."
+ },
+ {
+  "pergunta": "Em y = α + βx, com x = 0 para o controle e x = 1 para o tratado, o que é α?",
+  "alternativas": [
+   "A diferença entre as médias",
+   "O erro do modelo",
+   "A média do grupo controle",
+   "A média geral"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Para o controle, x = 0, então y = α: o intercepto é a média do grupo de referência."
+ },
+ {
+  "pergunta": "No mesmo modelo, o que é β?",
+  "alternativas": [
+   "A média do tratado",
+   "A diferença entre a média do tratado e a do controle",
+   "O desvio-padrão",
+   "O valor de P"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Para o tratado, y = α + β. Logo, β é a diferença entre as médias."
+ },
+ {
+  "pergunta": "Testar H₀: β = 0 nesse modelo é o mesmo que testar:",
+  "alternativas": [
+   "Que as médias dos dois grupos são iguais",
+   "Que o controle tem média zero",
+   "Que as variâncias são iguais",
+   "Que os dados são normais"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "O t e o P de β = 0 são idênticos aos do teste t para amostras independentes."
+ },
+ {
+  "pergunta": "Quantas variáveis dummy são necessárias para um fator com 3 grupos?",
+  "alternativas": [
+   "1",
+   "3",
+   "4",
+   "2"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "k grupos pedem k − 1 dummies: o grupo de referência fica com todas em zero. É a base da ANOVA."
+ }
+]

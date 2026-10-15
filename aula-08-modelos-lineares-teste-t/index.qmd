@@ -56,6 +56,14 @@ silhuetas, do PhyloPic (CC0).
 - Desafio do coeficiente: ler a saída de um modelo linear.
 - [Kahoot: Introdução aos Modelos Lineares](https://create.kahoot.it/details/dfd7caf5-696f-4d48-8d54-cdfb347ae74c).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a08.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, caps. 10 e 11 (teste t).
