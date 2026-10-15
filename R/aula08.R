@@ -222,3 +222,65 @@ dados_sopa <- function(seed = 9) {
   tibble::tibble(marca = factor(rep(c("A", "B"), each = 10)),
                  sodio = round(c(rnorm(10, 980, 60), rnorm(10, 900, 60))))
 }
+
+# ---------------------------------------------------------------------------
+# "Galaxy brain": quatro níveis de iluminação, cada um com uma frase do
+# slide. O cérebro brilha mais e o fundo vira galáxia a cada nível. `k`
+# mostra só os k primeiros níveis (para revelar um por vez nos slides).
+# ---------------------------------------------------------------------------
+fig_galaxy_brain <- function(k = 4,
+                             frases = c(
+                               "Médias amostrais são estimadores não\nenviesados de médias populacionais",
+                               "Posso comparar médias de\nduas populações",
+                               "Existem vários tipos de teste t",
+                               "Diferentes testes t são tipos particulares\nde um modelo linear unificado"
+                             )) {
+  set.seed(42)
+  fundos <- c("#f3eee3", "#a9c3d4", "#2e4a6b", "#0b1026")
+  niveis <- tibble::tibble(nivel = 1:4, y0 = 4 - (1:4), fundo = fundos, frase = frases)
+
+  # contorno do cérebro: elipse centrada em (cx, cy)
+  t <- seq(0, 2 * pi, length.out = 120)
+  bossa <- 1 + .05 * sin(11 * t)   # contorno ondulado, com cara de cérebro
+  esc <- c(.7, .8, .9, 1)          # o cérebro cresce a cada nível
+  cerebro <- purrr::map_dfr(1:4, \(i) tibble::tibble(nivel = i, x = 8 + .9 * esc[i] * bossa * cos(t), y = 4.5 - i + .36 * esc[i] * bossa * sin(t)))
+  # sulcos: linhas onduladas dentro da elipse
+  sulcos <- purrr::map_dfr(1:4, \(i) purrr::map_dfr(c(-.18, 0, .18) * esc[i], \(dy) {
+    x <- seq(7.25, 8.75, by = .01)
+    tibble::tibble(nivel = i, id = paste(i, dy), x = x, y = 4.5 - i + dy + .045 * sin(14 * x)) |>
+      filter(((x - 8) / (.9 * esc[i]))^2 + ((y - (4.5 - i)) / (.36 * esc[i]))^2 < .85)
+  }))
+  # brilho: círculos concêntricos, mais numerosos a cada nível
+  brilho <- purrr::map_dfr(1:4, \(i) tibble::tibble(nivel = i, f = seq(0, 1, length.out = 2 * i + 1)[-1])) |>
+    mutate(rx = .95 + f * .22 * nivel, ry = .38 + f * .02 * nivel, alpha = .10 + .03 * nivel)
+  circ <- brilho |>
+    mutate(id = row_number()) |>
+    tidyr::crossing(t = t) |>
+    mutate(x = 8 + rx * cos(t), y = 4.5 - nivel + ry * sin(t))
+  # estrelas e raios no último nível
+  estrelas <- tibble::tibble(x = runif(70, 6.1, 9.9), y = runif(70, 0.03, .97), s = runif(70, .2, 1.4))
+  raios <- tibble::tibble(a = seq(0, 2 * pi, length.out = 17)[-17]) |>
+    mutate(x = 8 + 1.0 * cos(a), y = .5 + .4 * sin(a), xend = 8 + 1.85 * cos(a), yend = .5 + .46 * sin(a))
+
+  mostra <- function(d) filter(d, nivel <= k)
+  ggplot() +
+    geom_rect(data = niveis, aes(xmin = 0, xmax = 6, ymin = y0 + .03, ymax = y0 + .97),
+              fill = "white", colour = cores[["texto"]], linewidth = .3) +
+    geom_rect(data = mostra(niveis), aes(xmin = 6.05, xmax = 10, ymin = y0 + .03, ymax = y0 + .97, fill = I(fundo)),
+              colour = cores[["texto"]], linewidth = .3) +
+    geom_rect(data = filter(niveis, nivel > k), aes(xmin = 6.05, xmax = 10, ymin = y0 + .03, ymax = y0 + .97),
+              fill = cores[["papel"]], colour = "grey80", linewidth = .3, linetype = 2) +
+    { if (k >= 4) geom_point(data = estrelas, aes(x, y, size = s), colour = "white", alpha = .8, show.legend = FALSE) } +
+    { if (k >= 4) geom_segment(data = raios, aes(x, y, xend = xend, yend = yend), colour = "#ffe9a8", linewidth = 1.1, alpha = .8) } +
+    geom_polygon(data = mostra(circ), aes(x, y, group = id, alpha = I(alpha)), fill = "#ffd76a", colour = NA) +
+    geom_polygon(data = mostra(cerebro), aes(x, y, group = nivel,
+                 fill = I(c("#e9a8ad", "#f2c0b5", "#ffe2a8", "#fff7dd")[nivel])),
+                 colour = "#7a3b44", linewidth = .6) +
+    geom_path(data = mostra(sulcos), aes(x, y, group = id), colour = "#7a3b44", linewidth = .45) +
+    geom_text(data = mostra(niveis), aes(x = .3, y = y0 + .5, label = frase), hjust = 0, size = 5.6,
+              lineheight = .95, colour = cores[["texto"]], fontface = ifelse(mostra(niveis)$nivel == 4, "bold", "plain")) +
+    scale_size_identity() +
+    coord_cartesian(xlim = c(0, 10), ylim = c(0, 4), expand = FALSE) +
+    theme_void() +
+    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+}

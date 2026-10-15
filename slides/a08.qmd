@@ -526,15 +526,54 @@ fig_qual_teste_t()
 
 ## Diferentes testes *t* são tipos particulares de um único modelo linear
 
-::: {.incremental}
-- Médias amostrais são estimadores não enviesados de médias populacionais
-- Posso comparar médias de duas populações
-- Existem vários tipos de teste *t*
-- **Diferentes testes *t* são tipos particulares de um modelo linear
-  unificado** 🤯
+::: {.r-stack}
+```{r}
+#| fig-height: 5.6
+#| out-width: "76%"
+#| fig-alt: "Meme do cérebro galáctico, nível 1 de 4: \"Médias amostrais são estimadores não enviesados de médias populacionais\", com um cérebro pequeno e pouco brilhante."
+fig_galaxy_brain(1)
+```
+
+::: {.fragment}
+```{r}
+#| fig-height: 5.6
+#| out-width: "76%"
+#| fig-alt: "Meme do cérebro galáctico, níveis 1 e 2: acrescenta \"Posso comparar médias de duas populações\", com um cérebro maior sobre fundo azul."
+fig_galaxy_brain(2)
+```
+:::
+
+::: {.fragment}
+```{r}
+#| fig-height: 5.6
+#| out-width: "76%"
+#| fig-alt: "Meme do cérebro galáctico, níveis 1 a 3: acrescenta \"Existem vários tipos de teste t\", com o cérebro brilhando sobre fundo azul-escuro."
+fig_galaxy_brain(3)
+```
+:::
+
+::: {.fragment}
+```{r}
+#| fig-height: 5.6
+#| out-width: "76%"
+#| fig-alt: "Meme do cérebro galáctico completo: no nível 4, \"Diferentes testes t são tipos particulares de um modelo linear unificado\", com o cérebro irradiando luz num fundo de galáxia com estrelas."
+fig_galaxy_brain(4)
+```
+:::
 :::
 
 ---
+
+::: {.meme}
+![](../assets/memes/grito.jpg){fig-alt="Pintura O Grito, de Edvard Munch: uma figura com as mãos no rosto e a boca aberta, sob um céu alaranjado. Legenda: eu, depois de aprender três testes t diferentes, descobrindo que é tudo o mesmo modelo linear."}
+
+[Eu, depois de aprender três testes *t* diferentes…]{.meme-topo} […descobrindo que é tudo o mesmo modelo linear]{.meme-base}
+:::
+
+::: {.ref}
+Edvard Munch, *O Grito* (1893), domínio público, via Wikimedia Commons. Legenda nossa.
+:::
+
 
 ## Introduzindo LMs
 
@@ -613,6 +652,18 @@ $$\text{Pressão arterial} = \alpha + \beta \times \text{grupo de tratamento} + 
   - Pode-se calcular o IC95% para o *slope*
 - **Resíduo (erro):** representa a variabilidade biológica natural e tudo
   mais que não conseguimos explicar com nosso modelo.
+
+---
+
+::: {.meme}
+![](../assets/memes/truta.jpg){fig-alt="Pintura de Winslow Homer: uma truta salta fora d'água, ao lado de uma isca, num rio escuro. Legenda: X numérico ficou para trás; agora o salto para X categórico."}
+
+[Até aqui: a reta da 8ª série]{.meme-topo} [Agora, o salto: X não precisa ser número]{.meme-base}
+:::
+
+::: {.ref}
+Winslow Homer, *Leaping Trout* (1889), domínio público, via Wikimedia Commons. Legenda nossa.
+:::
 
 ---
 
@@ -834,6 +885,18 @@ só depende de qual grupo vem primeiro na subtração).
 
 ---
 
+::: {.meme}
+![](../assets/memes/caravaggio-lagarto.jpg){fig-alt="Pintura de Caravaggio: um rapaz recua assustado, com a mão mordida por um pequeno lagarto escondido entre frutas e flores. Legenda: quando você descobre que o beta é só a diferença entre as médias dos grupos."}
+
+[Quando você descobre que o β…]{.meme-topo} […é só a diferença entre as médias dos grupos]{.meme-base}
+:::
+
+::: {.ref}
+Caravaggio, *Menino mordido por um lagarto* (c. 1593–1594), domínio público, via Wikimedia Commons. Legenda nossa.
+:::
+
+---
+
 ## Conectando com o teste de hipótese
 
 - A hipótese nula do teste *t* para amostras independentes é
@@ -954,6 +1017,18 @@ O teste *t*, a ANOVA e a regressão não são ferramentas diferentes; são
 variações de um mesmo tema: **os modelos lineares**. Ao entender essa
 conexão, vocês estão se preparando não apenas para usar a estatística,
 mas para pensar como estatístico(a)!
+:::
+
+---
+
+::: {.meme}
+![](../assets/memes/orrery.jpg){fig-alt="Pintura de Joseph Wright of Derby: um filósofo explica um planetário mecânico a adultos e crianças, com os rostos iluminados por uma lâmpada no lugar do Sol. Legenda: a turma, ao perceber que teste t, ANOVA e regressão são variações do mesmo modelo linear."}
+
+[A turma, ao perceber que teste *t*, ANOVA e regressão…]{.meme-topo} […são variações do mesmo modelo linear]{.meme-base}
+:::
+
+::: {.ref}
+Joseph Wright of Derby, *Um filósofo dando uma palestra sobre o planetário* (c. 1766), domínio público, via Wikimedia Commons. Legenda nossa.
 :::
 
 ---

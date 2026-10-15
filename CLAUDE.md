@@ -241,6 +241,11 @@ continua em `slides/`, então não apague os PDFs.
   Se não der para verificar, deixe `<!-- TODO: referência -->` e avise.
   Na Aula 2 entraram assim Wild & Pfannkuch 1999, Wiens 1989,
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
+- **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em
+  domínio público do Commons com legenda própria, na classe `.meme` de
+  `slides/theme.scss` (imagens em `assets/memes/`, fontes em
+  `assets/memes/FONTES.md`), ou refaça o formato em R, como o *galaxy brain*
+  da Aula 8 (`fig_galaxy_brain()` em `R/aula08.R`).
 - **Dados reais de domínio público** ficam em `data/`, com a origem em
   `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
   Aula 9). Os dados didáticos do curso também ficam ali (`data/girinos_2x2.csv`,

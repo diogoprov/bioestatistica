@@ -139,3 +139,35 @@ $ppdac-conclusao: #6b4c8a;
   padding: .5em .8em;
   border-radius: 0 4px 4px 0;
 }
+
+// Memes: pintura em domínio público com legenda própria por cima, no
+// estilo clássico (caixa-alta branca com contorno preto).
+//   ::: {.meme}
+//   ![](../assets/memes/grito.jpg){fig-alt="..."}
+//
+//   [texto de cima]{.meme-topo} [texto de baixo]{.meme-base}
+//   :::
+.reveal .meme {
+  position: relative;
+  width: fit-content;
+  margin: 0 auto;
+  p { margin: 0; }
+  img { display: block; max-height: 590px; margin: 0; border-radius: 4px; }
+}
+.reveal .meme-topo, .reveal .meme-base {
+  position: absolute;
+  left: 3%;
+  right: 3%;
+  text-align: center;
+  font-family: Impact, "Anton", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: 1.15em;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: #fff;
+  -webkit-text-stroke: 1.5px #000;
+  paint-order: stroke fill;
+  text-shadow: 0 0 6px rgba(0, 0, 0, .55);
+}
+.reveal .meme-topo { top: .35em; }
+.reveal .meme-base { bottom: .35em; }
