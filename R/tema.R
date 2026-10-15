@@ -17,6 +17,18 @@ cores <- c(
 # alto), do mais claro ao mais escuro, para continuar legível em P&B.
 cores_niveis <- c("#e6c35c", "#d98a3d", "#a15e3f")
 
+# Identidade visual do ciclo PPDAC: uma cor por etapa, usada no diagrama do
+# ciclo (R/ppdac.R) e nos selos de etapa dos slides (.ppdac-* em
+# slides/theme.scss; mantenha as duas listas iguais). Todas dão contraste
+# de pelo menos 4,5:1 com texto branco.
+cores_ppdac <- c(
+  Problema  = "#a15e3f",
+  Plano     = "#1c6e8c",
+  Dados     = "#527238",
+  Análise   = "#96661f",
+  Conclusão = "#6b4c8a"
+)
+
 # Tipos de solo da paisagem simulada (aulas de amostragem e delineamento).
 cores_solo <- c(Argiloso = "#c9a77c", Rochoso = "#a9a9a0", Arenoso = "#e8dcae")
 

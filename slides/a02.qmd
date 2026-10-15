@@ -77,9 +77,27 @@ Wild, C.J. & Pfannkuch, M. 1999. *International Statistical Review* 67:223–248
 
 ---
 
+## Ciclo PPDAC
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.6
+#| out-width: "90%"
+#| fig-alt: "Ciclo PPDAC com os tópicos de cada etapa. Problema: compreensão do sistema, definição do problema. Plano: desenho amostral, gerenciamento de dados, visualização. Dados: coleta de dados, gerenciamento de dados, limpeza. Análise: análises exploratórias, geração de hipóteses. Conclusão: interpretação, novas ideias, comunicação."
+ppdac_topicos(list(
+  Problema    = c("Compreensão do sistema", "Definição do problema"),
+  Plano       = c("Desenho amostral", "Gerenciamento de dados", "Visualização"),
+  Dados       = c("Coleta de dados", "Gerenciamento de dados", "Limpeza"),
+  "Análise"   = c("Análises exploratórias", "Geração de hipóteses"),
+  "Conclusão" = c("Interpretação", "Novas ideias", "Comunicação")
+))
+```
+
+---
+
 # 1. Tudo começa com uma boa pergunta {.secao}
 
-[Problema]{.ppdac-etapa}
+[Problema]{.ppdac-etapa .problema}
 
 ---
 
@@ -263,7 +281,7 @@ tomar mesmo assim, só que mais tarde e sem critério.
 
 # 2. Réplica, unidade amostral e independência {.secao}
 
-[Plano]{.ppdac-etapa}
+[Plano]{.ppdac-etapa .plano}
 
 ---
 
@@ -470,7 +488,7 @@ deste tipo", é preciso replicar florestas.
 
 # 3. Escala e controles {.secao}
 
-[Plano]{.ppdac-etapa}
+[Plano]{.ppdac-etapa .plano}
 
 ---
 
@@ -541,7 +559,7 @@ temperatura deixa de andar junto com o tratamento.
 
 # 4. Técnicas de amostragem {.secao}
 
-[Plano → Dados]{.ppdac-etapa}
+[Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados}
 
 ---
 
@@ -684,7 +702,7 @@ resolve o problema.
 
 # 5. Estudos observacionais e experimentais {.secao}
 
-[Plano]{.ppdac-etapa}
+[Plano]{.ppdac-etapa .plano}
 
 ---
 
@@ -791,6 +809,7 @@ como elas variam.
 
 ## Experimentos: vantagens e limites
 
+- Requerem interferência/intervenção do(a) pesquisador(a).
 - **A aleatorização é a chave.** As confundidoras continuam existindo, mas
   se distribuem por todos os tratamentos sem viés.
 - **Desvantagens:**
@@ -856,7 +875,7 @@ Em seguida, **uma pessoa de cada grupo** apresenta o delineamento (5 min).
 
 # 6. Os delineamentos clássicos {.secao}
 
-[Plano → Análise]{.ppdac-etapa}
+[Plano]{.ppdac-etapa .plano} → [Análise]{.ppdac-etapa .analise}
 
 ---
 
@@ -1095,6 +1114,18 @@ de consultoria que vai atender 4 clientes.
 
 Usem o vocabulário da aula: unidade amostral, réplica, pseudorréplica,
 controle, aleatorização, bloco, aninhamento, BACI.
+
+---
+
+## Mas, afinal de contas, quantas unidades amostrais preciso coletar?
+
+::: {.fragment}
+**Análise de poder e cálculo do tamanho de efeito.**
+:::
+
+::: {.fragment}
+... Mas isso já é uma história para a próxima aula.
+:::
 
 ---
 

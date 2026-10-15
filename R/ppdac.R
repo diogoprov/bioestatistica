@@ -2,15 +2,18 @@ library(purrr)
 library(tibble)
 library(ggplot2)
 library(dplyr)
+source(here::here("R/tema.R"))   # cores_ppdac
 
 #' Ciclo PPDAC (Wild & Pfannkuch 1999)
+#'
+#' Cada etapa tem a sua cor (`cores_ppdac`, em R/tema.R); as etapas fora do
+#' destaque ficam em cinza.
 #'
 #' @param destaque vetor com as etapas a destacar; NULL destaca todas
 #' @param perguntas mostrar a pergunta-guia dentro de cada nó
 #' @param base tamanho base do texto
 ppdac_plot <- function(destaque = NULL, perguntas = TRUE, base = 6.2) {
 
-  accent      <- "#1c6e8c"
   accent_dark <- "#144f64"
   neutro      <- "#e6e0d3"
   neutro_bord <- "#b9b1a0"
@@ -27,8 +30,8 @@ ppdac_plot <- function(destaque = NULL, perguntas = TRUE, base = 6.2) {
     mutate(
       x  = 1.32 * cos(ang), y = sin(ang),
       on = if (is.null(destaque)) TRUE else id %in% destaque,
-      cor_fill = ifelse(on, accent, neutro),
-      cor_bord = ifelse(on, accent_dark, neutro_bord),
+      cor_fill = ifelse(on, cores_ppdac[id], neutro),
+      cor_bord = ifelse(on, cores_ppdac[id], neutro_bord),
       cor_txt  = ifelse(on, "white", neutro_txt)
     )
 
@@ -71,4 +74,31 @@ ppdac_plot <- function(destaque = NULL, perguntas = TRUE, base = 6.2) {
     theme(plot.background  = element_rect(fill = papel, colour = NA),
           panel.background = element_rect(fill = papel, colour = NA),
           plot.margin = margin(0, 0, 0, 0))
+}
+
+#' Ciclo PPDAC com tópicos ao lado de cada etapa (slides originais das
+#' aulas 1 e 2)
+#'
+#' @param topicos lista nomeada pelas etapas, cada elemento um vetor de
+#'   tópicos; etapas ausentes ficam sem texto
+#' @param base tamanho base do texto
+ppdac_topicos <- function(topicos, base = 6.2) {
+  ids <- c("Problema", "Plano", "Dados", "Análise", "Conclusão")
+  ang <- seq(90, 90 - 4 * 72, by = -72) * pi / 180
+  # mesma geometria de ppdac_plot(); o texto sai para fora do círculo
+  txt <- tibble::tibble(id = ids, ang = ang) |>
+    filter(id %in% names(topicos)) |>
+    mutate(
+      x = 1.32 * cos(ang) + .48 * sign(round(cos(ang), 6)),
+      y = sin(ang) + ifelse(abs(cos(ang)) < .01, .5, 0),
+      hjust = ifelse(cos(ang) > .01, 0, ifelse(cos(ang) < -.01, 1, .5)),
+      label = purrr::map_chr(id, \(i) paste0("• ", topicos[[i]], collapse = "\n"))
+    )
+  # nomes das etapas menores que em ppdac_plot(): a área é mais larga e os
+  # círculos ficam menores no slide
+  ppdac_plot(perguntas = FALSE, base = base * .78) +
+    geom_text(data = txt, aes(x, y, label = label, hjust = hjust),
+              colour = cores_ppdac[txt$id], size = base * .8,
+              lineheight = 1, fontface = "bold") +
+    coord_equal(clip = "off", xlim = c(-4.3, 4.3), ylim = c(-1.3, 1.75))
 }

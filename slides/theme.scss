@@ -106,7 +106,15 @@ $code-block-font-size: 0.70em;
   max-width: 100%;
 }
 
-// Selo da etapa do PPDAC no slide de seção (Problema, Plano, Dados...).
+// Selo da etapa do PPDAC no slide de seção. Cada etapa tem a sua cor, a
+// mesma de `cores_ppdac` em R/tema.R (mantenha as duas listas iguais):
+// [Plano]{.ppdac-etapa .plano}. Duas etapas viram dois selos com uma seta.
+$ppdac-problema:  #a15e3f;
+$ppdac-plano:     #1c6e8c;
+$ppdac-dados:     #527238;
+$ppdac-analise:   #96661f;
+$ppdac-conclusao: #6b4c8a;
+
 .reveal .ppdac-etapa {
   display: inline-block;
   background-color: $accent;
@@ -118,6 +126,11 @@ $code-block-font-size: 0.70em;
   padding: .15em .6em;
   border-radius: 3px;
 }
+.reveal .ppdac-etapa.problema  { background-color: $ppdac-problema; }
+.reveal .ppdac-etapa.plano     { background-color: $ppdac-plano; }
+.reveal .ppdac-etapa.dados     { background-color: $ppdac-dados; }
+.reveal .ppdac-etapa.analise   { background-color: $ppdac-analise; }
+.reveal .ppdac-etapa.conclusao { background-color: $ppdac-conclusao; }
 
 // Caixa de atividade em sala.
 .reveal .atividade {
