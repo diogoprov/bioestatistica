@@ -1,5 +1,5 @@
 ---
-title: "Aula 01 — Introdução à estatística biológica"
+title: "Aula 1 — Introdução à estatística biológica"
 order: 1
 date: "2025-08-07"
 description: "O que é estatística e de onde vem a incerteza; população, amostra, parâmetro e tipos de variáveis; o ciclo PPDAC."

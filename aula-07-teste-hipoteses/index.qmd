@@ -1,5 +1,5 @@
 ---
-title: "Aula 07 — Teste de hipóteses"
+title: "Aula 7 — Testes de hipótese em estatística"
 order: 7
 date: "2025-10-16"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."

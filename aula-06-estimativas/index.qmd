@@ -1,5 +1,5 @@
 ---
-title: "Aula 06 — Estimativa pontual e intervalar"
+title: "Aula 6 — Estimativa pontual e intervalar"
 order: 6
 date: "2025-10-02"
 description: "Estimativa pontual, Lei dos Grandes Números e erro padrão; Teorema do Limite Central; intervalos de confiança."

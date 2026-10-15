@@ -17,15 +17,15 @@ toc: true
 | Aula | Tópico |
 |:---:|---|
 | 1 | [Introdução à estatística biológica](aula-01-introducao/index.qmd#em-3-minutos) |
-| 2 | [Princípios de amostragem e delineamento experimental](aula-02-amostragem/index.qmd#em-3-minutos) |
+| 2 | [Amostragem e delineamento](aula-02-amostragem/index.qmd#em-3-minutos) |
 | 3 | [Organização e apresentação de dados](aula-03-organizacao-dados/index.qmd#em-3-minutos) |
-| 4 | [Medidas de tendência central e dispersão](aula-04-tendencia-dispersao/index.qmd#em-3-minutos) |
-| 5 | [Princípios de probabilidade e distribuições](aula-05-probabilidade/index.qmd#em-3-minutos) |
+| 4 | [Medidas de tendência central e de dispersão](aula-04-tendencia-dispersao/index.qmd#em-3-minutos) |
+| 5 | [Probabilidade, variáveis aleatórias e principais distribuições](aula-05-probabilidade/index.qmd#em-3-minutos) |
 | 6 | [Estimativa pontual e intervalar](aula-06-estimativas/index.qmd#em-3-minutos) |
-| 7 | [Teste de hipóteses](aula-07-teste-hipoteses/index.qmd#em-3-minutos) |
-| 8 | [Modelos lineares: teste t](aula-08-modelos-lineares-teste-t/index.qmd#em-3-minutos) |
-| 9 | [Modelos lineares: regressão e correlação](aula-09-regressao-correlacao/index.qmd#em-3-minutos) |
-| 10 | [Modelos lineares generalizados: qui-quadrado](aula-10-qui-quadrado/index.qmd#em-3-minutos) |
+| 7 | [Testes de hipótese em estatística](aula-07-teste-hipoteses/index.qmd#em-3-minutos) |
+| 8 | [Introdução aos modelos lineares: teste t de Student](aula-08-modelos-lineares-teste-t/index.qmd#em-3-minutos) |
+| 9 | [Modelos lineares: regressão (e correlação) linear](aula-09-regressao-correlacao/index.qmd#em-3-minutos) |
+| 10 | [Modelos lineares generalizados: teste de qui-quadrado](aula-10-qui-quadrado/index.qmd#em-3-minutos) |
 | 11 | [Modelos lineares: análise de variância (ANOVA)](aula-11-anova/index.qmd#em-3-minutos) |
 
 : {tbl-colwidths="[10,90]"}

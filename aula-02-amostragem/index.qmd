@@ -1,5 +1,5 @@
 ---
-title: "Aula 02 — Princípios de amostragem e delineamento experimental"
+title: "Aula 2 — Amostragem e delineamento"
 order: 2
 date: "2025-08-14"
 description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."

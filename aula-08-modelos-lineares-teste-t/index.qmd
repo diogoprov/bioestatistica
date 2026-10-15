@@ -1,5 +1,5 @@
 ---
-title: "Aula 08 — Modelos lineares: teste t"
+title: "Aula 8 — Introdução aos modelos lineares: teste t de Student"
 order: 8
 date: "2025-10-23"
 description: "Teste t para uma amostra, para duas amostras e para dados pareados; o teste t como um modelo linear."

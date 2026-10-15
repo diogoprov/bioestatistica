@@ -1,5 +1,5 @@
 ---
-title: "Aula 03 — Organização e apresentação de dados"
+title: "Aula 3 — Organização e apresentação de dados"
 order: 3
 date: "2025-08-21"
 description: "Planilhas bem organizadas; tabelas de frequência e de contingência; tipos de gráficos e como escolher entre eles."

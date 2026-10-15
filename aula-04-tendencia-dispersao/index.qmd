@@ -1,5 +1,5 @@
 ---
-title: "Aula 04 — Medidas de tendência central e dispersão"
+title: "Aula 4 — Medidas de tendência central e de dispersão"
 order: 4
 date: "2025-08-28"
 description: "Média, mediana e moda; amplitude, quartis, variância, desvio-padrão e coeficiente de variação; a forma das distribuições."
