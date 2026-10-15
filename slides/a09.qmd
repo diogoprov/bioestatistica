@@ -138,8 +138,10 @@ fig_galton()
 
 ---
 
-## Breve histórico
+## Breve histórico {.smaller}
 
+:::: {.columns}
+::: {.column width="62%"}
 - A diferença entre um filho e seus dois pais numa dada característica é
   proporcional ao desvio de seus pais da média da população.
 - Por exemplo, se seus pais são, cada um, 2 cm mais altos que a média dos
@@ -151,6 +153,15 @@ fig_galton()
 - Logo, a altura dos filhos estaria **regredindo à média**.
 - Em seguida, K. Pearson trabalha no problema da correlação e regressão,
   derivando o **coeficiente de correlação** (*r*).
+:::
+::: {.column width="38%"}
+![A lei da regressão de Galton: a reta dos filhos (menos inclinada) e a dos pais](../assets/historia/galton-regressao-psm-1902.png){width="100%" fig-alt="Diagrama antigo em preto e branco com uma grade de −3 a 3 e duas retas que se cruzam na origem: a mais inclinada é a dos pais, e a menos inclinada, a dos filhos, que regridem em direção à média."}
+:::
+::::
+
+::: {.ref}
+Diagrama: C.H. Eigenmann, *Popular Science Monthly* 61 (1902), a partir de Galton; domínio público, via Wikimedia Commons.
+:::
 
 ::: {.nota}
 O original dizia que o filho seria mais baixo que os pais "por um fator
@@ -314,7 +325,7 @@ fig_chocolate()
 ::::
 
 ::: {.ref}
-Inspirado em Messerli, F.H. 2012. [Chocolate consumption, cognitive function, and Nobel laureates](https://doi.org/10.1056/NEJMon1211064). *New England Journal of Medicine* 367:1562–1564; dados fictícios.
+Inspirado em Messerli, F.H. 2012. [Chocolate consumption, cognitive function, and Nobel laureates](https://doi.org/10.1056/NEJMon1211064). *New England Journal of Medicine* 367:1562–1564; dados fictícios. Veja também a tirinha [xkcd 552, "Correlation"](https://xkcd.com/552/).
 :::
 
 ---
