@@ -274,6 +274,12 @@ continua em `slides/`, então não apague os PDFs.
   `slides/theme.scss` (imagens em `assets/memes/`, fontes em
   `assets/memes/FONTES.md`), ou refaça o formato em R, como o *galaxy brain*
   da Aula 8 (`fig_galaxy_brain()` em `R/aula08.R`).
+- **Animações (GIF):** feitas em R sem pacote extra. Os quadros são ggplots
+  e o GIF é montado com o ffmpeg em `R/animacoes.R` (`gera_animacoes()`).
+  Os GIFs prontos ficam em `assets/`: `aula09-soma-quadrados.gif`, nas
+  Aulas 9 e 11, e `aula09-otimizacao.gif`, na Aula 9, com dois painéis
+  (a reta a cada tentativa e o RMSE), como no `animate-lm-optimization.R`
+  original.
 - **Dados reais de domínio público** ficam em `data/`, com a origem em
   `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
   Aula 9). Os dados didáticos do curso também ficam ali (`data/girinos_2x2.csv`,
