@@ -9,9 +9,37 @@ description: "Modelos lineares: regressão e correlação"
 **Data:** 06 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Correlação e regressão linear simples, a partir dos dados com que Galton
+cunhou a palavra "regressão" em 1886: o *r* de Pearson, a equação da reta,
+o método dos mínimos quadrados, a tabela de ANOVA, o R² e o diagnóstico dos
+resíduos. No ciclo PPDAC, é **Análise** e **Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-09-regressao-correlacao.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a09.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. O exemplo usa os dados originais de Galton (1886), de domínio
+público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data).
+
+## Conteúdo
+
+1. **Um pouco de história**: Galton, Pearson e a regressão à média.
+2. **Correlação linear**: o *r* de Pearson, o quarteto de Anscombe e
+   correlações espúrias.
+3. **Regressão linear simples**: a equação, os parâmetros e o teste de
+   hipótese do *slope*.
+4. **Mínimos quadrados**: resíduos e a soma de quadrados.
+5. **Tabela de ANOVA e R²**.
+6. **Pressupostos e diagnóstico dos resíduos**.
+7. **Outras formas de regressão**: múltipla, polinomial, árvores e análise
+   de rota.
+
+## Atividades
+
+Três perguntas para a turma (*peer instruction*): o quarteto de Anscombe,
+a interpretação do R² e os padrões nos resíduos.
 
 ## Leituras recomendadas
 

@@ -19,3 +19,5 @@ Baixadas em 2026-10-15 em versão reduzida (até 600 px de largura).
 | `bernoulli.jpg` | [File:Jakob Bernoulli.jpg](https://commons.wikimedia.org/wiki/File:Jakob_Bernoulli.jpg) | Niklaus Bernoulli (1662-1716) | Public domain |
 | `fisher.jpg` | [File:Youngronaldfisher2.JPG](https://commons.wikimedia.org/wiki/File:Youngronaldfisher2.JPG) | Unknown author | Public domain |
 | `karl-pearson.jpg` | [File:Karl Pearson.jpg](https://commons.wikimedia.org/wiki/File:Karl_Pearson.jpg) | Unknown author | Public domain |
+| `galton.jpg` | [File:Sir Francis Galton, 1890s.jpg](https://commons.wikimedia.org/wiki/File:Sir_Francis_Galton,_1890s.jpg) | Eveleen Myers (née Tennant) | Public domain |
+| `galton-pearson-1909.jpg` | [File:Karl Pearson; Sir Francis Galton.jpg](https://commons.wikimedia.org/wiki/File:Karl_Pearson;_Sir_Francis_Galton.jpg) | Unknown author | Public domain |

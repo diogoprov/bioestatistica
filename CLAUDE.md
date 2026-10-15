@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1, 3, 4, 5, 6, 7 e 8 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3, 4, 5, 6, 7, 8 e 9 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -38,7 +38,7 @@ mudar os parâmetros e ver o que acontece.
 | 6 | `aula-06-estimativas` | **`slides/a06.qmd` ✔** | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
 | 7 | `aula-07-teste-hipoteses` | **`slides/a07.qmd` ✔** | `Aula 7 - Teste de hipótese.pptx` |
 | 8 | `aula-08-modelos-lineares-teste-t` | **`slides/a08.qmd` ✔** | `Aula 8 - Teste t.pptx` |
-| 9 | `aula-09-regressao-correlacao` | PDF | `Aula 9 - Regressão linear.pptx` |
+| 9 | `aula-09-regressao-correlacao` | **`slides/a09.qmd` ✔** | `Aula 9 - Regressão linear.pptx` |
 | 10 | `aula-10-qui-quadrado` | PDF | `Aula 10 - qui-quadrado.pptx` |
 | 11 | `aula-11-anova` | PDF | `Aula 11 - ANOVA.pptx` |
 
@@ -46,10 +46,9 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 9**
-(original: `Aula 9 - Regressão linear.pptx`), que não tem Kahoot. Na pasta
-há a gravação `Aula regressão.mp3`, o `animate-lm-optimization.R` e os GIFs
-da animação do ajuste da reta.
+As conversões seguem a sequência do curso: a próxima é a **Aula 10**
+(original: `Aula 10 - qui-quadrado.pptx`), que tem o Kahoot "Qui-quadrado
+e Teste G".
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -242,6 +241,9 @@ continua em `slides/`, então não apague os PDFs.
   Se não der para verificar, deixe `<!-- TODO: referência -->` e avise.
   Na Aula 2 entraram assim Wild & Pfannkuch 1999, Wiens 1989,
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
+- **Dados reais de domínio público** ficam em `data/`, com a origem em
+  `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
+  Aula 9). Leia com `read.csv(here::here("data/..."))`.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
 - **Subscritos Unicode (H₀, H₁) não aparecem nas figuras do R**: a fonte do
