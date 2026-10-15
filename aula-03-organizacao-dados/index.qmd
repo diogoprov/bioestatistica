@@ -9,9 +9,34 @@ description: "Organização e apresentação de dados"
 **Data:** 21 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Como organizar os dados numa planilha e apresentá-los em tabelas e
+gráficos, e por que a análise exploratória vem antes de qualquer teste. Na
+linguagem do ciclo PPDAC, esta aula cobre os **Dados** e o começo da
+**Análise**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-03-organizacao-dados.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a03.html){.btn .btn-outline-primary}
+
+As tabelas e figuras dos slides foram refeitas em R com dados simulados
+(ou fictícios, quando indicado); o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. As imagens de Florence Nightingale são de domínio público,
+via Wikimedia Commons.
+
+## Conteúdo
+
+1. **Análise exploratória e planilhas**: uma observação por linha, uma
+   variável por coluna.
+2. **Tabelas**: anatomia de uma tabela; tabelas de frequência para dados
+   qualitativos e ordinais; tabelas de contingência; tabelas de dados
+   quantitativos; como (não) planilhar.
+3. **Tipos de gráficos**: pizza, pirulito, treemap, diagrama de rosa,
+   dispersão, pontos, histograma, boxplot, barras e linha; a precisão com
+   que lemos cada codificação visual.
+4. **Atividade prática**: histograma com post-its da altura da turma.
+5. **Como escolher**: gráficos ou tabelas, e boas práticas para reportar
+   resultados.
 
 ## Leituras recomendadas
 

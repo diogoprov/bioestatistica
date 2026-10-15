@@ -11,3 +11,5 @@ Baixadas em 2026-10-15 em versão reduzida (até 600 px de largura).
 | `graunt.png` | [File:JohnGraunt.png](https://commons.wikimedia.org/wiki/File:JohnGraunt.png) | Unknown author Unknown author | Public domain |
 | `graunt-observations-1662.jpg` | [File:Graunt Observations.jpg](https://commons.wikimedia.org/wiki/File:Graunt_Observations.jpg) | John Graunt | Public domain |
 | `al-haytham.jpg` | [File:Ibn al-Haytham crop.jpg](https://commons.wikimedia.org/wiki/File:Ibn_al-Haytham_crop.jpg) | Adolph Boÿ, engraved by Jeremias Falck. Used as the frontispiece to Johannes Hev | Public domain |
+| `nightingale-rosa-1858.jpg` | [File:Nightingale-mortality.jpg](https://commons.wikimedia.org/wiki/File:Nightingale-mortality.jpg) | Florence Nightingale | Public domain |
+| `nightingale.jpg` | [File:Florence Nightingale by Henry Hering, 1858.jpg](https://commons.wikimedia.org/wiki/File:Florence_Nightingale_by_Henry_Hering,_1858.jpg) | Hering | Public domain |

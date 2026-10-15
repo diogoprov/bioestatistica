@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2 e 1 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1 e 3 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -32,7 +32,7 @@ mudar os parâmetros e ver o que acontece.
 |-----:|-------|-------------|------------------|
 | 1 | `aula-01-introducao` | **`slides/a01.qmd` ✔** | `Aula 1 - Intodução.pptx` |
 | 2 | `aula-02-amostragem` | **`slides/a02.qmd` ✔** | `Aula 2 - Delineamento amostral.pptx` |
-| 3 | `aula-03-organizacao-dados` | PDF | `Aula 4 - organizacao e visualizacao dados.pptx` |
+| 3 | `aula-03-organizacao-dados` | **`slides/a03.qmd` ✔** | `Aula 4 - organizacao e visualizacao dados.pptx` |
 | 4 | `aula-04-tendencia-dispersao` | PDF | `Aula 3 - medidas tendencia central.pptx` |
 | 5 | `aula-05-probabilidade` | PDF | `Aula 5 - Probabilidade e distribuições.pptx` |
 | 6 | `aula-06-estimativas` | PDF | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
@@ -46,7 +46,9 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 3**.
+As conversões seguem a sequência do curso: a próxima é a **Aula 4**
+(original: `Aula 3 - medidas tendencia central.pptx`), que tem o Kahoot
+"Revisão média e variância" e um slide de Slido.
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -59,7 +61,11 @@ para `::: {.nota}`.
 ### Preserve o original
 
 Mantenha ao máximo o texto dos slides (corrija só erros óbvios de
-digitação) e todos os esquemas e figuras, redesenhados em R. Uma figura só
+digitação) e todos os esquemas e figuras, redesenhados em R. Quando o
+original mostra uma tabela ou um gráfico com dados de um livro, refaça com
+dados simulados num contexto biológico e diga no slide "dados fictícios"
+ou "dados simulados", com "Inspirado na Figura X de ..." na `.ref`. Dados
+públicos verificáveis (como o Censo 2010 da Aula 3) podem ser mantidos. Uma figura só
 sai quando não tem como ser refeita nem existe versão com licença aberta;
 nesse caso, troque por texto ou referência.
 
@@ -203,6 +209,9 @@ continua em `slides/`, então não apague os PDFs.
   Stewart-Oaten et al. 1986 e Krzywinski & Altman 2014.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
+- Números em português: `R/tema.R` liga `options(OutDec = ",")`, então os
+  eixos já saem com vírgula decimal. Em textos montados com `sprintf()`, use
+  `format(..., decimal.mark = ",")` (há `num_br()` em `R/aula03.R`).
 
 ## Build e publicação
 
