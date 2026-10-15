@@ -68,6 +68,7 @@ para ver a resposta comentada.
 
 - Vieira, S. *Estatística básica*, cap. 7 (amostragem).
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 6 e 7 (desenhos amostrais e experimentais).
+- Quinn, G.P. & Keough, M.J. *Experimental Design and Data Analysis for Biologists*, cap. 3.
 - Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.
 
 ## Exercício no R (swirl)

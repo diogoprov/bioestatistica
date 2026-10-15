@@ -756,8 +756,8 @@ fig_altura_z()
 fig_tres_intervalos()
 ```
 
-Porque, para distribuições simétricas, **95% dos dados estão a até 2
-desvios-padrão da média**.
+Porque, numa distribuição normal (ou aproximadamente normal, em forma de
+sino), **cerca de 95% dos dados estão a até 2 desvios-padrão da média**.
 
 ::: {.ref}
 Inspirado em Triola, M.F. *Introdução à estatística*, Figura 3-3.

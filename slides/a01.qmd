@@ -759,12 +759,12 @@ questões e a análise*. Editora Planta.
 #| fig-width: 11
 #| fig-height: 5.6
 #| out-width: "90%"
-#| fig-alt: "Ciclo PPDAC com os tópicos de cada etapa. Problema: compreensão do sistema, definição do problema. Plano: desenho amostral, gerenciamento de dados, visualização. Dados: coleta de dados, gerenciamento de dados, limpeza. Análise: análises exploratórias, geração de hipóteses. Conclusão: interpretação, novas ideias, comunicação."
+#| fig-alt: "Ciclo PPDAC com os tópicos de cada etapa. Problema: compreensão do sistema, definição do problema. Plano: desenho amostral, gerenciamento de dados. Dados: coleta de dados, gerenciamento de dados, limpeza. Análise: análises exploratórias, visualização, geração de hipóteses. Conclusão: interpretação, novas ideias, comunicação."
 ppdac_topicos(list(
   Problema    = c("Compreensão do sistema", "Definição do problema"),
-  Plano       = c("Desenho amostral", "Gerenciamento de dados", "Visualização"),
+  Plano       = c("Desenho amostral", "Gerenciamento de dados"),
   Dados       = c("Coleta de dados", "Gerenciamento de dados", "Limpeza"),
-  "Análise"   = c("Análises exploratórias", "Geração de hipóteses"),
+  "Análise"   = c("Análises exploratórias", "Visualização", "Geração de hipóteses"),
   "Conclusão" = c("Interpretação", "Novas ideias", "Comunicação")
 ))
 ```

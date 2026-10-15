@@ -111,7 +111,7 @@ de Neyman e de Egon Pearson com licença aberta.
 ```{r}
 #| fig-width: 11
 #| fig-height: 4.6
-#| fig-alt: "Fluxograma em oito passos: 1, identificar a afirmativa; 2, escrevê-la na forma simbólica; 3, hipóteses nula e alternativa; 4, nível de significância; 5, estatística do teste. Daí o caminho se divide: pelo método do valor P, calcular o valor P e rejeitar H0 se P for menor ou igual a alfa; pelo método do valor crítico, achar os valores críticos e rejeitar H0 se a estatística cair na região crítica. Os dois caminhos chegam ao passo 8, a conclusão em termos não técnicos."
+#| fig-alt: "Fluxograma em oito passos: 1, identificar a afirmativa e escrevê-la na forma simbólica; 2, dar a forma simbólica que vale quando a afirmativa é falsa; 3, hipóteses nula e alternativa; 4, nível de significância; 5, estatística do teste. Daí o caminho se divide: pelo método do valor P, calcular o valor P e rejeitar H0 se P for menor ou igual a alfa; pelo método do valor crítico, achar os valores críticos e rejeitar H0 se a estatística cair na região crítica. Os dois caminhos chegam ao passo 8, a conclusão em termos não técnicos."
 fig_roteiro()
 ```
 
@@ -135,7 +135,9 @@ Inspirado na Figura 8.1 de Triola 2024, *Introdução à estatística*.
 fig_roteiro(1:2)
 ```
 
-Identifique a afirmativa a ser testada e expresse-a na forma simbólica.
+1. Identifique a afirmativa a ser testada e expresse-a na forma simbólica.
+2. Dê a forma simbólica que deve ser verdadeira quando a afirmativa
+   original é falsa.
 
 ---
 

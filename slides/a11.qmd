@@ -674,7 +674,7 @@ Inspirado na Figura 10.2 de Gotelli & Ellison; dados fictícios.
 Vamos retornar ao estudo de crescimento de raízes de mangue de Ellison et
 al. (1996). Eles testaram os efeitos de um controle não manipulado, uma
 esponja falsa de espuma e duas espécies de esponjas vivas (*Haliclona* e
-*Tedania*) no crescimento das raízes (tabela de ANOVA três slides atrás).
+*Tedania*) no crescimento das raízes (a tabela de ANOVA está repetida no próximo slide).
 
 - As raízes não manipuladas tiveram um crescimento significativamente mais
   lento do que as raízes com qualquer uma das duas espécies de esponjas
@@ -715,6 +715,16 @@ Inspirado na Figura 10.5 de Gotelli & Ellison (dados de Ellison et al. 1996); m�
    ecólogo marinho pode tirar sobre o impacto de *Haliclona* sp. e de
    *Tedania* sp. no crescimento das raízes de mangue? Qual é o papel da
    esponja falsa neste estudo?
+:::
+
+| Fonte | gl | SQ | QM | F | *P* |
+|---|---|---|---|---|---|
+| Tipo de esponja (tratamentos) | 3 | 2,602 | 0,867 | 5,286 | 0,003 |
+| Resíduo | 52 | 8,551 | 0,164 | | |
+| Total | 55 | 11,153 | | | |
+
+::: {.ref}
+Tabela 10.12 de Gotelli & Ellison, com os dados de Ellison et al. 1996.
 :::
 
 # 5. Testes *post-hoc* {.secao}

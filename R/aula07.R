@@ -29,7 +29,7 @@ fig_roteiro <- function(passo = NULL) {
   nos <- tibble::tribble(
     ~id,  ~rotulo,                                            ~x,   ~y,  ~etapa,
     "1",  "1. Identificar\na afirmativa",                     0,    1,   1,
-    "2",  "2. Escrever na\nforma simbólica",                  2.6,  1,   2,
+    "2",  "2. Forma simbólica\nse a afirmativa\nfor falsa",          2.6,  1,   2,
     "3",  "3. Hipóteses nula\ne alternativa",                 5.2,  1,   3,
     "4",  "4. Nível de\nsignificância (α)",                   7.8,  1,   4,
     "5",  "5. Estatística\ndo teste",                         10.4, 1,   5,

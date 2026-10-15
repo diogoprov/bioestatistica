@@ -309,7 +309,7 @@ fig_tendencia_histograma()
 ```
 
 ::: {.ref}
-Inspirado na Figura 3.2 de Vieira, *Introdução à bioestatística*.
+Inspirado em figura de Gotelli, N.J. & Ellison, A.M. 2004. *A primer of ecological statistics*.
 :::
 
 ---
@@ -697,7 +697,8 @@ $$s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}$$
   dados**
 - O desvio-padrão é uma medida de **quanto os valores** de dados **se
   afastam da média**
-- Não é um bom estimador para o DP da população
+- Como estimador do DP da população (σ), *s* é levemente viesado: tende a
+  subestimar σ, sobretudo em amostras pequenas
 
 ---
 

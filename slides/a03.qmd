@@ -690,7 +690,7 @@ Os mesmos dados contam histórias diferentes conforme a largura das classes.
 #| fig-width: 10
 #| fig-height: 5.4
 #| out-width: "72%"
-#| fig-alt: "Boxplot anotado do comprimento de espinhos: a caixa vai do primeiro quartil (Q1, percentil 25%) ao terceiro (Q3, percentil 75%), com a mediana dentro; as hastes vão até os limites de 1,5 vez o intervalo interquartil, e dois valores acima disso aparecem como pontos vermelhos, os outliers."
+#| fig-alt: "Boxplot anotado do comprimento de espinhos: a caixa vai do primeiro quartil (Q1, percentil 25%) ao terceiro (Q3, percentil 75%), com a mediana dentro; as hastes vão até os valores mais extremos dentro de 1,5 vez o intervalo interquartil a partir da caixa, e dois valores além disso aparecem como pontos vermelhos, os outliers."
 fig_boxplot_anatomia()
 ```
 
@@ -711,12 +711,13 @@ fig_boxplot_anatomia()
 7. Calcule a variação interquartil = Q3 − Q1
 8. Desenhe uma caixa ligando o Q1 e o Q3
 9. Coloque uma linha dentro da caixa indicando a mediana
-10. Desenhe uma reta da extremidade da caixa até 1,5 × IQR. Repita o mesmo
-    procedimento para o Q3
+10. Desenhe uma reta do Q1 até o menor valor observado que ainda esteja
+    acima de Q1 − 1,5 × IQR. Repita para o Q3: a reta vai até o maior valor
+    observado abaixo de Q3 + 1,5 × IQR
+11. Valores além desses limites são *outliers* e aparecem como pontos
 
 ::: {.nota}
-Alguns livros (por exemplo, Vieira) desenham as hastes até os percentis
-10% e 90%. Sempre diga na legenda qual convenção você usou.
+Há outras convenções, como hastes até os percentis 10% e 90%. Sempre diga na legenda qual convenção você usou.
 :::
 
 ---
