@@ -1,0 +1,903 @@
+---
+title: "Estimativa pontual e intervalar"
+subtitle: "Aula 6 · Bioestatística · Ciências Biológicas/UFMS"
+author: "Diogo B. Provete"
+date: 2025-10-02
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt
+format:
+  revealjs:
+    theme: [default, theme.scss]
+    slide-number: c/t
+    show-slide-number: all
+    auto-stretch: false
+    preview-links: auto
+    history: false
+    footer: "Bioestatística · Ciências Biológicas/UFMS"
+    code-overflow: wrap
+    fig-align: center
+    width: 1250
+    height: 750
+knitr:
+  opts_chunk:
+    dev.args:
+      bg: "#faf7f0"
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  fig-width: 10
+  fig-height: 4.4
+---
+
+```{r}
+#| label: setup
+source(here::here("R/ppdac.R"))
+source(here::here("R/aula06.R"))
+```
+
+## Hoje: decifrando o desconhecido nas populações biológicas
+
+1. Introdução à inferência estatística: estatística, estimador e estimativa
+2. A pescaria de tilápias
+3. Estimativa pontual e a Lei dos Grandes Números
+4. Estimativa intervalar, erro padrão e intervalo de confiança
+5. O Teorema do Limite Central
+6. Intervalos de confiança para médias e para proporções
+
+::: {.nota}
+As figuras desta aula foram geradas em R, com os dados da pescaria ou com
+dados simulados; a silhueta de tilápia é do PhyloPic (CC0) e o retrato de
+Jacob Bernoulli é de domínio público. O código está em
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) no
+repositório da disciplina.
+:::
+
+---
+
+## Onde estamos no ciclo PPDAC
+
+```{r}
+#| fig-width: 6.4
+#| fig-height: 5.1
+#| out-width: "45%"
+#| fig-alt: "Ciclo PPDAC com as etapas Análise e Conclusão destacadas nas suas cores; as demais em cinza."
+ppdac_plot(destaque = c("Análise", "Conclusão"))
+```
+
+Da amostra para a população: a **Análise** estima, e a **Conclusão** diz
+com quanta incerteza.
+
+---
+
+## Objetivos da aula
+
+:::: {.columns}
+::: {.column width="60%"}
+Ao final, você será capaz de:
+
+- Diferenciar estimativa pontual e intervalar
+- Interpretar intervalos de confiança em estudos biológicos
+- Aplicar conceitos em exemplos reais de biologia
+- Praticar com exercícios interativos
+:::
+::: {.column width="40%"}
+::: {.nota}
+**Leituras**
+
+- Triola, M.F. *Introdução à estatística*, cap. 7.
+- Vieira, S. *Introdução à bioestatística*, cap. 9.
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, caps. 10 e 11.
+:::
+:::
+::::
+
+---
+
+## A pergunta certa
+
+> "The most important maxim for data analysis to heed, and one which many
+> statisticians seem to have shunned, is this: '**Far better an approximate
+> answer to the *right* question, which is often vague, than an *exact*
+> answer to the wrong question, which can always be made precise.**' Data
+> analysis must progress by approximate answers, at best, since its
+> knowledge of what the problem really is will at best be approximate."
+
+John Tukey, 1962
+
+::: {.ref}
+Tukey, J.W. 1962. The future of data analysis. *The Annals of Mathematical
+Statistics* 33:1–67.
+:::
+
+---
+
+## Recapitulando a aula anterior: medidas de amostra
+
+- Na aula passada, aprendemos a calcular:
+  - **Média amostral ($\bar{x}$):** nosso melhor palpite para o centro dos
+    dados da nossa amostra.
+  - **Desvio-padrão amostral ($s$):** quão dispersos os dados estão na
+    nossa amostra.
+- **Lembre-se:** nosso objetivo final com a estatística é entender o que
+  se passa com a **população** inteira, não apenas com a amostra!
+
+# 1. Introdução à inferência estatística {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Introdução à inferência estatística
+
+- Definições de estatística, estimador e estimativa
+- Estimativa pontual e intervalar
+  - Lei dos grandes números
+- Teorema do limite central
+  - Simulações
+- Erro e desvio-padrão da média
+- Intervalo de confiança
+
+---
+
+## Relembrando conceitos-chave
+
+- **Amostra:** qualquer subconjunto da população.
+- **População:** conjunto de todos os elementos ou resultados sob
+  investigação.
+
+::: {.definicao}
+O objetivo do procedimento de amostragem é estimar um **parâmetro** da
+população a partir da **amostra**.
+:::
+
+---
+
+## Definições
+
+- **Estimador pontual:** valor único que estima o parâmetro da população
+  - Exemplo: média amostral, proporção amostral.
+- **Estimativa:** valor observado de um estimador, ou seja, um número que
+  é obtido quando uma amostra é obtida
+- Uma ***estatística*** é uma característica da ***amostra***, ou seja, um
+  número que mede um determinado aspecto da amostra
+  - Exemplos: média da amostra, variância etc.
+- Um ***parâmetro*** é uma medida usada para medir uma característica da
+  ***população***
+  - Exemplos: média $E(X) = \mu$; variância $\mathrm{Var}(X) = \sigma^2$
+
+# 2. A pescaria {.secao}
+
+**Atividade (15 min)**
+
+---
+
+## O lago das tilápias
+
+:::: {.columns}
+::: {.column width="60%"}
+Imaginem um grande lago onde vivem milhares de tilápias. Como biólogos,
+queremos saber o **peso médio** *de toda a população* de tilápias. É
+impossível pesar todas, então vamos pescar amostras.
+
+::: {.definicao}
+Eu sou a "Mãe Natureza" e sei o peso médio real de todas as tilápias.
+Mas vocês, pesquisadores, não sabem.
+
+**O que fazemos para estimar o peso médio?**
+[**Amostragens!**]{.fragment}
+:::
+:::
+::: {.column width="40%"}
+![](../assets/phylopic/tilapia.svg){width="90%" fig-alt="Silhueta de tilápia."}
+
+::: {.nota}
+Silhueta de *Oreochromis niloticus* por Ingo Braasch, via
+[PhyloPic](https://www.phylopic.org), CC0 1.0.
+:::
+:::
+::::
+
+---
+
+## Cada grupo terá uma rede {.smaller}
+
+::: {.atividade}
+Máximo de 10 pessoas por grupo. Pesos das tilápias (g):
+
+- **Rede 1:** 245, 255, 250, 248, 252, 260, 240, 238, 251, 255
+- **Rede 2:** 230, 240, 245, 250, 235, 228, 241, 233, 229, 239
+- **Rede 3:** 260, 265, 258, 270, 255, 262, 268, 259, 261, 263
+- **Rede 4:** 231, 235, 252, 282, 241, 223, 254, 246, 239, 236
+- **Rede 5:** 262, 272, 268, 251, 270, 217, 242, 226, 231, 259
+
+**Atividade (10 min).** Cada grupo calcula a média do peso das tilápias
+pescadas na sua rede (amostra) e diz o resultado que encontrou.
+:::
+
+---
+
+## As médias das redes
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| fig-alt: "Os pesos das dez tilápias de cada uma das cinco redes, com a média de cada rede: 249,4 g, 237,0 g, 262,1 g, 243,9 g e 249,8 g. Ainda sem o valor verdadeiro."
+fig_pescaria(revela = FALSE)
+```
+
+Todos pescaram no ***mesmo lago***, mas cada um obteve uma média
+diferente. **Qual delas é a "correta"?** Podemos confiar em apenas um
+desses números para descrever a população inteira?
+
+---
+
+## A Mãe Natureza revela
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| fig-alt: "O mesmo gráfico com uma linha vermelha tracejada no peso médio verdadeiro, 250 g: algumas redes ficaram perto dele, outras longe."
+fig_pescaria()
+```
+
+---
+
+## O problema da amostra única {.smaller}
+
+:::: {.columns}
+::: {.column width="48%"}
+- Diferentes amostras da mesma população quase sempre terão médias e
+  desvios-padrão ligeiramente diferentes
+- **Pense no experimento da "pescaria":** cada grupo obteve uma média de
+  peso diferente para as tilápias, mesmo pescando no mesmo lago
+- **Pergunta crucial:** se temos apenas UMA amostra, como podemos usar suas
+  estatísticas para inferir sobre a POPULAÇÃO inteira?
+:::
+::: {.column width="52%"}
+```{r}
+#| fig-width: 6.6
+#| fig-height: 4.6
+#| fig-alt: "Curvas de cinco amostras de tilápias do mesmo lago, cada uma com a sua média tracejada: as médias caem em lugares diferentes."
+fig_amostras_diferentes()
+```
+:::
+::::
+
+# 3. Estimativa pontual {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Estimativa pontual: nosso melhor palpite {.smaller}
+
+- Uma **estimativa pontual** é um único valor calculado *a partir da
+  amostra* que usamos como nosso melhor palpite ("chute") para o parâmetro
+  correspondente da população
+- Determina o valor específico de um parâmetro, mede onde a maioria dos
+  dados está
+- **Exemplos:**
+  - A **média amostral ($\bar{x}$)** é um estimador não enviesado da
+    **média populacional ($\mu$)**
+  - A **proporção amostral ($\hat{p}$)** é a melhor estimativa pontual da
+    **proporção populacional ($p$)**
+  - A **variância amostral ($s^2$)** é um estimador não enviesado da
+    **variância populacional ($\sigma^2$)**; o desvio-padrão amostral
+    ($s$) é o que usamos para $\sigma$, embora seja levemente enviesado
+    (lembram da aula passada?)
+
+---
+
+## Construção da distribuição amostral de uma estatística
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5.4
+#| out-width: "78%"
+#| fig-alt: "Em cima, o histograma do peso de todas as tilápias de uma população simulada, com a média em vermelho. Embaixo, o histograma das médias de 5.000 amostras de 10 tilápias: centrado na mesma média e bem mais estreito."
+fig_distribuicao_amostral()
+```
+
+Cada amostra dá um único valor da estatística; repetindo a amostragem,
+esses valores formam a **distribuição amostral**.
+
+::: {.ref}
+Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
+:::
+
+---
+
+## A limitação de estimadores pontuais: ausência da margem de erro {.smaller}
+
+:::: {.columns}
+::: {.column width="52%"}
+```{r}
+#| fig-width: 6.4
+#| fig-height: 6.2
+#| fig-alt: "Quatro alvos em grade: baixo viés e baixa variância, com os tiros juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas fora do centro; alto viés e alta variância, espalhados e fora do centro."
+fig_alvos()
+```
+:::
+::: {.column width="48%"}
+- Embora seja nosso melhor palpite, uma estimativa pontual isolada não nos
+  diz o quão *precisa* ela provavelmente é
+- **Imagine dizer:** "A altura média das árvores na floresta é de 15
+  metros."
+- **A pergunta que fica:** essa estimativa provavelmente está errada por
+  alguns centímetros? Ou por vários metros?
+:::
+::::
+
+::: {.ref}
+Cap. 11 de Bussab & Morettin 2023; alvos redesenhados em R.
+:::
+
+---
+
+## Propriedades dos estimadores pontuais
+
+- **Acurácia:** mede a proximidade entre cada observação e ***o valor
+  alvo*** que se procura atingir
+- **Precisão:** mede a proximidade entre cada observação e ***a média de
+  todas as observações***
+- Um estimador ideal para o parâmetro de interesse deve 1) ser *não
+  enviesado*; 2) ter *pouca variância*; e 3) ser *consistente*
+
+> "Um estimador não enviesado é uma estatística que tem como alvo o valor
+> do parâmetro populacional correspondente, no sentido de que a
+> distribuição amostral da estatística tenha uma média igual a esse
+> parâmetro populacional correspondente."
+
+::: {.ref}
+Bussab & Morettin 2023; Triola 2023, *Introdução à estatística*.
+:::
+
+---
+
+## Estimativa pontual: quando a média é não enviesada
+
+Se as condições abaixo forem satisfeitas, a média da amostra ($\bar{x}$)
+é um estimador não enviesado da média da população ($\mu$):
+
+1. Observações são feitas em indivíduos escolhidos aleatoriamente
+2. Observações na amostra são independentes
+
+::: {.nota}
+O original listava uma terceira condição: que a população possa ser
+descrita por uma distribuição normal. Ela não é necessária para a média
+ser não enviesada; ela importa para construir o **intervalo** de
+confiança com amostras pequenas, como veremos adiante.
+:::
+
+---
+
+## Lei dos Grandes Números {.smaller}
+
+:::: {.columns}
+::: {.column width="72%"}
+- Logo, à medida que o **tamanho da amostra** ($n$) **cresce**, a média
+  da amostra ($\bar{x}$) **se aproxima** da média da população ($\mu$)
+- Esta é a **Lei dos Grandes Números (LGN)**
+- Faz sentido então pensar que devemos (sempre que possível) medir o maior
+  número de indivíduos que pudermos
+- Isso serve para qualquer estimador pontual
+:::
+::: {.column width="28%"}
+![Jacob Bernoulli (1654–1705), que demonstrou a primeira versão da lei](../assets/historia/bernoulli.jpg){width="80%" fig-alt="Retrato a óleo de Jacob Bernoulli, de peruca longa."}
+
+::: {.nota}
+Domínio público, via Wikimedia Commons.
+:::
+:::
+::::
+
+::: {.nota}
+O original falava em "aumentar o número de amostras". A LGN trata do
+número de **observações** dentro da amostra: uma amostra grande, não
+muitas amostras pequenas.
+:::
+
+---
+
+## A LGN em ação
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.6
+#| out-width: "88%"
+#| fig-alt: "Média amostral acumulada do comprimento de tíbias de aranhas à medida que o tamanho amostral cresce até 500: no começo oscila bastante, depois se estabiliza perto da média da população, 0,253 mm, e o intervalo de 95% em verde vai se estreitando."
+fig_lgn()
+```
+
+::: {.ref}
+Inspirado em Gotelli & Ellison 2004; dados simulados.
+:::
+
+# 4. Estimativa intervalar {.secao}
+
+[Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+
+---
+
+## Distribuições amostrais
+
+- O problema da inferência estatística é fazer uma afirmação sobre os
+  parâmetros da população através da amostra
+- Os valores encontrados para a amostra nem sempre serão iguais aos
+  valores da população
+- Para contemplar o erro possível, a estimativa do parâmetro pode ser
+  feita de forma intervalar
+- Para poder calcular o intervalo da estimação é preciso modelar e
+  trabalhar com a **distribuição amostral do parâmetro estudado**
+
+---
+
+## Estimativa intervalar {.smaller}
+
+- **Definição:** intervalo de valores plausíveis para o parâmetro
+- Mesmo sabendo que a **média da amostra** pode ser utilizada para estimar
+  a **média da população**, precisamos ter uma medida de **incerteza da
+  média da amostra**
+- A média é uma **estimativa**. Logo, precisamos saber as **margens de
+  erro** dessa estimativa
+  - É construída adicionando e subtraindo uma **margem de erro** da
+    estimativa pontual
+  - A largura do intervalo reflete a nossa **incerteza** sobre o valor
+    verdadeiro
+  - Precisa vir acompanhada de uma declaração de probabilidade
+
+::: {.definicao}
+**Margem de erro (E):** ao usar uma estatística amostral para estimar um
+parâmetro populacional, é a quantidade máxima provável de erro (a
+quantidade pela qual a estatística amostral erra o parâmetro
+populacional).
+:::
+
+---
+
+## Margem de erro da média (para variâncias desconhecidas)
+
+$$E = t_{\alpha/2} \frac{s}{\sqrt{n}}$$
+
+- $s$ = desvio-padrão; $n$ = tamanho da amostra
+- $t_{\alpha/2}$ = valor crítico da distribuição *t* para dado grau de
+  liberdade (gl) e nível de significância ($\alpha$)
+
+```{r}
+#| fig-width: 9
+#| fig-height: 3.4
+#| out-width: "72%"
+#| fig-alt: "Distribuição t com 5 graus de liberdade, com as duas caudas de 0,025 em verde além de −2,571 e 2,571: os valores críticos para 95% de confiança."
+fig_valor_critico(gl = 5)
+```
+
+---
+
+## Valor crítico {.smaller}
+
+**Definição de valor crítico:** para a distribuição normal padrão, um
+valor crítico é o escore-Z no limite que separa os escores-Z
+significantemente baixos ou significantemente altos.
+
+```{r}
+#| fig-width: 9
+#| fig-height: 3.6
+#| out-width: "72%"
+#| fig-alt: "Normal padrão com as duas caudas de 0,025 em verde além de −1,96 e 1,96, e uma seta indicando o nível de confiança de 95% entre elas."
+fig_valor_critico()
+```
+
+Com nível de significância $\alpha = 0{,}05$ num intervalo bilateral, o
+valor é dividido por 2: $z_{\alpha/2} = 1{,}96$, cerca de 2 desvios-padrão
+da média, para mais e para menos.
+
+::: {.ref}
+Inspirado em Triola 2023, *Introdução à estatística*.
+:::
+
+---
+
+## Variância e erro padrão da média {.smaller}
+
+- **Variância** da média: **estima a variabilidade das médias** que seriam
+  obtidas, caso o pesquisador tivesse tomado, nas mesmas condições, todas
+  as amostras possíveis
+
+$$s^2_{\bar{x}} = \frac{s^2}{n}$$
+
+- **Erro padrão** da média:
+
+$$s_{\bar{x}} = \frac{s}{\sqrt{n}}$$
+
+- O **erro padrão (SE)** quantifica a **variabilidade das estatísticas
+  amostrais** (como a média ou a proporção) se repetirmos a amostragem
+  várias vezes
+- Médias de amostras de $n$ dados têm **dispersão menor** do que os dados
+  que as compõem
+
+::: {.ref}
+Vieira 2022, *Introdução à bioestatística*.
+:::
+
+---
+
+## Intervalo de confiança {.smaller}
+
+- **Estimativa intervalar:** intervalo de confiança
+  - Quando a variância da população é **conhecida**
+  - Quando a variância da população é **desconhecida**
+- Um **intervalo de confiança (IC)** é um tipo específico de estimativa
+  intervalar usado para estimar o valor real do parâmetro populacional.
+  Sempre vem acompanhado de um **nível de confiança** (geralmente 90%, 95%
+  ou 99%)
+  - Dá ideia da incerteza relacionada à estimativa pontual
+- **Interpretação (exemplo de IC de 95%):** se repetirmos o processo de
+  amostragem muitas vezes e construirmos um IC de 95% para cada amostra,
+  aproximadamente 95% desses intervalos conterão o verdadeiro parâmetro
+  populacional
+
+---
+
+## O conceito do IC: o arqueiro
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 4.8
+#| fig-alt: "Um alvo com doze flechas marcadas com X; um círculo tracejado de 10 cm ao redor do centro contém 95% das flechas."
+fig_arqueiro(1)
+```
+:::
+::: {.column width="50%"}
+Suponha que o arqueiro acerte flechas dentro de um raio de 10 cm do centro
+do alvo, **95% das vezes**.
+:::
+::::
+
+---
+
+## O conceito do IC: o arqueiro
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 4.8
+#| fig-alt: "As mesmas flechas, agora sem o alvo: cada uma tem um círculo de 10 cm desenhado ao redor dela."
+fig_arqueiro(2)
+```
+:::
+::: {.column width="50%"}
+Agora, imagine que **não podemos ver o centro do alvo**, apenas onde a
+flecha atingiu. Se desenharmos um círculo de 10 cm de raio ao redor de
+cada flecha, teremos 95% de confiança de que qualquer um desses círculos
+contém o centro do alvo.
+:::
+::::
+
+---
+
+## O conceito do IC: o arqueiro
+
+:::: {.columns}
+::: {.column width="50%"}
+```{r}
+#| fig-width: 6
+#| fig-height: 4.8
+#| fig-alt: "Os mesmos círculos com o centro do alvo revelado em amarelo: 11 dos 12 círculos contêm o centro; o que não contém está em vermelho."
+fig_arqueiro(3)
+```
+:::
+::: {.column width="50%"}
+- O centro (o **parâmetro**) é fixo, mas a localização da flecha (a
+  **estatística amostral**) e, consequentemente, do círculo (o **intervalo
+  de confiança**) é aleatória.
+- O nível de confiança de 95% é a **taxa de sucesso a longo prazo** do
+  nosso procedimento de "desenhar círculos".
+:::
+::::
+
+---
+
+## Construindo um IC para a média (amostras pequenas)
+
+$$\underbrace{\bar{x}}_{\text{média amostral}} \pm \underbrace{t_{\alpha/2}\,\frac{s}{\sqrt{n}}}_{\text{margem de erro da média}}$$
+
+# 5. O Teorema do Limite Central {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Teorema do Limite Central
+
+- Se o parâmetro estudado for a média, é preciso analisar a **distribuição
+  das médias amostrais**: ou seja, a forma como as frequências de médias
+  amostrais calculadas costumam se distribuir
+
+::: {.definicao}
+**Definição:** para amostras aleatórias simples $(X_1, \ldots, X_n)$,
+retiradas de uma população com média $\mu$ e variância $\sigma^2$ finita,
+a distribuição amostral da média $\bar{x}$ **aproxima-se, para $n$
+grande, de uma distribuição normal**, com média $\mu$ e variância
+$\sigma^2/n$.
+:::
+
+---
+
+## Quatro distribuições diferentes... convergem para a normal
+
+```{r}
+#| fig-width: 11
+#| fig-height: 6
+#| out-width: "88%"
+#| fig-alt: "Grade de histogramas de médias amostrais. Em linhas, quatro populações: uniforme, bimodal, assimétrica e muito assimétrica. Em colunas, tamanhos amostrais 1, 2, 5 e 30. Com n = 30, as três primeiras já têm forma de sino; a muito assimétrica ainda mostra uma cauda."
+fig_tlc(anota = TRUE)
+```
+
+::: {.ref}
+Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
+:::
+
+---
+
+## Usando simulações para entender o TLC
+
+- Vídeo introdutório: <https://vimeo.com/75089338>
+- Simulação interativa: <http://mfviz.com/central-limit/>
+
+::: {.nota}
+Vamos ver mais sobre distribuições estatísticas nas próximas aulas.
+:::
+
+# 6. ICs para médias e proporções {.secao}
+
+[Análise]{.ppdac-etapa .analise} → [Conclusão]{.ppdac-etapa .conclusao}
+
+---
+
+## Construindo um IC para a média (grandes amostras) {.smaller}
+
+- Usando a distribuição normal (escore-Z)
+- Para uma amostra grande (geralmente $n \geq 30$), **podemos usar a
+  distribuição normal para aproximar a distribuição das médias amostrais
+  (garantido pelo Teorema do Limite Central)**
+
+$$IC = \underbrace{\bar{x}}_{\text{média amostral}} \pm \Big(\underbrace{z_{\alpha/2}}_{\text{valor crítico}} \times \underbrace{\frac{s}{\sqrt{n}}}_{\text{erro padrão}}\Big)$$
+
+| Condições | Método |
+|---|---|
+| $\sigma$ desconhecido e população normalmente distribuída, ou $\sigma$ desconhecido e $n > 30$ | Use a distribuição *t* de Student: $E = t_{\alpha/2} \frac{s}{\sqrt{n}}$ |
+| $\sigma$ conhecido e população normalmente distribuída, ou $\sigma$ conhecido e $n > 30$ (na realidade, raramente é conhecido) | Use a distribuição normal (*z*): $E = z_{\alpha/2} \frac{\sigma}{\sqrt{n}}$ |
+
+::: {.ref}
+Escolha da distribuição correta: Triola 2023, *Introdução à estatística*.
+:::
+
+---
+
+## Exemplo biológico: nível de glicose em leões {.smaller}
+
+::: {.atividade}
+Um pesquisador coleta uma amostra aleatória de **40 leões** adultos em uma
+reserva e mede seus níveis de glicose no sangue. Os resultados foram:
+
+- Média da amostra ($\bar{x}$): 95 mg/dL
+- Desvio-padrão da amostra ($s$): 15 mg/dL
+
+Calcule o **intervalo de confiança de 95%** para o nível médio de glicose
+na população de leões.
+:::
+
+::: {.fragment}
+- Erro padrão: $15 / \sqrt{40} = 2{,}37$ mg/dL
+- Valor crítico: $z_{0{,}025} = 1{,}96$
+- Margem de erro: $1{,}96 \times 2{,}37 = 4{,}65$ mg/dL
+- Intervalo de confiança: $95 \pm 4{,}65 = [90{,}35;\ 99{,}65]$ mg/dL
+:::
+
+---
+
+## Interpretação
+
+::: {.definicao}
+*Estamos 95% confiantes de que o verdadeiro nível médio de glicose na
+população de leões adultos da reserva está entre 90,35 mg/dL e
+99,65 mg/dL.*
+:::
+
+---
+
+## 19 de 20 são 95%!
+
+```{r}
+#| fig-width: 9
+#| fig-height: 5.4
+#| out-width: "76%"
+#| fig-alt: "Vinte intervalos de confiança de 95%, cada um de uma amostra de 10 tilápias, com uma linha vertical em 250 g: 19 contêm o valor verdadeiro e um, em vermelho, não contém."
+fig_ic_repetidos()
+```
+
+::: {.ref}
+Inspirado em Triola 2023 e Gonick & Smith 2005, *The cartoon guide to
+statistics*; dados simulados.
+:::
+
+---
+
+## Atividade: entendendo o intervalo de confiança para dados contínuos {.smaller}
+
+::: {.atividade}
+Simulador: <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
+
+- Cada grupo vai "coletar uma amostra" clicando no botão do simulador. A
+  cada clique, o programa desenha uma linha que representa o IC de 95%
+  para aquela amostra.
+- Depois de ter uns 20–25 intervalos desenhados na tela, revele o valor
+  verdadeiro da média da população ($\mu = 250$ g), que aparecerá como uma
+  linha vertical.
+- Contem quantos dos intervalos desenhados (as "redes de pesca") realmente
+  "capturaram" o parâmetro verdadeiro (a linha vertical).
+:::
+
+::: {.nota}
+No simulador, use a média populacional "verdadeira" $\mu = 250$ g (o
+valor do lago) e um desvio-padrão de, por exemplo, 20 g.
+:::
+
+---
+
+## Construindo um IC para proporções (amostra grande)
+
+- Usando a distribuição normal (escore-Z)
+- Para uma amostra grande (geralmente $n\hat{p} \geq 10$ e
+  $n(1 - \hat{p}) \geq 10$), podemos usar a distribuição normal para
+  aproximar a distribuição das proporções amostrais
+
+$$IC = \hat{p} \pm \left(z_{\alpha/2} \times SE_{\hat{p}}\right), \qquad SE_{\hat{p}} = \sqrt{\frac{\hat{p}(1 - \hat{p})}{n}}$$
+
+---
+
+## Exemplo biológico: prevalência de um alelo {.smaller}
+
+::: {.atividade}
+Em uma amostra aleatória de **200 borboletas** de uma população, **30**
+possuem **um alelo** específico para resistência a um pesticida.
+
+Calcule o **intervalo de confiança de 99%** para a proporção populacional
+de borboletas com esse alelo.
+:::
+
+::: {.fragment}
+- Proporção amostral: $30/200 = 0{,}15$
+- Erro padrão: $\sqrt{0{,}15(1 - 0{,}15)/200} = 0{,}0252$
+- Valor crítico (99%): $z_{0{,}005} = 2{,}576$
+- Margem de erro: $2{,}576 \times 0{,}0252 = 0{,}0649$
+- Intervalo de confiança: $0{,}15 \pm 0{,}0649 = [0{,}0851;\ 0{,}2149]$
+:::
+
+---
+
+## Interpretação
+
+::: {.definicao}
+*Estamos 99% confiantes de que a verdadeira proporção de borboletas na
+população com o alelo de resistência está entre 8,51% e 21,49%.*
+:::
+
+---
+
+## Fatores que afetam a largura do IC {.smaller}
+
+```{r}
+#| fig-width: 12
+#| fig-height: 3.6
+#| fig-alt: "Três painéis de intervalos de confiança em torno de 250 g. Nível de confiança: o de 99% é mais largo que o de 95% e o de 90%. Tamanho da amostra: n = 10 dá o mais largo, n = 100 o mais estreito. Variabilidade: s = 40 g dá o mais largo, s = 10 g o mais estreito."
+fig_largura_ic()
+```
+
+- **Nível de confiança:** quanto maior o nível de confiança, mais largo o
+  intervalo (precisamos de uma "rede" maior para ter mais certeza de
+  capturar o alvo)
+- **Tamanho da amostra ($n$):** quanto maior o tamanho da amostra, menor o
+  erro padrão e mais estreito o intervalo (mais informação leva a maior
+  precisão)
+  - O fato de o IC ficar menor não significa que contenha o parâmetro.
+    Conter o parâmetro é uma probabilidade
+- **Variabilidade da amostra ($s$ ou $\hat{p}(1 - \hat{p})$):** maior
+  variabilidade na amostra leva a um erro padrão maior e a um intervalo
+  mais amplo
+
+---
+
+## Atividade: o cenário mendeliano (5 minutos) {.smaller}
+
+::: {.atividade}
+Gregor Mendel cruzou plantas de ervilha e previu que, no cruzamento de
+heterozigotos, a proporção de descendentes com a semente rugosa (traço
+recessivo) deveria ser de **25%** ($p = 0{,}25$).
+
+Assim como no nosso lago de peixes, vamos assumir que nós somos a
+"Natureza" e sabemos esse valor verdadeiro. Mas um pesquisador que repete
+o experimento hoje não sabe disso. Ele só tem acesso à sua amostra.
+
+Simulador: <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
+
+- Um grupo vai "plantar 100 sementes" clicando no botão "Draw Sample(s)".
+  O simulador mostra o resultado daquela amostra (ex.: 28 sementes rugosas
+  em 100, ou seja, $\hat{p} = 0{,}28$).
+- Cliquem várias vezes (ou digitem "25" ou "100" e cliquem uma vez) para
+  simular vários pesquisadores repetindo o experimento.
+- Quantos dos nossos intervalos de confiança conseguiram "capturar" a
+  proporção verdadeira prevista por Mendel?
+:::
+
+::: {.nota}
+No simulador ("Simulating Confidence Intervals for a Proportion"), use
+$p = 0{,}25$ (sem mostrar aos alunos) e $n = 100$.
+:::
+
+---
+
+## O cenário mendeliano: o resultado
+
+```{r}
+#| fig-width: 9
+#| fig-height: 5.4
+#| out-width: "74%"
+#| fig-alt: "Vinte e cinco intervalos de confiança de 95% para a proporção de sementes rugosas, cada um de um experimento simulado com 100 sementes, e uma linha vertical em 25%: 21 contêm o valor de Mendel e 4, em vermelho, não contêm."
+fig_ic_proporcao()
+```
+
+::: {.definicao}
+A lógica é idêntica à da média. Não importa se estamos estimando um peso
+médio ou uma proporção de sucesso: o intervalo de confiança é a nossa
+"rede de pesca" para o parâmetro populacional verdadeiro. E **o nível de
+confiança nos diz quão confiável é o nosso método de construção da rede**.
+:::
+
+---
+
+## Recapitulando
+
+- **Estimativa pontual:** nossa melhor estimativa/suposição para um
+  parâmetro populacional.
+- **Erro padrão:** mede a variabilidade das nossas estimativas amostrais.
+- **Estimativa intervalar (IC):** uma faixa de valores que provavelmente
+  contém o parâmetro populacional verdadeiro, com um nível de confiança
+  associado.
+- O IC nos dá uma ideia da **precisão** da nossa estimativa pontual.
+
+---
+
+## Kahoot! {.secao}
+
+[Kahoot: Intervalo de confiança](https://create.kahoot.it/details/5a154caf-a064-4482-9305-3970ebf3bdc6)
+
+Para revisar depois: [Kahoot: Estimativa pontual e intervalar](https://create.kahoot.it/details/d308b304-73c3-45ee-80ff-df00e7760a7a)
+
+---
+
+## Atividade de hoje (parte da lista de exercícios)
+
+::: {.atividade}
+- Ler o item 11.6 do cap. 11 de Morettin & Bussab (PDF no Moodle)
+- Fazer os exercícios 14 a 16 e 20
+:::
+
+---
+
+## Referências {.smaller}
+
+::: {.nota}
+- Tukey, J.W. 1962. [The future of data analysis](https://doi.org/10.1214/aoms/1177704711). *The Annals of Mathematical Statistics* 33:1–67.
+- Bussab, W.O. & Morettin, P.A. 2023. *Estatística básica*.
+- Gonick, L. & Smith, W. 2005. *The cartoon guide to statistics*.
+- Gotelli, N.J. & Ellison, A.M. 2004. *A primer of ecological statistics*.
+- Triola, M.F. 2023. *Introdução à estatística*.
+- Vieira, S. 2022. *Introdução à bioestatística*.
+- Simulador de intervalos de confiança: Rossman/Chance, <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
+:::

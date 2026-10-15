@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1, 3, 4 e 5 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3, 4, 5 e 6 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -35,7 +35,7 @@ mudar os parâmetros e ver o que acontece.
 | 3 | `aula-03-organizacao-dados` | **`slides/a03.qmd` ✔** | `Aula 4 - organizacao e visualizacao dados.pptx` |
 | 4 | `aula-04-tendencia-dispersao` | **`slides/a04.qmd` ✔** | `Aula 3 - medidas tendencia central.pptx` |
 | 5 | `aula-05-probabilidade` | **`slides/a05.qmd` ✔** | `Aula 5 - Probabilidade e distribuições.pptx` |
-| 6 | `aula-06-estimativas` | PDF | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
+| 6 | `aula-06-estimativas` | **`slides/a06.qmd` ✔** | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
 | 7 | `aula-07-teste-hipoteses` | PDF | `Aula 7 - Teste de hipótese.pptx` |
 | 8 | `aula-08-modelos-lineares-teste-t` | PDF | `Aula 8 - Teste t.pptx` |
 | 9 | `aula-09-regressao-correlacao` | PDF | `Aula 9 - Regressão linear.pptx` |
@@ -46,11 +46,10 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 6**
-(original: `Aula 6 - Estimativas.pptx`; há também
-`Aula 6 - Distribuicoes estatisticas.pptx`, mais antigo), que tem os
-Kahoots "Intervalo de confiança" e "Estimativa pontual e intervalar". Há a
-gravação `Aula Estimativa pontual.mp3` na pasta.
+As conversões seguem a sequência do curso: a próxima é a **Aula 7**
+(original: `Aula 7 - Teste de hipótese.pptx`), que tem o Kahoot "Teste de
+hipótese" e enquetes do Slido. Há a gravação da aula de teste de hipótese
+(`.mp3`) na pasta.
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -162,7 +161,9 @@ e `author: "Diogo B. Provete"`. A data vem do `index.qmd` da aula.
    dizendo que todas as figuras foram geradas em R com dados simulados e
    apontando para `R/` no GitHub.
 3. `## Onde estamos no ciclo PPDAC`, com `ppdac_plot(destaque = ...)`.
-4. Cada bloco abre com `# N. Título {.secao}` seguido do selo da etapa,
+4. Cada bloco abre com `# N. Título {.secao}` seguido do selo da etapa.
+   **Não ponha `---` antes de um `# `**: o título de nível 1 já abre um
+   slide novo, e o `---` gera um slide em branco antes dele. O selo vem
    `[Plano]{.ppdac-etapa .plano}`. Duas etapas viram dois selos:
    `[Plano]{.ppdac-etapa .plano} → [Dados]{.ppdac-etapa .dados}`. As classes
    de etapa são `.problema`, `.plano`, `.dados`, `.analise` e `.conclusao`.
