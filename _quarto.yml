@@ -34,8 +34,14 @@ website:
         text: Comece aqui
       - href: programa.qmd
         text: Programa
-      - href: exercicios-swirl.qmd
-        text: Exercícios no R
+      - text: Estudar
+        menu:
+          - href: exercicios-swirl.qmd
+            text: Exercícios no R
+          - href: revisao.qmd
+            text: Revisão e Kahoots
+          - href: glossario.qmd
+            text: Glossário
     right:
       - icon: github
         href: "https://github.com/diogoprov/bioestatistica"

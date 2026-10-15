@@ -52,6 +52,75 @@ Cada aula indica, com um selo colorido, em que etapa do ciclo ela vive:
 [Dados]{.ppdac-etapa .dados} [Análise]{.ppdac-etapa .analise}
 [Conclusão]{.ppdac-etapa .conclusao}. As cores são as mesmas nos slides.
 
+### A trilha das aulas pelo ciclo
+
+Clique numa aula para ir direto a ela. Algumas aulas aparecem em mais de
+uma etapa.
+
+::: {.trilha-ppdac}
+::: {.trilha-etapa .problema}
+[Problema]{.ppdac-etapa .problema}
+
+*o que eu quero saber?*
+
+- [1 · Introdução](aula-01-introducao/index.qmd)
+- [2 · Amostragem e delineamento](aula-02-amostragem/index.qmd)
+- [7 · Teste de hipóteses](aula-07-teste-hipoteses/index.qmd)
+:::
+
+::: {.trilha-etapa .plano}
+[Plano]{.ppdac-etapa .plano}
+
+*que dados, e como coletar?*
+
+- [1 · Introdução](aula-01-introducao/index.qmd)
+- [2 · Amostragem e delineamento](aula-02-amostragem/index.qmd)
+- [7 · Teste de hipóteses](aula-07-teste-hipoteses/index.qmd)
+:::
+
+::: {.trilha-etapa .dados}
+[Dados]{.ppdac-etapa .dados}
+
+*o que eu de fato tenho?*
+
+- [1 · Introdução](aula-01-introducao/index.qmd)
+- [3 · Organização dos dados](aula-03-organizacao-dados/index.qmd)
+:::
+
+::: {.trilha-etapa .analise}
+[Análise]{.ppdac-etapa .analise}
+
+*que modelo corresponde?*
+
+- [1 · Introdução](aula-01-introducao/index.qmd)
+- [3 · Organização dos dados](aula-03-organizacao-dados/index.qmd)
+- [4 · Tendência central e dispersão](aula-04-tendencia-dispersao/index.qmd)
+- [5 · Probabilidade](aula-05-probabilidade/index.qmd)
+- [6 · Estimativas](aula-06-estimativas/index.qmd)
+- [7 · Teste de hipóteses](aula-07-teste-hipoteses/index.qmd)
+- [8 · Teste *t*](aula-08-modelos-lineares-teste-t/index.qmd)
+- [9 · Regressão e correlação](aula-09-regressao-correlacao/index.qmd)
+- [10 · Qui-quadrado](aula-10-qui-quadrado/index.qmd)
+- [11 · ANOVA](aula-11-anova/index.qmd)
+:::
+
+::: {.trilha-etapa .conclusao}
+[Conclusão]{.ppdac-etapa .conclusao}
+
+*o que posso afirmar?*
+
+- [1 · Introdução](aula-01-introducao/index.qmd)
+- [5 · Probabilidade](aula-05-probabilidade/index.qmd)
+- [6 · Estimativas](aula-06-estimativas/index.qmd)
+- [7 · Teste de hipóteses](aula-07-teste-hipoteses/index.qmd)
+- [8 · Teste *t*](aula-08-modelos-lineares-teste-t/index.qmd)
+- [9 · Regressão e correlação](aula-09-regressao-correlacao/index.qmd)
+- [10 · Qui-quadrado](aula-10-qui-quadrado/index.qmd)
+- [11 · ANOVA](aula-11-anova/index.qmd)
+:::
+
+:::
+
 ## Cronograma
 
 Cada cartão abre a página da aula, com os slides, as atividades, as
@@ -83,12 +152,15 @@ atividades em grupo com dados coletados em sala, Kahoot e Slido. O
 programa completo, com ementa, avaliação e bibliografia, está no
 [programa](programa.qmd).
 
-## Exercícios no R
+## Para estudar fora da sala
 
 Para praticar fora da sala, cinco lições no [swirl](exercicios-swirl.qmd)
 acompanham o curso: você digita os comandos no próprio console do R e
 recebe correção a cada resposta. A primeira parte do zero; não é preciso
 saber R antes.
+
+Para revisar antes das provas, veja a página de [revisão](revisao.qmd)
+(resumos de cada aula e Kahoots) e o [glossário](glossario.qmd).
 
 ## Contato
 

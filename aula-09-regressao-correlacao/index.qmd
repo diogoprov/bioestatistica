@@ -25,6 +25,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 repositório. O exemplo usa os dados originais de Galton (1886), de domínio
 público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data).
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. A **correlação** *r* mede a força da associação linear, de −1 a 1, e não diz nada sobre causa.
+2. A **regressão** ajusta *y* = α + β*x* por mínimos quadrados; β é a mudança média em *y* para cada unidade de *x*.
+3. **R²** é a fração da variação de *y* explicada pelo modelo; olhe os resíduos antes de interpretar.
+
+**Erro comum:** confiar no valor de *r* sem olhar o gráfico (o quarteto de Anscombe) ou ler correlação como causa.
+:::
+
 ## Conteúdo
 
 1. **Um pouco de história**: Galton, Pearson e a regressão à média.
@@ -57,6 +67,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de os quatro padrões de correlação está em
+[`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula09.R")
+fig_correlacoes(n = 10)
+```
+
+Diminua `n` para 10 e troque `seed`. Quanto o *r* varia em amostras pequenas?
 
 ## Recursos externos
 

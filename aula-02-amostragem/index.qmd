@@ -25,6 +25,16 @@ O código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório.
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. A pergunta vem primeiro: hipótese científica → predição → hipótese estatística.
+2. **Réplica** é a unidade independente que recebe o tratamento; medir várias vezes a mesma unidade não é replicar.
+3. Só a **aleatorização** protege contra o confundimento; em estudos observacionais, cuidado ao falar de causa.
+
+**Erro comum:** pseudorréplica: contar como réplicas independentes os girinos de um mesmo aquário.
+:::
+
 ## Conteúdo
 
 1. **Tudo começa com uma boa pergunta**: pergunta, hipótese científica e
@@ -60,6 +70,20 @@ simulada desta aula, o estudo com confundimento e a pseudorréplica. Ela é a
 vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a figura da mesma diferença real com três tamanhos de amostra está em
+[`R/aula02_pergunta.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula02_pergunta.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula02_pergunta.R")
+fig_tamanho_amostra(ns = c(5, 20, 100), dif = 0.5)
+```
+
+Diminua `dif` (a diferença real entre os grupos) e aumente `ns`. Quantas réplicas você precisa para enxergar uma diferença pequena?
 
 ---
 

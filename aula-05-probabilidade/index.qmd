@@ -25,6 +25,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 repositório. Os retratos de Bayes, Gauss e Gosset são de domínio público,
 via Wikimedia Commons.
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. Probabilidade quantifica a incerteza; para eventos independentes, P(A e B) = P(A) · P(B).
+2. Probabilidade condicional muda o cenário: P(doente | positivo) não é P(positivo | doente).
+3. Binomial (sucessos em *n* tentativas), Poisson (contagens de eventos raros) e normal (medidas contínuas) descrevem boa parte dos dados biológicos.
+
+**Erro comum:** esquecer a prevalência e confundir P(positivo | doente) com P(doente | positivo), como em "O teste que mente".
+:::
+
 ## Conteúdo
 
 O fio condutor é a vida de um girino: sobreviver, comer, crescer.
@@ -66,6 +76,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a árvore de "O teste que mente" está em
+[`R/aula05.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula05.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula05.R")
+fig_arvore_teste(prev = 0.2)
+```
+
+Aumente `prev` (a prevalência da doença) de 0,02 para 0,2. Quanto passa a valer um resultado positivo?
 
 ## Recursos externos
 

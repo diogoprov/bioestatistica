@@ -26,6 +26,16 @@ As tabelas e figuras dos slides foram refeitas em R com dados simulados
 repositório. As imagens de Florence Nightingale são de domínio público,
 via Wikimedia Commons.
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. Planilha arrumada: **uma observação por linha, uma variável por coluna**.
+2. Explore os dados com gráficos antes de qualquer teste.
+3. Escolha o gráfico pelo tipo de variável e pela comparação que interessa; lemos posição numa escala comum com mais precisão do que ângulo ou área.
+
+**Erro comum:** o gráfico de "dinamite" (barra com barra de erro), que esconde a distribuição dos dados.
+:::
+
 ## Conteúdo
 
 1. **Análise exploratória e planilhas**: uma observação por linha, uma
@@ -58,6 +68,20 @@ Pratique no console do R com a lição **Primeiros Passos em Bioestatística** (
 confere cada resposta.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de os histogramas com larguras de classe diferentes está em
+[`R/aula03.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula03.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula03.R")
+fig_histograma_larguras(larguras = c(1, 3, 15))
+```
+
+Mude `larguras`. Com classes largas demais, que detalhe da distribuição some?
 
 ## Recursos externos
 

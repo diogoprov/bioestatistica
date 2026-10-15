@@ -25,6 +25,16 @@ com dados simulados; o código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório.
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. Média, mediana e moda descrevem o centro; a **mediana** resiste a valores extremos.
+2. Variância e desvio-padrão medem o espalhamento em torno da média; o **coeficiente de variação** compara a variabilidade entre escalas diferentes.
+3. Na variância amostral, divida por *n* − 1 (os graus de liberdade).
+
+**Erro comum:** resumir os dados só pela média, sem nenhuma medida de dispersão (o dilema das capivaras).
+:::
+
 ## Conteúdo
 
 1. **O dilema da nutricionista de capivaras**: dois grupos com a mesma
@@ -52,6 +62,20 @@ Pratique no console do R com a lição **Primeiros Passos em Bioestatística**: 
 confere cada resposta.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a figura dos desvios em relação à média está em
+[`R/aula04.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula04.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula04.R")
+fig_desvios(x = c(3, 6, 5, 7, 30))
+```
+
+Troque um valor de `x` por um valor extremo, como 30. O que acontece com a média e com os desvios?
 
 ---
 

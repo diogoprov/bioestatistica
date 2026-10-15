@@ -1,0 +1,217 @@
+---
+title: "Glossário"
+subtitle: "Os termos do curso, cada um com a aula onde aparece"
+toc: true
+toc-depth: 2
+---
+
+Definições curtas, para consulta rápida. Para entender um termo de verdade,
+volte à aula indicada.
+
+## A
+
+**Aleatorização** · [Aula 2](aula-02-amostragem/index.qmd)
+: Sorteio de quais unidades recebem cada tratamento. Distribui ao acaso as diferenças que não controlamos e protege contra o confundimento.
+
+**Amostra** · [Aula 1](aula-01-introducao/index.qmd)
+: Parte da população que de fato medimos. Serve para tirar conclusões sobre a população inteira.
+
+**Amplitude** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Diferença entre o maior e o menor valor. Fácil de calcular, mas depende só dos dois extremos.
+
+**ANCOVA** · [Aula 11](aula-11-anova/index.qmd)
+: Análise de covariância: modelo linear com um fator (grupos) e uma covariável contínua.
+
+**ANOVA** · [Aula 11](aula-11-anova/index.qmd)
+: Análise de variância: compara as médias de três ou mais grupos dividindo a variação total em variação entre grupos e dentro dos grupos.
+
+**Assimetria** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Distribuição com uma cauda mais longa que a outra. Na assimetria à direita, a média fica maior que a mediana.
+
+## C
+
+**Coeficiente de variação (CV)** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Desvio-padrão dividido pela média, em porcentagem. Compara a variabilidade de variáveis com escalas ou unidades diferentes.
+
+**Confundimento** · [Aula 2](aula-02-amostragem/index.qmd)
+: Quando uma terceira variável muda junto com o fator estudado, e não dá para separar o efeito de um do efeito da outra.
+
+**Correlação de Pearson (*r*)** · [Aula 9](aula-09-regressao-correlacao/index.qmd)
+: Mede a força e o sentido da associação linear entre duas variáveis quantitativas, de −1 a 1. Correlação não implica causa.
+
+## D
+
+**Delineamento** · [Aula 2](aula-02-amostragem/index.qmd)
+: O plano de coleta: quantas réplicas, como escolher as unidades e como distribuir os tratamentos entre elas.
+
+**Desvio-padrão** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Raiz quadrada da variância. Mede o espalhamento típico dos dados em torno da média, na mesma unidade da variável.
+
+**Distribuição amostral** · [Aula 6](aula-06-estimativas/index.qmd)
+: Distribuição dos valores de uma estatística (como a média) em todas as amostras possíveis de mesmo tamanho.
+
+**Distribuição binomial** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Número de sucessos em *n* tentativas independentes, cada uma com a mesma probabilidade *p* de sucesso.
+
+**Distribuição de Poisson** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Número de eventos num intervalo de tempo ou espaço, quando os eventos são independentes e ocorrem a uma taxa média constante λ.
+
+**Distribuição normal** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Distribuição contínua simétrica em forma de sino, definida pela média μ e pelo desvio-padrão σ.
+
+## E
+
+**Erro padrão** · [Aula 6](aula-06-estimativas/index.qmd)
+: Desvio-padrão da distribuição amostral de uma estatística. Para a média, *s* / √*n*.
+
+**Erro tipo I** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Rejeitar H₀ quando ela é verdadeira (um falso positivo). Sua probabilidade é α.
+
+**Erro tipo II** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Não rejeitar H₀ quando ela é falsa (um falso negativo). Sua probabilidade é β.
+
+**Escore-Z** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Quantos desvios-padrão um valor está acima ou abaixo da média: *z* = (*x* − μ) / σ.
+
+**Estatística** · [Aula 1](aula-01-introducao/index.qmd)
+: Medida calculada na amostra, como a média amostral. Estima o parâmetro correspondente da população.
+
+**Estimador** · [Aula 6](aula-06-estimativas/index.qmd)
+: A regra (fórmula) usada para estimar um parâmetro a partir da amostra; a estimativa é o valor que ela produz numa amostra concreta.
+
+## G
+
+**Graus de liberdade** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Número de valores livres para variar depois de estimar outros parâmetros. Na variância amostral, *n* − 1.
+
+## H
+
+**Hipótese alternativa (H₁)** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Afirma que existe efeito ou diferença. É o que sustentamos quando rejeitamos H₀.
+
+**Hipótese nula (H₀)** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Afirma que não há efeito ou diferença. É a hipótese testada.
+
+## I
+
+**Interação** · [Aula 11](aula-11-anova/index.qmd)
+: Quando o efeito de um fator depende do nível do outro fator. Se for significativa, os efeitos principais não podem ser interpretados isoladamente.
+
+**Intervalo de confiança** · [Aula 6](aula-06-estimativas/index.qmd)
+: Faixa de valores calculada a partir da amostra. Um IC de 95% é produzido por um método que contém o parâmetro em 95% das amostras.
+
+## L
+
+**Lei dos Grandes Números** · [Aula 6](aula-06-estimativas/index.qmd)
+: Quanto maior a amostra, mais a média amostral se aproxima da média da população.
+
+## M
+
+**Média** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Soma dos valores dividida pelo número de valores. Sensível a valores extremos.
+
+**Mediana** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Valor do meio dos dados ordenados. Resiste a valores extremos.
+
+**Mínimos quadrados** · [Aula 9](aula-09-regressao-correlacao/index.qmd)
+: Método que escolhe a reta que minimiza a soma dos quadrados dos resíduos.
+
+**Moda** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Valor mais frequente nos dados.
+
+**Modelo linear** · [Aula 8](aula-08-modelos-lineares-teste-t/index.qmd)
+: Modelo do tipo dados = modelo + erro, *y* = α + β*x* + ε. Teste *t*, ANOVA e regressão são casos particulares.
+
+## N
+
+**Nível de significância (α)** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Probabilidade máxima de erro tipo I que aceitamos, escolhida antes do teste (em geral 0,05).
+
+## P
+
+**Parâmetro** · [Aula 1](aula-01-introducao/index.qmd)
+: Medida que descreve a população, como a média populacional μ. Quase nunca é conhecido.
+
+**Poder do teste** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Probabilidade de rejeitar H₀ quando ela é falsa (1 − β). Cresce com o tamanho da amostra e do efeito.
+
+**População** · [Aula 1](aula-01-introducao/index.qmd)
+: Conjunto de todos os elementos sobre os quais queremos tirar conclusões.
+
+**Probabilidade condicional** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Probabilidade de um evento dado que outro ocorreu, P(A | B).
+
+**Pseudorréplica** · [Aula 2](aula-02-amostragem/index.qmd)
+: Tratar como réplicas independentes medidas que não são independentes, como vários girinos do mesmo aquário. Infla os falsos positivos.
+
+## Q
+
+**Quartis** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Valores que dividem os dados ordenados em quatro partes iguais. A distância entre o 1º e o 3º quartil é a amplitude interquartil.
+
+**Qui-quadrado (χ²)** · [Aula 10](aula-10-qui-quadrado/index.qmd)
+: Teste que compara contagens observadas com contagens esperadas, em testes de aderência e de independência.
+
+## R
+
+**R² (coeficiente de determinação)** · [Aula 9](aula-09-regressao-correlacao/index.qmd)
+: Fração da variação da variável resposta explicada pelo modelo, de 0 a 1.
+
+**Regressão linear simples** · [Aula 9](aula-09-regressao-correlacao/index.qmd)
+: Modelo que descreve como a média de *y* muda com *x* por meio de uma reta, *y* = α + β*x* + ε.
+
+**Réplica** · [Aula 2](aula-02-amostragem/index.qmd)
+: Unidade independente que recebe um tratamento. Medir várias vezes a mesma unidade não aumenta o número de réplicas.
+
+**Resíduo** · [Aula 9](aula-09-regressao-correlacao/index.qmd)
+: Diferença entre o valor observado e o valor previsto pelo modelo.
+
+## T
+
+**Teorema do Limite Central** · [Aula 6](aula-06-estimativas/index.qmd)
+: Para amostras grandes, a média amostral tem distribuição aproximadamente normal, qualquer que seja a forma da distribuição dos dados.
+
+**Teste exato de Fisher** · [Aula 10](aula-10-qui-quadrado/index.qmd)
+: Alternativa ao qui-quadrado para tabelas 2 × 2 com frequências esperadas pequenas.
+
+**Teste F** · [Aula 11](aula-11-anova/index.qmd)
+: Na ANOVA, razão entre a variação entre grupos e a variação dentro dos grupos (QM entre / QM dentro).
+
+**Teste post-hoc** · [Aula 11](aula-11-anova/index.qmd)
+: Comparação entre pares de grupos depois de uma ANOVA significativa, como o teste de Tukey, controlando o erro tipo I.
+
+**Teste *t*** · [Aula 8](aula-08-modelos-lineares-teste-t/index.qmd)
+: Compara uma média com um valor ou duas médias entre si, para amostras independentes ou pareadas.
+
+## U
+
+**Unidade amostral** · [Aula 2](aula-02-amostragem/index.qmd)
+: A menor unidade independente sobre a qual se faz a medida, como uma parcela, um indivíduo ou uma lagoa.
+
+## V
+
+**Valor de *P*** · [Aula 7](aula-07-teste-hipoteses/index.qmd)
+: Probabilidade de obter um resultado tão ou mais extremo que o observado, supondo H₀ verdadeira.
+
+**Variância** · [Aula 4](aula-04-tendencia-dispersao/index.qmd)
+: Média dos quadrados dos desvios em relação à média (na amostra, dividida por *n* − 1).
+
+**Variável aleatória** · [Aula 5](aula-05-probabilidade/index.qmd)
+: Variável cujo valor depende do acaso. Pode ser discreta (contagens) ou contínua (medidas).
+
+**Variável *dummy*** · [Aula 8](aula-08-modelos-lineares-teste-t/index.qmd)
+: Variável 0/1 que representa um grupo num modelo linear.
+
+**Variável qualitativa** · [Aula 1](aula-01-introducao/index.qmd)
+: Expressa categorias: nominal (sem ordem, como espécie) ou ordinal (com ordem, como estágio de desenvolvimento).
+
+**Variável quantitativa** · [Aula 1](aula-01-introducao/index.qmd)
+: Expressa números: discreta (contagens) ou contínua (medidas).
+
+## Para ir além
+
+- Assis, J.P. & Sousa, R.P. [*Glossário de estatística*](https://livraria.ufersa.edu.br/wp-content/uploads/sites/165/2019/07/Glossario-de-Estatistica_2019-1.pdf). Mossoró: EdUFERSA (PDF, acesso aberto).
+
+---
+
+*Volta para o [índice do curso](index.qmd).*

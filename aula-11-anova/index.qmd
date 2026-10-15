@@ -26,6 +26,16 @@ As figuras dos slides foram geradas em R; o código está na pasta
 repositório. O retrato de Fisher é de domínio público, via Wikimedia
 Commons.
 
+## Em 3 minutos
+
+::: {.callout-note .em-3-minutos appearance="simple" icon="false"}
+1. A **ANOVA** compara três ou mais médias num único teste, sem inflar o erro tipo I com vários testes *t*.
+2. A variação total se divide em **entre grupos** e **dentro dos grupos**; *F* = QM entre / QM dentro.
+3. *F* significativo diz que alguma média difere; os testes **post-hoc** (como Tukey) dizem quais.
+
+**Erro comum:** interpretar os efeitos principais de uma ANOVA fatorial ignorando uma interação significativa.
+:::
+
 ## Conteúdo
 
 1. **Por que ANOVA?** Fisher e o problema de comparar mais de dois grupos.
@@ -59,6 +69,20 @@ confere cada resposta. Se ainda não fez a lição Primeiros Passos em
 Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
+## Brinque com o código
+
+O código de a variação entre e dentro dos grupos está em
+[`R/aula11.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula11.R).
+Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
+rode no console do R:
+
+```r
+source("R/aula11.R")
+fig_variacao(n = 30)
+```
+
+Aumente `n` e troque `seed`. Por que a mesma diferença entre médias fica mais convincente?
 
 ## Recursos externos
 
