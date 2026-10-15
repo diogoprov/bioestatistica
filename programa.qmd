@@ -54,7 +54,7 @@ Quizzes, prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br).
 - Quinn, G.P. & Keough, M.J. 2023. *Experimental Design and Data Analysis for
   Biologists.* 2ª ed. Cambridge University Press.
 - Sokal, R. & Rohlf, J. 1994. *Biometry.* 3ª ed. New York: WH Freeman.
-- Triola, M.F. *Introdução à estatística.* <!-- TODO: ano e edição -->
+- Triola, M.F. 2024. *Introdução à estatística.* 14ª ed. Rio de Janeiro: LTC.
 - Vieira, S. 2018. *Estatística básica.* 2ª ed. São Paulo: Cengage Learning.
 - Vieira, S. 2010. *Bioestatística: tópicos avançados.* 3ª ed. Rio de Janeiro:
   Elsevier.

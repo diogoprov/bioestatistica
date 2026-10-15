@@ -3,6 +3,8 @@ title: "Aula 06 — Estimativa pontual e intervalar"
 order: 6
 date: "2025-10-02"
 description: "Estimativa pontual, Lei dos Grandes Números e erro padrão; Teorema do Limite Central; intervalos de confiança."
+gancho: "Cinco redes no mesmo lago, cinco médias diferentes: qual delas está certa?"
+etapas: [analise, conclusao]
 ---
 
 ::: {.aula-meta}

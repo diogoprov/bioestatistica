@@ -3,6 +3,8 @@ title: "Aula 02 — Princípios de amostragem e delineamento experimental"
 order: 2
 date: "2025-08-14"
 description: "Da pergunta à hipótese; réplica e pseudorréplica; técnicas de amostragem e delineamentos experimentais clássicos."
+gancho: "Medir 50 girinos do mesmo aquário é ter 50 réplicas?"
+etapas: [problema, plano]
 ---
 
 ::: {.aula-meta}

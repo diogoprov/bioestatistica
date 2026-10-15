@@ -5,13 +5,9 @@ toc: true
 listing:
   - id: cronograma
     contents: "aula-*/index.qmd"
-    type: table
+    template: _cronograma.ejs
     sort: "order asc"
-    fields: [order, title, description]
-    field-display-names:
-      order: "Aula"
-      title: "Tópico"
-      description: "Conteúdo"
+    fields: [order, title, description, gancho, etapas]
     sort-ui: false
     filter-ui: false
     page-size: 20
@@ -22,7 +18,8 @@ Disciplina obrigatória de **Bioestatística** (68 h) do bacharelado e da
 licenciatura em Ciências Biológicas da UFMS. Esta página reúne os
 **materiais públicos** do curso (slides, exercícios no R, leituras e
 vídeos), abertos a qualquer pessoa. **Para alunos matriculados:** quizzes,
-prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br).
+prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br). Primeira vez
+aqui? Veja o **[Comece aqui](comece-aqui.qmd)**.
 :::
 
 ## O curso em uma frase
@@ -56,6 +53,10 @@ Cada aula indica, com um selo colorido, em que etapa do ciclo ela vive:
 [Conclusão]{.ppdac-etapa .conclusao}. As cores são as mesmas nos slides.
 
 ## Cronograma
+
+Cada cartão abre a página da aula, com os slides, as atividades, as
+leituras e os exercícios. A pergunta em destaque é o problema que a aula
+ajuda a responder.
 
 ::: {#cronograma}
 :::

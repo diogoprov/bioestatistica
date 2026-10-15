@@ -110,3 +110,72 @@ div.callout { border-radius: 4px; }
 /* A data de cada aula já aparece na faixa .aula-meta; o bloco
    "Data de publicação" do título seria repetido. */
 .quarto-title-meta { display: none !important; }
+
+/* --- Cartões do cronograma (template _cronograma.ejs) --- */
+.cartoes-aulas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+.cartao-aula {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bsl-bg-card);
+  border: 1px solid var(--bsl-border);
+  border-radius: 6px;
+  padding: .85rem 1rem 1rem;
+  color: #2d3748;
+  text-decoration: none;
+  transition: border-color .15s, box-shadow .15s, transform .15s;
+}
+.cartao-aula:hover, .cartao-aula:focus-within {
+  border-color: var(--bsl-accent);
+  box-shadow: 0 3px 10px rgba(20, 79, 100, .12);
+  transform: translateY(-2px);
+}
+/* O link do título cobre o cartão inteiro. */
+a.cartao-link { color: inherit; }
+a.cartao-link::after { content: ""; position: absolute; inset: 0; }
+a.cartao-link:hover { text-decoration: none; }
+.cartao-topo {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .3rem;
+  margin-bottom: .45rem;
+}
+.cartao-numero {
+  font-size: .8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .4px;
+  color: var(--bsl-muted);
+}
+/* o leitor de markdown embrulha os spans num <p> */
+.cartao-topo > p { display: contents; }
+.cartao-etapas { display: flex; flex-wrap: wrap; gap: .2rem; }
+.cartao-etapas .ppdac-etapa { font-size: .68rem; padding: .05rem .4rem; }
+.cartao-titulo {
+  font-weight: 600;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  color: var(--bsl-accent-dark);
+  margin-bottom: .45rem;
+}
+.cartao-gancho {
+  font-style: italic;
+  font-size: .95rem;
+  line-height: 1.45;
+  border-left: 3px solid var(--bsl-accent);
+  padding-left: .6rem;
+  margin-bottom: .55rem;
+}
+.cartao-conteudo {
+  font-size: .85rem;
+  line-height: 1.45;
+  color: #4a5568;
+  margin-bottom: 0;
+}

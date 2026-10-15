@@ -3,6 +3,8 @@ title: "Aula 07 — Teste de hipóteses"
 order: 7
 date: "2025-10-16"
 description: "Hipóteses nula e alternativa; nível de significância e valor de P; erros tipo I e II e poder do teste."
+gancho: "O que o valor de P diz, e o que ele não diz?"
+etapas: [problema, plano, analise, conclusao]
 ---
 
 ::: {.aula-meta}
