@@ -9,9 +9,35 @@ description: "Medidas de tendência central e dispersão"
 **Data:** 28 de agosto de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Como resumir um conjunto de dados com poucos números: onde fica o centro
+(média, mediana e moda) e quanto os dados se espalham em torno dele
+(amplitude, quartis, variância, desvio-padrão e coeficiente de variação).
+Na linguagem do ciclo PPDAC, esta aula é o primeiro passo da **Análise**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-04-tendencia-dispersao.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a04.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R, com os dados das atividades ou
+com dados simulados; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório.
+
+## Conteúdo
+
+1. **O dilema da nutricionista de capivaras**: dois grupos com a mesma
+   média e variabilidades diferentes.
+2. **Medidas de tendência central**: média, mediana e moda, e a atividade
+   do ninho "mutante".
+3. **Medidas de variabilidade**: amplitude, quartis, desvios, variância,
+   graus de liberdade, desvio-padrão e coeficiente de variação, e a
+   atividade "Qual remédio é melhor?".
+4. **A forma das distribuições**: simetria, assimetria e número de modas.
+
+## Atividades
+
+- Enquetes e dúvidas no [Slido da turma](https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX).
+- [Kahoot: Revisão média e variância](https://create.kahoot.it/details/44148d47-cfae-4aaf-af68-81710e641a21).
 
 ## Leituras recomendadas
 

@@ -1,0 +1,958 @@
+---
+title: "Medidas de tendência central e de dispersão"
+subtitle: "Aula 4 · Bioestatística · Ciências Biológicas/UFMS"
+author: "Diogo B. Provete"
+date: 2025-08-28
+date-format: "D [de] MMMM [de] YYYY"
+lang: pt
+format:
+  revealjs:
+    theme: [default, theme.scss]
+    slide-number: c/t
+    show-slide-number: all
+    auto-stretch: false
+    preview-links: auto
+    history: false
+    footer: "Bioestatística · Ciências Biológicas/UFMS"
+    code-overflow: wrap
+    fig-align: center
+    width: 1250
+    height: 750
+knitr:
+  opts_chunk:
+    dev.args:
+      bg: "#faf7f0"
+
+execute:
+  echo: false
+  warning: false
+  message: false
+  fig-width: 10
+  fig-height: 4.4
+---
+
+```{r}
+#| label: setup
+source(here::here("R/ppdac.R"))
+source(here::here("R/aula04.R"))
+```
+
+## Hoje
+
+1. O dilema da nutricionista de capivaras
+2. Medidas de tendência central, e a atividade do ninho mutante
+3. Medidas de variabilidade, e a atividade "Qual remédio é melhor?"
+4. A forma das distribuições
+5. Kahoot e fechamento
+
+::: {.nota}
+As figuras desta aula foram geradas em R, com os dados das atividades ou
+com dados simulados; a silhueta de capivara é do PhyloPic (CC0). O código
+está em [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) no
+repositório da disciplina.
+:::
+
+---
+
+## Onde estamos no ciclo PPDAC
+
+```{r}
+#| fig-width: 6.4
+#| fig-height: 5.1
+#| out-width: "45%"
+#| fig-alt: "Ciclo PPDAC com a etapa Análise destacada na sua cor; as demais em cinza."
+ppdac_plot(destaque = "Análise")
+```
+
+Resumir os dados com poucos números é o primeiro passo da **Análise**.
+
+---
+
+## Ciclo PPDAC
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.6
+#| out-width: "90%"
+#| fig-alt: "Ciclo PPDAC com os tópicos de cada etapa. Problema: compreensão do sistema, definição do problema. Plano: desenho amostral, gerenciamento de dados, visualização. Dados: coleta de dados, gerenciamento de dados, limpeza. Análise: análises exploratórias, geração de hipóteses. Conclusão: interpretação, novas ideias, comunicação."
+ppdac_topicos(list(
+  Problema    = c("Compreensão do sistema", "Definição do problema"),
+  Plano       = c("Desenho amostral", "Gerenciamento de dados", "Visualização"),
+  Dados       = c("Coleta de dados", "Gerenciamento de dados", "Limpeza"),
+  "Análise"   = c("Análises exploratórias", "Geração de hipóteses"),
+  "Conclusão" = c("Interpretação", "Novas ideias", "Comunicação")
+))
+```
+
+---
+
+## Ao final desta aula você deverá entender
+
+:::: {.columns}
+::: {.column width="60%"}
+- O que são medidas resumo
+- Medidas de tendência central
+  - Média, mediana, moda
+- Medidas de variabilidade
+  - Variância, soma de quadrados, desvio-padrão, CV
+- Limitações de medidas resumo
+- Como elas nos ajudam a entender distribuições dos dados
+:::
+::: {.column width="40%"}
+::: {.nota}
+**Leituras**
+
+- Triola, M.F. *Introdução à estatística*, cap. 3.
+- Vieira, S. *Introdução à bioestatística*, caps. 3 e 4.
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
+- Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*,
+  cap. 3.
+:::
+:::
+::::
+
+---
+
+# O dilema da nutricionista de capivaras {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## O dilema da nutricionista de capivaras
+
+Vocês são pesquisadores responsáveis pela nutrição de dois grupos de
+capivaras em cativeiro. O **Grupo A** recebeu uma nova ração enriquecida e
+o **Grupo B**, a ração padrão.
+
+:::: {.columns}
+::: {.column width="50%"}
+![](../assets/phylopic/capivara.svg){width="70%" fig-alt="Silhueta de capivara."}
+
+**Grupo A**
+:::
+::: {.column width="50%"}
+![](../assets/phylopic/capivara.svg){width="70%" fig-alt="Silhueta de capivara."}
+
+**Grupo B**
+:::
+::::
+
+::: {.nota}
+Silhueta de *Hydrochoerus hydrochaeris* por Steven Traver, via
+[PhyloPic](https://www.phylopic.org), CC0 1.0.
+:::
+
+---
+
+## Os pesos depois de um mês
+
+Após um mês, vocês pesaram os animais. Os dados (em kg) foram:
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.definicao}
+**Grupo A:** 50, 51, 52, 58, 59
+:::
+:::
+::: {.column width="50%"}
+::: {.definicao}
+**Grupo B:** 35, 52, 53, 65, 65
+:::
+:::
+::::
+
+---
+
+## Enquete 1 {.smaller}
+
+::: {.atividade}
+**Se você pudesse usar uma só palavra ou número para descrever o peso
+"típico" de cada grupo, qual seria?**
+:::
+
+Respondam no Slido da turma: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>.
+Sem Slido, cada pessoa escreve a sua resposta num papel e a turma compara.
+
+---
+
+## Enquete 2 {.smaller}
+
+::: {.atividade}
+**Observando os dados, qual grupo parece mais "confiável" ou "previsível"
+em seus pesos? Ou seja, em qual grupo os pesos dos animais são mais
+parecidos entre si?**
+:::
+
+Respondam no Slido da turma: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>.
+
+Guardem as respostas: voltamos às capivaras no fim da aula.
+
+---
+
+# 1. Medidas de tendência central {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Medidas resumo
+
+- Servem para resumir/sumarizar mais ainda um conjunto de dados, **usando
+  um único número**
+- Apontam características específicas dos dados
+- Permitem entender o comportamento geral dos dados
+- Medidas de posição (tendência central)
+- Medidas de variabilidade (dispersão)
+
+---
+
+## Sequência numérica de dados
+
+$$x_1, x_2, x_3, \ldots, x_i, \ldots, x_n$$
+
+::: {.definicao}
+**Exemplo.** As massas, em gramas, de cinco girinos são:
+3,5; 2,7; 3,2; 2,2; 3,8.
+
+Em símbolos: $x_1 = 3{,}5$; $x_2 = 2{,}7$; $x_3 = 3{,}2$; $x_4 = 2{,}2$;
+$x_5 = 3{,}8$.
+:::
+
+::: {.ref}
+Notação como em Vieira, S. *Introdução à bioestatística*, cap. 3.
+:::
+
+---
+
+## Somatória
+
+$$x_1 + x_2 + x_3 + \ldots + x_n = \sum_{i=1}^{n} x_i$$
+
+::: {.definicao}
+Para as massas dos cinco girinos:
+
+$$\sum_{i=1}^{5} x_i = 3{,}5 + 2{,}7 + 3{,}2 + 2{,}2 + 3{,}8 = 15{,}4$$
+:::
+
+---
+
+## Medidas de tendência central (ou de posição) {.smaller}
+
+- **Média aritmética** ⇒ centro de equilíbrio do conjunto de dados
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+- **Mediana** ⇒ valor central do conjunto dos dados ordenados (quantil de
+  50%)
+  - Seu cálculo exige ordenar o conjunto de dados de maneira crescente
+  - Divide o conjunto de dados em 2 grupos: metade dos dados tem valor
+    maior e metade valor menor do que a mediana
+  - Para conjuntos de dados com **número ímpar** de objetos, a **mediana é
+    o próprio valor central**; para **dados pares**, a **mediana é a média
+    dos dois valores na posição central**
+  - Pode ser mais **útil** que a média **para descrever conjuntos de dados
+    com valores discrepantes** (outliers)
+
+---
+
+## Mediana
+
+Comprimento rostro-cloacal (cm) de cinco sapos, já em ordem crescente:
+2,2; 2,8; **3,2**; 3,5; 3,7.
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.4
+#| fig-alt: "Cinco pontos numa reta, de 2,2 a 3,7 centímetros; uma seta vermelha indica o ponto do meio, 3,2, que é a mediana."
+fig_mediana_reta()
+```
+
+Com cinco valores (ímpar), a mediana é o terceiro: **3,2 cm**.
+
+---
+
+## Moda
+
+- Valor que ocorre com maior frequência
+- Única medida de tendência central que também pode ser usada para
+  descrever dados **qualitativos**
+  - Nesse caso, a moda é a categoria da variável que ocorre com maior
+    frequência
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.6
+#| fig-alt: "Gráfico de barras com o número de girinos por armadilha em 13 armadilhas; a barra do valor 7, com quatro armadilhas, está em vermelho: é a moda."
+fig_moda_barras()
+```
+
+---
+
+## Símbolos {.tabela-grande}
+
+| Tipo da medida | Medida | Amostra ($n$) | População ($N$) |
+|---|---|---|---|
+| Posição | Média | $\bar{x}$ | $\mu$ |
+| | Mediana | md | Md |
+| | Moda | mo | Mo |
+| Variabilidade | Variância | $s^2$ | $\sigma^2$ |
+| | Desvio-padrão | $s$ | $\sigma$ |
+| | Coeficiente de variação | cv | CV |
+
+---
+
+## Média, mediana e moda num histograma
+
+```{r}
+#| fig-width: 10
+#| fig-height: 5
+#| out-width: "85%"
+#| fig-alt: "Histograma assimétrico à direita do comprimento de 80 espinhos; setas marcam a moda em 0,163, a mediana em 0,200 e a média em 0,220 milímetro, nessa ordem da esquerda para a direita."
+fig_tendencia_histograma()
+```
+
+::: {.ref}
+Inspirado na Figura 3.2 de Vieira, *Introdução à bioestatística*.
+:::
+
+---
+
+## Atividade: o efeito do mutante
+
+::: {.atividade}
+Número de ovos em 7 ninhos de uma espécie de ave:
+**[4, 5, 5, 6, 7, 7, 7]**
+
+Façam duplas e calculem:
+
+1. a média,
+2. a mediana e
+3. a moda.
+:::
+
+---
+
+## O efeito do mutante: os ninhos
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.6
+#| out-width: "85%"
+#| fig-alt: "Histograma do número de ovos em sete ninhos: um ninho com 4 ovos, dois com 5, um com 6 e três com 7."
+fig_ninhos()
+```
+
+---
+
+## O efeito do mutante: a moda
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.6
+#| out-width: "85%"
+#| fig-alt: "O mesmo histograma com a barra de 7 ovos em vermelho: é a moda."
+fig_ninhos(destaca_moda = TRUE)
+```
+
+Média = 41 / 7 ≈ **5,86**; mediana = **6**; moda = **7**.
+
+---
+
+## Atividade: o efeito do mutante
+
+::: {.atividade}
+Agora, imagine que encontramos um oitavo ninho, de uma ave que botou **15
+ovos**! Um valor extremo, um "mutante".
+
+O novo conjunto de dados é: **[4, 5, 5, 6, 7, 7, 7, 15]**
+
+Refaçam as duplas e calculem:
+
+1. a média e
+2. a mediana.
+:::
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+**Qual das duas medidas (média ou mediana) foi mais drasticamente afetada
+pelo ninho "mutante"?**
+
+A. A média
+
+B. A mediana
+
+C. As duas mudaram igualmente
+:::
+
+Votem no Slido da turma ou com a mão, discutam com quem está ao lado e
+votem de novo.
+
+::: {.fragment}
+::: {.definicao}
+**A.** A média foi de 5,86 para **7,00** ovos; a mediana, de 6 para
+**6,5**. Um único ninho mudou a média em mais de um ovo inteiro.
+:::
+:::
+
+---
+
+## O efeito do mutante
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.6
+#| out-width: "85%"
+#| fig-alt: "Histograma dos oito ninhos, com o ninho de 15 ovos isolado à direita; linhas marcam a mediana em 6,5 e a média em 7,0."
+fig_ninhos(mutante = TRUE, linhas = TRUE)
+```
+
+---
+
+## Média ou mediana?
+
+::: {.definicao}
+*A média é mais sensível a valores extremos (outliers) do que a mediana.*
+:::
+
+**Quando um biólogo poderia preferir usar uma ou outra?**
+
+---
+
+# 2. Medidas de variabilidade {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Medidas de variabilidade (ou de dispersão)
+
+- As medidas de posição não informam nada sobre a **variabilidade** dos
+  dados
+  - Podem esconder/mascarar informação
+  - São mais úteis quando há pouca variação nos dados
+- Analisar desvios/dispersão em relação à média
+
+---
+
+## Cinco grupos, a mesma média
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.6
+#| out-width: "85%"
+#| fig-alt: "Cinco grupos de dados em linhas horizontais, todos com média 5: A com 3, 4, 5, 6, 7; B com 1, 3, 5, 7, 9; C com cinco valores iguais a 5; D com 3, 5, 5, 7; E com 3, 5, 5, 6, 6."
+fig_grupos_media5()
+```
+
+$\bar{x} = \bar{y} = \bar{z} = \bar{w} = \bar{v} = 5{,}0$, mas os grupos
+são muito diferentes.
+
+::: {.ref}
+Exemplo de Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
+:::
+
+---
+
+## Tipos de medidas de variabilidade {.smaller}
+
+:::: {.columns}
+::: {.column width="58%"}
+- **Mínimo** ⇒ menor valor do conjunto de dados
+- **Máximo** ⇒ maior valor do conjunto de dados
+- **Amplitude** ⇒ diferença entre o máximo e o mínimo
+  - Muito sensível a valores discrepantes
+- **Quartil** ⇒ divide os dados em quatro partes (25%)
+  - Noção da assimetria da distribuição
+  - **Distância interquartílica:** distância entre o primeiro e o terceiro
+    quartis
+:::
+::: {.column width="42%"}
+::: {.definicao}
+$q(0{,}25) = q_1$: 1º quartil = 25º percentil
+
+$q(0{,}50) = q_2$: mediana = 2º quartil = 50º percentil
+
+$q(0{,}75) = q_3$: 3º quartil = 75º percentil
+
+$q(0{,}40)$: 4º decil
+
+$q(0{,}95)$: 95º percentil
+:::
+:::
+::::
+
+::: {.ref}
+Morettin, P.A. & Bussab, W.O. *Estatística básica*.
+:::
+
+---
+
+## Exemplo da aula passada
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.8
+#| out-width: "82%"
+#| fig-alt: "Histograma da pressão diastólica de 35 enfermeiros, de 60 a 100 mmHg, com o pico entre 80 e 85."
+fig_quartis_pressao(1)
+```
+
+---
+
+## Exemplo da aula passada: os quartis
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.8
+#| out-width: "82%"
+#| fig-alt: "O mesmo histograma com linhas tracejadas nos quartis: Q1 = 79,0; mediana = 82,0; Q3 = 86,5."
+fig_quartis_pressao(2)
+```
+
+---
+
+## Exemplo da aula passada: a caixa do boxplot
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4.8
+#| out-width: "82%"
+#| fig-alt: "O mesmo histograma com uma caixa desenhada entre Q1 e Q3 e a mediana dentro dela: a caixa do boxplot. O intervalo interquartil é 7,5."
+fig_quartis_pressao(3)
+```
+
+---
+
+## Medidas de variabilidade: desvios da média
+
+$$\text{desvio} = \text{dado} - \text{média} \qquad d_i = x_i - \bar{x}$$
+
+**Desvios pequenos** significam **dados aglomerados**, enquanto **desvios
+grandes** significam **dados dispersos** em torno da média.
+
+---
+
+## Desvios em relação à média
+
+:::: {.columns}
+::: {.column width="38%"}
+::: {.tabela-grande}
+| Idade ($x$) | Desvio ($x - \bar{x}$) |
+|---|---|
+| 3 | 3 − 6 = −3 |
+| 6 | 6 − 6 = 0 |
+| 5 | 5 − 6 = −1 |
+| 7 | 7 − 6 = 1 |
+| 9 | 9 − 6 = 3 |
+:::
+:::
+::: {.column width="62%"}
+```{r}
+#| fig-width: 7.2
+#| fig-height: 4.6
+#| fig-alt: "As idades de cinco crianças, 3, 6, 5, 7 e 9 anos, como pontos ao redor de uma linha horizontal na média de 6; segmentos verticais mostram os desvios: -3, 0, -1, +1 e +3."
+fig_desvios()
+```
+:::
+::::
+
+::: {.ref}
+Exemplo de Vieira, S. *Introdução à bioestatística*, cap. 4.
+:::
+
+---
+
+## Variância e soma dos quadrados
+
+- Os desvios nos fornecem um conjunto de números (vetor). Mas precisamos
+  de **um único número** que resuma a variabilidade dos dados
+- Como fazer isso? Somando os desvios? Vejamos:
+
+$$-3 + 0 - 1 + 1 + 3 = 0$$
+
+- Não funciona porque os desvios positivos anulam os negativos
+- Mas ao elevarmos os valores ao quadrado, os sinais "desaparecem"
+
+---
+
+## Variância e soma dos quadrados {.smaller}
+
+::: {.definicao}
+**Variância da amostra:** a soma dos quadrados dos desvios de cada
+observação em relação à média, dividida por $(n - 1)$.
+
+$$s^2 = \frac{\overbrace{\sum (x - \bar{x})^2}^{\text{soma dos quadrados}}}{\underbrace{n - 1}_{\text{graus de liberdade}}}$$
+:::
+
+Para calcular a variância:
+
+1. Calcule a média
+2. Calcule o desvio de cada observação em relação à média
+3. Eleve cada desvio ao quadrado
+4. Some os quadrados dos desvios
+5. Divida o resultado por $n - 1$ ($n$ é o número de observações)
+
+---
+
+## Cálculo da variância {.tabela-grande}
+
+| Dado ($x$) | Desvio ($x - \bar{x}$) | Desvio ao quadrado $(x - \bar{x})^2$ |
+|---|---|---|
+| 3 | 3 − 6 = −3 | 9 |
+| 6 | 6 − 6 = 0 | 0 |
+| 5 | 5 − 6 = −1 | 1 |
+| 7 | 7 − 6 = 1 | 1 |
+| 9 | 9 − 6 = 3 | 9 |
+| $\sum x = 30$ | $\sum (x - \bar{x}) = 0$ | $\sum (x - \bar{x})^2 = 20$ |
+
+$$s^2 = \frac{20}{5 - 1} = 5$$
+
+---
+
+## Conceito de graus de liberdade
+
+- **Por que dividir por $n - 1$?**
+  - Porque há apenas $n - 1$ valores **independentes**.
+- Dada previamente uma **média** de $n$ elementos, podemos usar quaisquer
+  valores para os $n - 1$ valores, mas o último valor será automaticamente
+  determinado
+- Regra: perdemos um grau de liberdade para cada parâmetro estimado
+
+---
+
+## Conceito de graus de liberdade
+
+::: {.definicao}
+"É uma maneira de corrigir para o erro adicional introduzido ao se
+utilizar uma **estatística** para calcular **outra**."
+:::
+
+---
+
+## Conceito de graus de liberdade
+
+$$s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}$$
+
+- Para calcular a variância, precisamos antes calcular a **média
+  amostral** $\bar{x}$...
+- ...e o cálculo da média, por sua vez, já havia introduzido um erro (a
+  média depende dos valores da amostra).
+- O grau de liberdade (valores de fato independentes) da média é igual ao
+  tamanho amostral, já que o seu cálculo utiliza todos os números
+  irrestritamente:
+
+$$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
+
+---
+
+## Se sabemos que a média é 1,80, qual deve ser a altura da pessoa 5? {.smaller}
+
+:::: {.columns}
+::: {.column width="45%"}
+::: {.tabela-grande}
+| Pessoa | Altura (m) |
+|---|---|
+| 1 | 1,80 |
+| 2 | 1,85 |
+| 3 | 1,75 |
+| 4 | 1,77 |
+| 5 | ? |
+| **Média** | **1,80** |
+:::
+:::
+::: {.column width="55%"}
+A média já foi calculada previamente.
+
+::: {.fragment}
+::: {.definicao}
+Com 5 pessoas e média 1,80, a soma das alturas tem de ser
+5 × 1,80 = 9,00 m. As quatro primeiras somam 7,17 m, então a pessoa 5
+**tem de medir 9,00 − 7,17 = 1,83 m**.
+
+Logo, apenas **4 valores são livres para variar**: o 5º não traz
+informação independente.
+:::
+:::
+:::
+::::
+
+---
+
+## O ajuste fica menor com amostras maiores {.tabela-grande}
+
+| $n$ | $n - 1$ | % de ajuste |
+|---|---|---|
+| 10 | 9 | 10% |
+| 100 | 99 | 1% |
+
+::: {.ref}
+Jawlik, A.A. 2016. *Statistics from A to Z*. Wiley.
+:::
+
+---
+
+## Desvio-padrão da amostra
+
+$$s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}$$
+
+- Medida de variabilidade **na mesma escala** (unidade de medida) **dos
+  dados**
+- O desvio-padrão é uma medida de **quanto os valores** de dados **se
+  afastam da média**
+- Não é um bom estimador para o DP da população
+
+---
+
+## Passo a passo para calcular o desvio-padrão {.smaller}
+
+Com os pesos do **Grupo A** das capivaras: 50, 51, 52, 58, 59 kg.
+
+| Passo | O que fazer | Grupo A |
+|---|---|---|
+| 1 | Calcule a média | $\bar{x} = 270 / 5 = 54$ |
+| 2 | Subtraia a média de cada valor | −4, −3, −2, 4, 5 |
+| 3 | Eleve cada desvio ao quadrado | 16, 9, 4, 16, 25 |
+| 4 | Some os quadrados | 70 |
+| 5 | Divida por $n - 1$ (a variância) | 70 / 4 = 17,5 |
+| 6 | Tire a raiz quadrada (o desvio-padrão) | $s = \sqrt{17{,}5} \approx 4{,}18$ kg |
+
+::: {.ref}
+Roteiro como em Triola, M.F. *Introdução à estatística*, cap. 3.
+:::
+
+---
+
+## Coeficiente de variação {.smaller}
+
+- Razão entre o desvio-padrão e a média
+
+$$CV = \frac{s}{\bar{x}} \times 100$$
+
+- Dois conjuntos de dados, ambos com variância $s^2 = 4$ ($s = 2$):
+  - 1, 3, 5: $CV = \frac{2}{3} \times 100 = 66{,}67\%$
+  - 55, 57, 53: $CV = \frac{2}{55} \times 100 = 3{,}64\%$
+- Não tem unidade, logo pode ser usado para **comparar conjuntos de dados
+  de diferentes unidades de medida**
+
+---
+
+## Posição e dispersão são propriedades independentes de uma distribuição
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| fig-alt: "Dois painéis de curvas normais. No primeiro, três curvas iguais deslocadas para médias -2, 0 e 2: muda só a posição. No segundo, três curvas centradas em zero com desvios-padrão 0,6, 1,0 e 1,8: muda só a dispersão."
+fig_posicao_dispersao()
+```
+
+::: {.ref}
+Krzywinski, M. & Altman, N. 2013. *Nature Methods* 10:809–810.
+:::
+
+---
+
+## Atividade: "Qual remédio é melhor?" {.secao}
+
+**35 minutos.** Formem 10–12 grupos de 5–6 pessoas.
+
+---
+
+## Atividade: "Qual remédio é melhor?" {.smaller}
+
+::: {.atividade}
+Vocês trabalham para a ANVISA e precisam avaliar a eficácia e a segurança
+de dois novos analgésicos (Droga X e Droga Y) em comparação com um
+Placebo. **Os dados abaixo representam o tempo (em horas) que o efeito
+analgésico durou em diferentes pacientes.**
+
+- **Placebo:** [1, 2, 2, 3, 3, 3, 4]
+- **Droga X:** [4, 5, 5, 6, 6, 7, 15]
+- **Droga Y:** [6, 6, 7, 7, 7, 8, 8]
+:::
+
+Para cada grupo, calculem **média, mediana, amplitude e desvio-padrão**
+(podem usar a calculadora do celular). Escrevam os resultados numa folha.
+
+---
+
+## Atividade: "Qual remédio é melhor?" {.smaller}
+
+Após os cálculos, discutam e respondam:
+
+- **Eficácia:** olhando para a tendência central (média e mediana), qual
+  droga parece ser mais eficaz em prolongar a analgesia?
+- **Consistência:** olhando para a dispersão (desvio-padrão), qual droga
+  tem o efeito mais consistente e previsível? A Droga X tem algum
+  problema?
+- **Tomem uma decisão final:** se vocês tivessem que aprovar apenas uma
+  droga, qual seria e por quê? Justifiquem usando os conceitos de
+  tendência central **e** variabilidade.
+- **Visualização:** esbocem rapidamente um boxplot para cada um dos três
+  grupos no verso da folha. Usem a mediana e a ideia de dispersão que
+  vocês calcularam para guiar o desenho.
+
+---
+
+## Relatório final
+
+- 2 ou 3 grupos compartilham suas conclusões com a turma
+- Qual o comportamento das Drogas X e Y, em termos de variância em relação
+  à média?
+- Qual das duas teria o efeito mais confiável?
+
+---
+
+## Conferindo os boxplots
+
+```{r}
+#| fig-width: 9
+#| fig-height: 4.8
+#| out-width: "78%"
+#| fig-alt: "Boxplots da duração do efeito analgésico para placebo, Droga X e Droga Y, com os pontos de cada paciente. O placebo dura de 1 a 4 horas; a Droga X tem a caixa entre 5 e 6,5 horas e um paciente com 15 horas, em vermelho; a Droga Y fica concentrada entre 6 e 8 horas."
+fig_remedios()
+```
+
+A Droga X tem média puxada para cima por um único paciente (15 h); a Droga
+Y tem média e mediana parecidas (7 h) e muito menos variação.
+
+---
+
+# 3. A forma das distribuições {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## Os 4 momentos de uma distribuição de probabilidade
+
+1. Tendência central (por exemplo, média, mediana, moda)
+2. Dispersão (por exemplo, variância)
+3. Assimetria
+4. Curtose
+
+---
+
+## Simétricas e assimétricas
+
+```{r}
+#| fig-width: 12
+#| fig-height: 3.8
+#| fig-alt: "Quatro curvas: simétrica unimodal, simétrica bimodal, assimétrica positiva e assimétrica negativa, com linhas para média, mediana e moda. As duas simétricas aparecem destacadas."
+fig_formas("simetria")
+```
+
+Nas distribuições **simétricas**, média e mediana coincidem.
+
+::: {.ref}
+Redesenhado a partir de Zar, J.H. *Biostatistical analysis*.
+:::
+
+---
+
+## Assimetria positiva e negativa
+
+```{r}
+#| fig-width: 12
+#| fig-height: 3.8
+#| fig-alt: "As mesmas quatro curvas com as duas assimétricas destacadas: na positiva, a cauda vai para a direita e a ordem é moda, mediana, média; na negativa, a cauda vai para a esquerda e a ordem se inverte."
+fig_formas("assimetria")
+```
+
+A **média** é puxada para o lado da cauda: na assimetria **positiva**,
+moda < mediana < média; na **negativa**, média < mediana < moda.
+
+---
+
+## Unimodais e bimodais
+
+```{r}
+#| fig-width: 12
+#| fig-height: 3.8
+#| fig-alt: "As mesmas quatro curvas, agora destacando as três unimodais e deixando a bimodal, com dois picos e duas modas, em segundo plano."
+fig_formas("modalidade")
+```
+
+Uma distribuição **bimodal** tem duas modas, e a média pode cair num vale
+onde quase não há dados.
+
+---
+
+## Kahoot! (15 minutos) {.secao}
+
+[Revisão média e variância](https://create.kahoot.it/details/44148d47-cfae-4aaf-af68-81710e641a21)
+
+---
+
+## De volta às capivaras
+
+Como descreveríamos os dois grupos de capivaras agora, com o que
+aprendemos?
+
+:::: {.columns}
+::: {.column width="50%"}
+::: {.definicao}
+**Grupo A:** 50, 51, 52, 58, 59
+:::
+:::
+::: {.column width="50%"}
+::: {.definicao}
+**Grupo B:** 35, 52, 53, 65, 65
+:::
+:::
+::::
+
+---
+
+## De volta às capivaras
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4
+#| fig-alt: "Os pesos das capivaras como pontos, um grupo por linha, com uma barra de média mais ou menos desvio-padrão. As duas médias são 54 kg; o desvio-padrão do Grupo A é 4,2 kg e o do Grupo B, 12,3 kg."
+fig_capivaras()
+```
+
+Os dois grupos têm uma **média idêntica, de 54 kg**, mas **o desvio-padrão
+do B é maior que o do A**, indicando maior **variabilidade (= incerteza da
+medida central)**.
+
+---
+
+## Quais as suas principais dúvidas da aula de hoje? {.secao}
+
+**5 minutos.** Mandem pelo Slido:
+<https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>
+
+---
+
+## O que aprendemos hoje? {.smaller}
+
+- A calcular um único valor, como a média, para representar o "coração"
+  dos nossos dados.
+- Vimos que a **média** da Droga Y foi 7 h. Mas pensem nisso: isso foi só
+  na nossa pequena **amostra** de pacientes. Será que podemos afirmar que
+  a **média** de ***toda a população*** que usar a Droga Y será
+  exatamente 7 h? Provavelmente não.
+- Mas quão confiantes podemos estar de que a verdadeira **média da
+  população** está *próxima* de 7? É possível criar uma faixa de valores,
+  uma "margem de segurança", para a nossa estimativa?
+- É exatamente isso que vamos aprender na próxima aula sobre **estimativa
+  pontual e intervalos de confiança**.
+
+---
+
+## Referências {.smaller}
+
+::: {.nota}
+- Krzywinski, M. & Altman, N. 2013. [Importance of being uncertain](https://doi.org/10.1038/nmeth.2613). *Nature Methods* 10:809–810.
+- Bussab, W.O. & Morettin, P.A. *Estatística básica*. Saraiva.
+- Gotelli, N.J. & Ellison, A.M. 2010. *Princípios de estatística em ecologia*. Artmed.
+- Jawlik, A.A. 2016. *Statistics from A to Z*. Wiley.
+- Triola, M.F. *Introdução à estatística*.
+- Vieira, S. *Introdução à bioestatística*.
+- Zar, J.H. *Biostatistical analysis*. Pearson.
+:::

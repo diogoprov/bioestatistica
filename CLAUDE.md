@@ -22,7 +22,7 @@ mudar os parâmetros e ver o que acontece.
 - **set/2026**: o curso é extraído para este repositório, com o histórico
   preservado. Depois vieram o scaffolding do site (`_quarto.yml`, estilos e
   workflow do Pages), o README e a extensão fontawesome.
-- **out/2026**: Aulas 2, 1 e 3 convertidas, nesta ordem. A Aula 2 serve de
+- **out/2026**: Aulas 2, 1, 3 e 4 convertidas, nesta ordem. A Aula 2 serve de
   modelo para as demais; a identidade visual do PPDAC (uma cor por etapa)
   entrou junto com a Aula 1.
 
@@ -33,7 +33,7 @@ mudar os parâmetros e ver o que acontece.
 | 1 | `aula-01-introducao` | **`slides/a01.qmd` ✔** | `Aula 1 - Intodução.pptx` |
 | 2 | `aula-02-amostragem` | **`slides/a02.qmd` ✔** | `Aula 2 - Delineamento amostral.pptx` |
 | 3 | `aula-03-organizacao-dados` | **`slides/a03.qmd` ✔** | `Aula 4 - organizacao e visualizacao dados.pptx` |
-| 4 | `aula-04-tendencia-dispersao` | PDF | `Aula 3 - medidas tendencia central.pptx` |
+| 4 | `aula-04-tendencia-dispersao` | **`slides/a04.qmd` ✔** | `Aula 3 - medidas tendencia central.pptx` |
 | 5 | `aula-05-probabilidade` | PDF | `Aula 5 - Probabilidade e distribuições.pptx` |
 | 6 | `aula-06-estimativas` | PDF | `Aula 6 - Estimativas.pptx` (há também `Aula 6 - Distribuicoes estatisticas.pptx`) |
 | 7 | `aula-07-teste-hipoteses` | PDF | `Aula 7 - Teste de hipótese.pptx` |
@@ -46,9 +46,9 @@ Os números dos arquivos originais não batem com os do site nas aulas 3 e 4:
 a ordem foi trocada na reorganização pelo PPDAC. **A numeração que vale é a
 do site.**
 
-As conversões seguem a sequência do curso: a próxima é a **Aula 4**
-(original: `Aula 3 - medidas tendencia central.pptx`), que tem o Kahoot
-"Revisão média e variância" e um slide de Slido.
+As conversões seguem a sequência do curso: a próxima é a **Aula 5**
+(original: `Aula 5 - Probabilidade e distribuições.pptx`), que tem o Kahoot
+"Probabilidade e distribuições de probabilidade".
 
 ### Fonte da conversão: sempre o `.pptx` mais recente
 
@@ -90,9 +90,11 @@ nesse caso, troque por texto ou referência.
   | 10 | Qui-quadrado e Teste G | `24e6dd0f-ab42-4583-9b42-602515a0843c` |
   | revisão | Revisão estatística descritiva e inferencial | `41366a84-3e6e-4131-b17c-646ae6fbb2f8` |
 
-- **Slido**: os `.pptx` das aulas 4 e 7 (numeração do site) têm slides de
-  enquete do Slido, sem link de evento. O equivalente nos slides em Quarto
-  são as **perguntas para a turma**.
+- **Slido**: os `.pptx` das aulas 4 e 7 (numeração do site) têm enquetes do
+  Slido. Mantenha a pergunta do original numa caixa `.atividade` com o link
+  do evento da turma (na Aula 4: <https://app.sli.do/event/9EAtGB3oLhcpCV6HJqSJPX>)
+  e uma alternativa sem Slido; enquetes de múltipla escolha viram
+  **perguntas para a turma** com a resposta em fragmento.
 - **Perguntas para a turma** (*peer instruction*), usadas onde não há Kahoot
   ou Slido: um slide `## Pergunta para a turma {.smaller}` com a pergunta e
   quatro alternativas numa caixa `.atividade`; a instrução "votem sozinhos,
@@ -191,6 +193,9 @@ continua em `slides/`, então não apague os PDFs.
   `assets/`. Na Aula 2, o pictograma `assets/aula02-tres-cenarios.svg`
   (os três cenários de pseudorréplica) foi feito assim, adaptado do E7 de
   Análise de Dados Univariados.
+- Silhuetas do PhyloPic ficam em `assets/phylopic/`, com autor e licença em
+  `assets/phylopic/FONTES.md`. A API exige o parâmetro `build` (consulte
+  `https://api.phylopic.org/`, que redireciona para `/?build=N`).
 - **Domínio público** também vale (por exemplo, retratos e frontispícios
   históricos do Wikimedia Commons). Confira a licença na API do Commons
   (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão
