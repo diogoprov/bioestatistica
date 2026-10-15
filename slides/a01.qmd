@@ -255,7 +255,7 @@ acontecer.
 
 ```{r}
 #| fig-width: 8.6
-#| fig-height: 4.6
+#| fig-height: 4.2
 #| fig-alt: "Série de aumento de temperatura de 1950 a 2024 e, a partir daí, três projeções até 2100 para emissões altas, médias e baixas, cada uma com uma faixa de incerteza que se alarga com o tempo."
 fig_previsao()
 ```
@@ -306,6 +306,8 @@ Figura I de Simmonds, E.G. et al. 2024. *Trends in Ecology & Evolution*
 ::: {.column width="36%"}
 ![John Graunt](../assets/historia/graunt.png){width="46%" fig-alt="Gravura com o retrato de John Graunt."}
 ![*Bills of Mortality*, 1662](../assets/historia/graunt-observations-1662.jpg){width="46%" fig-alt="Página de rosto do livro de John Graunt sobre as Bills of Mortality, de 1662."}
+
+![*Recenseamento do Brazil*, 1920, da antecessora do IBGE](../assets/historia/recenseamento-1920.jpg){height="190px" fig-alt="Página de rosto do primeiro volume do Recenseamento do Brazil de 1920, publicado pela Directoria Geral de Estatística."}
 :::
 ::::
 
@@ -319,9 +321,24 @@ Wikimedia Commons ([fontes](https://github.com/diogoprov/bioestatistica/blob/mai
 
 ## Matéria bruta da estatística ⇒ observações
 
+:::: {.columns}
+::: {.column width="50%"}
+![Observar...](../assets/historia/observando-aves.jpg){height="290px" fig-alt="Uma guarda-parque aponta para o alto enquanto uma menina observa aves com binóculos."}
+:::
+::: {.column width="50%"}
+![...e registrar](../assets/historia/anotando-dados.jpg){height="290px" fig-alt="Um biólogo de boné anota dados numa prancheta, numa praia."}
+:::
+::::
+
 ::: {.definicao}
 **Dados brutos:** observações coletadas (registradas), a "matéria-prima"
 da estatística.
+:::
+
+::: {.nota}
+Fotos: National Park Service e U.S. Fish and Wildlife Service, domínio
+público, via Wikimedia Commons
+([fontes](https://github.com/diogoprov/bioestatistica/blob/main/assets/historia/FONTES.md)).
 :::
 
 ---

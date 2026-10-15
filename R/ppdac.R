@@ -90,15 +90,17 @@ ppdac_topicos <- function(topicos, base = 6.2) {
     filter(id %in% names(topicos)) |>
     mutate(
       x = 1.32 * cos(ang) + .48 * sign(round(cos(ang), 6)),
-      y = sin(ang) + ifelse(abs(cos(ang)) < .01, .5, 0),
+      # o texto da etapa do topo fica acima do círculo, ancorado pela base
+      y = sin(ang) + ifelse(abs(cos(ang)) < .01, .42, 0),
+      vjust = ifelse(abs(cos(ang)) < .01, 0, .5),
       hjust = ifelse(cos(ang) > .01, 0, ifelse(cos(ang) < -.01, 1, .5)),
       label = purrr::map_chr(id, \(i) paste0("• ", topicos[[i]], collapse = "\n"))
     )
   # nomes das etapas menores que em ppdac_plot(): a área é mais larga e os
   # círculos ficam menores no slide
   ppdac_plot(perguntas = FALSE, base = base * .78) +
-    geom_text(data = txt, aes(x, y, label = label, hjust = hjust),
+    geom_text(data = txt, aes(x, y, label = label, hjust = hjust, vjust = vjust),
               colour = cores_ppdac[txt$id], size = base * .8,
               lineheight = 1, fontface = "bold") +
-    coord_equal(clip = "off", xlim = c(-4.3, 4.3), ylim = c(-1.3, 1.75))
+    coord_equal(clip = "off", xlim = c(-4.3, 4.3), ylim = c(-1.3, 2))
 }
