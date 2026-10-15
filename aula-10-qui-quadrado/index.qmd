@@ -9,9 +9,36 @@ description: "Modelos lineares generalizados: qui-quadrado"
 **Data:** 13 de novembro de 2025  ·  **Disciplina:** Bioestatística (UFMS)
 :::
 
+Quando os dados são contagens em categorias: o teste de qui-quadrado de
+aderência e de independência, o qui-quadrado visto como um modelo
+log-linear e as alternativas para amostras pequenas (teste exato de
+Fisher) e para delineamentos complexos (teste G). No ciclo PPDAC, é
+**Análise** e **Conclusão**.
+
 ## Slides
 
-[{{< fa solid file-pdf >}} Baixar slides em PDF](../slides/aula-10-qui-quadrado.pdf){.btn .btn-outline-primary}
+[{{< fa solid display >}} Abrir slides](../slides/a10.html){.btn .btn-outline-primary}
+
+As figuras dos slides foram geradas em R; o código está na pasta
+[`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
+repositório. A ilustração das ervilhas de Mendel é CC BY e a silhueta da
+rã, do PhyloPic (CC0).
+
+## Conteúdo
+
+1. **O teste de qui-quadrado**: dados categóricos e Karl Pearson.
+2. **Teste de aderência**: a genética mendeliana (9:3:3:1).
+3. **Teste de associação**: tabelas de contingência, plantas raras em
+   terras protegidas e o exemplo de vacinas e autismo.
+4. **O qui-quadrado como um modelo log-linear**.
+5. **Alternativas**: teste exato de Fisher e teste G.
+
+## Atividades
+
+- Atividade 1: tabelas com e sem preferência de habitat.
+- A ecologia das balas: aderência das cores de M&M's.
+- Atividade 3: "O revisor de periódico" (qui-quadrado ou Fisher?).
+- [Kahoot: Qui-quadrado e Teste G](https://create.kahoot.it/details/24e6dd0f-ab42-4583-9b42-602515a0843c).
 
 ## Leituras recomendadas
 
