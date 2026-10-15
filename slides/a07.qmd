@@ -324,11 +324,10 @@ Para cada cenário biológico, escrevam a **hipótese nula (H₀)** e a
 2. Uma farmacêutica testa se a proporção de cura de um novo medicamento é
    maior que a proporção de 20% do medicamento antigo.
 
-Respondam no Slido da turma (pergunta aberta). Sem Slido: cada dupla
-escreve num papel e duas duplas leem as suas respostas.
+Respondam no [Slido da turma](https://app.sli.do/event/c8RFbj984d5b8J7d15PigR)
+(pergunta aberta). Sem Slido: cada dupla escreve num papel e duas duplas
+leem as suas respostas.
 :::
-
-<!-- TODO: link do evento do Slido da Aula 7 -->
 
 ::: {.fragment}
 ::: {.definicao}
