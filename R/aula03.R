@@ -473,34 +473,6 @@ fig_barras_dp_ep <- function(seed = 21, n = 50) {
 }
 
 # ---------------------------------------------------------------------------
-# O problema do gráfico de barras com erro ("dynamite plot"): mesmas médias e
-# erros-padrão, distribuições muito diferentes (Weissgerber et al. 2015).
-# ---------------------------------------------------------------------------
-fig_dinamite <- function(seed = 2) {
-  set.seed(seed)
-  n <- 12
-  padroniza <- function(v, m, s) (v - mean(v)) / sd(v) * s + m
-  d <- tibble::tibble(
-    grupo = factor(rep(c("Simétrico", "Com outlier", "Bimodal"), each = n),
-                   c("Simétrico", "Com outlier", "Bimodal")),
-    y = c(padroniza(rnorm(n), 50, 10),
-          padroniza(c(rnorm(n - 1), 4.5), 50, 10),
-          padroniza(c(rnorm(n / 2, -1, .2), rnorm(n / 2, 1, .2)), 50, 10)))
-  r <- d |> group_by(grupo) |> summarise(m = mean(y), ep = sd(y) / sqrt(n()))
-  a <- ggplot(r, aes(grupo, m)) +
-    geom_col(fill = "#8e6bb0", width = .6) +
-    geom_errorbar(aes(ymin = m - ep, ymax = m + ep), width = .15, linewidth = .8) +
-    labs(x = NULL, y = "Resposta", title = "Barras com erro-padrão") +
-    coord_cartesian(ylim = c(0, 85)) + tema_aula(14)
-  b <- ggplot(d, aes(grupo, y)) +
-    geom_jitter(width = .12, height = 0, colour = "#8e6bb0", size = 2.4, alpha = .8) +
-    stat_summary(fun = mean, geom = "crossbar", width = .4, linewidth = .4) +
-    labs(x = NULL, y = "Resposta", title = "Os mesmos dados, ponto a ponto") +
-    coord_cartesian(ylim = c(0, 85)) + tema_aula(14)
-  a | b
-}
-
-# ---------------------------------------------------------------------------
 # Gráfico de linha: médias ± erro-padrão ao longo do tempo, duas estações.
 # ---------------------------------------------------------------------------
 fig_linha <- function() {

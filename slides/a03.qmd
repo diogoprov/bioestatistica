@@ -809,18 +809,16 @@ Inspirado na Figura 3.3 de Vieira, *Introdução à bioestatística*.
 
 ## Desconfie das barras com erro
 
-```{r}
-#| fig-width: 12
-#| fig-height: 4.6
-#| fig-alt: "À esquerda, três barras idênticas, com a mesma média e o mesmo erro-padrão. À direita, os mesmos três conjuntos de dados ponto a ponto: um simétrico, um com um valor extremo e um bimodal, com dois grupos separados."
-fig_dinamite()
-```
+![](../assets/artigos/weissgerber2015-fig1.png){height="400px" fig-align="center" fig-alt="Em A, um gráfico de barras com a média e o erro-padrão de dois grupos. Em B a E, quatro conjuntos de dados ponto a ponto que geram essas mesmas barras: um simétrico, um com um valor extremo, um bimodal e um com tamanhos de amostra diferentes. Abaixo, uma tabela com os valores de P do teste t e do teste de Wilcoxon para cada conjunto, que mudam de um para outro."}
 
-As três barras são iguais, mas os dados por trás delas não. Sempre que
-puder, **mostre os pontos**.
+Os quatro conjuntos de dados (B–E) geram o mesmo gráfico de barras (A),
+mas os dados por trás dele são muito diferentes. Sempre que puder,
+**mostre os pontos**.
 
 ::: {.ref}
-Weissgerber, T.L. et al. 2015. *PLOS Biology* 13:e1002128.
+Figura 1 de Weissgerber, T.L. et al. 2015. *PLOS Biology* 13:e1002128,
+<https://doi.org/10.1371/journal.pbio.1002128>. Licença
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 :::
 
 ---
@@ -922,22 +920,26 @@ IBPAD (2016), <https://ibpad.com.br/ciencia-dados/qual-e-o-grafico-mais-adequado
 
 ## Boas práticas para reportar resultados
 
-Boas práticas para reportar resultados na forma de **texto**, **tabela** e
-**gráficos**, de modo que outras pessoas consigam extrair e compilar as
-informações, por exemplo numa meta-análise:
+::::: {.columns}
+:::: {.column width="60%"}
+![](../assets/artigos/gerstner2017-fig1.jpg){width="100%" fig-alt="Três colunas. À esquerda, exemplos de relato ruim: métodos, resultados, tabela e figuras de um estudo sobre pastejo, com trechos sublinhados em vermelho e numerados. No meio, onze requisitos numerados, como dar o local exato, o número de réplicas, a medida de variação e os valores de P exatos. À direita, o mesmo relato corrigido, com os trechos novos em verde."}
+::::
+:::: {.column width="40%"}
+Na forma de **texto**, **tabela** e **gráficos**, para que outras pessoas
+consigam extrair e compilar as informações (por exemplo, numa
+meta-análise).
 
-- descreva os métodos com detalhe (local, data, número de réplicas);
-- reporte a média, a medida de variação (e qual é) e o tamanho da amostra
-  de cada grupo;
-- informe a estatística do teste, os graus de liberdade e o valor de *P*
-  exato;
-- nas figuras, diga o que as barras de erro representam e evite pontos
-  sobrepostos que escondam dados.
+À esquerda, um relato ruim; no meio, os requisitos; à direita, o mesmo
+relato corrigido.
+::::
+:::::
 
 ::: {.ref}
-Gerstner, K. et al. 2017. Will your paper be used in a meta-analysis? Make
-the reach of your research broader and longer lasting. *Methods in
-Ecology and Evolution* 8:777–784.
+Figura 1 de Gerstner, K. et al. 2017. Will your paper be used in a
+meta-analysis? Make the reach of your research broader and longer lasting.
+*Methods in Ecology and Evolution* 8:777–784,
+<https://doi.org/10.1111/2041-210X.12758>. Licença
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 :::
 
 ---

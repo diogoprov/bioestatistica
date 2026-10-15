@@ -272,19 +272,15 @@ incerteza. A figura usa dados simulados; projeções reais estão em
 
 ## Um modelo que incorpora incerteza e outro que não
 
-```{r}
-#| fig-width: 11.5
-#| fig-height: 4.6
-#| fig-alt: "Taxa de crescimento populacional ao longo de 25 anos estimada por dois modelos. O modelo 1, sem incerteza, é uma linha só, bem acima da taxa verdadeira. O modelo 2 oscila em torno da taxa verdadeira, com uma faixa de 95% de credibilidade."
-fig_incerteza_modelos()
-```
+![](../assets/artigos/simmonds2024-figI.png){height="430px" fig-align="center" fig-alt="Taxa de crescimento populacional ao longo de 25 anos estimada por dois modelos. O modelo 1, sem incerteza, é uma linha só, bem acima da taxa verdadeira, marcada por uma linha tracejada. O modelo 2 oscila em torno da taxa verdadeira, com uma faixa de incerteza."}
 
 O modelo 1 dá uma resposta precisa e errada. O modelo 2 diz quanto não
 sabe, e a faixa dele contém a taxa verdadeira.
 
 ::: {.ref}
-Redesenhado com dados simulados a partir da Figura I de Simmonds, E.G. et
-al. 2024. *Trends in Ecology & Evolution* 39:328–337.
+Figura I de Simmonds, E.G. et al. 2024. *Trends in Ecology & Evolution*
+39:328–337, <https://doi.org/10.1016/j.tree.2023.10.012>. Licença
+[CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 :::
 
 # 3. Breve histórico {.secao}
