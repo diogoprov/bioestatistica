@@ -2,7 +2,7 @@
 title: "Estimativa pontual e intervalar"
 subtitle: "Aula 6 · Bioestatística · Ciências Biológicas/UFMS"
 author: "Diogo B. Provete"
-date: 2027-02-22
+date: 2027-02-19
 date-format: "D [de] MMMM [de] YYYY"
 lang: pt
 format:

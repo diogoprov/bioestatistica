@@ -32,7 +32,7 @@ Ao final da disciplina, o(a) aluno(a) deve ser capaz de:
 
 A nota final segue a fórmula (P1 + P2) / 2, em que:
 
-- **P1** — Prova escrita
+- **P1** — Prova escrita (na oferta de fevereiro de 2027: segunda-feira, 22/02, sobre as Aulas 1 a 6)
 - **P2** — Questionários ao longo do semestre
 - **PO** — Prova substitutiva optativa (substitui a menor das anteriores)
 
