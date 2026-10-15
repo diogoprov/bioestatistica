@@ -21,6 +21,10 @@ fig_metodo_cientifico <- function(extra = c("nenhum", "teoria", "estatistica")) 
   ) |>
     mutate(x = 1.25 * cos(ang), y = sin(ang))
   r_no <- .36
+  # círculos como polígonos, como em ppdac_plot(), para não depender de ggforce
+  t <- seq(0, 2 * pi, length.out = 121)
+  circulos <- purrr::pmap_dfr(list(etapas$id, etapas$x, etapas$y), function(id, x, y)
+    tibble::tibble(id = id, cx = x + r_no * cos(t), cy = y + r_no * sin(t)))
   n <- nrow(etapas)
   setas <- tibble::tibble(x0 = etapas$x, y0 = etapas$y,
                           x1 = etapas$x[c(2:n, 1)], y1 = etapas$y[c(2:n, 1)]) |>
@@ -32,8 +36,8 @@ fig_metodo_cientifico <- function(extra = c("nenhum", "teoria", "estatistica")) 
     geom_segment(data = setas, aes(xa, ya, xend = xb, yend = yb),
                  linewidth = 1.6, colour = cores[["neutro"]],
                  arrow = arrow(length = unit(.3, "cm"), type = "closed")) +
-    ggforce::geom_circle(data = etapas, aes(x0 = x, y0 = y, r = r_no, fill = id),
-                         colour = "white", linewidth = 1) +
+    geom_polygon(data = circulos, aes(cx, cy, group = id, fill = id),
+                 colour = "white", linewidth = 1) +
     scale_fill_manual(values = setNames(etapas$cor, etapas$id), guide = "none") +
     geom_text(data = etapas, aes(x, y, label = id), colour = "white",
               fontface = "bold", size = 4) +

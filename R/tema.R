@@ -1,5 +1,8 @@
 library(ggplot2)
 
+# Vírgula decimal nos eixos e em format(): os slides são em português.
+options(OutDec = ",")
+
 # Paleta do Biodiversity Synthesis Lab, a mesma do site e do tema dos slides.
 cores <- c(
   accent      = "#1c6e8c",
