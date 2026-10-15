@@ -1,0 +1,122 @@
+[
+ {
+  "pergunta": "Qual destas perguntas está mais pronta para ser testada?",
+  "alternativas": [
+   "Os girinos são importantes?",
+   "O que é poluição?",
+   "Como a concentração de nitrato afeta a sobrevivência de girinos?",
+   "A poluição afeta os girinos?"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Uma boa pergunta nomeia a variável resposta e a preditora e pede quanto e em que direção, em vez de um simples sim ou não."
+ },
+ {
+  "pergunta": "A hipótese nula (H0) afirma que:",
+  "alternativas": [
+   "Não há efeito nem diferença",
+   "Há um efeito negativo",
+   "Há um efeito positivo",
+   "O resultado do estudo é verdadeiro"
+  ],
+  "correta": 1,
+  "tempo": 20,
+  "explicacao": "H0 é a hipótese de nenhum efeito. É ela que o teste estatístico avalia."
+ },
+ {
+  "pergunta": "Uma réplica é:",
+  "alternativas": [
+   "Uma subamostra da mesma parcela",
+   "Uma cópia de segurança dos dados",
+   "Uma unidade independente que recebe o tratamento",
+   "Uma medida repetida do mesmo indivíduo"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Réplicas são unidades independentes. Medir várias vezes a mesma unidade não aumenta o número de réplicas."
+ },
+ {
+  "pergunta": "Dois aquários, um com predador e outro sem, com 10 girinos cada. Quantas réplicas por tratamento?",
+  "alternativas": [
+   "10",
+   "20",
+   "2",
+   "1"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "Os 10 girinos de um aquário compartilham o mesmo ambiente: o aquário é a unidade que recebeu o tratamento. Contar os girinos como réplicas é pseudorréplica."
+ },
+ {
+  "pergunta": "A pseudorréplica filogenética ocorre quando:",
+  "alternativas": [
+   "Usamos espécies de famílias diferentes",
+   "Espécies aparentadas são tratadas como pontos independentes",
+   "Medimos a mesma espécie em anos diferentes",
+   "Amostramos só uma espécie"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Espécies próximas compartilham história evolutiva e tendem a se parecer, então não são observações independentes."
+ },
+ {
+  "pergunta": "Na amostragem estratificada:",
+  "alternativas": [
+   "Sorteamos parcelas na área toda, sem divisões",
+   "Sorteamos parcelas dentro de cada estrato (ex.: tipo de solo)",
+   "Amostramos as parcelas mais fáceis de acessar",
+   "Escolhemos parcelas a intervalos regulares"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "Dividimos a área em estratos homogêneos e sorteamos dentro de cada um. Intervalos regulares são a amostragem sistemática."
+ },
+ {
+  "pergunta": "Qual é o risco da amostragem sistemática?",
+  "alternativas": [
+   "Ser cara demais",
+   "Não cobrir a área de estudo",
+   "Coincidir com um padrão periódico do ambiente",
+   "Exigir um sorteio"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "Se o ambiente tem um padrão que se repete (sulcos, fileiras) com o mesmo intervalo da grade, a amostra fica enviesada."
+ },
+ {
+  "pergunta": "Por que sortear qual unidade recebe cada tratamento num experimento?",
+  "alternativas": [
+   "Para dispensar o grupo controle",
+   "Para distribuir ao acaso as variáveis de confusão",
+   "Para aumentar o número de réplicas",
+   "Para garantir um resultado significativo"
+  ],
+  "correta": 2,
+  "tempo": 20,
+  "explicacao": "O sorteio espalha entre os tratamentos o que não controlamos, e assim protege contra o confundimento."
+ },
+ {
+  "pergunta": "Em escala espacial, o grão é:",
+  "alternativas": [
+   "A distância entre duas parcelas",
+   "O número de réplicas",
+   "O tamanho da unidade amostral",
+   "A área total do estudo"
+  ],
+  "correta": 3,
+  "tempo": 20,
+  "explicacao": "O grão é a resolução (o tamanho de cada unidade amostral); a extensão é a área total coberta pelo estudo."
+ },
+ {
+  "pergunta": "No delineamento BACI, comparamos:",
+  "alternativas": [
+   "Só controle e impacto, depois do evento",
+   "Só as áreas impactadas, antes e depois",
+   "Blocos com e sem tratamento",
+   "Antes e depois, em áreas controle e impactadas"
+  ],
+  "correta": 4,
+  "tempo": 20,
+  "explicacao": "BACI = Before, After, Control, Impact. O efeito do impacto é a mudança na área impactada além da mudança na área controle."
+ }
+]

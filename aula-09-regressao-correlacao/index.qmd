@@ -53,6 +53,14 @@ público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tre
 Três perguntas para a turma (*peer instruction*): o quarteto de Anscombe,
 a interpretação do R² e os padrões nos resíduos.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a09.json"}
+:::
+
 ## Leituras recomendadas
 
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 9 (regressão).
@@ -70,7 +78,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de os quatro padrões de correlação está em
+O código dos quatro padrões de correlação está em
 [`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:
@@ -80,7 +88,7 @@ source("R/aula09.R")
 fig_correlacoes(n = 10)
 ```
 
-Diminua `n` para 10 e troque `seed`. Quanto o *r* varia em amostras pequenas?
+Compare `n = 10` com o padrão (`n = 40`) e troque `seed`. Quanto o *r* varia em amostras pequenas?
 
 ## Recursos externos
 

@@ -56,6 +56,14 @@ via Wikimedia Commons.
   planilha bem organizada e o que a caixa de um boxplot contém.
 - Histograma com post-its da altura da turma.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a03.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 2 (gráficos).
@@ -71,7 +79,7 @@ confere cada resposta.
 
 ## Brinque com o código
 
-O código de os histogramas com larguras de classe diferentes está em
+O código dos histogramas com larguras de classe diferentes está em
 [`R/aula03.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula03.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

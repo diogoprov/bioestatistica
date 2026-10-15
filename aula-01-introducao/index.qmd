@@ -59,6 +59,14 @@ Commons.
 - Atividade prática: adivinhação de idades a partir de fotografias, em
   grupos.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a01.json"}
+:::
+
 ## Leituras recomendadas
 
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 2.
@@ -66,7 +74,7 @@ Commons.
 
 ## Brinque com o código
 
-O código de a figura da população e da amostra está em
+O código da figura da população e da amostra está em
 [`R/aula01.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula01.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

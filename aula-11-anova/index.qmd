@@ -55,6 +55,14 @@ Commons.
 - Aula prática: ANOVA de dois fatores no jamovi com os dados dos girinos
   ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a11.json"}
+:::
+
 ## Leituras recomendadas
 
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 10 (ANOVA).
@@ -73,7 +81,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a variação entre e dentro dos grupos está em
+O código da variação entre e dentro dos grupos está em
 [`R/aula11.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula11.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

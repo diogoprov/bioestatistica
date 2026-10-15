@@ -1,0 +1,64 @@
+<script>
+// Quiz "Teste-se" das páginas das aulas. A página traz
+//   ::: {.quiz-teste-se data-quiz="../quiz/aNN.json"}
+//   :::
+// e as perguntas vêm do JSON (as mesmas da planilha do Kahoot).
+(function () {
+  var caixa = document.querySelector(".quiz-teste-se[data-quiz]");
+  if (!caixa) return;
+  fetch(caixa.dataset.quiz).then(function (r) { return r.json(); }).then(function (qs) {
+    var acertos = 0, respondidas = 0;
+    var placar = document.createElement("p");
+    placar.className = "teste-se-placar";
+    function atualizaPlacar() {
+      placar.textContent = respondidas < qs.length
+        ? "Respondidas: " + respondidas + " de " + qs.length
+        : "Você acertou " + acertos + " de " + qs.length + ".";
+    }
+    qs.forEach(function (q, i) {
+      var bloco = document.createElement("div");
+      bloco.className = "teste-se-pergunta";
+      var titulo = document.createElement("p");
+      titulo.innerHTML = "<strong>" + (i + 1) + ".</strong> ";
+      titulo.appendChild(document.createTextNode(q.pergunta));
+      bloco.appendChild(titulo);
+      var opcoes = document.createElement("div");
+      opcoes.className = "teste-se-opcoes";
+      var expl = document.createElement("p");
+      expl.className = "teste-se-explicacao";
+      expl.hidden = true;
+      q.alternativas.forEach(function (alt, j) {
+        var b = document.createElement("button");
+        b.type = "button";
+        b.textContent = alt;
+        b.addEventListener("click", function () {
+          var certo = (j + 1) === q.correta;
+          opcoes.querySelectorAll("button").forEach(function (o, k) {
+            o.disabled = true;
+            if ((k + 1) === q.correta) o.classList.add("certa");
+          });
+          if (!certo) b.classList.add("errada");
+          expl.textContent = (certo ? "Isso! " : "Não é essa. ") + q.explicacao;
+          expl.hidden = false;
+          respondidas++; if (certo) acertos++;
+          atualizaPlacar();
+        });
+        opcoes.appendChild(b);
+      });
+      bloco.appendChild(opcoes);
+      bloco.appendChild(expl);
+      caixa.appendChild(bloco);
+    });
+    atualizaPlacar();
+    caixa.appendChild(placar);
+    var de_novo = document.createElement("button");
+    de_novo.type = "button";
+    de_novo.className = "btn btn-outline-primary btn-sm";
+    de_novo.textContent = "Recomeçar";
+    de_novo.addEventListener("click", function () { location.reload(); });
+    caixa.appendChild(de_novo);
+  }).catch(function () {
+    caixa.textContent = "Não foi possível carregar as perguntas.";
+  });
+})();
+</script>

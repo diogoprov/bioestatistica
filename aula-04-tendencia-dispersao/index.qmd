@@ -65,7 +65,7 @@ confere cada resposta.
 
 ## Brinque com o código
 
-O código de a figura dos desvios em relação à média está em
+O código da figura dos desvios em relação à média está em
 [`R/aula04.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula04.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

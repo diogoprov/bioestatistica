@@ -56,6 +56,14 @@ repositório.
 - Nitrogênio do solo e crescimento de *Pinus*: como delinear o estudo.
 - Consultoria em delineamento: em grupos, atender quatro clientes.
 
+## Teste-se
+
+Dez perguntas para conferir o que ficou da aula. Clique numa alternativa
+para ver a resposta comentada.
+
+::: {.quiz-teste-se data-quiz="../quiz/a02.json"}
+:::
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, cap. 7 (amostragem).
@@ -73,7 +81,7 @@ vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
 
 ## Brinque com o código
 
-O código de a figura da mesma diferença real com três tamanhos de amostra está em
+O código da figura da mesma diferença real com três tamanhos de amostra está em
 [`R/aula02_pergunta.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula02_pergunta.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

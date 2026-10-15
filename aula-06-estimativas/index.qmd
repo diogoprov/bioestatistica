@@ -74,7 +74,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de os intervalos de confiança de amostras repetidas está em
+O código dos intervalos de confiança de amostras repetidas está em
 [`R/aula06.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula06.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

@@ -7,6 +7,8 @@ project:
     # PDFs da versão de 2025: nenhuma página aponta para eles, mas são
     # publicados para não quebrar links antigos.
     - "slides/*.pdf"
+    # Perguntas do "Teste-se" das páginas das aulas.
+    - "quiz/*.json"
   render:
     - "*.qmd"
     - "aula-*/index.qmd"
@@ -69,6 +71,7 @@ format:
     anchor-sections: true
     smooth-scroll: true
     link-external-newwindow: true
+    include-after-body: _teste-se.html
 
 knitr:
   opts_chunk:

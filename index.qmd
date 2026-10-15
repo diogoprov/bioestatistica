@@ -17,7 +17,8 @@ listing:
 Disciplina obrigatória de **Bioestatística** (68 h) do bacharelado e da
 licenciatura em Ciências Biológicas da UFMS. Esta página reúne os
 **materiais públicos** do curso (slides, exercícios no R, leituras e
-vídeos), abertos a qualquer pessoa. **Para alunos matriculados:** quizzes,
+vídeos), abertos a qualquer pessoa. **Próxima oferta:** condensada, de 15 a 27 de
+fevereiro de 2027. **Para alunos matriculados:** quizzes,
 prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br). Primeira vez
 aqui? Veja o **[Comece aqui](comece-aqui.qmd)**.
 :::

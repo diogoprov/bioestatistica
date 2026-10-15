@@ -74,7 +74,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a figura dos erros tipo I e II está em
+O código da figura dos erros tipo I e II está em
 [`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

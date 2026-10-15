@@ -79,7 +79,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a árvore de "O teste que mente" está em
+O código da árvore de "O teste que mente" está em
 [`R/aula05.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula05.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

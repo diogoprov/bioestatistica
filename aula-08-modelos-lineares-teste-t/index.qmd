@@ -71,7 +71,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a reta com intercepto e inclinação está em
+O código da reta com intercepto e inclinação está em
 [`R/aula08.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula08.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:

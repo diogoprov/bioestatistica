@@ -67,7 +67,7 @@ Bioestatística, comece por ela.
 
 ## Brinque com o código
 
-O código de a distribuição qui-quadrado com a região crítica está em
+O código da distribuição qui-quadrado com a região crítica está em
 [`R/aula10.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula10.R).
 Com o repositório baixado (veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código)),
 rode no console do R:
