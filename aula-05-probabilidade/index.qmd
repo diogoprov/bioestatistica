@@ -22,9 +22,9 @@ description: "Princípios de probabilidade e distribuições"
 
 ## Exercício no R (swirl)
 
-Pratique no console do R com a lição **Inferência por Simulação**: o swirl faz as perguntas e
-confere cada resposta. Se ainda não fez a lição Primeiros Passos, comece
-por ela.
+Pratique no console do R com a lição **Distribuições de Probabilidade**: o swirl faz as perguntas e
+confere cada resposta. Se ainda não fez a lição Primeiros Passos em
+Bioestatística, comece por ela.
 
 [{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
 

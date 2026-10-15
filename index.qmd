@@ -59,7 +59,7 @@ Ao final da disciplina, o(a) aluno(a) deve ser capaz de:
 
 ## Exercícios no R
 
-Para praticar fora da sala, três lições no [swirl](exercicios-swirl.qmd)
+Para praticar fora da sala, cinco lições no [swirl](exercicios-swirl.qmd)
 acompanham o curso: o aluno digita os comandos no próprio console do R e
 recebe correção a cada resposta. A primeira parte do zero; não é preciso
 saber R antes.

@@ -43,6 +43,15 @@ repositório.
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, caps. 6 e 7 (desenhos amostrais e experimentais).
 - Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.
 
+## Exercício no R (swirl)
+
+A lição **Amostragem e Delineamento** refaz no console do R a floresta
+simulada desta aula, o estudo com confundimento e a pseudorréplica. Ela é a
+**última** da trilha: usa sorteios, testes t e modelos lineares, que você só
+vai ver mais adiante no curso. Volte a esta aula quando chegar lá.
+
+[{{< fa solid terminal >}} Como instalar e fazer as lições](../exercicios-swirl.qmd){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 _Sem recursos externos para esta aula._
