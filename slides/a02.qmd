@@ -230,7 +230,7 @@ Por isso vale desenhar as predições **antes** de coletar os dados.
 
 ---
 
-## Atividade (10 min) {.smaller}
+## Atividade (10 min)
 
 ::: {.atividade}
 **Será que a poluição afeta os girinos?**
@@ -241,13 +241,23 @@ Por isso vale desenhar as predições **antes** de coletar os dados.
 3. **Duas duplas** compartilham a versão final com a turma.
 :::
 
-Perguntas para guiar a reescrita:
+---
+
+## Conferindo as versões
+
+Depois que as duplas apresentarem, confiram se a pergunta de vocês
+responde a estas questões:
 
 - Que poluente? Medido como?
 - Qual resposta dos girinos: sobrevivência, crescimento, tempo até a
   metamorfose, comportamento?
 - Que espécie, em que fase de desenvolvimento?
 - Qual é a direção esperada do efeito?
+
+::: {.nota}
+Cada questão que ficou sem resposta é uma decisão que o Plano vai ter de
+tomar mesmo assim, só que mais tarde e sem critério.
+:::
 
 ---
 
