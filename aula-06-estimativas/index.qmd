@@ -138,7 +138,11 @@ Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-
 
 ## Recursos externos
 
-- [Seeing Theory — amostragem, parâmetro e variância (interativo)](https://seeing-theory.brown.edu/basic-probability/index.html)
+- [Seeing Theory — inferência frequentista](https://seeing-theory.brown.edu/frequentist-inference/index.html):
+  estimação pontual, intervalos de confiança e *bootstrap* (interativo,
+  Brown University)
+- [Interpretando intervalos de confiança](https://rpsychologist.com/d3/ci/) (interativo, Kristoffer
+  Magnusson): simule muitos intervalos e veja quantos capturam o parâmetro
 - [Vídeo introdutório sobre Teorema do Limite Central](https://vimeo.com/75089338)
 - [Simulação interativa do Teorema do Limite Central (Mike Freeman)](http://mfviz.com/central-limit/)
 

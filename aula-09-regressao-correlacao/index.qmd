@@ -131,6 +131,8 @@ Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-
 
 ## Recursos externos
 
+- [Seeing Theory — análise de regressão](https://seeing-theory.brown.edu/regression-analysis/index.html)
+  (interativo, Brown University): mínimos quadrados e correlação
 - [Vídeo da aula](https://www.youtube.com/watch?v=GXJOdV-NfjM)
 - [Como fazer correlação e regressão](https://www.youtube.com/watch?v=wexf1O1q-sc)
 - [Da Silva et al. *Análises Ecológicas no R*, cap. 7 (modelos lineares)](https://analises-ecologicas.com/cap7)

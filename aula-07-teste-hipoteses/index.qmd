@@ -144,6 +144,10 @@ Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-
 
 ## Recursos externos
 
+- [O jogo do valor de *P*](https://rpsychologist.com/pvalue/) (interativo, Kristoffer Magnusson):
+  simule estudos e veja como o *P* se distribui com e sem efeito
+- [Poder e significância](https://rpsychologist.com/d3/nhst/) (interativo, Kristoffer Magnusson):
+  mexa no tamanho de efeito, no *n* e no α e veja os erros tipo I e II
 - [Apostila de Marco & Paglia — tipos de teste](https://files.cercomp.ufg.br/weby/up/85/o/Apostila_de_estat%C3%ADstica.pdf)
 - [Assis, J.P.; Sousa, R.P. & Linhares, P.C.F. 2020. *Testes de hipóteses estatísticas*. Mossoró: EdUFERSA (livro completo, acesso aberto)](https://livraria.ufersa.edu.br/testes-de-hipoteses-estatisticas/)
 

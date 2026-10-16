@@ -135,6 +135,12 @@ Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-
 
 ## Recursos externos
 
+- [Seeing Theory — probabilidade básica](https://seeing-theory.brown.edu/basic-probability/index.html),
+  [probabilidade composta](https://seeing-theory.brown.edu/compound-probability/index.html) e
+  [distribuições de probabilidade](https://seeing-theory.brown.edu/probability-distributions/index.html)
+  (interativo, Brown University)
+- [Seeing Theory — inferência bayesiana](https://seeing-theory.brown.edu/bayesian-inference/index.html),
+  para ir além do teorema de Bayes
 - [Zuur et al. *Mixed Effects Models and Extensions in Ecology with R*, cap. 8 (distribuições da família exponencial)](https://link.springer.com/chapter/10.1007/978-0-387-87458-6_8)
 
 ---

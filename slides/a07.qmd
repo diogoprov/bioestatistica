@@ -1191,6 +1191,8 @@ fig_pinus_boxplot(pinus)
   testing (difference of two means)", "Choosing the test" e
   "Understanding the p-value".
 - [Apostila de estatística de De Marco & Paglia](https://files.cercomp.ufg.br/weby/up/85/o/Apostila_de_estat%C3%ADstica.pdf)
+- Visualizações interativas de Kristoffer Magnusson: [o jogo do valor de
+  *P*](https://rpsychologist.com/pvalue/) e [poder e significância](https://rpsychologist.com/d3/nhst/)
 
 ---
 
