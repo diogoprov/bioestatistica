@@ -56,8 +56,9 @@ Quizzes, prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br).
   <https://openintro-ims.netlify.app/>.
 - Dormann, C.F. & Ellison, A.M. 2025. *Statistics by Simulation.*
   Princeton: Princeton University Press.
-- Manly, B.F.J. 2006. *Randomization, Bootstrap and Monte Carlo Methods in
-  Biology.* 3ª ed. Boca Raton: Chapman & Hall/CRC.
+- Manly, B.F.J. & Navarro Alberto, J.A. 2020. *Randomization, Bootstrap and
+  Monte Carlo Methods in Biology.* 4ª ed. Boca Raton: Chapman & Hall/CRC.
+  <https://doi.org/10.1201/9780429329203>
 - Quinn, G.P. & Keough, M.J. 2023. *Experimental Design and Data Analysis for
   Biologists.* 2ª ed. Cambridge University Press.
 - Sokal, R. & Rohlf, J. 1994. *Biometry.* 3ª ed. New York: WH Freeman.

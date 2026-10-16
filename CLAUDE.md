@@ -304,7 +304,7 @@ continua em `slides/`, então não apague os PDFs.
   (`fig_bootstrap()`, com as redes da pescaria) e teste de permutação na
   Aula 7 (`fig_permutacao()`, com os *Pinus*), cada um com uma atividade
   de papel e uma célula webR na página. Referências: Dormann & Ellison
-  2025 e Manly 2006. GLM/GLMM não entram na disciplina: a Aula 10 só tem
+  2025 e Manly & Navarro Alberto 2020. GLM/GLMM não entram na disciplina: a Aula 10 só tem
   um "Para saber mais" com links para Análise de Dados Univariados e o
   GLMM Analyzer de T. Pavlic.
 - A bibliografia básica vem do PPC e não pode mudar; a complementar pode.

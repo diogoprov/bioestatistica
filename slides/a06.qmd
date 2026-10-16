@@ -915,7 +915,7 @@ reamostragens estima o erro padrão, sem fórmula.
 :::
 
 ::: {.ref}
-Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press. Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
+Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press. Manly, B.F.J. & Navarro Alberto, J.A. 2020. *Randomization, bootstrap and Monte Carlo methods in biology*. 4ª ed. Chapman & Hall/CRC.
 :::
 
 ---
@@ -995,6 +995,6 @@ Para revisar depois: [Kahoot: Estimativa pontual e intervalar](https://create.ka
 - Triola, M.F. 2023. *Introdução à estatística*.
 - Vieira, S. 2022. *Introdução à bioestatística*.
 - Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press.
-- Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
+- Manly, B.F.J. & Navarro Alberto, J.A. 2020. *Randomization, bootstrap and Monte Carlo methods in biology*. 4ª ed. Chapman & Hall/CRC.
 - Simulador de intervalos de confiança: Rossman/Chance, <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
 :::
