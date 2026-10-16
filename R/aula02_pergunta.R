@@ -342,10 +342,11 @@ fig_hierarquia_folhas <- function(seed = 5) {
     # com uma árvore só, ela fica no centro e as folhas se espalham mais
     espalho <- if (n_arv == 1) .9 else .09
     ax <- if (n_arv == 1) x0 + 1.5 else x0 + seq(.35, 2.65, length.out = n_arv)
-    tibble::tibble(arv = seq_len(n_arv), ax = ax, ay = 1.6) |>
+    tibble::tibble(arv = seq_len(n_arv), ax = ax, ay = 1.38,
+                   h_arv = if (n_arv == 1) .55 else .26) |>
       tidyr::uncount(folhas_por, .remove = FALSE) |>
       mutate(fx = ax + runif(n(), -espalho, espalho),
-             fy = runif(n(), .35, 1.2),
+             fy = runif(n(), .3, 1.05),
              floresta = floresta, desenho = desenho)
   }
   d <- bind_rows(
@@ -354,29 +355,40 @@ fig_hierarquia_folhas <- function(seed = 5) {
     arvores("A", 10, 5, 0,   "Como deveria ser: 10 árvores, 5 folhas cada"),
     arvores("B", 10, 5, 3.4, "Como deveria ser: 10 árvores, 5 folhas cada")
   ) |>
-    mutate(desenho = factor(desenho, levels = unique(desenho)))
+    mutate(desenho = factor(desenho, levels = unique(desenho)),
+           folha = row_number())
   cor_fl <- c(A = cores[["verde"]], B = cores[["ferrugem"]])
-  arv <- distinct(d, desenho, floresta, arv, ax, ay)
+  arv <- distinct(d, desenho, floresta, arv, ax, ay, h_arv) |>
+    mutate(id = row_number())
+  # silhuetas do PhyloPic: carvalho (Quercus robur) e folha (Q. petraea)
+  sil_arv <- purrr::pmap_dfr(arv, function(desenho, floresta, ax, ay, h_arv, id, ...)
+    mutate(silhueta("carvalho", ax, ay, h_arv, id), desenho = desenho,
+           floresta = floresta))
+  sil_folha <- purrr::pmap_dfr(d, function(desenho, floresta, fx, fy, folha, ...)
+    mutate(silhueta("folha-carvalho", fx, fy - .06, .13, folha),
+           desenho = desenho, floresta = floresta))
   rot <- tibble::tibble(floresta = c("A", "B"), x = c(1.5, 4.9), y = 2.15,
                         lab = c("Floresta A", "Floresta B"))
   ggplot() +
     geom_rect(data = tibble::tibble(floresta = c("A", "B"),
                                     x0 = c(0, 3.4), x1 = c(3, 6.4)),
-              aes(xmin = x0, xmax = x1, ymin = .15, ymax = 1.95),
+              aes(xmin = x0, xmax = x1, ymin = .15, ymax = 1.98),
               fill = NA, colour = cores[["neutro"]], linewidth = .5,
               linetype = "22") +
-    geom_segment(data = d, aes(ax, ay - .12, xend = fx, yend = fy,
+    geom_segment(data = d, aes(ax, ay, xend = fx, yend = fy,
                                colour = floresta), alpha = .18,
                  linewidth = .35) +
-    geom_point(data = arv, aes(ax, ay, colour = floresta), shape = 17,
-               size = 5) +
-    geom_point(data = d, aes(fx, fy, colour = floresta), size = 1.3,
-               alpha = .8) +
+    geom_polygon(data = sil_arv, aes(x, y, group = id, subgroup = parte,
+                                     fill = floresta), rule = "evenodd") +
+    geom_polygon(data = sil_folha, aes(x, y, group = id, subgroup = parte,
+                                       fill = floresta), rule = "evenodd",
+                 alpha = .85) +
     geom_text(data = rot, aes(x, y, label = lab, colour = floresta),
               fontface = "bold", size = 5) +
     scale_colour_manual(values = cor_fl, guide = "none") +
+    scale_fill_manual(values = cor_fl, guide = "none") +
     facet_wrap(~desenho, ncol = 1) +
-    coord_cartesian(clip = "off") +
+    coord_fixed(clip = "off") +
     theme_void(base_size = 15) +
     theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
           strip.text = element_text(face = "bold", hjust = 0,

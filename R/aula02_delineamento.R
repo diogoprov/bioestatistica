@@ -111,8 +111,8 @@ fig_experimento_resultado <- function(d = dados_experimento()) {
               ep = sd(crescimento) / sqrt(n), .groups = "drop") |>
     mutate(li = m - qt(.975, n - 1) * ep, ls = m + qt(.975, n - 1) * ep)
   ggplot(d, aes(trat, crescimento)) +
-    geom_jitter(width = .1, height = 0, size = 2.6, colour = cores[["neutro"]],
-                alpha = .7) +
+    geom_jitter(width = .1, height = 0, size = 3.4, shape = 21,
+                fill = cores[["accent"]], colour = "white", stroke = .8) +
     geom_pointrange(data = r, aes(y = m, ymin = li, ymax = ls),
                     colour = cores[["accent_dark"]], size = .9,
                     linewidth = 1.4, position = position_nudge(x = .25)) +

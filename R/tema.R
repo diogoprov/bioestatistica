@@ -65,3 +65,18 @@ tema_aula <- function(base = 15, conceitual = FALSE) {
   }
   t
 }
+
+#' Silhueta do PhyloPic como polígonos, para desenhar com geom_polygon()
+#'
+#' Lê assets/phylopic/<nome>.csv (gerado de <nome>.svg por
+#' assets/phylopic/svg2csv.py) e põe a base da figura em (x, y), com a
+#' altura pedida. Desenhe com `aes(x, y, group = id, subgroup = parte)` e
+#' `rule = "evenodd"`, para os buracos da silhueta ficarem vazados.
+silhueta <- function(nome, x = 0, y = 0, altura = 1, id = 1, espelhar = FALSE) {
+  s <- utils::read.csv(here::here("assets/phylopic", paste0(nome, ".csv")))
+  if (espelhar) s$x <- -s$x
+  s$x <- x + s$x * altura
+  s$y <- y + s$y * altura
+  s$id <- id
+  s
+}

@@ -56,32 +56,59 @@ fig_grao_extensao <- function(seed = 3) {
 # ---------------------------------------------------------------------------
 fig_gradiente_confundido <- function(seed = 8) {
   set.seed(seed)
-  fundo <- expand.grid(x = seq(0, 10, by = .1), y = c(0, 6))
+  fundo <- expand.grid(x = seq(.05, 9.95, by = .1), y = seq(-.85, 5.95, by = .1))
   pos <- expand.grid(col = 1:6, lin = 1:3) |>
     mutate(x = .9 + (col - 1) * 1.65, y = 1.1 + (lin - 1) * 1.9)
   a <- mutate(pos, trat = ifelse(col <= 3, "Néctar removido", "Controle"),
               desenho = "Confundido")
   b <- mutate(pos, trat = sample(rep(c("Néctar removido", "Controle"), 9)),
               desenho = "Intercalado e sorteado")
-  d <- bind_rows(a, b) |> mutate(desenho = factor(desenho, unique(desenho)))
-  ggplot() +
+  d <- bind_rows(a, b) |>
+    mutate(desenho = factor(desenho, unique(desenho)), id = row_number())
+  # beija-flor (silhueta do PhyloPic); com néctar removido, sob um "proibido"
+  bf <- function(d, alt = 1.2) purrr::pmap_dfr(d, function(x, y, id, ...)
+    mutate(silhueta("beija-flor", x, y - alt / 2, alt, id), ...))
+  proibido <- function(d, r = .72) {
+    ang <- seq(0, 2 * pi, length.out = 60)
+    list(
+      geom_path(data = tidyr::crossing(filter(d, trat == "Néctar removido"),
+                                       a = ang),
+                aes(x + r * cos(a), y + r * sin(a), group = id),
+                colour = "#b42318", linewidth = 1.3),
+      geom_segment(data = filter(d, trat == "Néctar removido"),
+                   aes(x - r * .71, y + r * .71, xend = x + r * .71,
+                       yend = y - r * .71),
+                   colour = "#b42318", linewidth = 1.3)
+    )
+  }
+  g <- ggplot() +
     geom_raster(data = tidyr::crossing(fundo, desenho = unique(d$desenho)),
                 aes(x, y, fill = x), interpolate = TRUE) +
     scale_fill_gradient(low = "#d98a3d", high = "#8fb3c4", guide = "none") +
-    geom_point(data = d, aes(x, y, shape = trat), size = 9,
-               colour = cores[["texto"]], stroke = 1.2,
-               fill = "white") +
-    scale_shape_manual(values = c(`Néctar removido` = 15, Controle = 22),
-                       name = NULL) +
+    geom_polygon(data = bf(d, 1.3), aes(x, y, group = id, subgroup = parte),
+                 fill = cores[["texto"]], rule = "evenodd") +
+    proibido(d) +
     geom_text(data = tidyr::crossing(
                 tibble::tibble(x = c(.2, 9.8), h = c(0, 1),
                                lab = c("mais quente", "mais frio")),
                 desenho = unique(d$desenho)),
-              aes(x, -.45, label = lab, hjust = h), size = 4.6,
+              aes(x, -.5, label = lab, hjust = h), size = 4.6,
               colour = cores[["texto"]]) +
     facet_wrap(~desenho, ncol = 2) +
     coord_equal(clip = "off") +
     fundo_void(14)
+  # legenda desenhada à mão, com as mesmas silhuetas
+  leg <- tibble::tibble(x = c(0, 5), y = 0, id = 1:2,
+                        trat = c("Controle", "Néctar removido"))
+  l <- ggplot() +
+    geom_polygon(data = bf(leg, 1.2), aes(x, y, group = id, subgroup = parte),
+                 fill = cores[["texto"]], rule = "evenodd") +
+    proibido(leg) +
+    geom_text(data = leg, aes(x + .95, y, label = trat), hjust = 0, size = 5,
+              colour = cores[["texto"]]) +
+    coord_equal(xlim = c(-.8, 9.6), ylim = c(-.8, .8), clip = "off") +
+    fundo_void(14)
+  g / l + plot_layout(heights = c(1, .16))
 }
 
 # ---------------------------------------------------------------------------

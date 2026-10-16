@@ -471,7 +471,7 @@ análise: ou o delineamento replicou a unidade certa, ou não replicou.
 #| fig-width: 10
 #| fig-height: 4.6
 #| out-width: "74%"
-#| fig-alt: "Duas linhas de esquema. Na de cima, cada floresta tem uma única árvore, de onde saem 50 folhas. Na de baixo, cada floresta tem dez árvores, e de cada uma saem cinco folhas."
+#| fig-alt: "Duas linhas de esquema com silhuetas de carvalhos e de folhas. Na de cima, cada floresta tem uma única árvore, de onde saem 50 folhas. Na de baixo, cada floresta tem dez árvores, e de cada uma saem cinco folhas."
 fig_hierarquia_folhas()
 ```
 
@@ -479,6 +479,12 @@ Folhas da mesma árvore são **subamostras**: melhoram a estimativa daquela
 árvore, mas não informam sobre as outras árvores da floresta. Para comparar
 florestas, é preciso replicar árvores, e para generalizar sobre "florestas
 deste tipo", é preciso replicar florestas.
+
+::: {.nota}
+Silhuetas do [PhyloPic](https://www.phylopic.org), sob CC0 1.0: *Quercus
+robur* por Carlo De Rito e a folha de *Quercus petraea* por Pablo Castro
+Sánchez-Bermejo.
+:::
 
 # 3. Escala e controles {.secao}
 
@@ -528,7 +534,8 @@ até onde podemos generalizar. Nenhum dos dois está certo ou errado em si:
 depende da escala em que o processo biológico acontece.
 
 ::: {.ref}
-Wiens, J.A. 1989. *Functional Ecology* 3:385.
+Inspirado em figura de Legendre, P. & Legendre, L. 2012. *Numerical
+ecology*. 3ª ed. Elsevier. Wiens, J.A. 1989. *Functional Ecology* 3:385.
 :::
 :::
 ::::
@@ -540,7 +547,7 @@ Wiens, J.A. 1989. *Functional Ecology* 3:385.
 ```{r}
 #| fig-width: 11
 #| fig-height: 4
-#| fig-alt: "Dois retângulos coloridos de um lado quente, à esquerda, para um lado frio, à direita, cada um com 18 parcelas. No desenho confundido, todas as parcelas com néctar removido estão no lado quente e todos os controles no lado frio. No desenho intercalado, os dois tipos estão misturados ao longo do gradiente."
+#| fig-alt: "Dois retângulos coloridos de um lado quente, à esquerda, para um lado frio, à direita, cada um com 18 parcelas desenhadas como beija-flores; as parcelas com néctar removido têm o beija-flor sob um sinal de proibido. No desenho confundido, todas as parcelas com néctar removido estão no lado quente e todos os controles no lado frio. No desenho intercalado, os dois tipos estão misturados ao longo do gradiente."
 fig_gradiente_confundido()
 ```
 
@@ -548,6 +555,11 @@ No desenho da esquerda, qualquer diferença entre tratamento e controle
 pode ser efeito da **temperatura**, e não da remoção de néctar. No da
 direita, o sorteio espalha os dois tipos de parcela pelo gradiente, e a
 temperatura deixa de andar junto com o tratamento.
+
+::: {.nota}
+Silhueta de beija-flor (Trochilidae) por Ferran Sayol, do
+[PhyloPic](https://www.phylopic.org), sob CC0 1.0.
+:::
 
 # 4. Técnicas de amostragem {.secao}
 
