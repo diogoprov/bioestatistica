@@ -51,13 +51,22 @@ Quizzes, prazos e notas ficam no [Moodle UFMS](https://ava.ufms.br).
 
 - Bussab, W.O. & Morettin, P.A. 2017. *Estatística básica.* 9ª ed. São Paulo:
   Saraiva.
+- Çetinkaya-Rundel, M. & Hardin, J. *Introduction to Modern
+  Statistics.* 2ª ed. OpenIntro. Livre e gratuito em
+  <https://openintro-ims.netlify.app/>.
+- Dormann, C.F. & Ellison, A.M. 2025. *Statistics by Simulation.*
+  Princeton: Princeton University Press.
+- Manly, B.F.J. 2006. *Randomization, Bootstrap and Monte Carlo Methods in
+  Biology.* 3ª ed. Boca Raton: Chapman & Hall/CRC.
 - Quinn, G.P. & Keough, M.J. 2023. *Experimental Design and Data Analysis for
   Biologists.* 2ª ed. Cambridge University Press.
 - Sokal, R. & Rohlf, J. 1994. *Biometry.* 3ª ed. New York: WH Freeman.
 - Triola, M.F. 2024. *Introdução à estatística.* 14ª ed. Rio de Janeiro: LTC.
-- Vieira, S. 2018. *Estatística básica.* 2ª ed. São Paulo: Cengage Learning.
 - Vieira, S. 2010. *Bioestatística: tópicos avançados.* 3ª ed. Rio de Janeiro:
   Elsevier.
+- Vieira, S. 2018. *Estatística básica.* 2ª ed. São Paulo: Cengage Learning.
+- Whitlock, M.C. & Schluter, D. 2020. *The Analysis of Biological Data.*
+  3ª ed. New York: W.H. Freeman.
 - Zar, J.H. 2009. *Biostatistical analysis.* 5ª ed. New York: Pearson.
 
 ## Recursos online

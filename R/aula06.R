@@ -288,3 +288,41 @@ fig_largura_ic <- function(s = 20, n0 = 30) {
     labs(x = "Peso médio (g)") +
     tema_aula(14)
 }
+
+# ---------------------------------------------------------------------------
+# Bootstrap: reamostrar a própria rede, com reposição, para obter o IC sem
+# fórmula. Usa uma das redes da pescaria.
+# ---------------------------------------------------------------------------
+bootstrap_media <- function(x = redes$peso[redes$rede == "Rede 2"], b = 5000,
+                            seed = 10) {
+  set.seed(seed)
+  replicate(b, mean(sample(x, replace = TRUE)))
+}
+
+# Uma reamostragem, para mostrar o que "com reposição" quer dizer.
+reamostra_exemplo <- function(x = redes$peso[redes$rede == "Rede 2"], seed = 3) {
+  set.seed(seed)
+  sort(sample(x, replace = TRUE))
+}
+
+fig_bootstrap <- function(x = redes$peso[redes$rede == "Rede 2"], b = 5000,
+                          seed = 10) {
+  medias <- bootstrap_media(x, b, seed)
+  ic_boot <- quantile(medias, c(.025, .975))
+  ic_t <- mean(x) + c(-1, 1) * qt(.975, length(x) - 1) * sd(x) / sqrt(length(x))
+  faixas <- tibble::tibble(
+    metodo = c("Bootstrap (percentis 2,5% e 97,5%)", "Fórmula com t"),
+    li = c(ic_boot[1], ic_t[1]), ls = c(ic_boot[2], ic_t[2]),
+    y = c(-60, -130) * b / 5000)
+  ggplot(tibble::tibble(m = medias), aes(m)) +
+    geom_histogram(binwidth = .5, fill = cores[["accent"]], colour = cores[["papel"]]) +
+    geom_vline(xintercept = mean(x), colour = cores[["texto"]], linewidth = 1) +
+    geom_segment(data = faixas, aes(x = li, xend = ls, y = y, yend = y,
+                                    colour = metodo), linewidth = 2.2) +
+    scale_colour_manual(values = c(cores[["ocre"]], cores[["ferrugem"]]), name = NULL) +
+    labs(x = "Média de cada reamostragem (g)",
+         y = "Número de reamostragens",
+         subtitle = sprintf("%s reamostragens da mesma rede de %d tilápias; linha preta: média da rede",
+                            format(b, big.mark = "."), length(x))) +
+    tema_aula(14)
+}

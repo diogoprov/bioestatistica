@@ -361,3 +361,33 @@ fig_pinus_decisao <- function(d = dados_pinus(), alfa = .05) {
   gl <- unname(tt$parameter)
   fig_regiao_critica("dir", alfa = alfa, gl = gl, obs = unname(tt$statistic), rotulos = TRUE)
 }
+
+# ---------------------------------------------------------------------------
+# Teste de permutação: se o solo não importa, os rótulos são intercambiáveis.
+# Embaralhamos os rótulos e recalculamos a diferença entre as médias.
+# ---------------------------------------------------------------------------
+dif_medias <- function(altura, solo) {
+  mean(altura[solo == "argiloso"]) - mean(altura[solo == "rochoso"])
+}
+
+permuta_pinus <- function(d = dados_pinus(), b = 5000, seed = 12) {
+  set.seed(seed)
+  replicate(b, dif_medias(d$altura, sample(d$solo)))
+}
+
+fig_permutacao <- function(d = dados_pinus(), b = 5000, seed = 12) {
+  nula <- permuta_pinus(d, b, seed)
+  obs <- dif_medias(d$altura, d$solo)
+  p <- mean(nula >= obs - 1e-9)   # tolerância para a igualdade numérica
+  ggplot(tibble::tibble(dif = nula), aes(dif, fill = dif >= obs - 1e-9)) +
+    geom_histogram(binwidth = .03, boundary = obs - 1e-9, colour = cores[["papel"]]) +
+    geom_vline(xintercept = obs, colour = cores[["ferrugem"]], linewidth = 1.2) +
+    scale_fill_manual(values = c(`FALSE` = cores[["neutro"]], `TRUE` = cores[["ferrugem"]]),
+                      guide = "none") +
+    labs(x = "Diferença entre as médias, argiloso − rochoso (m)",
+         y = "Número de embaralhamentos",
+         subtitle = paste0(format(b, big.mark = "."), " embaralhamentos dos rótulos de solo\n",
+                           "Linha: diferença observada (", num_br(obs, 2), " m); ",
+                           "P = ", num_br(p, 3), " (proporção à direita)")) +
+    tema_aula(14)
+}

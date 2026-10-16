@@ -762,6 +762,30 @@ preferência, mas o G é teoricamente mais sólido.
 
 ---
 
+## Para saber mais: e quando a resposta é uma contagem? {.smaller}
+
+O qui-quadrado compara **contagens** entre categorias. A mesma pergunta
+pode ser feita como um **modelo**, com o mesmo preditor linear das Aulas
+8, 9 e 11, desde que a resposta tenha a distribuição certa:
+
+- **contagens** (número de girinos, de visitas a flores): GLM de
+  **Poisson**;
+- **presença ou ausência**, **vivo ou morto**: GLM **binomial**
+  (regressão logística);
+- unidades agrupadas (parcelas dentro de lagoas, medidas repetidas): GLM
+  **misto** (GLMM).
+
+Não é matéria desta disciplina, mas é o próximo passo natural:
+
+- [Distribuições de probabilidade e a família exponencial](https://provetelab.org/analise-dados-univariados-2026-2/slides/e04.html),
+  [GLM I: binomial e Poisson](https://provetelab.org/analise-dados-univariados-2026-2/slides/e05.html) e
+  [GLMM I: por que efeitos aleatórios](https://provetelab.org/analise-dados-univariados-2026-2/slides/e07.html), do curso de pós
+  Análise de Dados Univariados
+- [GLMM Analyzer](https://tpavlic.github.io/topic_visualizers/glmm_analyzer/glmm_analyzer.html),
+  de T. Pavlic: ajuste GLMs e GLMMs no navegador e veja o que muda
+
+---
+
 ## Kahoot! {.secao}
 
 [Kahoot: Qui-quadrado e Teste G](https://create.kahoot.it/details/24e6dd0f-ab42-4583-9b42-602515a0843c)

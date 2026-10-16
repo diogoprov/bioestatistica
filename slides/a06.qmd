@@ -46,6 +46,7 @@ source(here::here("R/idades.R"))
 4. Estimativa intervalar, erro padrão e intervalo de confiança
 5. O Teorema do Limite Central
 6. Intervalos de confiança para médias e para proporções
+7. IC por simulação: o *bootstrap*
 
 ::: {.nota}
 As figuras desta aula foram geradas em R, com os dados da pescaria ou com
@@ -884,6 +885,76 @@ confiança nos diz quão confiável é o nosso método de construção da rede**
 
 ---
 
+# 7. IC por simulação: o *bootstrap* {.secao}
+
+[Análise]{.ppdac-etapa .analise}
+
+---
+
+## A ideia do *bootstrap*
+
+```{r}
+x_rede2 <- redes$peso[redes$rede == "Rede 2"]
+ic_boot2 <- quantile(bootstrap_media(x_rede2), c(.025, .975))
+ic_t2 <- mean(x_rede2) + c(-1, 1) * qt(.975, 9) * sd(x_rede2) / sqrt(10)
+```
+
+E se não tivéssemos a fórmula do erro padrão nem a distribuição *t*?
+
+- A **Rede 2** pescou 10 tilápias:
+  `r paste(sort(x_rede2), collapse = "; ")` g.
+- Sorteamos 10 pesos **dessa mesma rede, com reposição**:
+  `r paste(reamostra_exemplo(x_rede2), collapse = "; ")` g. Alguns pesos
+  saem duas ou três vezes, outros não saem.
+- Calculamos a média e repetimos milhares de vezes.
+
+::: {.definicao}
+Se a amostra representa bem a população, **reamostrar a amostra imita
+tirar novas amostras do lago**. A variação entre as médias das
+reamostragens estima o erro padrão, sem fórmula.
+:::
+
+::: {.ref}
+Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press. Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
+:::
+
+---
+
+## Atividade: *bootstrap* com papeizinhos (10 min)
+
+::: {.atividade}
+1. Cada grupo escreve os 10 pesos da sua rede em 10 papeizinhos e põe
+   num saco.
+2. Sorteiem um papel, anotem o peso e **devolvam o papel ao saco**.
+   Repitam até ter 10 pesos.
+3. Calculem a média dessa reamostragem.
+4. Repitam os passos 2 e 3 cinco vezes.
+5. Cada grupo marca as suas médias num diagrama de pontos no quadro, uma
+   cor por rede.
+
+Quão espalhadas ficam as médias de cada rede? A nuvem de pontos de cada
+rede contém o peso médio verdadeiro do lago (250 g)?
+:::
+
+---
+
+## O *bootstrap* da Rede 2
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+#| fig-alt: "Histograma das médias de 5.000 reamostragens com reposição da Rede 2, centrado em 237 gramas e indo de cerca de 231 a 243 gramas. Abaixo, duas barras horizontais: o intervalo de 95% do bootstrap, de cerca de 233 a 241,5 gramas, e o intervalo pela fórmula com t, de cerca de 232 a 242 gramas."
+fig_bootstrap(x_rede2)
+```
+
+O IC de 95% pelo *bootstrap* (`r num_br(ic_boot2[1])` a
+`r num_br(ic_boot2[2])` g) é quase igual ao da fórmula com *t*
+(`r num_br(ic_t2[1])` a `r num_br(ic_t2[2])` g). Mas nenhum dos dois
+captura os 250 g do lago: **a simulação não conserta uma amostra ruim**,
+porque só usa a informação que a rede trouxe.
+
+---
+
 ## Recapitulando
 
 - **Estimativa pontual:** nossa melhor estimativa/suposição para um
@@ -893,6 +964,7 @@ confiança nos diz quão confiável é o nosso método de construção da rede**
   contém o parâmetro populacional verdadeiro, com um nível de confiança
   associado.
 - O IC nos dá uma ideia da **precisão** da nossa estimativa pontual.
+- O ***bootstrap*** obtém o IC reamostrando a própria amostra, sem fórmula.
 
 ---
 
@@ -922,5 +994,7 @@ Para revisar depois: [Kahoot: Estimativa pontual e intervalar](https://create.ka
 - Gotelli, N.J. & Ellison, A.M. 2004. *A primer of ecological statistics*.
 - Triola, M.F. 2023. *Introdução à estatística*.
 - Vieira, S. 2022. *Introdução à bioestatística*.
+- Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press.
+- Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
 - Simulador de intervalos de confiança: Rossman/Chance, <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
 :::

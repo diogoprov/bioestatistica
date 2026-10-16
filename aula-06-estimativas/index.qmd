@@ -124,7 +124,15 @@ Aumente `k` (o número de amostras). Que fração dos intervalos contém a médi
 fig_ic_repetidos(k = 100)
 ```
 
-O código dos intervalos de confiança de amostras repetidas está em
+Agora o *bootstrap*: reamostre uma rede com reposição. Troque `"Rede 2"`
+por outra rede (de 1 a 5) ou mude `b`, o número de reamostragens. O
+intervalo captura os 250 g do lago?
+
+```{webr}
+fig_bootstrap(redes$peso[redes$rede == "Rede 2"], b = 5000)
+```
+
+O código dos intervalos de confiança e do *bootstrap* está em
 [`R/aula06.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula06.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 

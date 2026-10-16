@@ -1016,6 +1016,63 @@ tt_pinus <- t.test(altura ~ solo, data = pinus, alternative = "greater")
 
 ---
 
+## E se não houvesse a distribuição *t*?
+
+```{r}
+obs_pinus <- dif_medias(pinus$altura, pinus$solo)
+p_perm <- mean(permuta_pinus(pinus) >= obs_pinus - 1e-9)
+```
+
+Se o solo **não** afeta a altura (H₀), o rótulo "argiloso" ou "rochoso"
+de cada planta é arbitrário: qualquer arranjo dos rótulos seria tão
+provável quanto o observado.
+
+1. Calcule a diferença entre as médias observada:
+   `r num_br(obs_pinus, 2)` m.
+2. **Embaralhe os rótulos** de solo entre as 50 plantas e recalcule a
+   diferença.
+3. Repita milhares de vezes. As diferenças formam a **distribuição
+   nula**, construída com os próprios dados.
+4. O valor de *P* é a proporção de embaralhamentos com diferença igual ou
+   maior que a observada.
+
+::: {.ref}
+Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press. Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
+:::
+
+---
+
+## Atividade: embaralhe os rótulos (10 min)
+
+::: {.atividade}
+1. Cada grupo recebe 12 cartões com alturas de *Pinus*: 6 de solo
+   argiloso e 6 de solo rochoso. Calculem a diferença entre as médias.
+2. **Embaralhem os cartões** e dividam em duas pilhas de 6, uma
+   "argilosa" e uma "rochosa". Calculem a nova diferença.
+3. Repitam o passo 2 cinco vezes e marquem as diferenças num diagrama de
+   pontos no quadro, junto com as dos outros grupos.
+
+Quantas diferenças embaralhadas são tão grandes quanto a observada? O que
+isso diz sobre H₀?
+:::
+
+---
+
+## O teste de permutação dos *Pinus*
+
+```{r}
+#| fig-width: 10
+#| fig-height: 4
+#| fig-alt: "Histograma de 5.000 diferenças entre as médias de altura com os rótulos de solo embaralhados, centrado em zero e indo de cerca de menos 0,8 a mais 0,85 metro. Uma linha vertical marca a diferença observada, de 0,34 metro; as barras à direita dela estão destacadas e somam cerca de 14% dos embaralhamentos."
+fig_permutacao(pinus)
+```
+
+O *P* da permutação (`r num_br(p_perm, 3)`) é quase igual ao do teste *t*
+(`r num_br(tt_pinus$p.value, 3)`), sem nenhuma suposição sobre a forma da
+distribuição. A decisão é a mesma: não rejeitamos H₀.
+
+---
+
 ## Passo a passo de um teste de hipóteses {.smaller}
 
 1. **Formule as hipóteses:** defina a hipótese nula (H₀) e a hipótese
@@ -1144,6 +1201,8 @@ fig_pinus_boxplot(pinus)
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*.
 - Hubbard, R. & Bayarri, M.J. 2003. [Confusion over measures of evidence (*p*'s) versus errors (α's) in classical statistical testing](https://doi.org/10.1198/0003130031856). *The American Statistician* 57:171–178.
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.
+- Dormann, C.F. & Ellison, A.M. 2025. *Statistics by simulation*. Princeton University Press.
+- Manly, B.F.J. 2006. *Randomization, bootstrap and Monte Carlo methods in biology*. 3ª ed. Chapman & Hall/CRC.
 - Neyman, J. & Pearson, E.S. 1933. [On the problem of the most efficient tests of statistical hypotheses](https://doi.org/10.1098/rsta.1933.0009). *Philosophical Transactions of the Royal Society of London A* 231:289–337.
 - Paglia & De Marco. Apostila de estatística (Tabela 1).
 - Pearson, K. 1900. [On the criterion that a given system of deviations from the probable in the case of a correlated system of variables is such that it can be reasonably supposed to have arisen from random sampling](https://doi.org/10.1080/14786440009463897). *Philosophical Magazine* 50:157–175.

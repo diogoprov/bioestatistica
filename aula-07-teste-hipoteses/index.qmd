@@ -127,6 +127,17 @@ clique em **Run Code**. O que faz o poder do teste crescer?
 fig_alfa_beta(efeito = 0.5, n = 20, alfa = 0.05)
 ```
 
+O teste de permutação dos *Pinus*: os rótulos de solo são embaralhados
+`b` vezes. Mude `seed` para gerar outras plantas, ou `n` para mudar o
+número de plantas por solo. O *P* da permutação continua perto do *P* do
+teste *t*?
+
+```{webr}
+pinus <- dados_pinus(n = 25, seed = 6)
+fig_permutacao(pinus, b = 5000)
+t.test(altura ~ solo, data = pinus, alternative = "greater")$p.value
+```
+
 O código está em
 [`R/aula07.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula07.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).

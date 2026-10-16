@@ -300,6 +300,14 @@ continua em `slides/`, então não apague os PDFs.
   aceitam os dados da turma em `d` (colunas grupo, foto, idade_real,
   idade_estimada). As fotos do FACES (Max Planck, Berlim) só podem ser
   projetadas em sala, nunca publicadas no site.
+- **Inferência por simulação** (out/2026): *bootstrap* na Aula 6
+  (`fig_bootstrap()`, com as redes da pescaria) e teste de permutação na
+  Aula 7 (`fig_permutacao()`, com os *Pinus*), cada um com uma atividade
+  de papel e uma célula webR na página. Referências: Dormann & Ellison
+  2025 e Manly 2006. GLM/GLMM não entram na disciplina: a Aula 10 só tem
+  um "Para saber mais" com links para Análise de Dados Univariados e o
+  GLMM Analyzer de T. Pavlic.
+- A bibliografia básica vem do PPC e não pode mudar; a complementar pode.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
 - **R no navegador (webR, extensão quarto-live em `_extensions/r-wasm/`)**:

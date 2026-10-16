@@ -110,17 +110,11 @@ Wild, C.J. & Pfannkuch, M. 1999. *International Statistical Review* 67:223–248
 
 ## Avaliação
 
-- **3 componentes**
-  - Prova teórica escrita
-  - Lista de exercícios referentes a cada aula
-  - Trabalho prático
-    - 10 grupos de no máximo 5–6 estudantes
-    - Até o fim do mês gostaria de ter os nomes de cada grupo
-    - Elaborar uma pergunta, gerar uma hipótese, coletar (ou gerar) dados
-      de maneira adequada, testar a hipótese usando análises que veremos e
-      realizar inferência com conclusão biológica
-    - Prazo de entrega: final da disciplina, teremos aulas dedicadas a
-      finalizar o trabalho
+- **2 componentes**, com nota final (P1 + P2) / 2
+  - **P1**: prova teórica escrita
+  - **P2**: questionários (listas de exercícios) referentes a cada aula,
+    no Moodle
+- Prova substitutiva optativa: substitui a menor das duas notas
 - Abarcar múltiplas habilidades, competências e neurodiversidade
 
 ---
