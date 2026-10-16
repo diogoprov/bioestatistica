@@ -905,6 +905,29 @@ Kahoots ao longo da disciplina.
 
 ---
 
+## Guardem esta tabela! {.smaller}
+
+::: {.atividade}
+Cada grupo entrega a tabela preenchida (ou digita numa planilha
+compartilhada, com as colunas **grupo**, **foto**, **idade real** e
+**idade estimada**). Esses dados vão voltar ao longo da disciplina:
+
+| Aula | O que vamos fazer com eles |
+|-----:|---|
+| 3 | Histograma e tabela de dupla entrada dos erros |
+| 4 | Viés e precisão de cada grupo |
+| 6 | Intervalo de confiança do erro de cada foto |
+| 8 | Teste *t*: a turma erra para mais ou para menos? |
+| 9 | Regressão da idade estimada contra a real |
+| 11 | ANOVA do erro por faixa etária |
+:::
+
+::: {.ref}
+Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seção 2.1.
+:::
+
+---
+
 ## Kahoot! {.secao}
 
 [Kahoot: Introdução à estatística para biólogos](https://create.kahoot.it/details/f7bf73e0-37ad-4ef6-bc08-04c068028b17)

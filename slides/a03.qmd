@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula03.R"))
+source(here::here("R/idades.R"))
 ```
 
 ## Hoje
@@ -681,6 +682,49 @@ fig_histograma_larguras()
 Com $n = 40$, a regra de Sturges dá
 $k = 1 + 3{,}322 \times \log_{10}(40) \approx 6{,}3$, ou seja, **6 classes**.
 Os mesmos dados contam histórias diferentes conforme a largura das classes.
+
+---
+
+## De volta às idades da Aula 1 {.smaller}
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.6
+#| fig-alt: "Histograma dos erros de 100 palpites simulados de idade (10 grupos, 10 fotos), centrado perto de zero, com erros de cerca de menos 14 a mais 13 anos; uma linha tracejada marca o erro zero."
+fig_idades_histograma()
+```
+
+::: {.atividade}
+Com a tabela da turma: (1) calculem o **erro** de cada palpite (idade
+estimada − idade real); (2) montem a tabela de frequência e desenhem o
+**histograma dos erros**. A turma erra mais para cima ou para baixo? Os
+erros são simétricos?
+:::
+
+::: {.ref}
+Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seção 2.1.
+:::
+
+---
+
+## De volta às idades: tabela de dupla entrada {.smaller}
+
+```{r}
+#| tbl-cap: "Direção do erro segundo a faixa etária da pessoa na foto (dados simulados)."
+knitr::kable(tab_idades_dupla())
+```
+
+::: {.atividade}
+Montem a mesma tabela com os dados da turma. Em que faixa etária a turma
+mais **superestima** a idade? E mais **subestima**?
+:::
+
+::: {.fragment}
+::: {.definicao}
+Nos dados simulados, quase todo mundo com mais de 60 anos foi
+subestimado, e os mais jovens foram, na maioria, superestimados.
+:::
+:::
 
 ---
 

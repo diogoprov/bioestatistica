@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula11.R"))
+source(here::here("R/idades.R"))
 av_atv <- summary(aov(y ~ grupo, data = atividade))[[1]]
 ```
 
@@ -755,6 +756,35 @@ Inspirado na Figura 10.5 de Gotelli & Ellison (dados de Ellison et al. 1996); m�
 
 ::: {.ref}
 Tabela 10.12 de Gotelli & Ellison, com os dados de Ellison et al. 1996.
+:::
+
+## De volta às idades: o erro depende da idade? {.smaller}
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.3
+#| fig-alt: "Erro médio de cada um dos 10 grupos simulados em três faixas etárias da foto: até 35 anos, com erros quase todos positivos; de 36 a 60, perto de zero; e mais de 60, com erros negativos, de cerca de menos 5 anos."
+fig_idades_anova()
+av_idades <- anova(lm(erro ~ faixa, data = erro_por_faixa()))
+```
+
+::: {.atividade}
+Calculem o erro médio de cada grupo em cada faixa etária da foto e façam
+a ANOVA: `anova(lm(erro ~ faixa))`. H₀: o erro médio é igual nas três
+faixas.
+:::
+
+::: {.fragment}
+::: {.definicao}
+Nos dados simulados, $F$ = `r format(round(av_idades$"F value"[1], 1), nsmall = 1)`,
+gl = 2 e 27, $P$ < 0,001. Cuidado: cada grupo aparece nas três faixas,
+então as observações não são independentes; o grupo deveria entrar como
+bloco, `lm(erro ~ faixa + grupo)`.
+:::
+:::
+
+::: {.ref}
+Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seção 2.1.
 :::
 
 # 5. Testes *post-hoc* {.secao}

@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula09.R"))
+source(here::here("R/idades.R"))
 m_galton <- lm(child ~ parent, data = galton)
 cf <- summary(m_galton)$coefficients
 av <- anova(m_galton)
@@ -884,6 +885,40 @@ o gráfico e o R².
 
 ::: {.ref}
 xkcd 1725, [*Linear regression*](https://xkcd.com/1725/), de Randall Munroe; explicação em [explainxkcd](https://www.explainxkcd.com/wiki/index.php/1725:_Linear_Regression).
+:::
+
+## De volta às idades: a regressão dos palpites {.smaller}
+
+:::: {.columns}
+::: {.column width="52%"}
+```{r}
+#| fig-width: 5.6
+#| fig-height: 5
+#| fig-alt: "Gráfico de dispersão da idade estimada contra a idade real em 100 palpites simulados, com a reta 1:1 tracejada e a reta ajustada, menos inclinada: acima da 1:1 nos jovens e abaixo dela nos idosos."
+fig_idades_regressao()
+coef_idades <- coef(lm(idade_estimada ~ idade_real, data = idades_simuladas()))
+```
+:::
+::: {.column width="48%"}
+::: {.atividade}
+Com os dados da turma, ajustem
+`lm(idade_estimada ~ idade_real)`. Se a turma acertasse sempre, a reta
+seria a 1:1 ($a = 0$, $b = 1$). Qual é a inclinação da turma? O que ela
+quer dizer?
+:::
+
+::: {.fragment}
+::: {.definicao}
+Nos dados simulados, $b$ = `r format(round(coef_idades[2], 2), nsmall = 2)`:
+a turma puxa os palpites para o meio, superestimando os jovens e
+subestimando os idosos.
+:::
+:::
+:::
+::::
+
+::: {.ref}
+Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seção 2.1.
 :::
 
 # 6. Pressupostos e diagnóstico {.secao}

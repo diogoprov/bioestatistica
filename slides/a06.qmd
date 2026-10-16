@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula06.R"))
+source(here::here("R/idades.R"))
 ```
 
 ## Hoje: decifrando o desconhecido nas populações biológicas
@@ -746,6 +747,28 @@ Simulador: <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
 ::: {.nota}
 No simulador, use a média populacional "verdadeira" $\mu = 250$ g (o
 valor do lago) e um desvio-padrão de, por exemplo, 20 g.
+:::
+
+---
+
+## De volta às idades: o IC de cada foto {.smaller}
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.6
+#| fig-alt: "Erro médio dos 10 grupos simulados para cada uma das 10 fotos, com o intervalo de confiança de 95%, ordenado pela idade real. Os intervalos das fotos de 25, 70 e 77 anos não incluem o zero: a pessoa de 25 anos é superestimada e as de 70 e 77, subestimadas."
+fig_idades_ic()
+```
+
+::: {.atividade}
+Com os dados da turma, calculem para cada foto o erro médio dos grupos e
+o IC de 95%, $\bar{x} \pm t_{0{,}025;\,n-1} \cdot s/\sqrt{n}$, com
+$n$ = número de grupos. Em quais fotos a turma erra de forma
+**sistemática** (o IC não inclui o zero)?
+:::
+
+::: {.ref}
+Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seções 2.1 e 8.3.1.
 :::
 
 ---

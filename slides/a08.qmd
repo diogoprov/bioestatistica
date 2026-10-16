@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula08.R"))
+source(here::here("R/idades.R"))
 melros <- dados_melros()
 sopa <- dados_sopa()
 lr <- lagartos_resumo
@@ -280,6 +281,36 @@ para este estudo?"
 ::: {.definicao}
 H₀: $\mu \geq 15$ cm; H₁: $\mu < 15$ cm (teste unicaudal).
 :::
+:::
+
+## De volta às idades: a turma tem viés? {.smaller}
+
+```{r}
+#| fig-width: 10
+#| fig-height: 2.8
+#| fig-alt: "Erro médio de cada um dos 10 grupos simulados numa reta, de cerca de menos 5,5 a mais 2 anos. A média dos grupos fica perto de zero e o intervalo de confiança de 95%, de cerca de menos 1,8 a mais 1,8 ano, inclui o zero da hipótese nula."
+fig_idades_teste_t()
+tt_idades <- t.test(erro_por_grupo()$erro)
+```
+
+::: {.atividade}
+H₀: $\mu = 0$ (a turma não erra para nenhum lado); H₁: $\mu \neq 0$.
+Façam um **teste *t* para uma amostra** com o erro médio de cada grupo da
+turma. Por que a unidade amostral é o **grupo** ($n$ = 10) e não o
+palpite ($n$ = 100)? (Lembrem da pseudorréplica da Aula 2.)
+:::
+
+::: {.fragment}
+::: {.definicao}
+Nos dados simulados, $t$ = `r format(round(tt_idades$statistic, 2), nsmall = 2)`,
+gl = 9, $P$ = `r format(round(tt_idades$p.value, 2), nsmall = 2)`: não
+rejeitamos H₀. Mas erro médio zero não quer dizer que a turma acerta: os
+erros para mais nos jovens e para menos nos idosos se cancelam (Aula 9).
+:::
+:::
+
+::: {.ref}
+Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford University Press, seção 2.1.
 :::
 
 # 3. Teste *t* para duas amostras {.secao}

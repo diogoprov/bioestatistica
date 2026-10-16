@@ -35,6 +35,7 @@ execute:
 #| label: setup
 source(here::here("R/ppdac.R"))
 source(here::here("R/aula04.R"))
+source(here::here("R/idades.R"))
 ```
 
 ## Hoje
@@ -813,6 +814,30 @@ fig_remedios()
 
 A Droga X tem média puxada para cima por um único paciente (15 h); a Droga
 Y tem média e mediana parecidas (7 h) e muito menos variação.
+
+## De volta às idades: viés e precisão {.smaller}
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.7
+#| fig-alt: "Erros de idade de 10 grupos simulados, com os 10 palpites de cada grupo em pontos e o erro médio num losango. A maioria dos grupos tem erro médio perto de zero; o grupo 6 erra cerca de 5 anos para menos; os desvios-padrão variam de 4,7 a 7,9 anos."
+fig_idades_vies()
+```
+
+::: {.atividade}
+Com os palpites do seu grupo na Aula 1, calculem o **erro médio** (o
+viés: o grupo erra para mais ou para menos?) e o **desvio-padrão do erro**
+(a precisão: os erros são parecidos entre si?). Qual grupo é o mais
+enviesado? E o mais preciso?
+:::
+
+::: {.fragment}
+::: {.definicao}
+Viés e precisão são coisas diferentes, como posição e dispersão: o grupo
+6 erra sistematicamente para menos; o grupo 10 acerta na média, mas com
+palpites espalhados (DP = 7,9 anos).
+:::
+:::
 
 # 3. A forma das distribuições {.secao}
 

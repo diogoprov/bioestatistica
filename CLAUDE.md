@@ -294,6 +294,12 @@ continua em `slides/`, então não apague os PDFs.
   `data/FONTES.md` (por exemplo, `data/galton.csv`, de Galton 1886, usado na
   Aula 9). Os dados didáticos do curso também ficam ali (`data/girinos_2x2.csv`,
   da aula prática de ANOVA). Leia com `read.csv(here::here("data/..."))`.
+- **Fio condutor das idades** (Gelman & Nolan 2002, seção 2.1): os dados
+  da adivinhação de idades da Aula 1 voltam nas Aulas 3, 4, 6, 8, 9 e 11,
+  em slides "De volta às idades". As funções ficam em `R/idades.R` e
+  aceitam os dados da turma em `d` (colunas grupo, foto, idade_real,
+  idade_estimada). As fotos do FACES (Max Planck, Berlim) só podem ser
+  projetadas em sala, nunca publicadas no site.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
 - **R no navegador (webR, extensão quarto-live em `_extensions/r-wasm/`)**:
