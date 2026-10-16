@@ -78,7 +78,8 @@ via Wikimedia Commons.
 
 - Duas perguntas para a turma (*peer instruction*): o formato de uma
   planilha bem organizada e o que a caixa de um boxplot contém.
-- Histograma com post-its da altura da turma.
+- Histograma com post-its da altura da turma, adaptado de 3M, [*How to make
+  a histogram to visualize data and solve problems*](https://www.post-it.com/3M/en_US/post-it/ideas/articles/How-to-make-a-histogram-to-visualize-data-and-solve-problems/).
 - [Kahoot: Gráficos, tabelas e armadilhas na visualização de dados](https://create.kahoot.it/details/0aab1775-914f-406c-acde-60851dc3f446).
 
 ## Teste-se
