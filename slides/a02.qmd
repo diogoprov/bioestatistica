@@ -1117,7 +1117,8 @@ Cerca de 100 noites gravadas em cada combinação de local e período.
 
 ::: {.ref}
 Dados de Provete, D.B., Sanches Farias, I.D. et al., manuscrito
-submetido. Mapa feito com dados do MapBiomas Fogo (Coleção 3).
+submetido. Área queimada: MapBiomas Fogo (Coleção 3). Imagens de
+satélite: Esri World Imagery.
 :::
 :::
 ::::
