@@ -49,8 +49,9 @@ source(here::here("R/aula02_delineamento.R"))
 6. Os delineamentos clássicos
 
 ::: {.nota}
-Todas as figuras desta aula foram geradas em R com dados simulados. O
-código está em [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R)
+As figuras desta aula foram geradas em R com dados simulados, com duas
+exceções: o *split-plot* (figura de Junqueira et al. 2023) e o BACI, que
+usa dados reais de sapos do Pantanal. O código está em [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R)
 no repositório da disciplina, e vocês podem rodá-lo e mudar os parâmetros
 para ver o que acontece.
 :::
@@ -1017,19 +1018,32 @@ Krzywinski, M., Altman, N. & Blainey, P. 2014. *Nature Methods* 11:977–978.
 
 ---
 
-## Parcelas subdivididas (*split-plot*)
+## Parcelas subdivididas (*split-plot*) {.smaller}
 
-```{r}
-#| fig-width: 12
-#| fig-height: 3.9
-#| fig-alt: "Seis parcelas grandes, três com cerca de exclusão de herbívoros e três sem, sorteadas. Cada parcela grande é dividida em três subparcelas, que recebem controle, pouco N ou muito N em ordem sorteada."
-fig_split_plot()
-```
+:::: {.columns}
+::: {.column width="50%"}
+![](../assets/terceiros/junqueira2023-fig1.jpg){height="560px" fig-alt="Desenho experimental em três escalas. (a) Um trecho de 200 metros de rio com dez locais, cinco em remansos (pools) e cinco em corredeiras (riffles), cada um com duas bandejas. (b) Em cada local, uma bandeja com pastadores e outra sem pastadores, de 50 por 50 centímetros. (c) Dentro de cada bandeja, dois ladrilhos lisos e dois rugosos; os dois ladrilhos de cada tipo formam uma unidade experimental."}
+:::
+::: {.column width="50%"}
+Diatomáceas num riacho, com **três tratamentos em três escalas**:
 
-Parecido com os blocos aleatorizados, mas com **dois tratamentos aplicados
-em escalas diferentes**: a cerca vale para a parcela inteira, e o
-nitrogênio é sorteado entre as subparcelas. Cada tratamento tem a sua
-própria unidade amostral, e a análise precisa respeitar isso.
+- **Mesohábitat** (remanso ou corredeira): aplicado ao **trecho do rio**
+- **Pastadores** (presença ou ausência): aplicado à **bandeja**, dentro
+  de cada trecho
+- **Substrato** (liso ou rugoso): aplicado aos **ladrilhos**, dentro de
+  cada bandeja
+
+Parecido com os blocos aleatorizados, mas cada tratamento tem a sua
+própria unidade amostral, e a análise precisa respeitar isso: há 10
+trechos (5 remansos e 5 corredeiras) para testar o mesohábitat, não 40
+amostras.
+
+::: {.ref}
+Figura 1 de Junqueira, M.G., Melo, A.S. & Schneck, F. 2023. *Freshwater
+Biology* 68:1542–1557. <https://doi.org/10.1111/fwb.14147>
+:::
+:::
+::::
 
 ---
 
@@ -1083,19 +1097,50 @@ Underwood, A.J. 1991. *Marine and Freshwater Research* 42:569–587.
 
 ---
 
-## BACI com dados simulados
+## BACI no Pantanal: o fogo e os sapos {.smaller}
+
+:::: {.columns}
+::: {.column width="55%"}
+![](../assets/terceiros/provete-iara-fig1-area.jpg){height="590px" fig-alt="Quatro mapas. (A) O Brasil, com o Pantanal contornado em verde e Mato Grosso do Sul em cinza, e um ponto vermelho marcando a área de estudo. (B) Imagem de satélite com os dois locais de gravação, ARA e BAI, a cerca de 10 km um do outro. (C) Detalhe em volta de BAI. (D) O mesmo detalhe com a área queimada em vermelho, que chega até BAI; ARA fica fora da área queimada."}
+:::
+::: {.column width="45%"}
+Gravadores automáticos registraram os sapos que vocalizavam, noite após
+noite, em dois locais do Pantanal:
+
+- **Antes**: set/2023 a fev/2024
+- **O impacto**: um incêndio em **agosto de 2024** queimou a área em
+  volta de **BAI** (em vermelho no mapa D)
+- **Depois**: set/2024 a fev/2025
+- **ARA**, a cerca de 10 km, não queimou: é o **controle**
+
+Cerca de 100 noites gravadas em cada combinação de local e período.
+
+::: {.ref}
+Dados de Provete, D.B., Sanches Farias, I.D. et al., manuscrito
+submetido.
+:::
+:::
+::::
+
+---
+
+## BACI com dados reais
 
 ```{r}
 #| fig-width: 12
-#| fig-height: 4.6
-#| fig-alt: "À esquerda, abundância de macroinvertebrados em dois riachos controle e dois impactados ao longo de 12 coletas, com uma linha marcando a construção de uma barragem após a sexta coleta. Todos os riachos oscilam juntos, mas os impactados caem depois da barragem. À direita, as médias antes e depois: os controles ficam estáveis e os impactados caem."
+#| fig-height: 4.4
+#| fig-alt: "Quatro painéis, um por espécie, com a porcentagem de noites com vocalização antes e depois do fogo em ARA, o controle, e em BAI, o local queimado. Em Leptodactylus podicipinus e Lysapsus limellum, ARA quase não muda e BAI cai bastante. Em Leptodactylus fuscus, ARA cai e BAI sobe, e as linhas se cruzam. Em Physalaemus albonotatus, as duas sobem: a espécie, rara antes, passou a vocalizar em 37% das noites em ARA e em 52% em BAI."
 fig_baci()
 ```
 
-Todos os riachos sobem e descem juntos com o clima. Só comparando com os
-controles dá para separar essa flutuação comum da queda causada pela
-barragem. No gráfico das médias, o efeito aparece como **linhas que
-deixam de ser paralelas**: uma interação.
+Se olhássemos só BAI, diríamos que o fogo fez *P. albonotatus* aparecer.
+Mas a espécie também aumentou no controle, que não queimou: algo comum aos
+dois locais (o ano, a chuva) mudou, não o fogo. O efeito do fogo aparece como **linhas que deixam de ser
+paralelas** (uma interação), como em *L. podicipinus* e *L. fuscus*.
+
+::: {.nota}
+Dados reais, agregados por local e período, em `data/anuros_pantanal_baci.csv`.
+:::
 
 ---
 
@@ -1180,6 +1225,7 @@ que o delineamento não garantiu.
 ::: {.nota}
 - Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.
 - Ives, A.R. & Zhu, J. 2006. [Statistics for correlated data: phylogenies, space, and time](https://doi.org/10.1890/04-0702). *Ecological Applications* 16:20–32.
+- Junqueira, M.G., Melo, A.S. & Schneck, F. 2023. [Effects of mesohabitat, grazing and substratum roughness on locally common and rare diatom species](https://doi.org/10.1111/fwb.14147). *Freshwater Biology* 68:1542–1557.
 - Krzywinski, M. & Altman, N. 2014. [Analysis of variance and blocking](https://doi.org/10.1038/nmeth.3005). *Nature Methods* 11:699–700.
 - Krzywinski, M., Altman, N. & Blainey, P. 2014. [Nested designs](https://doi.org/10.1038/nmeth.3137). *Nature Methods* 11:977–978.
 - Stewart-Oaten, A., Murdoch, W.W. & Parker, K.R. 1986. [Environmental impact assessment: "pseudoreplication" in time?](https://doi.org/10.2307/1939815) *Ecology* 67:929–940.
