@@ -44,7 +44,9 @@ cobre o **Problema** e o **Plano**.
 
 [{{< fa solid display >}} Abrir slides](../slides/a02.html){.btn .btn-outline-primary}
 
-Todas as figuras dos slides são geradas em R a partir de dados simulados.
+As figuras dos slides são geradas em R a partir de dados simulados, exceto
+a do *split-plot* (Junqueira et al. 2023) e a do BACI, com dados reais de
+sapos do Pantanal.
 O código está na pasta
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) do
 repositório.

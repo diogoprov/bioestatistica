@@ -313,40 +313,6 @@ fig_aninhado <- function() {
 }
 
 # ---------------------------------------------------------------------------
-# Parcelas subdivididas: exclusão de herbívoros na parcela inteira,
-# nitrogênio sorteado nas subparcelas.
-# ---------------------------------------------------------------------------
-fig_split_plot <- function(seed = 2) {
-  set.seed(seed)
-  blocos <- tibble::tibble(bloco = 1:6,
-                           exclusao = sample(rep(c("Com cerca", "Sem cerca"), 3)),
-                           x0 = (0:5) * 2.3)
-  sub <- blocos |>
-    tidyr::uncount(3, .id = "k") |>
-    group_by(bloco) |>
-    mutate(trat = factor(sample(niveis_n), niveis_n),
-           x = x0 + .55 + (k - 1) * .55, y = .9) |>
-    ungroup()
-  ggplot() +
-    geom_rect(data = blocos,
-              aes(xmin = x0, xmax = x0 + 2.1, ymin = 0, ymax = 1.8,
-                  linetype = exclusao),
-              fill = "#eef0e6", colour = cores[["texto"]], linewidth = 1.1) +
-    scale_linetype_manual(values = c(`Com cerca` = "solid",
-                                     `Sem cerca` = "22"),
-                          name = "Parcela inteira") +
-    geom_tile(data = sub, aes(x, y, fill = trat), width = .45, height = 1.3) +
-    scale_fill_manual(values = setNames(cores_niveis, niveis_n),
-                      name = "Subparcela") +
-    geom_text(data = blocos, aes(x0 + 1.05, 2.1, label = exclusao), size = 4.4,
-              fontface = "bold") +
-    coord_equal(clip = "off") +
-    theme_void(base_size = 14) +
-    theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
-          legend.position = "bottom", legend.box = "vertical")
-}
-
-# ---------------------------------------------------------------------------
 # Medidas repetidas: altura de mudas medida por 5 semanas.
 # ---------------------------------------------------------------------------
 dados_medidas_repetidas <- function(seed = 18) {
@@ -385,45 +351,38 @@ fig_medidas_repetidas <- function(d = dados_medidas_repetidas()) {
 }
 
 # ---------------------------------------------------------------------------
-# BACI: dois riachos controle e dois impactados, 6 coletas antes e 6 depois.
+# BACI com dados reais: anuros do Pantanal antes e depois de um incêndio
+# (agosto de 2024). ARA é o controle e BAI, o local queimado. As unidades são
+# gravações noturnas; `deteccoes` é o número de noites em que a espécie
+# vocalizou. Dados de Provete, Sanches Farias et al. (manuscrito submetido).
 # ---------------------------------------------------------------------------
-dados_baci <- function(seed = 30) {
-  set.seed(seed)
-  tidyr::expand_grid(local = c("Controle 1", "Controle 2", "Impacto 1",
-                               "Impacto 2"),
-                     coleta = 1:12) |>
-    group_by(local) |>
-    mutate(grupo = ifelse(grepl("Controle", local), "Controle", "Impacto"),
-           periodo = factor(ifelse(coleta <= 6, "Antes", "Depois"),
-                            c("Antes", "Depois")),
-           nivel = rnorm(1, 40, 5),
-           # flutuação comum a todos os locais (clima, estação)
-           ano = c(0, 3, -2, 4, 1, -3, 2, -1, 3, 0, -4, 2)[coleta] * 1.5,
-           efeito = ifelse(grupo == "Impacto" & periodo == "Depois", -15, 0),
-           abundancia = nivel + ano + efeito + rnorm(n(), 0, 3)) |>
-    ungroup()
+dados_baci <- function() {
+  read.csv(here::here("data/anuros_pantanal_baci.csv")) |>
+    mutate(periodo = factor(periodo, c("Antes", "Depois")),
+           grupo = factor(grupo, c("Controle", "Queimado"),
+                          c("ARA (controle)", "BAI (queimado)")),
+           prop = deteccoes / gravacoes)
 }
 
-fig_baci <- function(d = dados_baci()) {
-  cor_g <- c(Controle = cores[["accent"]], Impacto = cores[["ferrugem"]])
-  a <- ggplot(d, aes(coleta, abundancia, colour = grupo)) +
-    geom_vline(xintercept = 6.5, linetype = "22", colour = cores[["texto"]]) +
-    annotate("text", x = 6.6, y = Inf, vjust = 1.4, hjust = 0,
-             label = "construção\nda barragem", size = 4.2, lineheight = .9) +
-    geom_line(aes(group = local), linewidth = .9) +
-    geom_point(size = 2) +
-    scale_colour_manual(values = cor_g, name = NULL) +
-    scale_x_continuous(breaks = 1:12) +
-    labs(x = "Coleta", y = "Abundância de\nmacroinvertebrados") +
-    tema_aula(14)
-  m <- d |> group_by(grupo, periodo) |>
-    summarise(abundancia = mean(abundancia), .groups = "drop")
-  b <- ggplot(m, aes(periodo, abundancia, colour = grupo, group = grupo)) +
+fig_baci <- function(d = dados_baci(),
+                     especies = c("Leptodactylus podicipinus",
+                                  "Lysapsus limellum",
+                                  "Leptodactylus fuscus",
+                                  "Physalaemus albonotatus")) {
+  cor_g <- c(`ARA (controle)` = cores[["accent"]],
+             `BAI (queimado)` = cores[["ferrugem"]])
+  d |>
+    filter(especie %in% especies) |>
+    mutate(especie = factor(especie, especies)) |>
+    ggplot(aes(periodo, prop, colour = grupo, group = grupo)) +
     geom_line(linewidth = 1.4) +
-    geom_point(size = 4) +
-    scale_colour_manual(values = cor_g, guide = "none") +
-    labs(x = NULL, y = "Média", title = "A interação é o efeito") +
-    tema_aula(14)
-  a + b + plot_layout(widths = c(2, 1), guides = "collect") &
-    theme(legend.position = "bottom")
+    geom_point(size = 3.6) +
+    facet_wrap(~especie, nrow = 1) +
+    scale_colour_manual(values = cor_g, name = NULL) +
+    scale_y_continuous(labels = function(x) paste0(round(100 * x), "%"),
+                       limits = c(0, NA)) +
+    labs(x = NULL, y = "Noites com\nvocalização") +
+    tema_aula(14) +
+    theme(strip.text = element_text(face = "italic"),
+          legend.position = "bottom")
 }
