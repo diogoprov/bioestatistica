@@ -276,7 +276,8 @@ continua em `slides/`, então não apague os PDFs.
 - **Exceções autorizadas pelo Diogo** (com crédito no slide), em
   `assets/terceiros/` (fontes em `assets/terceiros/FONTES.md`): a Tabela 1
   da apostila de Paglia & De Marco e a tirinha xkcd 552 (CC BY-NC), na
-  Aula 9. Digitalizações de obras do século XIX tiradas dos `.pptx` (as
+  Aula 9. Na Aula 3, a foto do histograma vivo da UConn (K. Hanley,
+  *Hartford Courant*, 1996), citando Schilling et al. 2002. Digitalizações de obras do século XIX tiradas dos `.pptx` (as
   figuras de Galton de 1886 e 1888) também valem, porque estão em domínio
   público.
 - **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em

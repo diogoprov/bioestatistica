@@ -22,16 +22,16 @@ fig_anatomia_tabela <- function(parte = NULL) {
     c1 = c("Sexo", "Homens", "Mulheres", "Total"),
     c2 = c("População residente", "93.406.990", "97.348.809", "190.755.799"),
     face = c("bold", "plain", "plain", "plain"))
-  # caixa (xmin, xmax, ymin, ymax) e ponta da seta de cada parte
+  # caixa (xmin, xmax, ymin, ymax) e posição do rótulo (lx, ly)
   partes <- tibble::tribble(
-    ~id,         ~rotulo,                     ~x0,   ~x1,  ~y0,   ~y1,
-    "numero",    "Número",                    .15,  1.75,  5.38,  5.82,
-    "titulo",    "Título",                    .15,  9.85,  4.55,  5.35,
-    "cabecalho", "Cabeçalho",                 .15,  4.05,  3.82,  4.28,
-    "linha",     "Linha ⇒ observação",        .15,  4.05,  3.32,  3.78,
-    "colunas",   "Colunas ⇒ variáveis",       .15,  1.55,  2.32,  4.28,
-    "celula",    "Célula ⇒ um único dado",   1.65,  4.05,  3.32,  3.78,
-    "fonte",     "Fonte (apenas caso não tenha\nsido produzida pelo autor)", .15, 5.6, 1.72, 2.12
+    ~id,         ~rotulo,                     ~x0,   ~x1,  ~y0,   ~y1,  ~lx,  ~ly,
+    "numero",    "Número",                    .15,  1.75,  5.38,  5.82, 3,    5.6,
+    "titulo",    "Título",                    .15,  9.85,  4.55,  5.35, 7,    3.6,
+    "cabecalho", "Cabeçalho",                 .15,  4.05,  3.82,  4.28, 5.3,  4.05,
+    "linha",     "Linha ⇒ observação",        .15,  4.05,  3.32,  3.78, 5.3,  3.55,
+    "colunas",   "Colunas ⇒ variáveis",       .15,  1.55,  2.32,  4.28, 5.3,  2.8,
+    "celula",    "Célula ⇒ um único dado",   1.65,  4.05,  3.32,  3.78, 5.3,  3.55,
+    "fonte",     "Fonte (apenas caso não tenha\nsido produzida pelo autor)", .15, 5.6, 1.72, 2.12, 6.8, 1.92
   )
   g <- ggplot() +
     annotate("rect", xmin = 0, xmax = 10, ymin = 1.4, ymax = 6.1, fill = "#eef0ee") +
@@ -53,13 +53,20 @@ fig_anatomia_tabela <- function(parte = NULL) {
              label = "Fonte: Censo Demográfico 2010. IBGE (2011).")
   if (!is.null(parte)) {
     p <- filter(partes, id == parte)
+    # a seta sai do rótulo e chega na caixa pela lateral direita; se a caixa
+    # passa por cima do rótulo (o título), a seta sobe na vertical
+    vertical <- p$lx >= p$x0 && p$lx <= p$x1
     g <- g +
       annotate("rect", xmin = p$x0, xmax = p$x1, ymin = p$y0, ymax = p$y1,
                fill = NA, colour = vermelho, linewidth = 1.4) +
-      annotate("segment", x = 7, xend = p$x1 + .08, y = 3, yend = (p$y0 + p$y1) / 2,
+      annotate("segment", x = p$lx - if (vertical) 0 else .1,
+               xend = if (vertical) p$lx else p$x1 + .08,
+               y = p$ly + if (vertical) .25 else 0,
+               yend = if (vertical) p$y0 - .08 else p$ly,
                colour = vermelho, linewidth = 1.2,
                arrow = arrow(length = unit(.3, "cm"), type = "closed")) +
-      annotate("label", x = 7.05, y = 3, label = p$rotulo, hjust = 0,
+      annotate("label", x = p$lx, y = p$ly, label = p$rotulo,
+               hjust = if (vertical) .5 else 0,
                fontface = "bold", size = 5, colour = vermelho, fill = "white",
                linewidth = 0)
   }

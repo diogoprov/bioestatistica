@@ -583,9 +583,50 @@ Inspirado na Figura 2.6 de Triola, *Introdução à estatística*.
 
 ---
 
-## Quão altos somos? {.secao}
+## Quão altos somos?
+
+![](../assets/terceiros/uconn-histograma-vivo-1996.jpg){width="100%" fig-alt="Fotografia aérea de 143 estudantes de genética da Universidade de Connecticut em fileiras num campo de futebol americano, cada fileira atrás de uma placa com a altura em pés e polegadas, de 4'10'' a 6'5''. As mulheres, de branco, ficam mais à esquerda; os homens, de azul-escuro, mais à direita. As fileiras do meio são as mais longas, e a turma forma um histograma."}
 
 **1,47 m · 1,70 m · 1,98 m**
+
+::: {.ref}
+Foto: K. Hanley, *The Hartford Courant*, 23/11/1996 (estudantes de genética de Linda Strausbaugh, Universidade de Connecticut), reproduzida em Schilling, M.F., Watkins, A.E. & Watkins, W. 2002. [Is human height bimodal?](https://doi.org/10.1198/00031300265) *The American Statistician* 56:223–229.
+:::
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+**Na foto, as mulheres se concentram à esquerda e os homens à direita. Se
+juntarmos as alturas de homens e mulheres de uma população, o histograma
+terá dois picos?**
+
+A. Sim: como homens e mulheres têm médias diferentes, sempre aparecem dois
+picos.
+
+B. Não necessariamente: a diferença entre as médias é pequena perto da
+variação dentro de cada sexo, e as duas distribuições se fundem num pico
+só.
+
+C. Sim, desde que a amostra tenha mais de 100 pessoas.
+
+D. Não, porque a altura humana não varia de forma contínua.
+:::
+
+Votem sozinhos (A, B, C ou D, com a mão ou com cartões). Depois discutam
+com quem está ao lado por 2 minutos e votem de novo.
+
+::: {.fragment}
+::: {.definicao}
+**B.** Na turma da foto, os homens eram em média cerca de 13 cm mais altos
+que as mulheres, mas dentro de cada sexo a altura varia cerca de 7 cm
+para mais ou para menos. As duas distribuições se sobrepõem tanto que,
+somadas, formam um único pico, só um pouco achatado. Os "dois picos" que
+às vezes aparecem nessas fotos vêm do acaso da amostra e da forma de
+medir e agrupar as alturas (Schilling et al. 2002).
+:::
+:::
 
 ---
 
@@ -847,7 +888,7 @@ barra mostra, e o tamanho da amostra.
 ::::
 
 ::: {.ref}
-Inspirado na Figura 3.3 de Vieira, *Introdução à bioestatística*.
+Inspirado na Figura 3.3 de Gotelli, N.J. & Ellison, A.M. 2010. *Princípios de estatística em ecologia*. Artmed.
 :::
 
 ---
