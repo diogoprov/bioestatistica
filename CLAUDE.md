@@ -357,3 +357,54 @@ continua em `slides/`, então não apague os PDFs.
 - `~/GitHub/multidimensionais`: Métodos multidimensionais (pós-graduação)
 - `~/Library/CloudStorage/OneDrive-Pessoal/website_github/diogoprov.github.io`:
   site do laboratório, provetelab.org
+
+## Memória de sessões recentes (importada do Claude Code, 23/10/2026)
+
+Condensado de `~/.claude/projects/-Users-diogoborgesprovete-GitHub-bioestatistica/memory/`,
+onde está o detalhe completo. O que já está neste CLAUDE.md (regras de conteúdo,
+CC BY, webR, quiz) não se repete aqui.
+
+**O redesign do site está feito** (PRs diogoprov/bioestatistica#2–#8) — isto
+supersede o "próximo passo" da seção *Situação das aulas*. No ar: trilha PPDAC
+clicável na home, "Em 3 minutos" e "Brinque com o código" em todas as aulas,
+página de Revisão e Kahoots, Glossário, badges PPDAC nos cabeçalhos, webR em todas
+as páginas (40–60 s de carga na primeira vez, com R local como opcional).
+Aberto: alinhamento entre título de página e de slide; ~57 itens de fidelidade de
+baixa severidade. As datas do oferecimento condensado (15–27/02/2027, prova 22/02)
+são detalhe — não gastar esforço nelas.
+
+**Correções de conteúdo já aplicadas nos decks — não reverter:**
+- a04: a 5ª altura é 1,83 m (não 1,85), para média 1,80.
+- a05: eventos dependentes é P(A)·P(B|A); axioma 3 exige i ≠ j.
+- a06: a não-tendenciosidade de x̄ não precisa de normalidade; s é levemente
+  tendencioso para σ; a LGN é sobre n, não sobre o número de amostras; retrato
+  de Markov removido do slide da TLC.
+- a07: "arenoso" → "rochoso"; "aceitar H0" → "não rejeitar"; n = 30 (o original
+  dizia n < 30); "1,80 desvios-padrão" → erros padrão; Welch em vez de
+  `var.equal = TRUE`.
+- a08: tabela dos lagartos tinha "killed"/"living" trocados; memes refeitos como
+  pinturas de domínio público com legendas nossas; marcas de sopa anonimizadas.
+- a09: H0 da inclinação é β ≠ 0; df da tabela ANOVA 927/926; −1 ≤ r ≤ 1 e
+  0 ≤ r² ≤ 1; fator de encolhimento (1 − R²); P ajustados recalculados quando não
+  fechavam com o F; "H0: t = 0" → ρ = 0.
+- a10: o P ≈ 0,18 original da orquídea está errado — bicaudal
+  `fisher.test` dá 0,242.
+- a11: a fórmula do Tukey HSD estava sem o fator 1/2.
+- Em todos: nada de `---` imediatamente antes de um `# Seção` (gera slide em branco).
+
+**Armadilhas de build:** `ape::plot.phylo(plot = FALSE)` abre device — envolver em
+`pdf(NULL)`/`dev.off()`; mermaid `%%{init}%%` é ignorado no revealjs (usar
+`fig_diagrama()`); dentro de `mutate()`/`tibble()`, argumento com nome de coluna é
+sombreado (renomear para cx, cy, k); `ggforce::geom_circle(fill = vetor)` falha;
+adicionar/remover chunk renumera figuras — apagar `_freeze/slides/aNN` antes de
+renderizar; testar overflow servindo `docs/` (porta 4321) e medindo
+`slide.scrollHeight > 750`; screenshots costumam atrasar uma navegação (~1 s).
+Antes de dar push, conferir `git log origin/main..HEAD`: este checkout já empurrou
+commits locais de outras sessões.
+
+**Atividades de Gelman & Nolan (2002)** — o fio de "adivinhar idades" está
+implementado (Aulas 1, 3, 4, 6, 8, 9 e 11; `R/idades.R`). Propostas, ainda **não
+aprovadas**, uma por aula: §8.1 "pesar uma amostra aleatória" (Aula 2); §8.3.3
+"terra ou água?" (Aula 6); §8.7.2 data dredging com dados (Aula 7); §5.3.1+§8.3.2
+ancoragem (Aula 8); §4.3.1 regressão à média (Aula 9); §5.3.3+§8.5.3 teste de
+sabor (Aula 10). Fotos do FACES: projetar em sala, nunca publicar no site.
