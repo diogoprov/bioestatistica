@@ -644,7 +644,7 @@ Simulação interativa: [*Ordinary least squares regression*](https://setosa.io/
 
 ## O ajuste da reta, passo a passo
 
-![](../assets/aula09-otimizacao.gif){width="100%" fig-align="center" fig-alt="Animação em dois painéis. À esquerda, os mesmos 12 pontos e a reta testada em cada tentativa do otimizador: ela começa horizontal, gira e se desloca, deixando um rastro cinza das tentativas anteriores, até se ajustar aos pontos (Y = 0,24 + 0,80 X). À direita, o erro de cada tentativa (RMSE, a raiz da média dos resíduos ao quadrado) despenca de cerca de 5 para 0,8 e se estabiliza."}
+![](../assets/aula09-otimizacao.gif){width="88%" fig-align="center" fig-alt="Animação em dois painéis. À esquerda, os mesmos 12 pontos e a reta testada em cada tentativa do otimizador: ela começa horizontal, gira e se desloca, deixando um rastro cinza das tentativas anteriores, até se ajustar aos pontos (Y = 0,24 + 0,80 X). À direita, o erro de cada tentativa (RMSE, a raiz da média dos resíduos ao quadrado) despenca de cerca de 5 para 0,8 e se estabiliza."}
 
 ::: {.ref}
 Animação de Diogo B. Provete, feita em R com `optim()` ([`R/animacoes.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/animacoes.R)), a partir do script `animate-lm-optimization.R`; dados simulados.
@@ -734,7 +734,7 @@ $$t = \frac{b - 0}{\text{erro padrão de } b}$$
 ```{r}
 #| fig-width: 10
 #| fig-height: 3.1
-#| out-width: "80%"
+#| out-width: "70%"
 #| fig-alt: "Distribuição t com 926 graus de liberdade, com as regiões críticas além de ±1,96. A estatística t do slope de Galton, 15,711, fica muito além, perto da borda direita do gráfico."
 fig_t_galton()
 ```

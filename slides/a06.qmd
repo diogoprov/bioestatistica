@@ -297,7 +297,7 @@ fig_amostras_diferentes()
 ```{r}
 #| fig-width: 10
 #| fig-height: 5.4
-#| out-width: "78%"
+#| out-width: "67%"
 #| fig-alt: "Em cima, o histograma do peso de todas as tilápias de uma população simulada, com a média em vermelho. Embaixo, o histograma das médias de 5.000 amostras de 10 tilápias: centrado na mesma média e bem mais estreito."
 fig_distribuicao_amostral()
 ```
@@ -318,6 +318,7 @@ Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
 ```{r}
 #| fig-width: 6.4
 #| fig-height: 6.2
+#| out-width: "79%"
 #| fig-alt: "Quatro alvos em grade: baixo viés e baixa variância, com os tiros juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas fora do centro; alto viés e alta variância, espalhados e fora do centro."
 fig_alvos()
 ```
@@ -463,17 +464,21 @@ populacional).
 
 $$E = t_{\alpha/2} \frac{s}{\sqrt{n}}$$
 
+:::: {.columns}
+::: {.column width="42%"}
 - $s$ = desvio-padrão; $n$ = tamanho da amostra
 - $t_{\alpha/2}$ = valor crítico da distribuição *t* para dado grau de
   liberdade (gl) e nível de significância ($\alpha$)
-
+:::
+::: {.column width="58%"}
 ```{r}
 #| fig-width: 9
-#| fig-height: 3.4
-#| out-width: "72%"
+#| fig-height: 3.9
 #| fig-alt: "Distribuição t com 5 graus de liberdade, com as duas caudas de 0,025 em verde além de −2,571 e 2,571: os valores críticos para 95% de confiança."
 fig_valor_critico(gl = 5)
 ```
+:::
+::::
 
 ---
 
@@ -635,7 +640,7 @@ $\sigma^2/n$.
 ```{r}
 #| fig-width: 11
 #| fig-height: 6
-#| out-width: "88%"
+#| out-width: "71%"
 #| fig-alt: "Grade de histogramas de médias amostrais. Em linhas, quatro populações: uniforme, bimodal, assimétrica e muito assimétrica. Em colunas, tamanhos amostrais 1, 2, 5 e 30. Com n = 30, as três primeiras já têm forma de sino; a muito assimétrica ainda mostra uma cauda."
 fig_tlc(anota = TRUE)
 ```
@@ -718,7 +723,7 @@ população de leões adultos da reserva está entre 90,35 mg/dL e
 ```{r}
 #| fig-width: 9
 #| fig-height: 5.4
-#| out-width: "76%"
+#| out-width: "73%"
 #| fig-alt: "Vinte intervalos de confiança de 95%, cada um de uma amostra de 10 tilápias, com uma linha vertical em 250 g: 19 contêm o valor verdadeiro e um, em vermelho, não contém."
 fig_ic_repetidos()
 ```
@@ -868,20 +873,24 @@ $p = 0{,}25$ (sem mostrar aos alunos) e $n = 100$.
 
 ## O cenário mendeliano: o resultado
 
+:::: {.columns}
+::: {.column width="62%"}
 ```{r}
-#| fig-width: 9
-#| fig-height: 5.4
-#| out-width: "74%"
+#| fig-width: 8
+#| fig-height: 6.2
 #| fig-alt: "Vinte e cinco intervalos de confiança de 95% para a proporção de sementes rugosas, cada um de um experimento simulado com 100 sementes, e uma linha vertical em 25%: 21 contêm o valor de Mendel e 4, em vermelho, não contêm."
 fig_ic_proporcao()
 ```
-
+:::
+::: {.column width="38%"}
 ::: {.definicao}
 A lógica é idêntica à da média. Não importa se estamos estimando um peso
 médio ou uma proporção de sucesso: o intervalo de confiança é a nossa
 "rede de pesca" para o parâmetro populacional verdadeiro. E **o nível de
 confiança nos diz quão confiável é o nosso método de construção da rede**.
 :::
+:::
+::::
 
 ---
 

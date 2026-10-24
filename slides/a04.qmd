@@ -807,7 +807,7 @@ Após os cálculos, discutam e respondam:
 ```{r}
 #| fig-width: 9
 #| fig-height: 4.8
-#| out-width: "78%"
+#| out-width: "74%"
 #| fig-alt: "Boxplots da duração do efeito analgésico para placebo, Droga X e Droga Y, com os pontos de cada paciente. O placebo dura de 1 a 4 horas; a Droga X tem a caixa entre 5 e 6,5 horas e um paciente com 15 horas, em vermelho; a Droga Y fica concentrada entre 6 e 8 horas."
 fig_remedios()
 ```

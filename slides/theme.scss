@@ -92,6 +92,7 @@ $code-block-font-size: 0.70em;
   padding: .6em .9em;
   margin: .4em 0;
   width: 100%;
+  box-sizing: border-box;  // sem isto o padding empurra o bloco 60 px para fora da margem direita
 }
 
 .reveal blockquote p,

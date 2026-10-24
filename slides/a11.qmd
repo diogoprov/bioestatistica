@@ -100,11 +100,11 @@ statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
 
 ---
 
-## Antes, um pouco de história...
+## Antes, um pouco de história... {.smaller}
 
 :::: {.columns}
 ::: {.column width="24%"}
-![Ronald Aylmer Fisher, em 1913](../assets/historia/fisher.jpg){width="95%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
+![Ronald Aylmer Fisher, em 1913](../assets/historia/fisher.jpg){width="85%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
 :::
 ::: {.column width="46%"}
 - **1919:** Fisher usa o termo "variância" e decompõe a variação de um
@@ -114,9 +114,9 @@ statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
   de Rothamsted, na Inglaterra.
 :::
 ::: {.column width="30%"}
-![Rothamsted Manor, sede da estação experimental, em 1907](../assets/historia/rothamsted-1907.jpg){width="100%" fig-alt="Fotografia antiga em preto e branco de um casarão de tijolos com várias chaminés e um gramado em frente: Rothamsted Manor, visto do sudoeste."}
+![Rothamsted Manor, sede da estação experimental, em 1907](../assets/historia/rothamsted-1907.jpg){width="80%" fig-alt="Fotografia antiga em preto e branco de um casarão de tijolos com várias chaminés e um gramado em frente: Rothamsted Manor, visto do sudoeste."}
 
-![*Statistical methods for research workers*, 2ª ed. (1928)](../assets/historia/fisher-statistical-methods-1928.jpg){height="190px" fig-alt="Folha de rosto do livro Statistical Methods for Research Workers, de R. A. Fisher, edição da Oliver and Boyd."}
+![*Statistical methods for research workers*, 2ª ed. (1928)](../assets/historia/fisher-statistical-methods-1928.jpg){height="140px" fig-alt="Folha de rosto do livro Statistical Methods for Research Workers, de R. A. Fisher, edição da Oliver and Boyd."}
 :::
 ::::
 
@@ -230,7 +230,7 @@ $$\text{Dados} = \text{Modelo} + \text{Erro}$$
 
 ## Somando os resíduos ao quadrado
 
-![](../assets/aula09-soma-quadrados.gif){height="540px" fig-align="center" fig-alt="Animação em duas partes com os mesmos 12 pontos. Primeiro, numa reta quase horizontal, os resíduos d1 a d12 aparecem um por um como linhas tracejadas, cada um com o seu quadrado em vermelho, e a soma SQ cresce até 62,2. Depois, na reta de mínimos quadrados, os quadrados são bem menores e a soma termina em 7,6."}
+![](../assets/aula09-soma-quadrados.gif){height="500px" fig-align="center" fig-alt="Animação em duas partes com os mesmos 12 pontos. Primeiro, numa reta quase horizontal, os resíduos d1 a d12 aparecem um por um como linhas tracejadas, cada um com o seu quadrado em vermelho, e a soma SQ cresce até 62,2. Depois, na reta de mínimos quadrados, os quadrados são bem menores e a soma termina em 7,6."}
 
 ::: {.ref}
 Animação feita em R com dados simulados ([`R/animacoes.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/animacoes.R)). A mesma da Aula 9. Inspirada na animação de [*Linear regression: an overview*](https://medium.com/@novus_afk/linear-regression-an-overview-13d37a6bc4dd).
@@ -270,12 +270,13 @@ Agora, e se nosso preditor X não for contínuo? E se ele for categórico,
 como "Tipo de Fertilizante" (A, B, C) ou "Nível de Zinco" (Baixo, Médio,
 Alto)?
 
-![Diatomáceas, por Ernst Haeckel (1904)](../assets/fotos/haeckel-diatomaceas-1904.jpg){height="300px" fig-alt="Prancha de Ernst Haeckel com dezenas de diatomáceas desenhadas em preto e branco, de formas circulares, estreladas e alongadas."}
+![Diatomáceas, por Ernst Haeckel (1904)](../assets/fotos/haeckel-diatomaceas-1904.jpg){height="260px" fig-alt="Prancha de Ernst Haeckel com dezenas de diatomáceas desenhadas em preto e branco, de formas circulares, estreladas e alongadas."}
 :::
 ::: {.column width="55%"}
 ```{r}
 #| fig-width: 7
 #| fig-height: 5
+#| out-width: "92%"
 #| fig-alt: "Boxplots da diversidade de diatomáceas em riachos com quatro níveis de zinco (BACK, LOW, MED e HIGH): os três primeiros são parecidos, e o nível HIGH tem diversidade menor."
 fig_diatomaceas()
 ```

@@ -219,7 +219,7 @@ estatística.
 ```{r}
 #| fig-width: 7
 #| fig-height: 4.4
-#| out-width: "66%"
+#| out-width: "62%"
 #| fig-alt: "Gráfico conceitual com nitrogênio no eixo x e crescimento no eixo y. Os pontos se espalham em torno de uma linha horizontal: o crescimento não muda com o nitrogênio."
 fig_hipotese("nula")
 ```
@@ -234,6 +234,7 @@ prever o crescimento: a reta é plana e os pontos oscilam em volta dela.
 ```{r}
 #| fig-width: 12
 #| fig-height: 3.5
+#| out-width: "85%"
 #| fig-alt: "Três gráficos conceituais. H1: o crescimento aumenta em linha reta com o nitrogênio. H2: o crescimento aumenta e depois se estabiliza. H3: o crescimento aumenta até um máximo e depois diminui."
 fig_hipoteses_alternativas()
 ```
@@ -471,7 +472,7 @@ análise: ou o delineamento replicou a unidade certa, ou não replicou.
 ```{r}
 #| fig-width: 10
 #| fig-height: 4.6
-#| out-width: "74%"
+#| out-width: "66%"
 #| fig-alt: "Duas linhas de esquema com silhuetas de carvalhos e de folhas. Na de cima, cada floresta tem uma única árvore, de onde saem 50 folhas. Na de baixo, cada floresta tem dez árvores, e de cada uma saem cinco folhas."
 fig_hierarquia_folhas()
 ```
@@ -693,7 +694,7 @@ grade), por isso o histograma tem esse formato irregular.
 ```{r}
 #| fig-width: 11
 #| fig-height: 5
-#| out-width: "85%"
+#| out-width: "80%"
 #| fig-alt: "Dois painéis com a umidade do solo oscilando regularmente ao longo de um transecto de 100 metros, com período de 10 metros. Amostrando a cada 10 metros, todos os pontos caem nos picos e a média estimada é 14, contra 10 verdadeira. Amostrando a cada 7 metros, os pontos caem em fases diferentes e a média estimada fica em 10."
 fig_sistematica_periodica()
 ```
@@ -1101,7 +1102,7 @@ Underwood, A.J. 1991. *Marine and Freshwater Research* 42:569–587.
 
 :::: {.columns}
 ::: {.column width="55%"}
-![](../assets/terceiros/provete-iara-fig1-area.jpg){height="590px" fig-alt="Quatro mapas. (A) O Brasil, com o Pantanal contornado em verde e Mato Grosso do Sul em cinza, e um ponto vermelho marcando a área de estudo. (B) Imagem de satélite com os dois locais de gravação, ARA e BAI, a cerca de 10 km um do outro. (C) Detalhe em volta de BAI. (D) O mesmo detalhe com a área queimada em vermelho, que chega até BAI; ARA fica fora da área queimada."}
+![](../assets/terceiros/provete-iara-fig1-area.jpg){height="565px" fig-alt="Quatro mapas. (A) O Brasil, com o Pantanal contornado em verde e Mato Grosso do Sul em cinza, e um ponto vermelho marcando a área de estudo. (B) Imagem de satélite com os dois locais de gravação, ARA e BAI, a cerca de 10 km um do outro. (C) Detalhe em volta de BAI. (D) O mesmo detalhe com a área queimada em vermelho, que chega até BAI; ARA fica fora da área queimada."}
 :::
 ::: {.column width="45%"}
 Gravadores automáticos registraram os sapos que vocalizavam, noite após

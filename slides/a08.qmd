@@ -485,7 +485,7 @@ Silhueta de *Agelaius phoeniceus* por Caleb M. Gordon, via PhyloPic, CC0 1.0.
 
 ## Exemplo: riqueza de artrópodes antes e depois de queimada
 
-![](../assets/livro-aer/teste-t-pareado.png){width="50%" fig-align="center" fig-alt="Riqueza de espécies de artrópodes em 27 áreas antes e depois de uma queimada; cada área é uma linha cinza ligando as duas medidas. Quase todas as linhas descem: a mediana cai de cerca de 75 para cerca de 27 espécies."}
+![](../assets/livro-aer/teste-t-pareado.png){width="46%" fig-align="center" fig-alt="Riqueza de espécies de artrópodes em 27 áreas antes e depois de uma queimada; cada área é uma linha cinza ligando as duas medidas. Quase todas as linhas descem: a mediana cai de cerca de 75 para cerca de 27 espécies."}
 
 Riqueza de artrópodes de 27 áreas comparadas antes e depois de queimada.
 

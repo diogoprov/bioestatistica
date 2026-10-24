@@ -123,7 +123,7 @@ alimenta os intervalos de confiança e os testes das próximas aulas.
 ```{r}
 #| fig-width: 11
 #| fig-height: 4.6
-#| out-width: "90%"
+#| out-width: "87%"
 #| fig-alt: "Duas sequências de 100 lançamentos em quatro linhas de quadrados: cara em azul, coroa em bege. A sequência A tem trechos longos da mesma face, com até 8 repetições seguidas. A sequência B alterna muito, com no máximo 3 repetições."
 fig_moeda_sequencias()
 ```
@@ -422,7 +422,7 @@ As fórmulas de $E(X)$ e $\mathrm{Var}(X)$ estão em **Para saber mais**.
 ```{r}
 #| fig-width: 13
 #| fig-height: 6.2
-#| out-width: "100%"
+#| out-width: "88%"
 #| fig-alt: "Rede de quinze distribuições de probabilidade ligadas por linhas, cada uma com uma miniatura, com a binomial, a Poisson e a normal destacadas em vermelho: as três desta aula."
 fig_relacoes(c("Binomial", "Poisson", "Normal"))
 ```
@@ -1029,12 +1029,13 @@ $$E(t) = 0, \qquad \mathrm{Var}(t) = \frac{\nu}{\nu - 2}, \quad \nu > 2$$
 ```{r}
 #| fig-width: 8
 #| fig-height: 3.1
+#| out-width: "80%"
 #| fig-alt: "A normal padrão, tracejada, e duas distribuições t com 2 e 5 graus de liberdade: as t são mais baixas no centro e têm caudas mais pesadas."
 fig_t_normal()
 ```
 :::
 ::: {.column width="30%"}
-![William Sealy Gosset, o "Student", químico da cervejaria Guinness](../assets/historia/gosset.jpg){fig-alt="Fotografia de William Sealy Gosset."}
+![William Sealy Gosset, o "Student", químico da cervejaria Guinness](../assets/historia/gosset.jpg){width="85%" fig-alt="Fotografia de William Sealy Gosset."}
 
 ::: {.nota}
 Domínio público, via Wikimedia Commons.
