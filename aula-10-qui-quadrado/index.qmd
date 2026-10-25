@@ -113,13 +113,13 @@ mensagem de carregamento sumir.
 for (f in c("R/tema.R", "R/aula02_pergunta.R", "R/aula10.R")) source(f, local = TRUE)
 ```
 
-Mude `gl` (graus de liberdade) e `alfa`. Para onde vai o valor crítico? Edite o código e clique em **Run Code**.
+Mude `gl` (graus de liberdade) e `obs` (o χ² calculado). O que acontece com o valor de *P*? Edite o código e clique em **Run Code**.
 
 ```{webr}
-fig_qui_quadrado(gl = 10)
+fig_qui_quadrado(gl = 10, obs = 15)
 ```
 
-O código da distribuição qui-quadrado com a região crítica está em
+O código da distribuição qui-quadrado com o valor de *P* está em
 [`R/aula10.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula10.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 

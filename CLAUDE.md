@@ -265,7 +265,9 @@ continua em `slides/`, então não apague os PDFs.
   históricos do Wikimedia Commons). Confira a licença na API do Commons
   (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão
   reduzida para `assets/historia/` e registre arquivo, original, autor e
-  licença em `assets/historia/FONTES.md`. **CC BY-SA não serve.**
+  licença em `assets/historia/FONTES.md`. **CC BY-SA também vale**
+  (autorizado pelo Diogo em out/2026: o curso não é vendido), com crédito e
+  licença na `.nota`.
 - **Não mencione o original nos slides** ("O original dizia…", "No
   original…"): as correções entram direto no texto, sem nota.
 - **Imagens geradas por IA** (Gamma, Gemini) são permitidas quando o Diogo
@@ -288,7 +290,9 @@ continua em `slides/`, então não apague os PDFs.
   `assets/terceiros/` (fontes em `assets/terceiros/FONTES.md`): a Tabela 1
   da apostila de Paglia & De Marco e a tirinha xkcd 552 (CC BY-NC), na
   Aula 9. Na Aula 3, a foto do histograma vivo da UConn (K. Hanley,
-  *Hartford Courant*, 1996), citando Schilling et al. 2002. Digitalizações de obras do século XIX tiradas dos `.pptx` (as
+  *Hartford Courant*, 1996), citando Schilling et al. 2002. Na Aula 7, os
+  retratos de Neyman (CC BY-SA) e de Egon Pearson (*fair use*), a foto de
+  Popper (LSE) e a capa do *Logik der Forschung* (*fair use*). Digitalizações de obras do século XIX tiradas dos `.pptx` (as
   figuras de Galton de 1886 e 1888) também valem, porque estão em domínio
   público.
 - **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em

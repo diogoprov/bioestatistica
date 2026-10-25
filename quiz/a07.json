@@ -96,7 +96,7 @@
   "explicacao": "Escolher depois de ver os dados é p-hacking; sem razão teórica para uma direção, o bicaudal é o padrão."
  },
  {
-  "pergunta": "Com t = 1,80 e 29 gl (α = 0,05), o teste bicaudal (t crítico ±2,045) e o unicaudal (+1,699) concluem:",
+  "pergunta": "Com t = 1,80 e 29 gl (α = 0,05), o P é 0,082 no teste bicaudal e 0,041 no unicaudal. Os testes concluem:",
   "alternativas": [
    "Os dois rejeitam H₀",
    "Nenhum rejeita H₀",
@@ -105,7 +105,7 @@
   ],
   "correta": 4,
   "tempo": 20,
-  "explicacao": "1,80 fica entre 1,699 e 2,045: o mesmo dado é significativo no unicaudal e não no bicaudal."
+  "explicacao": "0,041 < 0,05 < 0,082: o mesmo dado é significativo no teste unicaudal e não no bicaudal."
  },
  {
   "pergunta": "O que o nível de significância α e o valor de P têm de diferente?",

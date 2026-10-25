@@ -262,41 +262,19 @@ $$\chi^2 = 0{,}27 + 0{,}35 + 0{,}02 + 0{,}58 = 1{,}22$$
 
 ---
 
-## Decisão: método do valor crítico
-
-:::: {.columns}
-::: {.column width="45%"}
-- Compare o χ² calculado (1,22) com o valor crítico da tabela para gl = 3
-  e α = 0,05 (que é 7,81).
-- Como 1,22 < 7,81, **não rejeitamos H₀**.
-- "Os dados são consistentes com a teoria de Mendel."
-:::
-::: {.column width="55%"}
-```{r}
-tab <- data.frame(gl = 1:6,
-                  `10%` = num_br(qchisq(.90, 1:6), 2),
-                  `5%` = num_br(qchisq(.95, 1:6), 2),
-                  `1%` = num_br(qchisq(.99, 1:6), 2), check.names = FALSE)
-knitr::kable(tab, align = "c", col.names = c("Graus de liberdade", "α = 10%", "α = 5%", "α = 1%"))
-```
-:::
-::::
-
-::: {.ref}
-Valores críticos de χ² segundo os graus de liberdade e o valor de α
-(calculados com `qchisq()`; tabela no apêndice de Vieira).
-:::
-
----
-
-## A decisão na distribuição χ²
+## Decisão: o valor de *P*
 
 ```{r}
-#| fig-alt: "Distribuição qui-quadrado com 3 graus de liberdade. A região crítica começa em 7,81. A seta vermelha do χ² calculado, 1,22, fica bem à esquerda, perto do pico da curva: não se rejeita H0."
+#| fig-width: 10
+#| fig-height: 4.2
+#| out-width: "80%"
+#| fig-alt: "Distribuição qui-quadrado com 3 graus de liberdade. O χ² calculado, 1,22, fica perto do pico da curva; a área à direita dele, sombreada, é o valor de P, grande."
 fig_qui_quadrado(gl = 3, obs = unname(q_mendel$statistic))
 ```
 
-$P = `r num_tex(q_mendel$p.value, 2)`$, muito maior que 0,05.
+- O valor de *P* é a área da distribuição χ² à direita do valor calculado.
+- $P = `r num_tex(q_mendel$p.value, 2)`$, muito maior que 0,05: **não
+  rejeitamos H₀**. "Os dados são consistentes com a teoria de Mendel."
 
 ---
 
@@ -318,7 +296,7 @@ com 150 balas e encontrou as seguintes contagens: 30 azuis, 25 laranjas,
    150 balas.
 3. Calculem o valor da estatística χ².
 4. Determinem os graus de liberdade.
-5. Perguntem para mim qual é o valor crítico.
+5. Calculem o valor de *P* no R, com `pchisq(chi2, gl, lower.tail = FALSE)`.
 6. Tomem uma decisão: os dados dão motivos para duvidar da afirmação da
    empresa?
 
@@ -342,10 +320,8 @@ fig_mm()
 ::: {.definicao}
 H₀: as proporções de cores são as afirmadas pela empresa. Esperadas: 36;
 30; 24; 21; 19,5; 19,5. χ² = `r num_br(q_mm$statistic, 2)`, com
-gl = 6 − 1 = 5; valor crítico = `r num_br(qchisq(.95, 5), 2)`. Como
-`r num_br(q_mm$statistic, 2)` < `r num_br(qchisq(.95, 5), 2)`
-(*P* = `r num_br(q_mm$p.value, 2)`), **não há motivo para duvidar da
-empresa**.
+gl = 6 − 1 = 5 e *P* = `r num_br(q_mm$p.value, 2)`. Como *P* > 0,05,
+**não há motivo para duvidar da empresa**.
 :::
 :::
 
@@ -425,9 +401,9 @@ $$\chi^2_{Pearson} = \frac{(18 - 11{,}75)^2}{11{,}75} + \frac{(8 - 14{,}25)^2}{1
 
 $$= 3{,}32 + 2{,}74 + 1{,}84 + 1{,}52 = 9{,}42$$
 
-Com gl = (2 − 1) × (2 − 1) = 1 e valor crítico 3,84, **rejeitamos H₀**:
-o status da população está associado à proteção das terras
-(*P* = `r num_br(q_plantas$p.value, 3)`).
+Com gl = (2 − 1) × (2 − 1) = 1, *P* = `r num_br(q_plantas$p.value, 3)`:
+**rejeitamos H₀**; o status da população está associado à proteção das
+terras.
 
 ::: {.ref}
 Gotelli & Ellison, Tabelas 11.2 e 11.3.
@@ -468,8 +444,8 @@ Tabela 11-1 de Triola 2024, cap. 11.
 
 :::: {.columns}
 ::: {.column width="45%"}
-- O valor crítico para gl = 1 e α = 0,05 é 3,841. Como nosso χ²
-  calculado (3,198) é menor que o crítico, **não rejeitamos H₀**.
+- Com χ² = 3,198 e gl = 1, *P* = `r num_br(q_vacina$p.value, 3)`. Como
+  *P* > 0,05, **não rejeitamos H₀**.
   - "Com base nestes dados, não há evidência estatística de uma associação
     entre a vacina MMR e o autismo."
 :::

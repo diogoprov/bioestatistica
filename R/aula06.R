@@ -166,6 +166,25 @@ fig_valor_critico <- function(conf = .95, gl = NULL) {
 # ---------------------------------------------------------------------------
 # O arqueiro: o centro do alvo é fixo, as flechas (e os círculos) variam.
 # ---------------------------------------------------------------------------
+# Flechas cravadas no alvo, vistas de frente e um pouco de lado: a ponta fica
+# no ponto de impacto e a haste sobe na diagonal, com as penas na outra ponta.
+camadas_flechas <- function(fl, comp = 6, ang = pi / 4) {
+  h <- fl |> mutate(a = ang + (i %% 3 - 1) * .12,
+                    xt = x + comp * cos(a), yt = y + comp * sin(a))
+  penas <- purrr::map_dfr(c(-1, 1), \(lado) h |> mutate(
+    x0 = x + (comp - 1.8) * cos(a), y0 = y + (comp - 1.8) * sin(a),
+    x1 = xt + 1.6 * cos(a + lado * 2.5), y1 = yt + 1.6 * sin(a + lado * 2.5)))
+  list(
+    geom_segment(data = h, aes(x, y, xend = xt, yend = yt), linewidth = 1.1,
+                 colour = "#6b4a2b", lineend = "round"),
+    geom_segment(data = penas, aes(x0, y0, xend = x1, yend = y1), linewidth = 1.4,
+                 colour = "#527238", lineend = "round"),
+    geom_segment(data = penas, aes(xt, yt, xend = x1, yend = y1), linewidth = 1.4,
+                 colour = "#527238", lineend = "round"),
+    geom_point(data = h, aes(x, y), size = 1.8, colour = "#2d3748")
+  )
+}
+
 fig_arqueiro <- function(etapa = 1, seed = 6, k = 12) {
   set.seed(seed)
   # raio de 10 cm contendo 95% das flechas: σ tal que o raio é o quantil 95%
@@ -178,16 +197,17 @@ fig_arqueiro <- function(etapa = 1, seed = 6, k = 12) {
   if (etapa == 1) {
     aneis <- purrr::map_dfr(c(15, 10, 5), \(r) tibble::tibble(r = r, x = r * cos(t), y = r * sin(t)))
     base +
-      geom_polygon(data = aneis, aes(x, y, group = r, fill = factor(r)), colour = "white") +
+      geom_polygon(data = aneis, aes(x, y, group = factor(r, levels = c(15, 10, 5)), fill = factor(r)),
+                   colour = "white") +
       scale_fill_manual(values = c("5" = "#c0392b", "10" = "#f4d03f", "15" = "#dbe7f3"), guide = "none") +
       annotate("path", x = 10 * cos(t), y = 10 * sin(t), linetype = "22", linewidth = .9) +
-      geom_point(data = fl, aes(x, y), shape = 4, size = 3.5, stroke = 1.6, colour = cores[["texto"]]) +
+      camadas_flechas(fl) +
       annotate("text", x = 0, y = -17, size = 4.6, label = "círculo de 10 cm: 95% das flechas")
   } else {
     circ <- fl |> rowwise() |> reframe(i = i, acerta = acerta, cx = x + 10 * cos(t), cy = y + 10 * sin(t))
     base +
       geom_path(data = circ, aes(cx, cy, group = i, colour = acerta), linewidth = .7, alpha = .8) +
-      geom_point(data = fl, aes(x, y, colour = acerta), shape = 4, size = 3.5, stroke = 1.6) +
+      camadas_flechas(fl) +
       scale_colour_manual(values = c(`TRUE` = cores[["accent"]], `FALSE` = vermelho), guide = "none") +
       {if (etapa == 3) annotate("point", x = 0, y = 0, shape = 21, size = 5, fill = "#f4d03f", colour = cores[["texto"]])} +
       {if (etapa == 3) annotate("text", x = 0, y = -17, size = 4.6,

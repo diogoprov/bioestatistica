@@ -72,8 +72,8 @@ em solo argiloso e rochoso:
 3. **Nível de significância**, um pouco de história e a declaração da ASA
    sobre o valor de *P*.
 4. **Estatística do teste**: qual teste usar.
-5. **Valor crítico**, falseabilidade, erros tipo I e II e poder do teste.
-6. **Calcular a estatística do teste**: valor crítico e valor de *P*;
+5. **Região crítica e α**, falseabilidade, erros tipo I e II e poder do teste.
+6. **Calcular a estatística do teste** e o valor de *P*;
    testes unicaudais e bicaudais; o teste *t* no R.
 7. **Tomada de decisão** e redação da conclusão.
 

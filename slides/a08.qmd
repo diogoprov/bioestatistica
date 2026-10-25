@@ -41,6 +41,9 @@ sopa <- dados_sopa()
 lr <- lagartos_resumo
 sp2 <- sum((lr$n - 1) * lr$dp^2) / (sum(lr$n) - 2)
 t_lagartos <- diff(rev(lr$media)) / sqrt(sp2 * sum(1 / lr$n))
+p_lagartos <- 2 * pt(-abs(t_lagartos), sum(lr$n) - 2)
+# valor de P para o texto: abaixo de 0,001 não vale a pena dar mais casas
+p_txt <- function(p) if (p < .001) "*P* < 0,001" else paste0("*P* = ", num_br(p, 3))
 tt_melros <- t.test(melros$depois, melros$antes, paired = TRUE)
 # número para dentro de $...$: a vírgula decimal precisa de {,} no LaTeX
 num_tex <- function(v, d = 2) sub(",", "{,}", num_br(v, d), fixed = TRUE)
@@ -244,10 +247,9 @@ $$t = \frac{\bar{x} - \mu_0}{s / \sqrt{n}}$$
 
 :::: {.columns}
 ::: {.column width="40%"}
-- Compare o *t* calculado com o *t* crítico da tabela (com $n - 1$ graus
-  de liberdade)
-- Ou, de forma mais moderna, observe o **valor de *P*** fornecido pelo
-  software
+- Calcule o *t* e, com $n - 1$ graus de liberdade, o **valor de *P***
+  (o R faz isso com `t.test()`)
+- Se $P \leq \alpha$, rejeite H₀
 :::
 ::: {.column width="60%"}
 ```{r}
@@ -419,7 +421,7 @@ fig_lagartos()
 | Vivos | 24,28 | 2,63 | 154 |
 | Mortos | 21,99 | 2,71 | 30 |
 
-$t = `r num_tex(t_lagartos, 2)`$; $t_{0,05(2),182} = 1{,}97$; *P* < 0,05
+$t = `r num_tex(t_lagartos, 2)`$, com 182 graus de liberdade; `r p_txt(p_lagartos)`
 
 ::: {.nota}
 Silhueta de *Phrynosoma hernandesi* por Caleb M. Gordon, via PhyloPic,
@@ -472,7 +474,7 @@ fig_melros(melros)
 
 ![](../assets/phylopic/melro.svg){height="60px" fig-alt="Silhueta de melro-de-asa-vermelha."}
 13 machos de melro-de-asa-vermelha, antes e depois do implante:
-$t = `r num_tex(tt_melros$statistic, 2)`$; $t_{0,05(2),12} = 2{,}18$; *P* > 0,05.
+$t = `r num_tex(tt_melros$statistic, 2)`$, com 12 graus de liberdade; `r p_txt(tt_melros$p.value)`.
 Não há evidência de efeito da testosterona.
 
 ::: {.ref}

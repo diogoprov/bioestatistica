@@ -50,8 +50,8 @@ pinus <- dados_pinus()
 4. **Escolha do teste**
 
 ::: {.nota}
-As figuras desta aula foram geradas em R com dados simulados; os retratos
-de Karl Pearson e Ronald Fisher são de domínio público. O código está em
+As figuras desta aula foram geradas em R com dados simulados. Os créditos
+dos retratos e das ilustrações estão em cada slide. O código está em
 [`R/`](https://github.com/diogoprov/bioestatistica/tree/main/R) no
 repositório da disciplina.
 :::
@@ -86,23 +86,30 @@ fixa as regras antes da coleta (**Plano**) e termina numa decisão
 ## Arcabouço Neyman-Pearson para testar uma hipótese estatística
 
 :::: {.columns}
-::: {.column width="30%"}
-![Ronald A. Fisher, em 1913](../assets/historia/fisher.jpg){width="85%" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
+::: {.column width="18%"}
+![Ronald A. Fisher, em 1913](../assets/historia/fisher.jpg){height="235px" fig-alt="Fotografia em preto e branco do jovem Ronald Fisher, de óculos e terno."}
 :::
-::: {.column width="70%"}
+::: {.column width="18%"}
+![Jerzy Neyman, em 1969](../assets/terceiros/neyman-1969.jpg){height="235px" fig-alt="Fotografia em preto e branco de Jerzy Neyman idoso, de óculos e camisa branca."}
+:::
+::: {.column width="18%"}
+![Egon Pearson](../assets/terceiros/egon-pearson.jpg){height="235px" fig-alt="Retrato em preto e branco de Egon Pearson, de meia-idade, calvo."}
+:::
+::: {.column width="46%"}
 - **Ronald A. Fisher** propôs o valor de *P* como medida de evidência
   contra a hipótese nula.
 - **Jerzy Neyman** e **Egon Pearson** propuseram o arcabouço de decisão:
   hipótese nula *e* alternativa, nível de significância fixado antes e os
   dois tipos de erro.
 - O teste que usamos hoje é uma mistura das duas ideias.
-
-::: {.nota}
-Retrato de Fisher: domínio público, via Wikimedia Commons. Não há retratos
-de Neyman e de Egon Pearson com licença aberta.
-:::
 :::
 ::::
+
+::: {.nota}
+Fisher: domínio público, via Wikimedia Commons. Neyman: Konrad Jacobs,
+Mathematisches Forschungsinstitut Oberwolfach, CC BY-SA 2.0 de. Egon
+Pearson: autor desconhecido, via MacTutor (St Andrews); uso didático.
+:::
 
 ---
 
@@ -484,22 +491,23 @@ Tabela 1 da apostila de Paglia & De Marco. No nosso exemplo (altura ×
 tipo de solo), o teste é o *t*.
 :::
 
-# 6. Valor crítico do teste {.secao}
+# 6. Região crítica e nível de significância {.secao}
 
 [Análise]{.ppdac-etapa .analise}
 
 ---
 
-## Como escolher valores críticos
+## O que o α significa na distribuição nula
 
-- São valores da estatística do teste a partir dos quais se pode rejeitar
-  a hipótese de que a estatística veio de uma distribuição nula, com um
-  certo nível de confiança (probabilidade), dado o tamanho amostral.
-- A **região crítica** é a região onde H₀ é rejeitada. A área da região
-  crítica é igual ao nível de significância (α), que estabelece a
-  probabilidade de rejeitar H₀ quando ela é verdadeira.
-- Por exemplo, se utilizarmos o nível de significância de 5%, a
-  probabilidade de rejeitar H₀ quando ela é verdadeira é igual a 5%.
+- Se H₀ for verdadeira, a estatística do teste segue uma distribuição
+  conhecida (a **distribuição nula**).
+- A **região crítica** reúne os valores mais extremos dessa distribuição,
+  aqueles que nos levariam a rejeitar H₀. A área dela é igual ao nível de
+  significância (α).
+- Com α = 5%, se H₀ for verdadeira, rejeitaremos H₀ por engano em 5% das
+  vezes.
+- Na prática, a decisão é feita com o **valor de *P***, que o R calcula; a
+  região crítica serve para entender o α, os erros e o poder do teste.
 
 ---
 
@@ -512,30 +520,10 @@ fig_regiao_critica()
 
 ---
 
-## Região crítica, valor crítico e estatística do teste {.medio}
-
-::: {.atividade}
-**Exemplo (dados fictícios).** Numa praia de desova, 482 de 926 filhotes
-de tartaruga são fêmeas ($\hat{p} = 0{,}52$). A proporção de fêmeas é
-maior que 0,5? H₀: $p = 0{,}5$; H₁: $p > 0{,}5$.
-:::
-
-```{r}
-#| fig-alt: "Normal padrão com a cauda direita sombreada além do valor crítico 1,645 (alfa = 0,05). A seta vermelha da estatística do teste, z = 1,25, cai fora da região crítica."
-fig_regiao_critica("dir", obs = z_tartarugas()) +
-  annotate("text", x = 2.9, y = .12, label = "α = 0,05", size = 4.5)
-```
-
-::: {.ref}
-Inspirado na Figura 8.4 de Triola 2024, com um contexto biológico.
-:::
-
----
 
 ## Decisão é baseada na hipótese nula
 
-- Se o valor da estatística do teste cair na região crítica, rejeita-se
-  H₀.
+- Se $P \leq \alpha$, rejeita-se H₀.
 - Ou **rejeitamos** H₀
   - No exemplo, há diferença entre a média de altura dos grupos
 - Ou **não rejeitamos** H₀
@@ -555,13 +543,27 @@ ela. É o que diz o próximo slide.
 Só conseguimos **falsear** uma hipótese.
 :::
 
+:::: {.columns}
+::: {.column width="56%"}
 - Nenhum número de observações confirma uma hipótese de vez; uma
   observação contrária pode refutá-la.
 - Por isso o teste é montado contra H₀: buscamos evidência para
   rejeitá-la.
+:::
+::: {.column width="22%"}
+![Karl Popper](../assets/terceiros/popper.jpg){height="250px" fig-alt="Fotografia colorida de Karl Popper idoso, de suéter, diante de uma estante de livros."}
+:::
+::: {.column width="22%"}
+![*Logik der Forschung* (1935)](../assets/terceiros/logik-der-forschung-1935.jpg){height="250px" fig-alt="Capa amarelada da primeira edição de Logik der Forschung, de Karl Popper, publicada por Julius Springer em Viena."}
+:::
+::::
 
 ::: {.ref}
-Popper, K. *A lógica da pesquisa científica*.
+Popper, K. *A lógica da pesquisa científica* (1ª ed. alemã: *Logik der Forschung*, 1935).
+:::
+
+::: {.nota}
+Foto de Popper: Lucinda Douglas-Menzies, LSE Library, via Wikimedia Commons ("no known copyright restrictions"). Capa: digitalização da 1ª edição, via Wikipedia; uso didático.
 :::
 
 ---
@@ -617,8 +619,8 @@ Ilustrações geradas por IA (Gamma), a partir de uma piada clássica sobre os d
 fig_alfa_beta()
 ```
 
-Mover o valor crítico para a direita diminui α, mas aumenta β; para a
-esquerda, o contrário.
+Mover o limite da região crítica para a direita (um α menor) diminui α,
+mas aumenta β; para a esquerda, o contrário.
 
 ---
 
@@ -635,7 +637,7 @@ esquerda, o contrário.
   máxima que estamos dispostos a aceitar de cometer um erro do tipo I.
 - *O que significa?* Sempre que a probabilidade calculada por um teste for
   menor ou igual a α, deve-se rejeitar a hipótese nula, por ela ser
-  *menos plausível* que o nível crítico adotado.
+  *menos plausível* que o α adotado.
 
 ---
 
@@ -740,14 +742,12 @@ fig_poder()
 #| fig-width: 11
 #| fig-height: 4.6
 #| out-width: "80%"
-#| fig-alt: "O fluxograma dos oito passos com os passos 6 e 7 dos dois métodos em destaque."
+#| fig-alt: "O fluxograma dos oito passos com os passos 6 e 7 em destaque."
 fig_roteiro(6:7)
 ```
 
-- **Método do valor P:** ache o valor da estatística de teste e o valor
-  *P*; rejeite H₀ se $P \leq \alpha$.
-- **Método do valor crítico:** ache a estatística de teste e os valores
-  críticos; rejeite H₀ se a estatística estiver na região crítica.
+Ache o valor da estatística do teste e o valor de *P*; rejeite H₀ se
+$P \leq \alpha$.
 
 ---
 
@@ -764,24 +764,8 @@ fig_roteiro(6:7)
 
 ---
 
-## Região crítica e valor de *P*: dois caminhos para a mesma decisão
 
-Temos duas abordagens principais para tomar a decisão final.
-
-**Abordagem do valor crítico:**
-
-- A **região crítica** (ou região de rejeição) é o conjunto de todos os
-  valores da estatística de teste que nos levariam a rejeitar H₀.
-- O **valor crítico** é o ponto que separa a região de rejeição da região
-  de não rejeição. Ele é determinado pelo nível de significância α.
-- **Decisão:** se a estatística de teste calculada a partir dos seus dados
-  cai na região crítica, você rejeita H₀.
-
----
-
-## Região crítica e valor de *P*: dois caminhos para a mesma decisão
-
-**Abordagem do valor de *P*:**
+## O valor de *P*
 
 - O **valor de *P*** é a probabilidade de obter um resultado (uma
   estatística de teste) ***tão ou mais extremo do que o que foi observado
@@ -795,20 +779,26 @@ Temos duas abordagens principais para tomar a decisão final.
 
 ---
 
-## Os dois métodos no exemplo das tartarugas
+## O valor de *P* no exemplo das tartarugas
+
+::: {.atividade}
+**Exemplo (dados fictícios).** Numa praia de desova, 482 de 926 filhotes
+de tartaruga são fêmeas ($\hat{p} = 0{,}52$). A proporção de fêmeas é
+maior que 0,5? H₀: $p = 0{,}5$; H₁: $p > 0{,}5$.
+:::
 
 ```{r}
-#| fig-width: 11
-#| fig-height: 4.2
-#| fig-alt: "Dois painéis. À esquerda, método do valor P: a área sob a normal à direita de z = 1,25 é o valor P, 0,1056. À direita, método do valor crítico: a região crítica começa em 1,645 e o z observado de 1,25 cai fora dela. Os dois levam a não rejeitar H0."
-fig_dois_metodos()
+#| fig-width: 9
+#| fig-height: 3.6
+#| out-width: "72%"
+#| fig-alt: "Normal padrão com a área à direita de z = 1,25 sombreada: é o valor P, 0,106."
+fig_valor_p()
 ```
 
-$P = 0{,}1056 > 0{,}05$ e $z = 1{,}25 < 1{,}645$: pelos dois caminhos,
-**não rejeitamos H₀**.
+$P = 0{,}106 > 0{,}05$: **não rejeitamos H₀**.
 
 ::: {.ref}
-Inspirado nas Figuras 8.6 e 8.7 de Triola 2024; dados fictícios.
+Inspirado na Figura 8.6 de Triola 2024; dados fictícios.
 :::
 
 ---
@@ -915,14 +905,11 @@ Este pesquisador não sabe o que esperar.
 - **Pergunta:** "O fertilizante *altera* a altura (para mais ou para
   menos)?"
 - **Hipótese alternativa (Hₐ):** $\mu \neq 30$ cm
-- **Análise:** ele divide o α = 0,05. Ele precisa de 2,5% em cada cauda.
-- **Valor crítico:** para *gl* = 29 e α/2 = 0,025, o valor crítico de *t*
-  (que ele procura na tabela) é $t_{crítico} = \pm 2{,}045$.
-- **Regra de decisão:** ele só rejeita H₀ se $t_{obs} > +2{,}045$ ou
-  $t_{obs} < -2{,}045$.
-- **Comparação:** o $t_{obs}$ foi 1,80; 1,80 é **menor** que 2,045. O
-  valor **não caiu** na região de rejeição.
-- **Conclusão (bicaudal):** "Não há evidência (*P* > 0,05) de que o
+- **Análise:** um resultado tão extremo quanto 1,80 conta nas **duas**
+  caudas: $t \geq 1{,}80$ ou $t \leq -1{,}80$.
+- **Valor de *P*:** com *gl* = 29, $P = 0{,}082$.
+- **Decisão:** $0{,}082 > 0{,}05$, então ele **não rejeita** H₀.
+- **Conclusão (bicaudal):** "Não há evidência (*P* = 0,082) de que o
   fertilizante altere a altura média das plantas."
 
 ---
@@ -934,14 +921,11 @@ crescimento.
 
 - **Pergunta:** "O fertilizante *aumenta* a altura?"
 - **Hipótese alternativa (Hₐ):** $\mu > 30$ cm
-- **Análise:** ele "aposta tudo" na cauda superior. Ele coloca α = 0,05
-  inteiro de um só lado.
-- **Valor crítico:** para *gl* = 29 e α = 0,05 (unicaudal), o valor
-  crítico de *t* é $t_{crítico} = +1{,}699$.
-- **Regra de decisão:** ele rejeita H₀ se $t_{obs} > +1{,}699$.
-- **Comparação:** o $t_{obs}$ foi 1,80; 1,80 é **maior** que 1,699. O
-  valor **caiu** na região de rejeição.
-- **Conclusão (unicaudal):** "Há evidência (*P* < 0,05) de que o
+- **Análise:** ele "aposta tudo" na cauda superior: só conta
+  $t \geq 1{,}80$.
+- **Valor de *P*:** com *gl* = 29, $P = 0{,}041$, metade do bicaudal.
+- **Decisão:** $0{,}041 < 0{,}05$, então ele **rejeita** H₀.
+- **Conclusão (unicaudal):** "Há evidência (*P* = 0,041) de que o
   fertilizante aumenta a altura média das plantas."
 
 ---
@@ -951,7 +935,7 @@ crescimento.
 ```{r}
 #| fig-width: 11
 #| fig-height: 4.2
-#| fig-alt: "Dois painéis com a distribuição t de 29 graus de liberdade. À esquerda, teste bicaudal: as regiões críticas começam em −2,045 e 2,045, e a seta vermelha em t = 1,80 cai fora delas. À direita, teste unicaudal: a região crítica começa em 1,699 e a seta verde em t = 1,80 cai dentro dela."
+#| fig-alt: "Dois painéis com a distribuição t de 29 graus de liberdade. À esquerda, teste bicaudal: as áreas além de −1,80 e de 1,80, sombreadas em vermelho, somam P = 0,082. À direita, teste unicaudal: só a área além de 1,80, sombreada em verde, P = 0,041."
 fig_cetico_otimista()
 ```
 
@@ -981,9 +965,9 @@ fig_cetico_otimista()
 | Pergunta de pesquisa | O fertilizante *altera* a altura? | O fertilizante *aumenta* a altura? |
 | Hipótese alternativa (Hₐ) | $\mu \neq 30$ | $\mu > 30$ |
 | Risco α (0,05) | Dividido: 2,5% em cada cauda | Concentrado: 5% na cauda superior |
-| Valor crítico ($t_{crítico}$) | ±2,045 | +1,699 |
 | Estatística calculada | *t* = 1,80 | *t* = 1,80 |
-| Comparação | 1,80 < 2,045 | 1,80 > 1,699 |
+| Valor de *P* | 0,082 | 0,041 |
+| Comparação | 0,082 > 0,05 | 0,041 < 0,05 |
 | Conclusão | **Não significativo** | **Significativo** |
 :::
 
@@ -1114,10 +1098,9 @@ distribuição. A decisão é a mesma: não rejeitamos H₀.
    0,05).
 3. **Calcule a estatística de teste:** use a fórmula apropriada para seus
    dados (ex.: teste *z*, teste *t*).
-4. **Encontre o valor de *P* (ou o valor crítico):** determine a
-   probabilidade associada à sua estatística de teste.
-5. **Tome a decisão:** compare o valor de *P* com α (ou a estatística de
-   teste com o valor crítico).
+4. **Encontre o valor de *P*:** determine a probabilidade associada à sua
+   estatística de teste.
+5. **Tome a decisão:** compare o valor de *P* com α.
    - Rejeite H₀ ou não rejeite H₀.
 6. **Interprete o resultado:** conclua em linguagem clara, respondendo à
    pergunta de pesquisa original.
@@ -1143,12 +1126,12 @@ fig_roteiro(7:8)
 ## A decisão no exemplo dos *Pinus*
 
 ```{r}
-#| fig-alt: "Distribuição t com a região crítica unicaudal à direita sombreada. A seta vermelha da estatística observada fica à esquerda do valor crítico, na região de não rejeição de H0."
+#| fig-alt: "Distribuição t com a área à direita da estatística observada sombreada: é o valor de P do teste unicaudal dos Pinus."
 fig_pinus_decisao(pinus)
 ```
 
-*t*~obs~ = `r num_br(tt_pinus$statistic, 2)`, menor que o *t*~crítico~, e
-*P* = `r num_br(tt_pinus$p.value, 3)`, maior que 0,05: **não rejeitamos H₀**.
+*t*~obs~ = `r num_br(tt_pinus$statistic, 2)` e *P* = `r num_br(tt_pinus$p.value, 3)`,
+maior que 0,05: **não rejeitamos H₀**.
 
 ---
 

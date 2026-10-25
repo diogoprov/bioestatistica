@@ -33,33 +33,26 @@ fig_roteiro <- function(passo = NULL) {
     "3",  "3. Hipóteses nula\ne alternativa",                 5.2,  1,   3,
     "4",  "4. Nível de\nsignificância (α)",                   7.8,  1,   4,
     "5",  "5. Estatística\ndo teste",                         10.4, 1,   5,
-    "6P", "6. Calcular\no valor P",                           2.6,  -.4, 6,
-    "7P", "7. Rejeitar H0\nse P ≤ α",                         5.2,  -.4, 7,
-    "6C", "6. Achar o(s)\nvalor(es) crítico(s)",              2.6,  -1.8, 6,
-    "7C", "7. Rejeitar H0 se a\nestatística cair na\nregião crítica", 5.2, -1.8, 7,
-    "8",  "8. Conclusão\nem termos\nnão técnicos", 9.1, -1.1, 8
+    "6",  "6. Calcular\no valor P",                           2.6,  -.6, 6,
+    "7",  "7. Rejeitar H0\nse P ≤ α",                         5.2,  -.6, 7,
+    "8",  "8. Conclusão\nem termos\nnão técnicos",            7.8,  -.6, 8
   ) |>
     mutate(cor = if (is.null(passo)) cores[["accent"]]
                  else ifelse(etapa %in% passo, cores[["accent"]], cinza_caixa))
   arestas <- tibble::tribble(
     ~de,  ~para,
     "1",  "2",  "2", "3",  "3", "4",  "4", "5",
-    "6P", "7P", "6C", "7C", "7P", "8", "7C", "8"
+    "6", "7", "7", "8"
   ) |> mutate(rotulo = NA_character_)
-  # do passo 5 para os dois métodos: uma linha que desce e volta à esquerda
+  # do passo 5 para o 6: uma linha que desce e volta à esquerda
   g <- fig_diagrama(nos, arestas, larg = 2.2, alt = 1.05, base = 4.6,
-                    xlim = c(-1.2, 11.6), ylim = c(-2.5, 1.7))
+                    xlim = c(-1.2, 11.6), ylim = c(-1.3, 1.7))
   g +
-    annotate("path", x = c(10.4, 10.4, .2, .2), y = c(.43, .3, .3, -.4),
+    annotate("path", x = c(10.4, 10.4, .2, .2), y = c(.43, .2, .2, -.6),
              linewidth = 1.1, colour = cores[["neutro"]]) +
-    annotate("segment", x = .2, xend = 1.43, y = c(-.4, -1.8), yend = c(-.4, -1.8),
+    annotate("segment", x = .2, xend = 1.43, y = -.6, yend = -.6,
              linewidth = 1.1, colour = cores[["neutro"]],
-             arrow = arrow(length = unit(.3, "cm"), type = "closed")) +
-    annotate("path", x = c(.2, .2), y = c(-.4, -1.8),
-             linewidth = 1.1, colour = cores[["neutro"]]) +
-    annotate("text", x = c(-1.15, -1.15), y = c(-.4, -1.8), hjust = 0,
-             label = c("Método do\nvalor P", "Método do\nvalor crítico"),
-             size = 4.3, fontface = "italic", colour = cores[["texto"]], lineheight = .9)
+             arrow = arrow(length = unit(.3, "cm"), type = "closed"))
 }
 
 # ---------------------------------------------------------------------------
@@ -224,28 +217,32 @@ fig_caudas <- function() {
 # arredondado a duas casas, como se faz ao consultar a tabela
 z_tartarugas <- function(x = 482, n = 926, p0 = .5) round((x / n - p0) / sqrt(p0 * (1 - p0) / n), 2)
 
-fig_valor_p <- function(z = z_tartarugas(), base = 15) {
-  d <- curva_nula()
-  pv <- 1 - pnorm(z)
-  ggplot(d, aes(x, y)) +
-    geom_ribbon(data = filter(d, x >= z), aes(ymin = 0, ymax = y), fill = "#f2c38b") +
-    geom_line(linewidth = 1.1) +
+fig_valor_p <- function(z = z_tartarugas(), base = 15, tipo = "dir", gl = NULL,
+                        titulo = "Valor P", cor = "#f2c38b") {
+  d <- curva_nula(gl)
+  pv <- switch(tipo, dir = 1, esq = 1, bi = 2) *
+    (if (is.null(gl)) pnorm(-abs(z)) else pt(-abs(z), gl))
+  g <- ggplot(d, aes(x, y))
+  if (tipo %in% c("dir", "bi"))
+    g <- g + geom_ribbon(data = filter(d, x >= abs(z)), aes(ymin = 0, ymax = y), fill = cor)
+  if (tipo %in% c("esq", "bi"))
+    g <- g + geom_ribbon(data = filter(d, x <= -abs(z)), aes(ymin = 0, ymax = y), fill = cor)
+  nome <- if (is.null(gl)) "z" else "t"
+  quebras <- if (tipo == "bi") c(-abs(z), 0, abs(z)) else c(0, z)
+  g + geom_line(linewidth = 1.1) +
     annotate("segment", x = z, xend = z, y = 0, yend = .3, colour = cores[["texto"]]) +
-    annotate("label", x = z + .3, y = .33, hjust = 0, size = base * .3,
-             label = sprintf("Valor P = %s", num_br(pv, 4)), fill = cores[["papel"]], linewidth = 0) +
-    scale_x_continuous(breaks = c(0, z), labels = c("0", sprintf("z = %s", num_br(z, 2)))) +
-    labs(x = "Estatística do teste (z)", y = NULL, title = "Método do valor P") +
+    annotate("label", x = abs(z) + .3, y = .33, hjust = 0, size = base * .3,
+             label = sprintf("P = %s", num_br(pv, if (pv < .01) 4 else 3)),
+             fill = cores[["papel"]], linewidth = 0) +
+    scale_x_continuous(breaks = quebras,
+                       labels = ifelse(quebras == 0, "0", sprintf("%s = %s", nome, num_br(quebras, 2)))) +
+    labs(x = if (is.null(gl)) "Estatística do teste (z)"
+             else sprintf("Estatística do teste (t, %s graus de liberdade)",
+                       num_br(gl, if (gl %% 1 == 0) 0 else 1)),
+         y = NULL, title = titulo) +
     tema_aula(base) +
     theme(axis.text.y = element_blank(), panel.grid = element_blank(),
           plot.title = element_text(hjust = .5))
-}
-
-fig_dois_metodos <- function() {
-  fig_valor_p() +
-    (fig_regiao_critica("dir", obs = z_tartarugas(), rotulos = FALSE,
-                        titulo = "Método do valor crítico") +
-       annotate("text", x = 2.9, y = .12, label = "α = 0,05", size = 4.5)) +
-    fundo_papel
 }
 
 # ---------------------------------------------------------------------------
@@ -316,11 +313,11 @@ fig_poder <- function() {
 # Pesquisador cético (bicaudal) e otimista (unicaudal), mesmo t = 1,80.
 # ---------------------------------------------------------------------------
 fig_cetico_otimista <- function(t_obs = 1.80, gl = 29) {
-  fig_regiao_critica("bi", gl = gl, obs = t_obs, rotulos = FALSE, base = 13,
-                     titulo = "Cético (bicaudal): t crítico = ±2,045") +
-    fig_regiao_critica("dir", gl = gl, obs = t_obs, rotulos = FALSE, base = 13,
-                       titulo = "Otimista (unicaudal): t crítico = +1,699",
-                       cor_regiao = "#e8a39b") +
+  # o mesmo t, duas perguntas: a área do P dobra no teste bicaudal
+  fig_valor_p(t_obs, base = 13, tipo = "bi", gl = gl,
+              titulo = "Cético (bicaudal): P = 0,082 > 0,05", cor = "#e8a39b") +
+    fig_valor_p(t_obs, base = 13, tipo = "dir", gl = gl,
+                titulo = "Otimista (unicaudal): P = 0,041 < 0,05", cor = "#a9c48f") +
     fundo_papel
 }
 
@@ -358,8 +355,7 @@ fig_pinus_boxplot <- function(d = dados_pinus()) {
 
 fig_pinus_decisao <- function(d = dados_pinus(), alfa = .05) {
   tt <- t.test(altura ~ solo, data = d, alternative = "greater")
-  gl <- unname(tt$parameter)
-  fig_regiao_critica("dir", alfa = alfa, gl = gl, obs = unname(tt$statistic), rotulos = TRUE)
+  fig_valor_p(unname(tt$statistic), tipo = "dir", gl = unname(tt$parameter), titulo = NULL)
 }
 
 # ---------------------------------------------------------------------------

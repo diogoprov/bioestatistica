@@ -31,30 +31,29 @@ germinacao <- matrix(c(4, 1, 2, 5), 2,
                                      Resultado = c("Germinou", "Não germinou")))
 
 # ---------------------------------------------------------------------------
-# Distribuição qui-quadrado com a região crítica e o valor observado.
+# Distribuição qui-quadrado com o valor observado: a área à direita dele é o
+# valor de P.
 # ---------------------------------------------------------------------------
-fig_qui_quadrado <- function(gl = 3, obs = NULL, alfa = .05) {
-  crit <- qchisq(1 - alfa, gl)
-  xmax <- max(crit * 1.8, if (is.null(obs)) 0 else obs * 1.2)
+fig_qui_quadrado <- function(gl = 3, obs = NULL) {
+  xmax <- max(qchisq(.995, gl), if (is.null(obs)) 0 else obs * 1.2)
   d <- tibble::tibble(x = seq(.01, xmax, length.out = 600)) |> mutate(y = dchisq(x, gl))
   topo <- max(d$y[d$x > .3])
-  g <- ggplot(d, aes(x, y)) +
-    geom_ribbon(data = filter(d, x >= crit), aes(ymin = 0, ymax = y), fill = "#7fb7d6") +
-    geom_line(linewidth = 1.1) +
-    geom_vline(xintercept = crit, linetype = "22", colour = cores[["texto"]]) +
-    annotate("label", x = crit, y = topo * .55, hjust = -.05, size = 4.6, fill = cores[["papel"]],
-             linewidth = 0, label = sprintf("valor crítico = %s\n(α = %s; gl = %d)",
-                                            num_br(crit, 2), num_br(alfa, 2), gl)) +
+  g <- ggplot(d, aes(x, y))
+  if (!is.null(obs)) {
+    pv <- pchisq(obs, gl, lower.tail = FALSE)
+    g <- g + geom_ribbon(data = filter(d, x >= obs), aes(ymin = 0, ymax = y), fill = "#f2c38b")
+  }
+  g <- g + geom_line(linewidth = 1.1) +
     coord_cartesian(ylim = c(0, topo * 1.15)) +
-    labs(x = expression(chi^2), y = NULL) +
+    labs(x = expression(chi^2), y = NULL, title = sprintf("Distribuição χ² com %d graus de liberdade", gl)) +
     tema_aula(15) + theme(axis.text.y = element_blank(), panel.grid = element_blank())
   if (!is.null(obs)) {
-    cor_obs <- if (obs >= crit) cores[["verde"]] else vermelho
     g <- g +
-      annotate("segment", x = obs, xend = obs, y = topo * .95, yend = 0, colour = cor_obs,
-               linewidth = 1.4, arrow = arrow(length = unit(.3, "cm"), type = "closed")) +
-      annotate("label", x = obs, y = topo * 1.05, colour = cor_obs, fill = cores[["papel"]],
-               fontface = "bold", size = 4.8, label = sprintf("χ² calculado = %s", num_br(obs, 2)))
+      annotate("segment", x = obs, xend = obs, y = topo * .95, yend = 0, colour = cores[["texto"]],
+               linewidth = 1.2) +
+      annotate("label", x = obs, y = topo * 1.05, hjust = -.05, fill = cores[["papel"]],
+               size = 4.8, linewidth = 0,
+               label = sprintf("χ² calculado = %s; P = %s", num_br(obs, 2), num_br(pv, 3)))
   }
   g
 }
