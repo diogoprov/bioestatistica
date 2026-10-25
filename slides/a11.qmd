@@ -114,14 +114,14 @@ statistics*](https://www.statisticsadventure.com), 2ª ed., cap. 16.
   de Rothamsted, na Inglaterra.
 :::
 ::: {.column width="30%"}
-![Rothamsted Manor, sede da estação experimental, em 1907](../assets/historia/rothamsted-1907.jpg){width="80%" fig-alt="Fotografia antiga em preto e branco de um casarão de tijolos com várias chaminés e um gramado em frente: Rothamsted Manor, visto do sudoeste."}
+![Rothamsted em 2022; ao fundo, as faixas do Broadbalk (1843)](../assets/artigos/li2023-fig1.png){width="100%" fig-alt="Foto aérea de campos agrícolas na Inglaterra. Em primeiro plano, dezenas de parcelas quadradas com culturas de cores diferentes, separadas por faixas de grama; ao fundo, à esquerda, um campo dividido em faixas longas e estreitas, o experimento Broadbalk."}
 
-![*Statistical methods for research workers*, 2ª ed. (1928)](../assets/historia/fisher-statistical-methods-1928.jpg){height="140px" fig-alt="Folha de rosto do livro Statistical Methods for Research Workers, de R. A. Fisher, edição da Oliver and Boyd."}
+![*Statistical methods for research workers*, 2ª ed. (1928)](../assets/historia/fisher-statistical-methods-1928.jpg){height="110px" fig-alt="Folha de rosto do livro Statistical Methods for Research Workers, de R. A. Fisher, edição da Oliver and Boyd."}
 :::
 ::::
 
 ::: {.ref}
-Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433. Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd. Retrato, folha de rosto (2ª ed., 1928) e foto de Rothamsted (Charles Latham, *In English Homes*, 1907): domínio público, via Wikimedia Commons.
+Fisher, R.A. 1919. [The correlation between relatives on the supposition of Mendelian inheritance](https://doi.org/10.1017/S0080456800012163). *Transactions of the Royal Society of Edinburgh* 52:399–433. Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd. Retrato e folha de rosto (2ª ed., 1928): domínio público, via Wikimedia Commons. Foto aérea: Figura 1 de Li, X. et al. 2023. [A new Rothamsted long-term field experiment for the twenty-first century: principles and practice](https://doi.org/10.1007/s13593-023-00914-8). *Agronomy for Sustainable Development* 43:60, CC BY 4.0.
 :::
 
 ---
