@@ -103,42 +103,30 @@ fig_fluxo_F <- function() {
 }
 
 # ---------------------------------------------------------------------------
-# Hipóteses da ANOVA em barras.
-# ---------------------------------------------------------------------------
-fig_hipoteses_barras <- function() {
-  d <- tibble::tibble(
-    painel = rep(c("Hipótese nula", "Hipótese alternativa"), each = 3),
-    trat = rep(c("T1", "T2", "T3"), 2), peso = c(10, 10, 10, 4, 13, 8.5)
-  ) |> mutate(painel = factor(painel, levels = c("Hipótese nula", "Hipótese alternativa")))
-  ggplot(d, aes(trat, peso, fill = trat)) +
-    geom_col(width = .8, colour = cores[["texto"]], show.legend = FALSE) +
-    scale_fill_manual(values = c("#fff6c8", "#dff5f8", "#e3f5df")) +
-    facet_wrap(~ painel) +
-    labs(x = "Tratamentos", y = "Peso (g)") +
-    tema_aula(15, conceitual = TRUE)
-}
-
-# ---------------------------------------------------------------------------
-# Mesma ANOVA, interpretações diferentes: o padrão das médias importa.
+# H0 e três formas de H1: B, C e D podem dar o mesmo F e o mesmo P, e só o
+# padrão das médias diz qual deles aconteceu.
 # ---------------------------------------------------------------------------
 fig_cenarios_controle <- function() {
   grupos <- c("Sem manipulação", "Controle", "Tratamento")
+  paineis <- c("A. H0: médias iguais\n(nenhum efeito)",
+               "B. H1: só o tratamento difere\n(efeito do tratamento)",
+               "C. H1: controle e tratamento diferem da\nnão manipulação (efeito da manipulação)",
+               "D. H1: as três médias diferem\n(efeitos da manipulação e do tratamento)")
   d <- tibble::tibble(
-    painel = rep(c("A. Efeito do tratamento não significativo",
-                   "B. Efeito do tratamento significativo",
-                   "C. Tratamento e controle diferem da não manipulação:\nefeito da manipulação",
-                   "D. Efeito da manipulação e do tratamento"), each = 3),
+    painel = factor(rep(paineis, each = 3), levels = paineis),
+    h = rep(c("H0", "H1", "H1", "H1"), each = 3),
     grupo = factor(rep(grupos, 4), levels = grupos),
     media = c(15.5, 14.5, 16, 11.5, 11.2, 16, 11.5, 16.5, 16, 10.5, 13.5, 16),
     ep = c(1.6, 1.5, 1.8, .9, .9, 1.4, .9, 1.7, 1.5, .5, 1.2, 1.6)
   )
-  ggplot(d, aes(grupo, media)) +
-    geom_col(fill = "#a8d5c8", colour = cores[["texto"]], width = .6) +
+  ggplot(d, aes(grupo, media, fill = h)) +
+    geom_col(colour = cores[["texto"]], width = .6, show.legend = FALSE) +
     geom_errorbar(aes(ymin = media - ep, ymax = media + ep), width = .15) +
+    scale_fill_manual(values = c(H0 = "#e9e3d6", H1 = "#a8d5c8")) +
     coord_cartesian(ylim = c(8, 19)) +
     facet_wrap(~ painel, ncol = 2) +
     labs(x = NULL, y = "Variável resposta") +
-    tema_aula(13) + theme(strip.text = element_text(size = 11))
+    tema_aula(13) + theme(strip.text = element_text(size = 11.5, lineheight = .95))
 }
 
 # ---------------------------------------------------------------------------

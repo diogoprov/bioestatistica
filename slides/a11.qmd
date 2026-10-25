@@ -695,30 +695,18 @@ knitr::kable(tab, align = "lcccc")
 
 ---
 
-## Hipóteses
-
-```{r}
-#| fig-width: 10
-#| fig-height: 4.4
-#| out-width: "80%"
-#| fig-alt: "Dois gráficos de barras do peso em três tratamentos. Hipótese nula: as três barras têm a mesma altura. Hipótese alternativa: as barras têm alturas diferentes."
-fig_hipoteses_barras()
-```
-
----
-
 ## Mesmo resultado, interpretações diferentes
 
 ```{r}
 #| fig-width: 11
-#| fig-height: 4.8
-#| out-width: "78%"
-#| fig-alt: "Quatro gráficos de barras com três grupos (sem manipulação, controle e tratamento). A: médias parecidas, sem efeito do tratamento. B: só o tratamento é maior. C: controle e tratamento são maiores que a não manipulação, um efeito da manipulação. D: as três médias aumentam em escada."
+#| fig-height: 5
+#| out-width: "80%"
+#| fig-alt: "Quatro gráficos de barras com três grupos (sem manipulação, controle e tratamento). A, em bege, é a hipótese nula: médias iguais. B, C e D, em verde, são três formas da hipótese alternativa: em B só o tratamento é maior; em C controle e tratamento são maiores que a não manipulação, um efeito da manipulação; em D as três médias aumentam em escada."
 fig_cenarios_controle()
 ```
 
-Resultados da ANOVA podem ser idênticos, mas a interpretação depende do
-**padrão das médias dos grupos** em particular.
+B, C e D podem dar o **mesmo F e o mesmo *P***; só o padrão das médias,
+revelado pelos testes *post-hoc*, diz qual deles aconteceu.
 
 ::: {.ref}
 Inspirado na Figura 10.2 de Gotelli & Ellison; dados fictícios.
