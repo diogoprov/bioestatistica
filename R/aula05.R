@@ -544,3 +544,30 @@ fig_binomial_simulada <- function(seed = 4, n = 6, prob = .3, pocas = c(10, 100,
          caption = "Barras: simulação. Pontos vermelhos: a fórmula da binomial (n = 6, p = 0,3).") +
     tema_aula(14)
 }
+
+# ---------------------------------------------------------------------------
+# Quadrado de Punnett do cruzamento Aa × Aa: o espaço amostral tem quatro
+# resultados igualmente prováveis, e o evento "aa" é um deles.
+# ---------------------------------------------------------------------------
+fig_punnett <- function() {
+  d <- tidyr::expand_grid(col = 1:2, lin = 1:2) |>
+    mutate(gam_p = c("A", "a")[col], gam_m = c("A", "a")[lin],
+           geno = paste0(gam_m, gam_p), x = col, y = 3 - lin,
+           evento = geno == "aa")
+  ggplot(d) +
+    geom_tile(aes(x, y, fill = evento), width = .96, height = .96, colour = "white", linewidth = 1.5) +
+    geom_text(aes(x, y, label = geno), size = 11, fontface = "bold.italic",
+              colour = ifelse(d$evento, "white", cores[["texto"]])) +
+    annotate("text", x = 1:2, y = 2.75, label = c("A", "a"), size = 8, fontface = "italic",
+             colour = cor_discreta) +
+    annotate("text", x = .25, y = 2:1, label = c("A", "a"), size = 8, fontface = "italic",
+             colour = cor_continua) +
+    annotate("text", x = 1.5, y = 3.15, label = "gametas do pai (Aa)", size = 4.8, colour = cor_discreta) +
+    annotate("text", x = -.05, y = 1.5, label = "gametas da mãe (Aa)", size = 4.8, angle = 90,
+             colour = cor_continua) +
+    annotate("text", x = 1.5, y = .3, size = 5.2, colour = cores[["texto"]],
+             label = "Espaço amostral: 4 resultados\nEvento \"aa\": 1 deles → P(aa) = 1/4") +
+    scale_fill_manual(values = c(`FALSE` = "#e9e3d6", `TRUE` = vermelho), guide = "none") +
+    coord_equal(xlim = c(-.2, 2.6), ylim = c(-.05, 3.3)) +
+    theme_void() + theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
+}

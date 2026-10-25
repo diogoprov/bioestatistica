@@ -263,3 +263,81 @@ fig_ancova <- function(seed = 5, n = 8) {
     tema_aula(12, conceitual = TRUE) +
     theme(legend.text = element_text(size = 12, colour = cores[["texto"]]))
 }
+
+# ---------------------------------------------------------------------------
+# O teste F como comparação de modelos: o modelo nulo prevê a média geral
+# para todos; o completo, a média de cada grupo. Os resíduos encolhem, e o
+# quanto encolhem é a SQ entre grupos.
+# ---------------------------------------------------------------------------
+fig_f_modelos <- function(d = atividade) {
+  d <- d |> mutate(g = as.integer(factor(grupo)),
+                   x = g + rep(seq(-.22, .22, length.out = 5), times = 4))
+  geral <- mean(d$y)
+  d <- d |> group_by(grupo) |> mutate(media_g = mean(y)) |> ungroup()
+  sq_tot <- sum((d$y - geral)^2); sq_res <- sum((d$y - d$media_g)^2)
+  medias <- d |> distinct(grupo, g, media_g)
+  base <- function(titulo) list(
+    scale_colour_manual(values = cores_grupos, guide = "none"),
+    scale_x_continuous(breaks = 1:4, labels = levels(factor(d$grupo))),
+    labs(x = "Grupo", y = "Resposta", title = titulo),
+    coord_cartesian(ylim = range(d$y) + c(-1, 1.5)),
+    tema_aula(14), theme(panel.grid.minor = element_blank(), panel.grid.major.x = element_blank()))
+  nulo <- ggplot(d, aes(x, y, colour = grupo)) +
+    geom_segment(aes(xend = x, yend = geral), colour = vermelho, alpha = .7) +
+    geom_hline(yintercept = geral, linewidth = 1.1, colour = cores[["texto"]]) +
+    geom_point(size = 2.6) +
+    annotate("label", x = 2.5, y = max(d$y) + 1.3, size = 4.6, fill = cores[["papel"]], linewidth = 0,
+             label = sprintf("Resíduos até a média geral: SQ total = %s", num_br(sq_tot, 1))) +
+    base("Modelo nulo: uma só média")
+  completo <- ggplot(d, aes(x, y, colour = grupo)) +
+    geom_segment(aes(xend = x, yend = media_g), colour = vermelho, alpha = .7) +
+    geom_segment(data = medias, aes(x = g - .32, xend = g + .32, y = media_g, yend = media_g),
+                 linewidth = 1.1, colour = cores[["texto"]]) +
+    geom_point(size = 2.6) +
+    annotate("label", x = 2.5, y = max(d$y) + 1.3, size = 4.6, fill = cores[["papel"]], linewidth = 0,
+             label = sprintf("Resíduos até a média do grupo: SQ resíduo = %s", num_br(sq_res, 1))) +
+    base("Modelo completo: uma média por grupo")
+  (nulo + completo) +
+    plot_annotation(caption = sprintf("SQ entre grupos = SQ total − SQ resíduo = %s − %s = %s",
+                                      num_br(sq_tot, 1), num_br(sq_res, 1), num_br(sq_tot - sq_res, 1)),
+                    theme = theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
+                                  plot.caption = element_text(size = 15, hjust = .5, colour = cores[["texto"]])))
+}
+
+# ---------------------------------------------------------------------------
+# As três premissas da ANOVA: como cada uma aparece quando é atendida (em
+# cima) e quando é violada (embaixo). Dados simulados.
+# ---------------------------------------------------------------------------
+fig_premissas <- function(seed = 11, n = 12) {
+  set.seed(seed)
+  grupos <- c("A", "B", "C")
+  tema_p <- function(g) g + tema_aula(12) +
+    theme(axis.text.y = element_blank(), axis.ticks.y = element_blank(),
+          panel.grid = element_blank(), plot.title = element_text(size = 12.5))
+  pts <- function(d, cor = "grupo", titulo) tema_p(
+    ggplot(d, aes(grupo, y, colour = .data[[cor]])) +
+      geom_point(position = position_jitter(width = .15, seed = 2), size = 2) +
+      labs(x = NULL, y = NULL, title = titulo))
+  # independência: cada ponto é uma unidade × grupos de 4 medidas da mesma unidade
+  ind_ok <- tibble::tibble(grupo = rep(grupos, each = n), y = rnorm(3 * n))
+  unid <- tibble::tibble(grupo = rep(grupos, each = 3), u = factor(1:9), m = rnorm(9, 0, 1.2))
+  ind_viol <- unid[rep(1:9, each = 4), ] |> mutate(y = m + rnorm(36, 0, .15))
+  # normalidade: resíduos em sino × muito assimétricos
+  res_ok <- tibble::tibble(r = rnorm(150))
+  res_viol <- tibble::tibble(r = rlnorm(150, 0, .9) - exp(.9^2 / 2))
+  hist_p <- function(d, titulo, cor) tema_p(ggplot(d, aes(r)) +
+    geom_histogram(bins = 18, fill = cor, colour = "white") + labs(x = "resíduos", y = NULL, title = titulo))
+  # homogeneidade: mesma dispersão × um grupo muito mais disperso
+  hom_ok <- tibble::tibble(grupo = rep(grupos, each = n), y = rnorm(3 * n, rep(c(0, .5, .2), each = n), 1))
+  hom_viol <- tibble::tibble(grupo = rep(grupos, each = n),
+                             y = rnorm(3 * n, rep(c(0, .5, .2), each = n), rep(c(.3, .5, 2.4), each = n)))
+  pal <- c(A = cores[["accent"]], B = cores[["verde"]], C = cores[["ocre"]])
+    (pts(ind_ok, titulo = "Independência: atendida\n(cada ponto, uma unidade)") + scale_colour_manual(values = pal, guide = "none") |
+     hist_p(res_ok, "Normalidade: atendida\n(resíduos em forma de sino)", cores[["accent"]]) |
+     pts(hom_ok, titulo = "Homogeneidade: atendida\n(dispersão parecida)") + scale_colour_manual(values = pal, guide = "none")) /
+    (pts(ind_viol, "u", "Independência: violada\n(medidas repetidas da mesma unidade)") +
+       scale_colour_manual(values = rep(c("#5b4a8a", "#a15e3f", "#527238", "#96661f", "#1c6e8c"), 2), guide = "none") |
+     hist_p(res_viol, "Normalidade: violada\n(resíduos muito assimétricos)", vermelho) |
+     pts(hom_viol, titulo = "Homogeneidade: violada\n(um grupo muito mais disperso)") + scale_colour_manual(values = pal, guide = "none")) +
+    plot_annotation(theme = theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA)))
+}

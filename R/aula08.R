@@ -284,3 +284,32 @@ fig_galaxy_brain <- function(k = 4,
     theme_void() +
     theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
 }
+
+# ---------------------------------------------------------------------------
+# Três grupos, duas dummies: α é a média do controle; β1 e β2 são as
+# distâncias de cada tratamento até ela.
+# ---------------------------------------------------------------------------
+fig_dummy3 <- function(seed = 4, n = 10) {
+  set.seed(seed)
+  grupos <- c("Controle", "Tratamento A", "Tratamento B")
+  d <- tibble::tibble(g = rep(1:3, each = n), y = rnorm(3 * n, rep(c(10, 14, 7.5), each = n), 1.3))
+  m <- tapply(d$y, d$g, mean)
+  setas <- tibble::tibble(g = 2:3, y0 = m[1], y1 = m[2:3],
+                          rot = c(sprintf("β1 = %s", num_br(m[2] - m[1], 1)),
+                                  sprintf("β2 = %s", num_br(m[3] - m[1], 1))))
+  ggplot(d, aes(g, y)) +
+    geom_hline(yintercept = m[1], colour = cores[["accent"]], linetype = "22", linewidth = .9) +
+    geom_point(position = position_jitter(width = .08, height = 0, seed = 1), size = 2.4,
+               alpha = .6, colour = cores[["texto"]]) +
+    annotate("segment", x = 1:3 - .25, xend = 1:3 + .25, y = m, yend = m, linewidth = 1.3,
+             colour = cores[["texto"]]) +
+    geom_segment(data = setas, aes(x = g + .32, xend = g + .32, y = y0, yend = y1), colour = vermelho,
+                 linewidth = 1.3, arrow = arrow(length = unit(.3, "cm"), type = "closed")) +
+    geom_label(data = setas, aes(x = g + .38, y = (y0 + y1) / 2, label = rot), hjust = 0, size = 5,
+               colour = vermelho, fill = cores[["papel"]], linewidth = 0, fontface = "bold") +
+    annotate("label", x = 1, y = m[1] + 1.6, size = 5, colour = cores[["accent"]], fill = cores[["papel"]],
+             linewidth = 0, fontface = "bold", label = sprintf("α = %s", num_br(m[1], 1))) +
+    scale_x_continuous(breaks = 1:3, labels = grupos, limits = c(.6, 3.9)) +
+    labs(x = NULL, y = "Y") +
+    tema_aula(15) + theme(panel.grid.minor = element_blank(), panel.grid.major.x = element_blank())
+}

@@ -516,6 +516,17 @@ $$SQ_{grupos} = SQ_{Total}(\text{erro do modelo nulo}) - SQ_{Res}(\text{erro do 
 
 ---
 
+## Dois modelos, os mesmos dados
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.8
+#| fig-alt: "Dois painéis com os mesmos 20 pontos em quatro grupos. À esquerda, o modelo nulo: uma linha horizontal na média geral e segmentos vermelhos de cada ponto até ela, com SQ total = 275,8. À direita, o modelo completo: uma linha na média de cada grupo e segmentos bem mais curtos, com SQ resíduo = 112,0. Embaixo: SQ entre grupos = 275,8 − 112,0 = 163,8."
+fig_f_modelos()
+```
+
+---
+
 ## Premissas da ANOVA
 
 Para que o teste F forneça um valor de *P* confiável, os dados devem
@@ -531,6 +542,22 @@ atender a três premissas:
   cada grupo são aproximadamente iguais. Esta é uma premissa crítica, e
   violações podem afetar seriamente a confiabilidade do teste F,
   particularmente se os tamanhos das amostras forem desiguais.
+
+---
+
+## Premissas da ANOVA: como reconhecer
+
+```{r}
+#| fig-width: 11
+#| fig-height: 5.6
+#| fig-alt: "Seis painéis. Em cima, premissas atendidas: pontos independentes em três grupos; resíduos com histograma em forma de sino; três grupos com dispersão parecida. Embaixo, premissas violadas: pontos agrupados em bolos de medidas repetidas da mesma unidade; resíduos muito assimétricos, com cauda longa à direita; um grupo muito mais disperso que os outros dois."
+fig_premissas()
+```
+
+::: {.nota}
+Dados simulados. A independência vem do delineamento (Aula 2): nenhum
+gráfico a garante depois da coleta.
+:::
 
 # 4. Exemplo biológico: esponjas e raízes de mangue {.secao}
 

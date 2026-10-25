@@ -295,7 +295,9 @@ continua em `slides/`, então não apague os PDFs.
   Popper (LSE) e a capa do *Logik der Forschung* (*fair use*). Digitalizações de obras do século XIX tiradas dos `.pptx` (as
   figuras de Galton de 1886 e 1888) também valem, porque estão em domínio
   público.
-- **Memes**: GIFs e frames de séries ou filmes não entram. Use pinturas em
+- **Memes**: GIFs e frames de séries ou filmes não entram. Exceção
+  autorizada pelo Diogo: o GIF do "pulo do gato" na Aula 8
+  (`assets/memes/pulo-do-gato.gif`). Use pinturas em
   domínio público do Commons com legenda própria, na classe `.meme` de
   `slides/theme.scss` (imagens em `assets/memes/`, fontes em
   `assets/memes/FONTES.md`), ou refaça o formato em R, como o *galaxy brain*

@@ -807,6 +807,19 @@ Há outras convenções, como hastes até os percentis 10% e 90%. Sempre diga na
 
 ---
 
+## O boxplot passo a passo, com dados
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.6
+#| fig-alt: "Onze comprimentos de girino ordenados como pontos numa linha: 21, 24, 25, 26, 27, 28, 29, 30, 31, 33 e 44 mm. Linhas tracejadas marcam a mediana, 28, e os quartis, Q1 = 25 e Q3 = 31. Embaixo, a caixa vai de 25 a 31 (IQR = 6), com a mediana em vermelho; os limites de 1,5 IQR ficam em 16 e 40; as hastes vão de 21 a 33; o 44 fica além do limite e é marcado como outlier."
+fig_boxplot_passos()
+```
+
+Os números indicam os passos da receita do slide anterior (dados simulados).
+
+---
+
 ## Histograma e boxplot: a forma da distribuição
 
 ```{r}

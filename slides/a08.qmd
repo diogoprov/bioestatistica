@@ -687,14 +687,14 @@ $$\text{Pressão arterial} = \alpha + \beta \times \text{grupo de tratamento} + 
 
 ---
 
-::: {.meme}
-![](../assets/memes/truta.jpg){fig-alt="Pintura de Winslow Homer: uma truta salta fora d'água, ao lado de uma isca, num rio escuro. Legenda: X numérico ficou para trás; agora o salto para X categórico."}
+## O pulo do gato
 
-[Até aqui: a reta da 8ª série]{.meme-topo} [Agora, o salto: X não precisa ser número]{.meme-base}
-:::
+![](../assets/memes/pulo-do-gato.gif){height="430px" fig-align="center" fig-alt="GIF animado: um gato laranja, sobre o capô de um carro coberto de neve, se prepara e salta."}
 
-::: {.ref}
-Winslow Homer, *Leaping Trout* (1889), domínio público, via Wikimedia Commons. Legenda nossa.
+Até aqui, a reta da 8ª série. Agora, o pulo: **X não precisa ser número**.
+
+::: {.nota}
+GIF de autoria desconhecida; uso didático.
 :::
 
 ---
@@ -857,9 +857,21 @@ A beleza dessa abordagem é que ela se expande facilmente. Se você tiver
 
 $$y = \alpha + \beta_1 \times \text{Trat}_{A,dummy} + \beta_2 \times \text{Trat}_{B,dummy}$$
 
+:::: {.columns}
+::: {.column width="42%"}
 - α seria a média do grupo Controle.
 - β₁ seria a diferença entre a média do Tratamento A e o Controle.
 - β₂ seria a diferença entre a média do Tratamento B e o Controle.
+:::
+::: {.column width="58%"}
+```{r}
+#| fig-width: 7
+#| fig-height: 4.4
+#| fig-alt: "Pontos de três grupos: Controle, Tratamento A e Tratamento B, com a média de cada um marcada. Uma linha tracejada azul na média do Controle indica alfa = 10,7. Setas vermelhas saem dessa linha até a média de cada tratamento: beta1 = 3,5, para cima, e beta2 = −2,3, para baixo."
+fig_dummy3()
+```
+:::
+::::
 
 ::: {.definicao}
 Isso é, fundamentalmente, como a **Análise de Variância (ANOVA)**

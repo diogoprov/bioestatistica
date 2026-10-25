@@ -626,3 +626,43 @@ fig_escolha_grafico <- function() {
   (topo / corpo + plot_layout(heights = c(.7, 4))) &
     theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
 }
+
+# ---------------------------------------------------------------------------
+# O boxplot passo a passo, com 11 comprimentos de girino: mediana, quartis,
+# limites de 1,5 × IQR, hastes e outlier sobre os próprios dados.
+# ---------------------------------------------------------------------------
+fig_boxplot_passos <- function(x = c(21, 24, 25, 26, 27, 28, 29, 30, 31, 33, 44)) {
+  x <- sort(x); n <- length(x); med <- median(x)
+  q1 <- median(x[x < med]); q3 <- median(x[x > med]); iqr <- q3 - q1
+  lim <- c(q1 - 1.5 * iqr, q3 + 1.5 * iqr)
+  hastes <- c(min(x[x >= lim[1]]), max(x[x <= lim[2]]))
+  fora <- x[x < lim[1] | x > lim[2]]
+  rotulo <- function(v, txt, y, cor = cores[["texto"]]) annotate("label", x = v, y = y, label = txt,
+    size = 4.3, fill = cores[["papel"]], linewidth = 0, colour = cor, lineheight = .9)
+  ggplot() +
+    # 1. os dados ordenados
+    annotate("point", x = x, y = 2.2, size = 4, colour = cores[["accent"]]) +
+    annotate("text", x = x, y = 2.55, label = x, size = 4, colour = cores[["texto"]]) +
+    annotate("text", x = 12.5, y = 2.2, hjust = 0, label = "1. dados\nordenados", size = 4.3, lineheight = .9) +
+    # 2. mediana e quartis marcados sobre os dados
+    annotate("segment", x = c(q1, med, q3), xend = c(q1, med, q3), y = .55, yend = 2.05,
+             linetype = "22", colour = c(cores[["verde"]], vermelho, cores[["verde"]])) +
+    rotulo(med, sprintf("2. mediana\n= %s", med), 1.75, vermelho) +
+    rotulo(q1, sprintf("4. Q1 = %s", q1), 1.75, cores[["verde"]]) +
+    rotulo(q3, sprintf("6. Q3 = %s", q3), 1.75, cores[["verde"]]) +
+    # 7–11: caixa, hastes, limites e outlier
+    annotate("rect", xmin = q1, xmax = q3, ymin = .7, ymax = 1.2, fill = "#d5e6ee", colour = cores[["texto"]]) +
+    annotate("segment", x = med, xend = med, y = .7, yend = 1.2, linewidth = 1.6, colour = vermelho) +
+    annotate("segment", x = c(hastes[1], q3), xend = c(q1, hastes[2]), y = .95, yend = .95, linewidth = .9) +
+    annotate("segment", x = lim, xend = lim, y = .5, yend = 1.4, colour = "#96661f", linetype = "12") +
+    annotate("text", x = lim, y = .38, size = 3.9, colour = "#96661f",
+             label = c(sprintf("Q1 − 1,5×IQR\n= %s", num_br(lim[1], 1)), sprintf("Q3 + 1,5×IQR\n= %s", num_br(lim[2], 1))),
+             lineheight = .9) +
+    annotate("point", x = fora, y = .95, size = 3.5, shape = 21, fill = "white", stroke = 1.3) +
+    annotate("text", x = fora, y = 1.25, label = "11. outlier", size = 4.2) +
+    rotulo((q1 + q3) / 2, sprintf("7–9. caixa de Q1 a Q3 (IQR = %s)", iqr), 1.36) +
+    annotate("text", x = 12.5, y = .95, hjust = 0, label = "10. hastes", size = 4.3) +
+    coord_cartesian(xlim = c(12, 46), ylim = c(.25, 2.7)) +
+    labs(x = "Comprimento do girino (mm)", y = NULL) +
+    tema_aula(14) + theme(axis.text.y = element_blank(), panel.grid = element_blank())
+}

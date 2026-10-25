@@ -174,15 +174,12 @@ iguais, são comuns no acaso de verdade; quem inventa evita repetir.]{.fragment}
   - *Exemplo:* o descendente ter o genótipo "aa".
 :::
 ::: {.column width="35%"}
-::: {.definicao}
-**Exemplo genético clássico**
-
-Ao cruzar duas plantas de ervilha heterozigotas (Aa × Aa), o genótipo do
-descendente é um evento aleatório. O espaço amostral é {AA, Aa, aA, aa}.
-
-**P(aa) = 25%**: a probabilidade de um descendente ser homozigoto
-recessivo.
-:::
+```{r}
+#| fig-width: 4.6
+#| fig-height: 5
+#| fig-alt: "Quadrado de Punnett do cruzamento Aa vezes Aa: os gametas A e a do pai nas colunas e da mãe nas linhas formam quatro células, AA, Aa, aA e aa. A célula aa está destacada em vermelho: é o evento, um dos quatro resultados do espaço amostral, com P(aa) = 1/4."
+fig_punnett()
+```
 :::
 ::::
 
