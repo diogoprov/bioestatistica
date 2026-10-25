@@ -168,7 +168,7 @@ Nestes casos, devemos usar uma **análise de variância (ANOVA)**.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Com quatro grupos, quantos testes *t* seriam necessários para comparar
@@ -371,7 +371,7 @@ aleatório.
 
 ---
 
-## Como a ANOVA funciona {.smaller}
+## Como a ANOVA funciona
 
 Para uma ANOVA de um fator, a variação total (soma de quadrados) é dividida
 em duas partes:
@@ -436,7 +436,7 @@ Inspirado na Figura 12.2 de Triola.
 
 ---
 
-## Tabela de ANOVA {.smaller}
+## Tabela de ANOVA
 
 | Causa de variação | GL | SQ | QM | F |
 |---|---|---|---|---|
@@ -454,7 +454,7 @@ Tabela 13.4 de Vieira; Tabela 15.5 de Bussab & Morettin.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Uma ANOVA deu F = 0,9. Isso significa que:**
@@ -482,7 +482,7 @@ proporção de variação explicada (D): isso é o R².
 
 ---
 
-## O teste F como uma comparação de modelos {.smaller}
+## O teste F como uma comparação de modelos {.medio}
 
 A hipótese nula na ANOVA (H₀: $\mu_1 = \mu_2 = \mu_3 = \ldots$) pode ser
 vista como uma comparação entre dois modelos:
@@ -516,7 +516,7 @@ $$SQ_{grupos} = SQ_{Total}(\text{erro do modelo nulo}) - SQ_{Res}(\text{erro do 
 
 ---
 
-## Premissas da ANOVA {.smaller}
+## Premissas da ANOVA
 
 Para que o teste F forneça um valor de *P* confiável, os dados devem
 atender a três premissas:
@@ -538,7 +538,7 @@ atender a três premissas:
 
 ---
 
-## Efeito de esponjas no crescimento de manguezal {.smaller}
+## Efeito de esponjas no crescimento de manguezal {.medio}
 
 Um ecólogo marinho está estudando as raízes de mangue em um estuário. Ele
 percebe que diferentes espécies de esponjas se fixam nessas raízes e
@@ -613,7 +613,7 @@ Vieira.
 
 ---
 
-## Atividade: decodificando a tabela de ANOVA {.smaller}
+## Atividade: decodificando a tabela de ANOVA
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -647,7 +647,7 @@ knitr::kable(tab, align = "lcccc")
 
 ---
 
-## Interpretando os resultados: teste de hipótese {.smaller}
+## Interpretando os resultados: teste de hipótese
 
 - **Hipótese nula (H₀):** as médias de todos os grupos são iguais
   ($\mu_A = \mu_B = \mu_C = \mu_D$).
@@ -732,7 +732,7 @@ Inspirado na Figura 10.5 de Gotelli & Ellison (dados de Ellison et al. 1996); m�
 
 ---
 
-## Atividade: interpretando uma ANOVA do mundo real {.smaller}
+## Atividade: interpretando uma ANOVA do mundo real {.medio}
 
 ::: {.atividade}
 **Perguntas para discussão em grupo:**
@@ -810,14 +810,13 @@ $$HSD = q \sqrt{\frac{1}{2}\left(\frac{1}{n_i} + \frac{1}{n_j}\right) QM_{residu
   comparação para controlar a taxa de erro geral do experimento.
 
 ::: {.nota}
-O original trazia a fórmula sem o fator 1/2 dentro da raiz. Com *q* da
-tabela da amplitude *studentizada*, a forma de Tukey-Kramer leva esse
-fator.
+Com *q* da tabela da amplitude *studentizada*, a forma de Tukey-Kramer
+leva o fator 1/2 dentro da raiz.
 :::
 
 ---
 
-## Testes *post-hoc* como análise dos parâmetros do modelo {.smaller}
+## Testes *post-hoc* como análise dos parâmetros do modelo {.medio}
 
 - Se a comparação de modelos (o teste F) nos diz que o nosso preditor
   categórico é importante (*P* ≤ 0,05), o próximo passo é investigar
@@ -862,7 +861,7 @@ diz **quais**.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Uma ANOVA com quatro grupos deu *P* = 0,002. O que podemos concluir?**
@@ -894,7 +893,7 @@ por exemplo, não diferem. Testes *t* separados (D) inflariam o erro tipo I.
 
 ---
 
-## Breve introdução à ANOVA fatorial {.smaller}
+## Breve introdução à ANOVA fatorial {.medio}
 
 - Às vezes, os biólogos querem investigar o efeito de dois fatores ao mesmo
   tempo. Por exemplo:
@@ -1050,7 +1049,7 @@ modelos:
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.

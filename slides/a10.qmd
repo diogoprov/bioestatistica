@@ -163,7 +163,7 @@ Pearson, K. 1900. [On the criterion that a given system of deviations from the p
 
 ---
 
-## Teste de aderência (*goodness-of-fit*) {.smaller}
+## Teste de aderência (*goodness-of-fit*)
 
 - **Conceito:** o teste de aderência é usado para verificar se a
   distribuição de frequência de uma variável categórica numa amostra se
@@ -214,7 +214,7 @@ $$\chi^2 = \sum \frac{(O - E)^2}{E}$$
 
 ---
 
-## Exemplo biológico: genética mendeliana {.smaller}
+## Exemplo biológico: genética mendeliana {.medio}
 
 :::: {.columns}
 ::: {.column width="55%"}
@@ -242,7 +242,7 @@ Ilustração de [*Introductory Biology*](https://pressbooks.umn.edu/introbio/cha
 
 ---
 
-## Cálculo passo a passo {.smaller}
+## Cálculo passo a passo {.medio}
 
 **Calcular as frequências esperadas (E):** total da prole = 500;
 proporção total = 9 + 3 + 3 + 1 = 16.
@@ -328,7 +328,7 @@ conclusão.
 
 ---
 
-## A ecologia das balas: resultado {.smaller}
+## A ecologia das balas: resultado
 
 ```{r}
 #| fig-width: 10
@@ -380,7 +380,7 @@ $$\text{graus de liberdade } (\nu) = (\text{número de linhas} - 1) \times (\tex
 
 ---
 
-## Tabela de contingência {.smaller}
+## Tabela de contingência
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -413,7 +413,7 @@ Ellison (dados de Farnsworth 2004), redesenhados.
 
 ---
 
-## Frequências esperadas e o χ² {.smaller}
+## Frequências esperadas e o χ²
 
 | Status | Desprotegidas | Protegidas | Total |
 |---|---|---|---|
@@ -493,7 +493,7 @@ Fluxograma inspirado na Figura 11-1 de Triola 2024.
 
 ---
 
-## Modelos lineares vs. log-lineares {.smaller}
+## Modelos lineares vs. log-lineares
 
 - **Conceito:** vocês lembram que testamos diferenças de médias usando
   $y = \alpha + \beta x$? O teste *t* e a ANOVA são apenas formas chiques de
@@ -559,7 +559,7 @@ modelo linear simples falhou em prever essas contagens?"
 
 ---
 
-## Resumo e principais cuidados {.smaller}
+## Resumo e principais cuidados
 
 - **Aderência:** uma variável, compara com uma teoria/distribuição
   conhecida.
@@ -581,7 +581,7 @@ modelo linear simples falhou em prever essas contagens?"
 
 ---
 
-## Teste exato de Fisher {.smaller}
+## Teste exato de Fisher
 
 - Calcula a probabilidade **exata** de observar a distribuição dos dados
   sob a hipótese nula
@@ -608,7 +608,7 @@ $$p = \frac{\dbinom{a + b}{a} \dbinom{c + d}{c}}{\dbinom{n}{a + c}}$$
 
 ---
 
-## Teste exato de Fisher: exemplo {.smaller}
+## Teste exato de Fisher: exemplo
 
 **Exemplo:** um botânico quer testar se um hormônio vegetal aumenta a taxa
 de germinação de uma espécie rara de orquídea.
@@ -627,14 +627,14 @@ O valor de *P* bicaudal soma essa probabilidade com a de todas as tabelas
 igualmente ou menos prováveis: ***P* = `r num_br(f_germ$p.value, 2)`**.
 
 ::: {.nota}
-O original dava *P* ≈ 0,18. Pelo `fisher.test()`, o *P* bicaudal é
-`r num_br(f_germ$p.value, 3)`; `r num_br(dhyper(4, 6, 6, 5), 3)` é só a
-probabilidade da tabela observada. A conclusão não muda.
+`r num_br(dhyper(4, 6, 6, 5), 3)` é só a probabilidade da tabela
+observada; o *P* bicaudal, pelo `fisher.test()`, é
+`r num_br(f_germ$p.value, 3)`.
 :::
 
 ---
 
-## Interpretação biológica {.smaller}
+## Interpretação biológica
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -662,7 +662,7 @@ importância do **poder do teste**.
 
 ---
 
-## Teste G {.smaller}
+## Teste G
 
 - **O que é:** um teste estatístico usado para verificar a aderência (se
   os dados seguem uma proporção esperada) ou a independência (associação
@@ -693,7 +693,7 @@ Onde:
 
 ---
 
-## Teste G: proporções em ervilhas {.smaller}
+## Teste G: proporções em ervilhas
 
 Vamos testar se a descendência de um cruzamento segue a proporção
 esperada de Mendel (3:1 para dominante vs. recessivo).
@@ -762,7 +762,7 @@ preferência, mas o G é teoricamente mais sólido.
 
 ---
 
-## Para saber mais: e quando a resposta é uma contagem? {.smaller}
+## Para saber mais: e quando a resposta é uma contagem?
 
 O qui-quadrado compara **contagens** entre categorias. A mesma pergunta
 pode ser feita como um **modelo**, com o mesmo preditor linear das Aulas
@@ -792,7 +792,7 @@ Não é matéria desta disciplina, mas é o próximo passo natural:
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.

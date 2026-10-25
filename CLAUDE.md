@@ -113,7 +113,8 @@ aplicar isso numa aula.
   **perguntas para a turma** com a resposta em fragmento.
 - **Perguntas para a turma** (*peer instruction*), usadas onde não há Kahoot
   ou Slido: um slide `## Pergunta para a turma {.smaller}` com a pergunta e
-  quatro alternativas numa caixa `.atividade`; a instrução "votem sozinhos,
+  quatro alternativas numa caixa `.atividade` (use `.medio` ou `.smaller`
+  só se não couber); a instrução "votem sozinhos,
   discutam com quem está ao lado e votem de novo"; e a resposta com a
   justificativa num `::: {.fragment}` com `.definicao`. Veja os três
   exemplos em `slides/a01.qmd`.
@@ -179,7 +180,10 @@ e `author: "Diogo B. Provete"`. A data vem do `index.qmd` da aula.
    etapa do ciclo.
 6. Classes do tema disponíveis: `.secao`, `.ppdac-etapa`, `.definicao`,
    `.nota`, `.ref` (referências em itálico pequeno), `.atividade`,
-   `.tabela-grande`, `.codigo-compacto`, `.smaller`, `.columns`/`.column`.
+   `.tabela-grande`, `.codigo-compacto`, `.medio`, `.smaller`, `.columns`/`.column`.
+   **Tamanho da letra:** o padrão é 32 px. Se o slide não couber, use
+   `.medio` (~27 px) e só então `.smaller` (~22 px), medindo no navegador
+   (out/2026: 111 slides voltaram à letra cheia e 41 foram para `.medio`).
 7. Toda figura leva `fig-alt` descritivo em português.
 
 ### Página da aula (`aula-NN-*/index.qmd`)
@@ -262,6 +266,13 @@ continua em `slides/`, então não apague os PDFs.
   (`LicenseShortName` igual a "Public domain" ou "CC0"), baixe uma versão
   reduzida para `assets/historia/` e registre arquivo, original, autor e
   licença em `assets/historia/FONTES.md`. **CC BY-SA não serve.**
+- **Não mencione o original nos slides** ("O original dizia…", "No
+  original…"): as correções entram direto no texto, sem nota.
+- **Imagens geradas por IA** (Gamma, Gemini) são permitidas quando o Diogo
+  pedir, com uma `.nota` dizendo que foram geradas por IA. Peça a imagem
+  sem texto e escreva os rótulos no slide. Na Aula 7: os erros tipo I e II
+  (`assets/aula07-erro-tipo*.jpg`) e os ícones da matriz do júri
+  (`assets/aula07-juri-*.png`).
 - O conteúdo segue o pptx original. Melhorias de didática são bem-vindas,
   mas mudanças de escopo precisam ser combinadas antes.
 - **Não invente referências, DOIs nem URLs.** Use as que já estão no

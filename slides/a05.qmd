@@ -158,7 +158,7 @@ iguais, são comuns no acaso de verdade; quem inventa evita repetir.]{.fragment}
 
 ---
 
-## Conceitos fundamentais {.smaller}
+## Conceitos fundamentais
 
 :::: {.columns}
 ::: {.column width="65%"}
@@ -232,7 +232,7 @@ formal está em **Para saber mais**.
 
 ---
 
-## Regras da probabilidade {.smaller}
+## Regras da probabilidade
 
 - **Regra da adição**
   - **Eventos mutuamente exclusivos:** $P(A \text{ ou } B) = P(A) + P(B)$
@@ -261,7 +261,7 @@ fig_venn()
 
 ---
 
-## Atividade: "Probabilidade na genética" (5 min) {.smaller}
+## Atividade: "Probabilidade na genética" (5 min)
 
 ::: {.atividade}
 Num cruzamento **Aa × Aa**, em que **a** é recessivo, calculem em duplas:
@@ -330,7 +330,7 @@ teste deu positivo.
 
 ---
 
-## Atividade: "O teste que mente" (12 min) {.smaller}
+## Atividade: "O teste que mente" (12 min)
 
 ::: {.atividade}
 Em grupos, sem fórmula, só contando:
@@ -380,7 +380,7 @@ saber mais**.
 
 ---
 
-## Variáveis aleatórias {.smaller}
+## Variáveis aleatórias
 
 - Uma **variável aleatória (v.a.)** é uma variável cujo valor é uma
   realização (resultado) de um experimento aleatório (ex.: sorteio)
@@ -451,7 +451,7 @@ fig_bernoulli()
 
 ---
 
-## Distribuição binomial: muitos girinos {.smaller}
+## Distribuição binomial: muitos girinos {.medio}
 
 - E se forem **n** girinos? Quantos são predados? Somamos Bernoullis.
 - **Condições para usar a binomial:**
@@ -486,7 +486,7 @@ sorteio.**
 
 ---
 
-## Distribuição binomial: exemplo 1 {.smaller}
+## Distribuição binomial: exemplo 1
 
 ::: {.atividade}
 Há uma probabilidade de 0,3 de um girino, ao forragear em um corpo
@@ -541,7 +541,7 @@ $$P(X = 5) = \binom{12}{5} 0{,}5^{12} = \frac{792}{4.096} \approx 0{,}193$$
 
 ---
 
-## Distribuição de Poisson: quantas presas por hora? {.smaller}
+## Distribuição de Poisson: quantas presas por hora? {.medio}
 
 - Modelo para v.a. discretas.
 - Usada para modelar o **número de ocorrências** de um evento em um
@@ -560,7 +560,7 @@ $$P(X = x) = \frac{\lambda^x e^{-\lambda}}{x!}$$
 
 ---
 
-## Distribuição de Poisson: exemplo 1 {.smaller}
+## Distribuição de Poisson: exemplo 1
 
 Um girino captura, em média, **10 presas** (larvas de mosquito) a cada 15
 minutos. As capturas acontecem a uma taxa constante e são independentes
@@ -575,11 +575,6 @@ $$P(x) = \frac{10^x e^{-10}}{x!} \qquad P(X = 5) = \frac{10^5 e^{-10}}{5!} = 0{,
 #| fig-alt: "Gráfico de barras da Poisson com λ = 10, de 0 a 20 presas em 15 minutos, com a barra de 5 presas em vermelho."
 fig_poisson(10, 20, "Presas capturadas em 15 minutos", destaque = 5, rotulos = FALSE)
 ```
-
-::: {.nota}
-No original, o mesmo cálculo era feito com as visitas de borboletas a uma
-flor em 15 minutos.
-:::
 
 ---
 
@@ -623,7 +618,7 @@ fig_binom_poisson()
 
 ---
 
-## Qual distribuição usar? {.smaller}
+## Qual distribuição usar?
 
 ::: {.atividade}
 Sem Kahoot: em duplas, digam se cada contagem segue melhor uma
@@ -648,7 +643,7 @@ Sem Kahoot: em duplas, digam se cada contagem segue melhor uma
 
 ---
 
-## A distribuição normal: o tamanho do girino {.smaller}
+## A distribuição normal: o tamanho do girino
 
 :::: {.columns}
 ::: {.column width="74%"}
@@ -705,7 +700,7 @@ Redesenhado a partir de Zar, J.H. *Biostatistical analysis*.
 
 ---
 
-## A distribuição normal padrão e o escore-Z {.smaller}
+## A distribuição normal padrão e o escore-Z
 
 - A **distribuição normal padrão** tem média 0 e desvio-padrão 1.
 - Podemos converter qualquer variável normal para a normal padrão usando o
@@ -719,14 +714,9 @@ $$Z = \frac{X - \mu}{\sigma}$$
     desvio-padrão de 4 mm. Qual a probabilidade de um girino ter mais de
     34 mm?
 
-::: {.nota}
-No original, o exemplo era a altura dos homens: média de 175 cm,
-desvio-padrão de 7 cm, mais de 182 cm. As contas são as mesmas.
-:::
-
 ---
 
-## Cálculo passo a passo do escore-Z {.smaller}
+## Cálculo passo a passo do escore-Z {.medio}
 
 - **Passo 1: calcular o escore-Z**
   - Z = (34 − 30) / 4 = 4 / 4 = **1**: o girino de 34 mm está
@@ -747,7 +737,7 @@ fig_altura_z()
 
 ---
 
-## Por que isso é importante? {.smaller}
+## Por que isso é importante?
 
 ```{r}
 #| fig-width: 11
@@ -800,7 +790,7 @@ Inspirado no tutorial de escore-Z do DATAtab,
 
 ---
 
-## Dinâmica: "O normal e o raro" {.smaller}
+## Dinâmica: "O normal e o raro"
 
 ::: {.atividade}
 **Grupo 1:** a concentração de glicose no sangue de uma população de
@@ -824,7 +814,7 @@ ovos teriam tamanho mais próximo da média.
 
 ---
 
-## Dinâmica: "O normal e o raro" {.smaller}
+## Dinâmica: "O normal e o raro"
 
 ::: {.atividade}
 **Grupo 3:** a pressão arterial sistólica em um grupo de capivaras adultas
@@ -865,7 +855,7 @@ fig_guia_distribuicao()
 
 ---
 
-## Comparação entre distribuições {.smaller}
+## Comparação entre distribuições {.medio}
 
 | Distribuição | Tipo de variável | Parâmetros-chave | Média ($\mu$) | Variância ($\sigma^2$) | Caso de uso biológico clássico |
 |---|---|---|---|---|---|
@@ -904,7 +894,7 @@ A parte mais formal da aula, para consulta.
 
 ---
 
-## Definições de probabilidade: axiomática {.smaller}
+## Definições de probabilidade: axiomática
 
 - **Axiomática:** define 3 axiomas que qualquer medida de probabilidade
   deve obedecer para ser matematicamente consistente.
@@ -921,7 +911,7 @@ $$P\left(\bigcup_{i=1}^{\infty} A_i\right) = \sum_{i=1}^{\infty} P(A_i)$$
 
 ---
 
-## Definições de probabilidade: frequentista e bayesiana {.smaller}
+## Definições de probabilidade: frequentista e bayesiana {.medio}
 
 - **Frequentista:** baseada na frequência relativa de um evento em um
   **grande número de repetições**
@@ -940,7 +930,7 @@ $$P(E) = \lim_{n \to \infty} \frac{n(E)}{n}$$
 
 ---
 
-## Teorema de Bayes {.smaller}
+## Teorema de Bayes {.medio}
 
 :::: {.columns}
 ::: {.column width="76%"}
@@ -969,7 +959,7 @@ incerta.
 
 ---
 
-## Comparação entre frequentista e bayesiana {.smaller}
+## Comparação entre frequentista e bayesiana
 
 | Característica | Abordagem frequentista | Abordagem bayesiana |
 |---|---|---|
@@ -1045,7 +1035,7 @@ Domínio público, via Wikimedia Commons.
 
 ---
 
-## Modelos para variáveis contínuas {.smaller}
+## Modelos para variáveis contínuas
 
 | Modelo | $f(x)$ | Parâmetros | $E(X)$ | $\mathrm{Var}(X)$ |
 |---|---|---|---|---|
@@ -1104,7 +1094,7 @@ fig_regra_empirica()
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*. Saraiva.

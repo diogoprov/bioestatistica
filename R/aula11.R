@@ -192,14 +192,20 @@ fig_fluxo_fatorial <- function() {
   az <- cores[["accent"]]; vd <- cores[["verde"]]; fe <- cores[["ferrugem"]]
   nos <- tibble::tribble(
     ~id, ~rotulo,                                                     ~x,  ~y,   ~cor,
-    "I", "Teste a interação:\nF = QM(interação) / QM(erro)",          0,   3,    az,
-    "S", "Há efeito de\ninteração?",                                  0,   1.8,  az,
-    "P", "Pare: não interprete os efeitos\nprincipais isoladamente",  3.4, 1.8,  fe,
-    "L", "Teste o fator das linhas:\nF = QM(linhas) / QM(erro)",      0,   .6,   vd,
-    "C", "Teste o fator das colunas:\nF = QM(colunas) / QM(erro)",    0,   -.6,  vd
+    "I", "Teste a interação:\nF = QM(interação) / QM(erro)",          0,   3.3,  az,
+    "S", "Há efeito de\ninteração?",                                  0,   1.9,  az,
+    "P", "Pare: não interprete os efeitos\nprincipais isoladamente",  4.2, 1.9,  fe,
+    "L", "Teste o fator das linhas:\nF = QM(linhas) / QM(erro)",      0,   .5,   vd,
+    "C", "Teste o fator das colunas:\nF = QM(colunas) / QM(erro)",    0,   -.9,  vd
   )
-  arestas <- tibble::tribble(~de, ~para, ~rotulo, "I", "S", NA, "S", "P", "sim", "S", "L", "não", "L", "C", NA)
-  fig_diagrama(nos, arestas, larg = 2.9, alt = .8, base = 4.6, xlim = c(-1.6, 5), ylim = c(-1.1, 3.5))
+  # caixas afastadas o bastante para as setas aparecerem; os rótulos "sim"
+  # e "não" ficam ao lado da seta, não em cima dela
+  arestas <- tibble::tribble(~de, ~para, ~rotulo, ~lx, ~ly,
+                             "I", "S", NA, NA, NA,
+                             "S", "P", "sim", 2.1, 2.12,
+                             "S", "L", "não", .32, 1.2,
+                             "L", "C", NA, NA, NA)
+  fig_diagrama(nos, arestas, larg = 2.9, alt = .8, base = 4.6, xlim = c(-1.6, 5.8), ylim = c(-1.4, 3.8))
 }
 
 fig_tipos_interacao <- function() {

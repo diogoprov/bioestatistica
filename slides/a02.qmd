@@ -494,7 +494,7 @@ Sánchez-Bermejo.
 
 ---
 
-## Perguntas para planejar a amostragem {.smaller}
+## Perguntas para planejar a amostragem
 
 - As parcelas são **grandes o bastante** para produzir resultados
   realistas?
@@ -846,7 +846,7 @@ Ruxton & Colegrave 2016, cap. 3.
 
 ---
 
-## Atividade (15 min) {.smaller}
+## Atividade (15 min)
 
 ::: {.atividade}
 **Pergunta:** qual o efeito da quantidade de nitrogênio do solo na taxa de
@@ -1019,7 +1019,7 @@ Krzywinski, M., Altman, N. & Blainey, P. 2014. *Nature Methods* 11:977–978.
 
 ---
 
-## Parcelas subdivididas (*split-plot*) {.smaller}
+## Parcelas subdivididas (*split-plot*) {.medio}
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -1098,7 +1098,7 @@ Underwood, A.J. 1991. *Marine and Freshwater Research* 42:569–587.
 
 ---
 
-## BACI no Pantanal: o fogo e os sapos {.smaller}
+## BACI no Pantanal: o fogo e os sapos {.medio}
 
 :::: {.columns}
 ::: {.column width="55%"}
@@ -1126,7 +1126,7 @@ satélite: Esri World Imagery.
 
 ---
 
-## BACI com dados reais {.smaller}
+## BACI com dados reais {.medio}
 
 ```{r}
 #| fig-width: 12
@@ -1146,7 +1146,7 @@ Dados reais, agregados por local e período, em `data/anuros_pantanal_baci.csv`.
 
 ---
 
-## Atividade final (20 min) {.smaller}
+## Atividade final (20 min)
 
 ::: {.atividade}
 **Consultoria em delineamento.** Formem 4 grupos. Cada grupo é uma empresa
@@ -1222,7 +1222,7 @@ que o delineamento não garantiu.
 
 ---
 
-## Referências {.smaller}
+## Referências {.medio}
 
 ::: {.nota}
 - Hurlbert, S.H. 1984. [Pseudoreplication and the design of ecological field experiments](https://doi.org/10.2307/1942661). *Ecological Monographs* 54:187–211.

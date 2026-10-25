@@ -505,7 +505,7 @@ fig_metodo_cientifico("estatistica")
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Qual destas frases é uma afirmação de estatística *inferencial*?**
@@ -642,7 +642,7 @@ da mesma população.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Um pesquisador mede o comprimento de 30 girinos de uma lagoa para
@@ -714,7 +714,7 @@ fig_tipos_variaveis(3)
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Em um estudo com girinos, qual destas variáveis é *qualitativa
@@ -804,7 +804,7 @@ ppdac_topicos(list(
 
 ---
 
-## O que diz o GAISE {.smaller}
+## O que diz o GAISE
 
 *Guidelines for Assessment and Instruction in Statistics Education*
 (GAISE), College Report 2016, da American Statistical Association:
@@ -841,7 +841,7 @@ Kahoots ao longo da disciplina.
 
 ---
 
-## Como biólog@s usam estatística na prática? {.smaller}
+## Como biólog@s usam estatística na prática? {.medio}
 
 - **Formulação da pergunta e hipótese:** toda pesquisa começa com uma
   pergunta clara (ex.: "Qual o efeito do aleitamento materno no peso de
@@ -899,7 +899,7 @@ Kahoots ao longo da disciplina.
 
 ---
 
-## Guardem esta tabela! {.smaller}
+## Guardem esta tabela!
 
 ::: {.atividade}
 Cada grupo entrega a tabela preenchida (ou digita numa planilha
@@ -928,7 +928,7 @@ Gelman, A. & Nolan, D. 2002. *Teaching statistics: a bag of tricks*. Oxford Univ
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Brewer, C.A. & Gross, L.J. 2003. [Training ecologists to think with uncertainty in mind](https://doi.org/10.1890/0012-9658(2003)084[1412:TETTWU]2.0.CO;2). *Ecology* 84:1412–1414.

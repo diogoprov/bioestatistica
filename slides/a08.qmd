@@ -177,7 +177,7 @@ Vieira, *Introdução à bioestatística*, cap. 10.
 
 ---
 
-## Qual teste usar? {.smaller}
+## Qual teste usar?
 
 | Variável dependente | Variável independente | Teste |
 |---|---|---|
@@ -261,7 +261,7 @@ fig_t_gl()
 
 ---
 
-## Atividade prática 1: pense-pareie-compartilhe (10 min) {.smaller}
+## Atividade prática 1: pense-pareie-compartilhe (10 min)
 
 ::: {.atividade}
 **Cenário:** "Um biólogo sabe que, historicamente, uma espécie de peixe em
@@ -283,7 +283,7 @@ H₀: $\mu \geq 15$ cm; H₁: $\mu < 15$ cm (teste unicaudal).
 :::
 :::
 
-## De volta às idades: a turma tem viés? {.smaller}
+## De volta às idades: a turma tem viés? {.medio}
 
 ```{r}
 #| fig-width: 10
@@ -319,7 +319,7 @@ Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics:
 
 ---
 
-## Teste *t* para duas amostras {.smaller}
+## Teste *t* para duas amostras
 
 - **Amostras independentes:** os valores de uma amostra não estão
   relacionados ou pareados com os da outra. Os grupos são distintos.
@@ -400,7 +400,7 @@ $$t = \frac{\bar{x}_1 - \bar{x}_2}{\sqrt{\dfrac{s_1^2}{n_1} + \dfrac{s_2^2}{n_2}
 
 ---
 
-## Chifres mais longos aumentam a sobrevivência? {.smaller}
+## Chifres mais longos aumentam a sobrevivência?
 
 :::: {.columns}
 ::: {.column width="55%"}
@@ -423,8 +423,7 @@ $t = `r num_tex(t_lagartos, 2)`$; $t_{0,05(2),182} = 1{,}97$; *P* < 0,05
 
 ::: {.nota}
 Silhueta de *Phrynosoma hernandesi* por Caleb M. Gordon, via PhyloPic,
-CC0 1.0. Na tabela do original, os rótulos "vivos" e "mortos" estavam
-trocados.
+CC0 1.0.
 :::
 :::
 ::::
@@ -436,7 +435,7 @@ Médias, desvios e tamanhos do exemplo de Whitlock & Schluter 2020, cap.
 
 ---
 
-## Teste *t* para dados pareados {.smaller}
+## Teste *t* para dados pareados
 
 - **Lógica:** este teste reduz um problema de duas amostras a um problema
   de uma amostra. Ele não analisa os dados originais, mas sim a
@@ -711,7 +710,7 @@ Winslow Homer, *Leaping Trout* (1889), domínio público, via Wikimedia Commons.
 
 ---
 
-## Variáveis *dummy* como "tradutores" {.smaller}
+## Variáveis *dummy* como "tradutores"
 
 - Mas e se o nosso preditor não for um número e sim uma categoria? Por
   exemplo:
@@ -730,7 +729,7 @@ como o modelo linear.
 
 ---
 
-## Solução para o problema {.smaller}
+## Solução para o problema
 
 A variável *dummy* (também chamada de variável fictícia, indicadora ou
 binária) é uma variável numérica que representa uma informação
@@ -782,7 +781,7 @@ variável resposta (Y): **Peso_Final** (em gramas).
 
 ---
 
-## A mágica na interpretação do modelo {.smaller}
+## A mágica na interpretação do modelo
 
 Vamos ver o que acontece quando colocamos essa variável *dummy* na nossa
 equação:
@@ -833,7 +832,7 @@ Inspirado na Figura 7.4 de Gelman, Hill & Vehtari 2020 e em
 
 ---
 
-## E se tivermos mais de 2 grupos? {.smaller}
+## E se tivermos mais de 2 grupos?
 
 A beleza dessa abordagem é que ela se expande facilmente. Se você tiver
 *k* grupos, precisará de *k* − 1 variáveis *dummy*.
@@ -867,7 +866,7 @@ funciona!
 
 ---
 
-## Construindo o modelo passo a passo {.smaller}
+## Construindo o modelo passo a passo
 
 Queremos comparar o teor de sódio em duas marcas de sopa. Nossa variável
 resposta (Y) é "teor de sódio"; nossa variável preditora (X) é a "marca
@@ -884,8 +883,7 @@ $$\text{Sódio}_i = \alpha + \beta \times \text{Marca}_i + \varepsilon_i$$
   **β é exatamente a diferença entre as médias dos grupos!**
 
 ::: {.nota}
-No original, duas marcas comerciais; aqui, marcas fictícias e dados
-simulados.
+Marcas fictícias e dados simulados.
 :::
 
 ---
@@ -943,7 +941,7 @@ Caravaggio, *Menino mordido por um lagarto* (c. 1593–1594), domínio público,
 
 ---
 
-## Atividade: desafio do coeficiente {.smaller}
+## Atividade: desafio do coeficiente {.medio}
 
 ::: {.atividade}
 **Cenário:** pesquisadores testaram um novo fármaco para inibir o
@@ -968,7 +966,7 @@ referência: Controle):
 
 ---
 
-## Atividade: desafio do coeficiente (respostas) {.smaller}
+## Atividade: desafio do coeficiente (respostas)
 
 1. Qual é o tamanho médio do tumor no grupo Controle?
    - **52,5 mm³**, o valor do intercepto α
@@ -985,7 +983,7 @@ referência: Controle):
 
 ---
 
-## Teste *t* pareado: o modelo mais simples {.smaller}
+## Teste *t* pareado: o modelo mais simples
 
 - **Lógica:** como vimos, o teste *t* pareado funciona calculando a
   diferença ($d_i$) para cada par. Isso cria uma *nova e única variável*.
@@ -998,7 +996,7 @@ referência: Controle):
 
 ---
 
-## Teste *t* para uma amostra {.smaller}
+## Teste *t* para uma amostra
 
 - **Lógica:** queremos testar se a média da nossa amostra é igual a um
   valor de referência, $\mu_0$.
@@ -1025,7 +1023,7 @@ referência: Controle):
 
 ---
 
-## Vantagens da abordagem de modelagem {.smaller}
+## Vantagens da abordagem de modelagem
 
 - **Escalabilidade:** e se tivermos 3 grupos ou mais? Não precisamos de um
   novo teste "do zero". Apenas adicionamos mais preditores *dummy* ao
@@ -1070,7 +1068,7 @@ Joseph Wright of Derby, *Um filósofo dando uma palestra sobre o planetário* (c
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.

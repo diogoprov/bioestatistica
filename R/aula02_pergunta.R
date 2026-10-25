@@ -34,7 +34,12 @@ fig_diagrama <- function(nos, arestas, larg = 1.25, alt = .42, base = 5.2,
       s1 = pmin(abs((larg / 2 + .10) / dx), abs((alt / 2 + .10) / dy)),
       xa = x0 + dx * s0, ya = y0 + dy * s0,
       xb = x1 - dx * s1, yb = y1 - dy * s1,
-      xm = coalesce(lx, (xa + xb) / 2), ym = coalesce(ly, (ya + yb) / 2)
+      # sem posição dada, o rótulo vai ao lado da seta, não em cima dela:
+      # acima das horizontais, à direita das verticais
+      horiz = abs(dx) >= abs(dy), livre = is.na(lx) & is.na(ly),
+      xm = coalesce(lx, (xa + xb) / 2 + ifelse(horiz, 0, .06)),
+      ym = coalesce(ly, (ya + yb) / 2 + ifelse(horiz, .05, 0)),
+      hj = ifelse(livre & !horiz, 0, .5), vj = ifelse(livre & horiz, 0, .5)
     )
   # aresta curva sai e chega pelo mesmo lado (cima ou baixo) das caixas
   curvas <- filter(ar, curva != 0) |>
@@ -57,7 +62,7 @@ fig_diagrama <- function(nos, arestas, larg = 1.25, alt = .42, base = 5.2,
     scale_linetype_manual(values = c(`FALSE` = "solid", `TRUE` = "22"),
                           guide = "none") +
     geom_label(data = filter(ar, !is.na(rotulo)),
-               aes(xm, ym, label = rotulo), size = base * .9,
+               aes(xm, ym, label = rotulo, hjust = hj, vjust = vj), size = base * .9,
                fontface = "bold", fill = cores[["papel"]],
                colour = cores[["texto"]], linewidth = 0) +
     geom_tile(data = nos, aes(x, y), width = larg, height = alt,

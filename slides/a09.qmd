@@ -206,9 +206,7 @@ Diagrama: C.H. Eigenmann, *Popular Science Monthly* 61 (1902), a partir de Galto
 :::
 
 ::: {.nota}
-O original dizia que o filho seria mais baixo que os pais "por um fator
-(1 − R²)" e que Pearson derivou o "coeficiente de regressão (*r*)". O fator
-de encolhimento é a inclinação da reta, e o *r* de Pearson é o coeficiente
+O fator de encolhimento é a inclinação da reta, e o *r* de Pearson é o coeficiente
 de correlação.
 :::
 
@@ -306,7 +304,7 @@ Anscombe, F.J. 1973. [Graphs in statistical analysis](https://doi.org/10.1080/00
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Quatro conjuntos de dados têm a mesma média de X, a mesma média de Y e
@@ -383,8 +381,8 @@ $$t = \frac{r}{s_r}, \qquad s_r = \sqrt{\frac{1 - r^2}{n - 2}} \quad (\text{erro
   $n = `r n_galton`$.
 
 ::: {.nota}
-O original dizia "testa a hipótese nula de que *t* = 0"; a hipótese é
-sobre o parâmetro ρ.
+A hipótese é sobre o parâmetro ρ da população, não sobre a estatística
+*t*.
 :::
 
 # 3. Regressão linear simples {.secao}
@@ -505,11 +503,6 @@ $$H_0: \beta = 0 \qquad H_1: \beta \neq 0$$
   - Se não há relação entre Y e X, a reta da regressão não deve ter
     inclinação, ou seja, à medida que o X muda, o valor de Y permanece o
     mesmo.
-
-::: {.nota}
-O original dizia que a hipótese nula "é a de que o slope é diferente de
-zero"; essa é a alternativa.
-:::
 
 ---
 
@@ -671,8 +664,7 @@ fig_ols_ma_rma()
 ::::
 
 ::: {.nota}
-O original chamava estas formas de "soma de quadrados tipo 2 e 3". Os
-tipos de soma de quadrados são outra coisa (aparecem na ANOVA com vários
+Não confunda com os tipos de soma de quadrados, que são outra coisa (aparecem na ANOVA com vários
 fatores); aqui se trata de regressão do modelo II.
 :::
 
@@ -682,7 +674,7 @@ Inspirado na Figura 5.12 de Quinn & Keough (p. 100).
 
 ---
 
-## Estimando os parâmetros {.smaller}
+## Estimando os parâmetros {.medio}
 
 | Parâmetro | Estimativa OLS | Erro padrão |
 |---|---|---|
@@ -766,7 +758,7 @@ Tabela de ANOVA generalizada para modelos lineares; inspirada na Tabela
 
 ---
 
-## Particionando a variância numa regressão {.smaller}
+## Particionando a variância numa regressão
 
 - Como todo modelo linear, numa regressão também é possível particionar a
   variância total (soma de quadrados) num componente explicado pelo(s)
@@ -797,7 +789,7 @@ Tabela de ANOVA generalizada para modelos lineares; inspirada na Tabela
 
 ---
 
-## Tabela de ANOVA para a regressão linear simples {.smaller}
+## Tabela de ANOVA para a regressão linear simples
 
 | Fonte de variação | SQ | gl | QM | QM esperado |
 |---|---|---|---|---|
@@ -814,9 +806,7 @@ Tabela de ANOVA generalizada para modelos lineares; inspirada na Tabela
 | Total | `r num_br(sum(av[["Sum Sq"]]), 1)` | `r sum(av[["Df"]])` | | |
 
 ::: {.ref}
-Inspirado na Tabela 5.3 de Quinn & Keough. No original, os graus de
-liberdade da regressão e do total estavam trocados (927 e 926); os
-corretos são 1 e `r sum(av[["Df"]])`. F = `r num_br(av["parent", "F value"], 2)` = *t*².
+Inspirado na Tabela 5.3 de Quinn & Keough. F = `r num_br(av["parent", "F value"], 2)` = *t*².
 :::
 
 ---
@@ -848,7 +838,7 @@ fig_r2_pizza()
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Na regressão da altura dos filhos pela altura dos pais, R² = 0,21. Isso
@@ -887,7 +877,7 @@ o gráfico e o R².
 xkcd 1725, [*Linear regression*](https://xkcd.com/1725/), de Randall Munroe; explicação em [explainxkcd](https://www.explainxkcd.com/wiki/index.php/1725:_Linear_Regression).
 :::
 
-## De volta às idades: a regressão dos palpites {.smaller}
+## De volta às idades: a regressão dos palpites
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -927,7 +917,7 @@ Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics:
 
 ---
 
-## Pressupostos dos modelos lineares {.smaller}
+## Pressupostos dos modelos lineares
 
 - Variâncias homogêneas dos resíduos
 - Relação entre X e Y é linear
@@ -939,8 +929,7 @@ Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics:
   - Pseudorréplicas, lembram da Aula 2?
 
 ::: {.nota}
-O original associava "X medido sem erro" à "soma de quadrados tipo I". O
-termo certo é regressão do modelo I (em contraste com o modelo II, de MA e
+"X medido sem erro" define a regressão do modelo I (em contraste com o modelo II, de MA e
 RMA).
 :::
 
@@ -1018,7 +1007,7 @@ Inspirado na Figura 9.5 de Gotelli & Ellison; dados simulados.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Num gráfico de resíduos contra valores ajustados, os resíduos se
@@ -1051,7 +1040,7 @@ a normalidade se vê melhor no gráfico quantil-quantil.
 
 ---
 
-## Outras formas de regressão {.smaller}
+## Outras formas de regressão {.medio}
 
 - Não linear simples (relação entre Y e X dada por um parâmetro elevado a
   alguma potência)
@@ -1097,9 +1086,8 @@ precipitação (12 áreas):
 - A temperatura do ar afetou a riqueza.
 
 ::: {.nota}
-Os valores de *P* foram recalculados a partir de F e dos graus de
-liberdade; no original estavam 0,07 e 0,048, que não batem com esses F.
-O original mostrava os planos de regressão em 3D.
+Os valores de *P* foram calculados a partir de F e dos graus de
+liberdade.
 :::
 
 ---
@@ -1186,7 +1174,7 @@ Inspirado na Figura 6.9 de Quinn & Keough (dados de Loyn 1987).
 
 ---
 
-## Referências {.smaller}
+## Referências {.medio}
 
 ::: {.nota}
 - Anscombe, F.J. 1973. [Graphs in statistical analysis](https://doi.org/10.1080/00031305.1973.10478966). *The American Statistician* 27:17–21.

@@ -163,7 +163,7 @@ Após um mês, vocês pesaram os animais. Os dados (em kg) foram:
 
 ---
 
-## Enquete 1 {.smaller}
+## Enquete 1
 
 ::: {.atividade}
 **Se você pudesse usar uma só palavra ou número para descrever o peso
@@ -175,7 +175,7 @@ Sem Slido, cada pessoa escreve a sua resposta num papel e a turma compara.
 
 ---
 
-## Enquete 2 {.smaller}
+## Enquete 2
 
 ::: {.atividade}
 **Observando os dados, qual grupo parece mais "confiável" ou "previsível"
@@ -234,7 +234,7 @@ $$\sum_{i=1}^{5} x_i = 3{,}5 + 2{,}7 + 3{,}2 + 2{,}2 + 3{,}8 = 15{,}4$$
 
 ---
 
-## Medidas de tendência central (ou de posição) {.smaller}
+## Medidas de tendência central (ou de posição) {.medio}
 
 - **Média aritmética** ⇒ centro de equilíbrio do conjunto de dados
 
@@ -372,7 +372,7 @@ Refaçam as duplas e calculem:
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Qual das duas medidas (média ou mediana) foi mais drasticamente afetada
@@ -452,7 +452,7 @@ Exemplo de Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
 
 ---
 
-## Tipos de medidas de variabilidade {.smaller}
+## Tipos de medidas de variabilidade
 
 :::: {.columns}
 ::: {.column width="58%"}
@@ -644,7 +644,7 @@ $$\bar{x} = \frac{\sum_{i=1}^{n} x_i}{n}$$
 
 ---
 
-## Se sabemos que a média é 1,80, qual deve ser a altura da pessoa 5? {.smaller}
+## Se sabemos que a média é 1,80, qual deve ser a altura da pessoa 5?
 
 :::: {.columns}
 ::: {.column width="45%"}
@@ -703,7 +703,7 @@ $$s = \sqrt{\frac{\sum (x - \bar{x})^2}{n - 1}}$$
 
 ---
 
-## Passo a passo para calcular o desvio-padrão {.smaller}
+## Passo a passo para calcular o desvio-padrão
 
 Com os pesos do **Grupo A** das capivaras: 50, 51, 52, 58, 59 kg.
 
@@ -722,7 +722,7 @@ Roteiro como em Triola, M.F. *Introdução à estatística*, cap. 3.
 
 ---
 
-## Coeficiente de variação {.smaller}
+## Coeficiente de variação
 
 - Razão entre o desvio-padrão e a média
 
@@ -757,7 +757,7 @@ Krzywinski, M. & Altman, N. 2013. *Nature Methods* 10:809–810.
 
 ---
 
-## Atividade: "Qual remédio é melhor?" {.smaller}
+## Atividade: "Qual remédio é melhor?"
 
 ::: {.atividade}
 Vocês trabalham para a ANVISA e precisam avaliar a eficácia e a segurança
@@ -775,7 +775,7 @@ Para cada grupo, calculem **média, mediana, amplitude e desvio-padrão**
 
 ---
 
-## Atividade: "Qual remédio é melhor?" {.smaller}
+## Atividade: "Qual remédio é melhor?"
 
 Após os cálculos, discutam e respondam:
 
@@ -815,7 +815,7 @@ fig_remedios()
 A Droga X tem média puxada para cima por um único paciente (15 h); a Droga
 Y tem média e mediana parecidas (7 h) e muito menos variação.
 
-## De volta às idades: viés e precisão {.smaller}
+## De volta às idades: viés e precisão
 
 ```{r}
 #| fig-width: 10
@@ -947,7 +947,7 @@ medida central)**.
 
 ---
 
-## O que aprendemos hoje? {.smaller}
+## O que aprendemos hoje?
 
 - A calcular um único valor, como a média, para representar o "coração"
   dos nossos dados.
@@ -963,7 +963,7 @@ medida central)**.
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Krzywinski, M. & Altman, N. 2013. [Importance of being uncertain](https://doi.org/10.1038/nmeth.2613). *Nature Methods* 10:809–810.

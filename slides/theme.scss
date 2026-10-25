@@ -63,6 +63,37 @@ $code-block-font-size: 0.70em;
 // (4,38:1); passa a .68em em #4a5568, que da 7,03:1.
 .reveal .ref { font-size: .68em; color: #4a5568; font-style: italic; }
 
+// Slides cheios demais para a letra de 32 px, mas que não precisam cair
+// para os 22 px do .smaller: .medio fica em ~27 px e mantém o título.
+.reveal .slides section.medio { font-size: .85em; }
+.reveal .slides section.medio h2 { font-size: calc(1.6em / .85); }
+
+// Falso positivo e falso negativo (Aula 7): faixa de título e balão de fala.
+.reveal .erro-titulo { display: block; text-align: center; color: white;
+  padding: .15em .4em; border-radius: 4px; margin-bottom: .2em; }
+.reveal .erro-titulo.tipo1 { background: #a15e3f; }
+.reveal .erro-titulo.tipo2 { background: #1c6e8c; }
+.reveal .fala { width: fit-content; margin: .2em auto 0; padding: .25em .8em;
+  background: white; border: 2px solid #4a5568; border-radius: 18px;
+  font-size: 1.05em; font-weight: 600; }
+
+// Matriz do tribunal do júri (Aula 7, erros tipo I e II).
+.reveal .juri { display: grid; grid-template-columns: 7.2em 1fr 1fr; gap: 6px;
+  font-size: .72em; line-height: 1.15; text-align: center; }
+.reveal .juri > div { display: flex; flex-direction: column; justify-content: center;
+  align-items: center; padding: .35em .3em; border-radius: 6px; }
+.reveal .juri span { font-weight: 400; color: #4a5568; font-size: .9em; }
+.reveal .juri-canto { font-size: .8em; color: #4a5568; }
+.reveal .juri-col, .reveal .juri-lin { font-weight: 700; background: #e9e3d6; }
+.reveal .juri-cel { background: white; border: 2px solid #d6cfc0; }
+.reveal .juri-cel img { height: 115px; margin: 0 0 .2em; }
+.reveal .juri-tit { font-weight: 700; font-size: 1.15em; }
+.reveal .juri-cel.erro { border-color: #c0392b; }
+.reveal .juri-cel.erro .juri-tit { color: #c0392b; }
+.reveal .juri-cel.certo { border-color: #527238; }
+.reveal .juri-cel.certo .juri-tit { color: #527238; }
+.reveal .juri-prob { margin-top: .15em; color: #4a5568; font-style: italic; }
+
 // Tabelas: .72em ficava pequeno demais projetado.
 .reveal table { font-size: .80em; }
 

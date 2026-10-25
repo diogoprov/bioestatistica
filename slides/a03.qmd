@@ -278,7 +278,7 @@ das frequências.
 
 ---
 
-## Tabela para dados quantitativos {.smaller}
+## Tabela para dados quantitativos
 
 Tabela 5: Informações sobre espécie, hábitat, estágio de desenvolvimento,
 comprimento total e massa de 36 girinos (dados simulados).
@@ -327,7 +327,7 @@ Exemplo de Mello, M.A.R. <https://marcoarmello.wordpress.com/2018/02/01/dados/>
 
 ---
 
-## Uma tabela corretamente formatada {.smaller}
+## Uma tabela corretamente formatada
 
 :::: {.columns}
 ::: {.column width="50%"}
@@ -361,7 +361,7 @@ Dica: é a tabela usada para o teste *t* (Aula 8).
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Uma pesquisadora mediu a massa de 20 sapos, 10 machos e 10 fêmeas.
@@ -403,7 +403,7 @@ opção A é exatamente o formato "como não planilhar".
 
 ---
 
-## Tipos de gráficos {.smaller}
+## Tipos de gráficos {.medio}
 
 :::: {.columns}
 ::: {.column width="34%"}
@@ -595,7 +595,7 @@ Foto: K. Hanley, *The Hartford Courant*, 23/11/1996 (estudantes de genética de 
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Na foto, as mulheres se concentram à esquerda e os homens à direita. Se
@@ -630,7 +630,7 @@ medir e agrupar as alturas (Schilling et al. 2002).
 
 ---
 
-## Histograma {.smaller}
+## Histograma {.medio}
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -655,7 +655,7 @@ fig_histograma_zar()
 
 ---
 
-## Histograma: da tabela para as barras {.smaller}
+## Histograma: da tabela para as barras {.medio}
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -726,7 +726,7 @@ Os mesmos dados contam histórias diferentes conforme a largura das classes.
 
 ---
 
-## De volta às idades da Aula 1 {.smaller}
+## De volta às idades da Aula 1
 
 ```{r}
 #| fig-width: 10
@@ -748,7 +748,7 @@ Dados simulados. Atividade de Gelman, A. & Nolan, D. 2002. *Teaching statistics:
 
 ---
 
-## De volta às idades: tabela de dupla entrada {.smaller}
+## De volta às idades: tabela de dupla entrada
 
 ```{r}
 #| tbl-cap: "Direção do erro segundo a faixa etária da pessoa na foto (dados simulados)."
@@ -785,7 +785,7 @@ fig_boxplot_anatomia()
 
 ---
 
-## Aprendendo a desenhar um boxplot {.smaller}
+## Aprendendo a desenhar um boxplot {.medio}
 
 1. Ordene os dados do maior para o menor
 2. Calcule a mediana
@@ -822,7 +822,7 @@ Inspirado em Triola, *Introdução à estatística*, cap. 3.
 
 ---
 
-## Pergunta para a turma {.smaller}
+## Pergunta para a turma
 
 ::: {.atividade}
 **Num boxplot, a caixa contém:**
@@ -986,7 +986,7 @@ IBPAD (2016), <https://ibpad.com.br/ciencia-dados/qual-e-o-grafico-mais-adequado
 
 ---
 
-## Gráficos e tabelas: finalidade e vantagens {.smaller}
+## Gráficos e tabelas: finalidade e vantagens {.medio}
 
 | | Gráficos | Tabelas |
 |---|---|---|
@@ -995,7 +995,7 @@ IBPAD (2016), <https://ibpad.com.br/ciencia-dados/qual-e-o-grafico-mais-adequado
 
 ---
 
-## Gráficos e tabelas: quando preferir e limitações {.smaller}
+## Gráficos e tabelas: quando preferir e limitações {.medio}
 
 | | Gráficos | Tabelas |
 |---|---|---|
@@ -1047,7 +1047,7 @@ meta-analysis? Make the reach of your research broader and longer lasting.
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Cleveland, W.S. & McGill, R. 1984. [Graphical perception: theory, experimentation, and application to the development of graphical methods](https://doi.org/10.1080/01621459.1984.10478080). *Journal of the American Statistical Association* 79:531–554.

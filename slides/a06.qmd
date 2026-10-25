@@ -203,7 +203,7 @@ Silhueta de *Oreochromis niloticus* por Ingo Braasch, via
 
 ---
 
-## Cada grupo terá uma rede {.smaller}
+## Cada grupo terá uma rede
 
 ::: {.atividade}
 Máximo de 10 pessoas por grupo. Pesos das tilápias (g):
@@ -246,7 +246,7 @@ fig_pescaria()
 
 ---
 
-## O problema da amostra única {.smaller}
+## O problema da amostra única
 
 :::: {.columns}
 ::: {.column width="48%"}
@@ -273,7 +273,7 @@ fig_amostras_diferentes()
 
 ---
 
-## Estimativa pontual: nosso melhor palpite {.smaller}
+## Estimativa pontual: nosso melhor palpite
 
 - Uma **estimativa pontual** é um único valor calculado *a partir da
   amostra* que usamos como nosso melhor palpite ("chute") para o parâmetro
@@ -311,7 +311,7 @@ Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
 
 ---
 
-## A limitação de estimadores pontuais: ausência da margem de erro {.smaller}
+## A limitação de estimadores pontuais: ausência da margem de erro
 
 :::: {.columns}
 ::: {.column width="52%"}
@@ -368,15 +368,14 @@ Se as condições abaixo forem satisfeitas, a média da amostra ($\bar{x}$)
 2. Observações na amostra são independentes
 
 ::: {.nota}
-O original listava uma terceira condição: que a população possa ser
-descrita por uma distribuição normal. Ela não é necessária para a média
-ser não enviesada; ela importa para construir o **intervalo** de
+A população não precisa ter distribuição normal para a média ser não
+enviesada. A normalidade ela importa para construir o **intervalo** de
 confiança com amostras pequenas, como veremos adiante.
 :::
 
 ---
 
-## Lei dos Grandes Números {.smaller}
+## Lei dos Grandes Números
 
 :::: {.columns}
 ::: {.column width="72%"}
@@ -397,7 +396,7 @@ Domínio público, via Wikimedia Commons.
 ::::
 
 ::: {.nota}
-O original falava em "aumentar o número de amostras". A LGN trata do
+A LGN trata do
 número de **observações** dentro da amostra: uma amostra grande, não
 muitas amostras pequenas.
 :::
@@ -437,7 +436,7 @@ Inspirado em Gotelli & Ellison 2004; dados simulados.
 
 ---
 
-## Estimativa intervalar {.smaller}
+## Estimativa intervalar
 
 - **Definição:** intervalo de valores plausíveis para o parâmetro
 - Mesmo sabendo que a **média da amostra** pode ser utilizada para estimar
@@ -482,7 +481,7 @@ fig_valor_critico(gl = 5)
 
 ---
 
-## Valor crítico {.smaller}
+## Valor crítico {.medio}
 
 **Definição de valor crítico:** para a distribuição normal padrão, um
 valor crítico é o escore-Z no limite que separa os escores-Z
@@ -530,7 +529,7 @@ Vieira 2022, *Introdução à bioestatística*.
 
 ---
 
-## Intervalo de confiança {.smaller}
+## Intervalo de confiança
 
 - **Estimativa intervalar:** intervalo de confiança
   - Quando a variância da população é **conhecida**
@@ -666,7 +665,7 @@ Vamos ver mais sobre distribuições estatísticas nas próximas aulas.
 
 ---
 
-## Construindo um IC para a média (grandes amostras) {.smaller}
+## Construindo um IC para a média (grandes amostras) {.medio}
 
 - Usando a distribuição normal (escore-Z)
 - Para uma amostra grande (geralmente $n \geq 30$), **podemos usar a
@@ -686,7 +685,7 @@ Escolha da distribuição correta: Triola 2023, *Introdução à estatística*.
 
 ---
 
-## Exemplo biológico: nível de glicose em leões {.smaller}
+## Exemplo biológico: nível de glicose em leões
 
 ::: {.atividade}
 Um pesquisador coleta uma amostra aleatória de **40 leões** adultos em uma
@@ -735,7 +734,7 @@ statistics*; dados simulados.
 
 ---
 
-## Atividade: entendendo o intervalo de confiança para dados contínuos {.smaller}
+## Atividade: entendendo o intervalo de confiança para dados contínuos
 
 ::: {.atividade}
 Simulador: <https://www.rossmanchance.com/applets/2021/confsim/ConfSim.html>
@@ -757,7 +756,7 @@ valor do lago) e um desvio-padrão de, por exemplo, 20 g.
 
 ---
 
-## De volta às idades: o IC de cada foto {.smaller}
+## De volta às idades: o IC de cada foto {.medio}
 
 ```{r}
 #| fig-width: 10
@@ -790,7 +789,7 @@ $$IC = \hat{p} \pm \left(z_{\alpha/2} \times SE_{\hat{p}}\right), \qquad SE_{\ha
 
 ---
 
-## Exemplo biológico: prevalência de um alelo {.smaller}
+## Exemplo biológico: prevalência de um alelo
 
 ::: {.atividade}
 Em uma amostra aleatória de **200 borboletas** de uma população, **30**
@@ -842,7 +841,7 @@ fig_largura_ic()
 
 ---
 
-## Atividade: o cenário mendeliano (5 minutos) {.smaller}
+## Atividade: o cenário mendeliano (5 minutos) {.medio}
 
 ::: {.atividade}
 Gregor Mendel cruzou plantas de ervilha e previu que, no cruzamento de
@@ -994,7 +993,7 @@ Para revisar depois: [Kahoot: Estimativa pontual e intervalar](https://create.ka
 
 ---
 
-## Referências {.smaller}
+## Referências
 
 ::: {.nota}
 - Tukey, J.W. 1962. [The future of data analysis](https://doi.org/10.1214/aoms/1177704711). *The Annals of Mathematical Statistics* 33:1–67.

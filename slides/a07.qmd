@@ -162,11 +162,6 @@ fig_pergunta_hipotese()
 :::
 ::::
 
-::: {.nota}
-No original, a pergunta falava em solo "arenoso" e o restante do exemplo
-em solo "rochoso"; aqui ficou "rochoso" em tudo.
-:::
-
 ---
 
 ## Hipótese científica vs. hipótese estatística
@@ -315,7 +310,7 @@ do que a das em solo rochoso.
 
 ---
 
-## Atividade 1: Slido {.smaller}
+## Atividade 1: Slido
 
 ::: {.atividade}
 Para cada cenário biológico, escrevam a **hipótese nula (H₀)** e a
@@ -388,6 +383,20 @@ Pearson 1933, *Philosophical Transactions of the Royal Society A*
 
 ---
 
+## De onde vem o *P* = 0,05?
+
+![](../assets/historia/fisher-statistical-methods-1928-p45.jpg){width="54%" fig-align="center" fig-alt="Trecho da página 45 de Statistical methods for research workers, de Fisher, em inglês: o valor para o qual P = 0,05, ou 1 em 20, é 1,96, ou quase 2; é conveniente tomar este ponto como limite para julgar se um desvio deve ser considerado significativo ou não."}
+
+"O valor para o qual *P* = 0,05, ou 1 em 20, é 1,96, ou quase 2; é
+**conveniente** tomar este ponto como limite para julgar se um desvio deve
+ser considerado significativo ou não."
+
+::: {.ref}
+Fisher, R.A. 1928. *Statistical methods for research workers*, 2ª ed., p. 45. Oliver & Boyd. Digitalização do Internet Archive; domínio público. Tradução nossa.
+:::
+
+---
+
 ## Nível de significância
 
 - Famoso e incauto "valor de *P*" (*P-value*)
@@ -405,7 +414,7 @@ partir dos dados, e é comparado com o α.
 
 ---
 
-## A declaração da ASA sobre o valor de *P* {.smaller}
+## A declaração da ASA sobre o valor de *P*
 
 Em 2016, a American Statistical Association publicou seis princípios sobre
 o valor de *P*. Em resumo:
@@ -449,7 +458,7 @@ distribuição amostral (tal como normal, *t*, qui-quadrado).
 
 ---
 
-## Qual teste usar? {.smaller}
+## Qual teste usar? {.medio}
 
 Sugestão de alguns testes estatísticos a empregar de acordo com o tipo de
 variável observada. Entre parênteses, alguns testes não paramétricos.
@@ -503,7 +512,7 @@ fig_regiao_critica()
 
 ---
 
-## Região crítica, valor crítico e estatística do teste {.smaller}
+## Região crítica, valor crítico e estatística do teste {.medio}
 
 ::: {.atividade}
 **Exemplo (dados fictícios).** Numa praia de desova, 482 de 926 filhotes
@@ -533,7 +542,7 @@ Inspirado na Figura 8.4 de Triola 2024, com um contexto biológico.
   - No exemplo, não há evidência de diferença entre as médias dos grupos
 
 ::: {.nota}
-O original dizia "aceitamos H₀". Não rejeitar não é o mesmo que provar que
+Não rejeitar não é o mesmo que provar que
 H₀ é verdadeira: os dados apenas não trouxeram evidência suficiente contra
 ela. É o que diz o próximo slide.
 :::
@@ -565,21 +574,28 @@ Popper, K. *A lógica da pesquisa científica*.
 
 :::: {.columns}
 ::: {.column width="50%"}
-::: {.definicao}
-**Erro tipo I (falso positivo)**
+[**Erro tipo I: falso positivo**]{.erro-titulo .tipo1}
 
-O médico diz a um homem idoso: "Você está grávido!"
+![](../assets/aula07-erro-tipo1.jpg){height="340px" fig-align="center" fig-alt="Ilustração de uma consulta: um médico sorridente, de jaleco e estetoscópio, fala com um senhor idoso de cabelo branco e suéter azul, que o olha espantado."}
+
+::: {.fala}
+"O senhor está grávido!"
 :::
 :::
 ::: {.column width="50%"}
-::: {.definicao}
-**Erro tipo II (falso negativo)**
+[**Erro tipo II: falso negativo**]{.erro-titulo .tipo2}
 
-O médico diz a uma mulher com uma barriga de nove meses: "Você não está
-grávida!"
+![](../assets/aula07-erro-tipo2.jpg){height="340px" fig-align="center" fig-alt="Ilustração de uma consulta: uma médica sorridente, de jaleco, fala com uma mulher grávida de nove meses, com as mãos na barriga, que a olha surpresa."}
+
+::: {.fala}
+"Você não está grávida!"
 :::
 :::
 ::::
+
+::: {.nota}
+Ilustrações geradas por IA (Gamma), a partir de uma piada clássica sobre os dois tipos de erro.
+:::
 
 ---
 
@@ -632,21 +648,38 @@ grave e porque os testes pressupõem que a hipótese nula seja verdadeira.
 
 ---
 
-## A consequência do erro define o α {.smaller}
+## A consequência do erro define o α
 
-A escolha do nível de significância e o balanço entre os dois tipos de
-erro dependem da consequência do erro. Pense num tribunal do júri, em que
-H₀ é "o réu é inocente":
-
-::: {.tabela-grande}
-| Veredito do júri | Réu é inocente (H₀ verdadeira) | Réu é culpado (H₀ falsa) |
-|---|---|---|
-| Absolvido (não rejeita H₀) | Decisão correta: inocente absolvido | **Erro tipo II:** culpado solto |
-| Condenado (rejeita H₀) | **Erro tipo I:** inocente preso | Decisão correta: culpado condenado |
+:::: {.columns}
+::: {.column width="62%"}
+```{=html}
+<div class="juri" role="img" aria-label="Matriz dois por dois do tribunal do júri. Colunas: réu inocente (H0 verdadeira) ou culpado (H0 falsa). Linhas: condenado (rejeita H0) ou absolvido (não rejeita H0). Inocente condenado: erro tipo I, falso positivo, probabilidade alfa. Culpado condenado: decisão correta, poder 1 menos beta. Inocente absolvido: decisão correta, 1 menos alfa. Culpado solto: erro tipo II, falso negativo, probabilidade beta.">
+<div class="juri-canto">Veredito ↓ · Realidade →</div>
+<div class="juri-col">Réu é inocente<br><span>H₀ verdadeira</span></div>
+<div class="juri-col">Réu é culpado<br><span>H₀ falsa</span></div>
+<div class="juri-lin">Condenado<br><span>rejeita H₀</span></div>
+<div class="juri-cel erro"><img src="../assets/aula07-juri-inocente-condenado.png" alt=""><div class="juri-tit">Erro tipo I</div><div class="juri-sub">falso positivo: inocente preso</div><div class="juri-prob">P = α</div></div>
+<div class="juri-cel certo"><img src="../assets/aula07-juri-culpado-condenado.png" alt=""><div class="juri-tit">Decisão correta</div><div class="juri-sub">culpado condenado</div><div class="juri-prob">poder = 1 − β</div></div>
+<div class="juri-lin">Absolvido<br><span>não rejeita H₀</span></div>
+<div class="juri-cel certo"><img src="../assets/aula07-juri-inocente-absolvido.png" alt=""><div class="juri-tit">Decisão correta</div><div class="juri-sub">inocente absolvido</div><div class="juri-prob">1 − α</div></div>
+<div class="juri-cel erro"><img src="../assets/aula07-juri-culpado-solto.png" alt=""><div class="juri-tit">Erro tipo II</div><div class="juri-sub">falso negativo: culpado solto</div><div class="juri-prob">P = β</div></div>
+</div>
+```
 :::
+::: {.column width="38%"}
+A escolha do nível de significância e o balanço entre os dois tipos de
+erro dependem da consequência do erro.
+
+Pense num tribunal do júri, em que H₀ é "o réu é inocente".
 
 Num julgamento, condenar um inocente é considerado o erro mais grave; por
 isso se exige prova "além de qualquer dúvida razoável", um α pequeno.
+:::
+::::
+
+::: {.nota}
+Ícones: ilustração feita com IA (Gemini).
+:::
 
 ---
 
@@ -682,7 +715,7 @@ fig_poder()
 
 ---
 
-## Poder do teste = 1 − β {.smaller}
+## Poder do teste = 1 − β
 
 - Ao reduzir o beta, aumentamos o poder do teste
 - **Poder:** a probabilidade de *rejeitar* a hipótese nula quando ela é
@@ -731,7 +764,7 @@ fig_roteiro(6:7)
 
 ---
 
-## Região crítica e valor de *P*: dois caminhos para a mesma decisão {.smaller}
+## Região crítica e valor de *P*: dois caminhos para a mesma decisão
 
 Temos duas abordagens principais para tomar a decisão final.
 
@@ -746,7 +779,7 @@ Temos duas abordagens principais para tomar a decisão final.
 
 ---
 
-## Região crítica e valor de *P*: dois caminhos para a mesma decisão {.smaller}
+## Região crítica e valor de *P*: dois caminhos para a mesma decisão
 
 **Abordagem do valor de *P*:**
 
@@ -780,7 +813,7 @@ Inspirado nas Figuras 8.6 e 8.7 de Triola 2024; dados fictícios.
 
 ---
 
-## Atividade 2: "Decifrando o valor de *P*" (10 minutos) {.smaller}
+## Atividade 2: "Decifrando o valor de *P*" (10 minutos)
 
 ::: {.atividade}
 **Instruções:** formem pequenos grupos (4–5 alunos). Discutam o cenário e
@@ -849,7 +882,7 @@ Inspirado na Figura 8.2 de Triola 2024.
 
 ---
 
-## Como a escolha errada do tipo de teste pode afetar nossas conclusões {.smaller}
+## Como a escolha errada do tipo de teste pode afetar nossas conclusões {.medio}
 
 - **Contexto:** um biólogo quer testar se um novo fertilizante afeta a
   altura média de uma espécie de planta. A altura média histórica
@@ -869,13 +902,13 @@ exatamente o mesmo dado ($t = 1{,}80$), com graus de liberdade
 $gl = n - 1 = 29$.
 
 ::: {.nota}
-O original dizia "pois n < 30" e "1,80 desvios-padrão"; corrigido aqui:
-*n* = 30, e o *t* mede a distância em erros padrão.
+Com *n* = 30, *gl* = 29; o *t* mede a distância em erros padrão, não em
+desvios-padrão.
 :::
 
 ---
 
-## O pesquisador cético (teste bicaudal) {.smaller}
+## O pesquisador cético (teste bicaudal)
 
 Este pesquisador não sabe o que esperar.
 
@@ -894,7 +927,7 @@ Este pesquisador não sabe o que esperar.
 
 ---
 
-## O pesquisador otimista (teste unicaudal) {.smaller}
+## O pesquisador otimista (teste unicaudal)
 
 Este pesquisador sabe, baseado em teoria, que o fertilizante aumenta o
 crescimento.
@@ -940,7 +973,7 @@ fig_cetico_otimista()
 
 ---
 
-## Resumo {.smaller}
+## Resumo
 
 ::: {.tabela-grande}
 | Característica | Cenário 1 (bicaudal) | Cenário 2 (unicaudal) |
@@ -995,7 +1028,7 @@ t.test(altura ~ solo, data = pinus, alternative = "greater")
 ::: {.nota}
 `alternative = "greater"` pede o teste unicaudal da predição (argiloso >
 rochoso). O `t.test()` usa por padrão a fórmula com variâncias separadas
-(Welch), a mesma do slide anterior; o original usava `var.equal = TRUE`.
+(Welch), a mesma do slide anterior.
 :::
 
 ---
@@ -1073,7 +1106,7 @@ distribuição. A decisão é a mesma: não rejeitamos H₀.
 
 ---
 
-## Passo a passo de um teste de hipóteses {.smaller}
+## Passo a passo de um teste de hipóteses
 
 1. **Formule as hipóteses:** defina a hipótese nula (H₀) e a hipótese
    alternativa (H₁) a partir da pergunta de pesquisa.
@@ -1119,7 +1152,7 @@ fig_pinus_decisao(pinus)
 
 ---
 
-## Redação da conclusão final {.smaller}
+## Redação da conclusão final {.medio}
 
 ::: {.tabela-grande}
 | | A afirmativa original **não** contém igualdade (vira H₁) | A afirmativa original contém igualdade (vira H₀) |
@@ -1196,7 +1229,7 @@ fig_pinus_boxplot(pinus)
 
 ---
 
-## Referências {.smaller}
+## Referências {.medio}
 
 ::: {.nota}
 - Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd.
