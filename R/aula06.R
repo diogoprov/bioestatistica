@@ -209,7 +209,9 @@ fig_arqueiro <- function(etapa = 1, seed = 6, k = 12) {
       geom_path(data = circ, aes(cx, cy, group = i, colour = acerta), linewidth = .7, alpha = .8) +
       camadas_flechas(fl) +
       scale_colour_manual(values = c(`TRUE` = cores[["accent"]], `FALSE` = vermelho), guide = "none") +
-      {if (etapa == 3) annotate("point", x = 0, y = 0, shape = 21, size = 5, fill = "#f4d03f", colour = cores[["texto"]])} +
+      # o centro vai por último, por cima das flechas
+      {if (etapa == 3) annotate("point", x = 0, y = 0, shape = 21, size = 8, stroke = 1.6,
+                                fill = "#f4d03f", colour = cores[["texto"]])} +
       {if (etapa == 3) annotate("text", x = 0, y = -17, size = 4.6,
                                 label = sprintf("%d de %d círculos contêm o centro", sum(fl$acerta), k))}
   }

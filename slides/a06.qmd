@@ -549,15 +549,15 @@ Vieira 2022, *Introdução à bioestatística*.
 ## O conceito do IC: o arqueiro
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 ```{r}
-#| fig-width: 6
-#| fig-height: 4.8
-#| fig-alt: "Um alvo com doze flechas marcadas com X; um círculo tracejado de 10 cm ao redor do centro contém 95% das flechas."
+#| fig-width: 7.5
+#| fig-height: 6
+#| fig-alt: "Um alvo de três anéis com doze flechas cravadas; um círculo tracejado de 10 cm ao redor do centro contém 95% das flechas."
 fig_arqueiro(1)
 ```
 :::
-::: {.column width="50%"}
+::: {.column width="40%"}
 Suponha que o arqueiro acerte flechas dentro de um raio de 10 cm do centro
 do alvo, **95% das vezes**.
 :::
@@ -568,15 +568,15 @@ do alvo, **95% das vezes**.
 ## O conceito do IC: o arqueiro
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 ```{r}
-#| fig-width: 6
-#| fig-height: 4.8
-#| fig-alt: "As mesmas flechas, agora sem o alvo: cada uma tem um círculo de 10 cm desenhado ao redor dela."
+#| fig-width: 7.5
+#| fig-height: 6
+#| fig-alt: "As mesmas doze flechas, agora sem o alvo: cada uma tem um círculo de 10 cm desenhado ao redor do ponto onde se cravou."
 fig_arqueiro(2)
 ```
 :::
-::: {.column width="50%"}
+::: {.column width="40%"}
 Agora, imagine que **não podemos ver o centro do alvo**, apenas onde a
 flecha atingiu. Se desenharmos um círculo de 10 cm de raio ao redor de
 cada flecha, teremos 95% de confiança de que qualquer um desses círculos
@@ -589,15 +589,15 @@ contém o centro do alvo.
 ## O conceito do IC: o arqueiro
 
 :::: {.columns}
-::: {.column width="50%"}
+::: {.column width="60%"}
 ```{r}
-#| fig-width: 6
-#| fig-height: 4.8
-#| fig-alt: "Os mesmos círculos com o centro do alvo revelado em amarelo: 11 dos 12 círculos contêm o centro; o que não contém está em vermelho."
+#| fig-width: 7.5
+#| fig-height: 6
+#| fig-alt: "Os mesmos círculos e flechas com o centro do alvo revelado por um ponto amarelo: 11 dos 12 círculos contêm o centro; o que não contém está em vermelho."
 fig_arqueiro(3)
 ```
 :::
-::: {.column width="50%"}
+::: {.column width="40%"}
 - O centro (o **parâmetro**) é fixo, mas a localização da flecha (a
   **estatística amostral**) e, consequentemente, do círculo (o **intervalo
   de confiança**) é aleatória.
