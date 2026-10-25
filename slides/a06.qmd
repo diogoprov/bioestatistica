@@ -319,7 +319,7 @@ Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
 #| fig-width: 6.4
 #| fig-height: 6.2
 #| out-width: "79%"
-#| fig-alt: "Quatro alvos de dardos em grade: baixo viés e baixa variância, com os dardos juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas longe do centro; alto viés e alta variância, espalhados e longe do centro."
+#| fig-alt: "Quatro alvos de dardos em grade, com os dardos em magenta: baixo viés e baixa variância, com os dardos juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas longe do centro; alto viés e alta variância, espalhados e longe do centro."
 fig_alvos()
 ```
 :::

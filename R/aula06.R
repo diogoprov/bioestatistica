@@ -142,8 +142,9 @@ fig_alvos <- function(seed = 3) {
     geom_polygon(data = pol, aes(x, y, group = paste(ordem, id), fill = I(cor)),
                  colour = "#b9b2a6", linewidth = .1) +
     geom_text(data = num, aes(x, y, label = n), colour = "white", size = 2.3, fontface = "bold") +
-    geom_point(data = tiros, aes(x, y), shape = 21, size = 3.8, stroke = 1.1,
-               fill = "#ffd84d", colour = "#1d1d1b") +
+    # dardo em magenta, cor que não existe no alvo, com contorno branco
+    geom_point(data = tiros, aes(x, y), shape = 21, size = 4, stroke = 1.3,
+               fill = "#e6007e", colour = "white") +
     facet_grid(vies ~ var, switch = "y") +
     coord_equal(xlim = c(-2.35, 2.35), ylim = c(-2.35, 2.35)) +
     theme_void(base_size = 14) +
@@ -212,15 +213,18 @@ camadas_flechas <- function(fl, comp = 6, ang = pi / 4) {
   penas <- purrr::map_dfr(c(-1, 1), \(lado) h |> mutate(
     x0 = x + (comp - 1.8) * cos(a), y0 = y + (comp - 1.8) * sin(a),
     x1 = xt + 1.6 * cos(a + lado * 2.5), y1 = yt + 1.6 * sin(a + lado * 2.5)))
-  list(
-    geom_segment(data = h, aes(x, y, xend = xt, yend = yt), linewidth = 1.1,
-                 colour = "#6b4a2b", lineend = "round"),
-    geom_segment(data = penas, aes(x0, y0, xend = x1, yend = y1), linewidth = 1.4,
-                 colour = "#527238", lineend = "round"),
-    geom_segment(data = penas, aes(xt, yt, xend = x1, yend = y1), linewidth = 1.4,
-                 colour = "#527238", lineend = "round"),
-    geom_point(data = h, aes(x, y), size = 1.8, colour = "#2d3748")
-  )
+  # cada traço vai duas vezes: um contorno branco largo por baixo e a cor por
+  # cima, para a flecha aparecer tanto no preto quanto no creme do alvo
+  traco <- function(d, x, y, xend, yend, cor, lw) list(
+    geom_segment(data = d, aes({{ x }}, {{ y }}, xend = {{ xend }}, yend = {{ yend }}),
+                 linewidth = lw + 1.6, colour = "white", lineend = "round"),
+    geom_segment(data = d, aes({{ x }}, {{ y }}, xend = {{ xend }}, yend = {{ yend }}),
+                 linewidth = lw, colour = cor, lineend = "round"))
+  c(traco(h, x, y, xt, yt, "#5a3a1a", 1.2),
+    traco(penas, x0, y0, x1, y1, "#0072b2", 1.5),
+    traco(penas, xt, yt, x1, y1, "#0072b2", 1.5),
+    list(geom_point(data = h, aes(x, y), size = 3.2, colour = "white"),
+         geom_point(data = h, aes(x, y), size = 1.9, colour = "#1d1d1b")))
 }
 
 fig_arqueiro <- function(etapa = 1, seed = 6, k = 12) {
