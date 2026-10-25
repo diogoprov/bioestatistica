@@ -319,7 +319,7 @@ Inspirado em Bussab & Morettin 2023, *Estatística básica*; dados simulados.
 #| fig-width: 6.4
 #| fig-height: 6.2
 #| out-width: "79%"
-#| fig-alt: "Quatro alvos em grade: baixo viés e baixa variância, com os tiros juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas fora do centro; alto viés e alta variância, espalhados e fora do centro."
+#| fig-alt: "Quatro alvos de dardos em grade: baixo viés e baixa variância, com os dardos juntos no centro; baixo viés e alta variância, espalhados em torno do centro; alto viés e baixa variância, juntos mas longe do centro; alto viés e alta variância, espalhados e longe do centro."
 fig_alvos()
 ```
 :::
@@ -553,7 +553,7 @@ Vieira 2022, *Introdução à bioestatística*.
 ```{r}
 #| fig-width: 7.5
 #| fig-height: 6
-#| fig-alt: "Um alvo de três anéis com doze flechas cravadas; um círculo tracejado de 10 cm ao redor do centro contém 95% das flechas."
+#| fig-alt: "Um alvo de dardos com doze flechas cravadas; um círculo tracejado branco de 10 cm ao redor do centro contém 95% das flechas."
 fig_arqueiro(1)
 ```
 :::

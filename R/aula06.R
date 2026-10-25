@@ -81,6 +81,46 @@ fig_distribuicao_amostral <- function(seed = 2, n = 10, reps = 5000) {
 }
 
 # ---------------------------------------------------------------------------
+# Alvo de dardos com as proporções de um alvo oficial (raio R até o anel
+# duplo): 20 setores numerados, anéis duplo e triplo em vermelho e verde,
+# bull's eye e a borda preta com os números. Devolve polígonos com a cor em
+# `cor` (usar com fill = I(cor)) e os números em `num`.
+# ---------------------------------------------------------------------------
+dardo <- function(R = 1, cx = 0, cy = 0) {
+  numeros <- c(20, 1, 18, 4, 13, 6, 10, 15, 2, 17, 3, 19, 7, 16, 8, 11, 14, 9, 12, 5)
+  preto <- "#1d1d1b"; creme <- "#efe1bf"; verm <- "#c0392b"; verde <- "#1f7a45"
+  coroa <- function(r0, r1, a0, a1, n = 10) {
+    a <- seq(a0, a1, length.out = n)
+    tibble::tibble(x = c(r1 * cos(a), r0 * cos(rev(a))), y = c(r1 * sin(a), r0 * sin(rev(a))))
+  }
+  aneis <- tibble::tribble(~r0, ~r1, ~tipo,
+                           .094, .582, "simples", .582, .629, "colorido",
+                           .629, .953, "simples", .953, 1, "colorido")
+  setores <- tidyr::expand_grid(k = 0:19, aneis) |>
+    mutate(par = k %% 2 == 0,
+           cor = ifelse(tipo == "simples", ifelse(par, preto, creme), ifelse(par, verm, verde)),
+           id = paste(k, r0))
+  pol <- purrr::pmap_dfr(setores, \(k, r0, r1, tipo, par, cor, id) {
+    meio <- pi / 2 - k * pi / 10
+    coroa(r0, r1, meio - pi / 20, meio + pi / 20) |> mutate(cor = cor, id = id, ordem = 2)
+  })
+  a <- seq(0, 2 * pi, length.out = 90)
+  disco <- function(r, cor, id, ordem) tibble::tibble(x = r * cos(a), y = r * sin(a), cor = cor, id = id, ordem = ordem)
+  pol <- dplyr::bind_rows(disco(1.2, preto, "borda", 1), pol,
+                          disco(.094, verde, "bull25", 3), disco(.037, verm, "bull", 4)) |>
+    mutate(x = cx + R * x, y = cy + R * y)
+  num <- tibble::tibble(k = 0:19, n = numeros) |>
+    mutate(x = cx + R * 1.1 * cos(pi / 2 - k * pi / 10), y = cy + R * 1.1 * sin(pi / 2 - k * pi / 10))
+  list(pol = pol, num = num)
+}
+
+camadas_dardo <- function(d, tam_num = 3) list(
+  geom_polygon(data = d$pol, aes(x, y, group = paste(ordem, id), fill = I(cor)),
+               colour = "#b9b2a6", linewidth = .15),
+  geom_text(data = d$num, aes(x, y, label = n), colour = "white", size = tam_num, fontface = "bold")
+)
+
+# ---------------------------------------------------------------------------
 # Viés e variância: os quatro alvos.
 # ---------------------------------------------------------------------------
 fig_alvos <- function(seed = 3) {
@@ -91,23 +131,21 @@ fig_alvos <- function(seed = 3) {
     mutate(cx = ifelse(grepl("Baixo", vies), 0, 1.3), cy = ifelse(grepl("Baixo", vies), 0, 1.1),
            s = ifelse(grepl("Baixa", var), .18, .65))
   tiros <- purrr::pmap_dfr(casos, \(vies, var, cx, cy, s) tibble::tibble(vies, var, x = rnorm(12, cx, s), y = rnorm(12, cy, s)))
-  t <- seq(0, 2 * pi, length.out = 120)
-  aneis <- tidyr::expand_grid(casos |> select(vies, var), r = c(2.2, 1.5, .8)) |>
-    group_by(vies, var, r) |> reframe(x = r * cos(t), y = r * sin(t)) |>
-    # fator explícito: converter o raio para texto sofre com a vírgula decimal
-    mutate(anel = as.character(factor(r, levels = c(2.2, 1.5, .8), labels = c("fora", "meio", "centro"))))
   # níveis dos painéis na ordem do original: baixo viés em cima, baixa variância à esquerda
   fat <- function(d) mutate(d, vies = factor(vies, niv_vies), var = factor(var, niv_var))
-  aneis <- fat(aneis); tiros <- fat(tiros)
+  alvo <- dardo(R = 1.9)
+  # um alvo por painel; crossing() reordenaria os vértices dos polígonos
+  por_painel <- function(d) purrr::pmap_dfr(select(casos, vies, var), \(vies, var) mutate(d, vies = vies, var = var))
+  pol <- fat(por_painel(alvo$pol)); num <- fat(por_painel(alvo$num))
+  tiros <- fat(tiros)
   ggplot() +
-    # um anel por camada, de fora para dentro, para o de fora não cobrir os outros
-    lapply(c("fora", "meio", "centro"), \(k) geom_polygon(data = filter(aneis, anel == k),
-                                                         aes(x, y, group = interaction(vies, var), fill = anel),
-                                                         colour = "white")) +
-    scale_fill_manual(values = c(centro = "#2b6cb0", meio = "#90b4dd", fora = "#dbe7f3"), guide = "none") +
-    geom_point(data = tiros, aes(x, y), colour = vermelho, shape = 15, size = 2.4) +
+    geom_polygon(data = pol, aes(x, y, group = paste(ordem, id), fill = I(cor)),
+                 colour = "#b9b2a6", linewidth = .1) +
+    geom_text(data = num, aes(x, y, label = n), colour = "white", size = 2.3, fontface = "bold") +
+    geom_point(data = tiros, aes(x, y), shape = 21, size = 3.8, stroke = 1.1,
+               fill = "#ffd84d", colour = "#1d1d1b") +
     facet_grid(vies ~ var, switch = "y") +
-    coord_equal(xlim = c(-2.3, 2.3), ylim = c(-2.3, 2.3)) +
+    coord_equal(xlim = c(-2.35, 2.35), ylim = c(-2.35, 2.35)) +
     theme_void(base_size = 14) +
     theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA),
           strip.text = element_text(face = "bold", lineheight = .9, margin = margin(3, 3, 3, 3)),
@@ -195,12 +233,9 @@ fig_arqueiro <- function(etapa = 1, seed = 6, k = 12) {
   base <- ggplot() + coord_equal(xlim = c(-24, 24), ylim = c(-19, 18), clip = "off") +
     theme_void() + theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
   if (etapa == 1) {
-    aneis <- purrr::map_dfr(c(15, 10, 5), \(r) tibble::tibble(r = r, x = r * cos(t), y = r * sin(t)))
     base +
-      geom_polygon(data = aneis, aes(x, y, group = factor(r, levels = c(15, 10, 5)), fill = factor(r)),
-                   colour = "white") +
-      scale_fill_manual(values = c("5" = "#c0392b", "10" = "#f4d03f", "15" = "#dbe7f3"), guide = "none") +
-      annotate("path", x = 10 * cos(t), y = 10 * sin(t), linetype = "22", linewidth = .9) +
+      camadas_dardo(dardo(R = 13.5), tam_num = 3.2) +
+      annotate("path", x = 10 * cos(t), y = 10 * sin(t), linetype = "22", linewidth = 1.1, colour = "white") +
       camadas_flechas(fl) +
       annotate("text", x = 0, y = -17, size = 4.6, label = "círculo de 10 cm: 95% das flechas")
   } else {
