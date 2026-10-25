@@ -224,6 +224,44 @@ dados_sopa <- function(seed = 9) {
 }
 
 # ---------------------------------------------------------------------------
+# Cérebro visto de lado (frente à esquerda), em coordenadas do painel: (cx,
+# cy) é o centro e k a escala. O eixo y do galaxy brain é 1,4 vez mais
+# "alto" que o x, então as alturas são divididas por 1,4. Devolve áreas
+# (tronco, cerebelo, cérebro) e linhas (giros, fissuras, folhas do
+# cerebelo), nessa ordem de desenho.
+# ---------------------------------------------------------------------------
+cerebro_lateral <- function(cx, cy, k) {
+  fecha <- function(u, v, n = 160) {
+    sp <- spline(seq_along(c(u, u[1])), c(u, u[1]), n = n, method = "periodic")$y
+    sq <- spline(seq_along(c(v, v[1])), c(v, v[1]), n = n, method = "periodic")$y
+    tibble::tibble(u = sp, v = sq)
+  }
+  # contorno do cérebro: lobo frontal à esquerda, occipital à direita e o
+  # lobo temporal descendo na frente, por baixo
+  contorno <- fecha(c(-.95, -.86, -.58, -.12, .35, .74, .95, .9, .66, .36, .1, -.16, -.46, -.72, -.82),
+                    c( .05,  .40,  .62,  .70, .65, .46, .15, -.14, -.27, -.24, -.3, -.46, -.49, -.36, -.14))
+  # giros: o contorno encolhido, com uma ondulação, em trechos separados
+  giros <- purrr::map_dfr(c(.78, .56, .34), \(f) {
+    a <- seq(0, 2 * pi, length.out = 160)
+    tibble::tibble(u = contorno$u * f + .025 * sin(a * 22 * f), v = contorno$v * f + .05 + .03 * cos(a * 19 * f),
+                   parte = paste0("giro", f, "_", cut(seq_along(a), 5, labels = FALSE))) |>
+      filter(!grepl("_(2|4)$", parte) | f == .34)
+  })
+  fissuras <- dplyr::bind_rows(
+    tibble::tibble(u = seq(-.74, .12, length.out = 30), v = -.16 + .18 * ((u + .74) / .86)^1.4, parte = "sylvius"),
+    tibble::tibble(u = seq(.02, -.16, length.out = 20), v = seq(.69, .02, length.out = 20) + .03 * sin(seq(0, 9, length.out = 20)), parte = "central"))
+  a <- seq(0, 2 * pi, length.out = 80)
+  cerebelo <- tibble::tibble(u = .6 + .32 * cos(a), v = -.43 + .18 * sin(a))
+  folhas <- purrr::map_dfr(c(-.5, -.43, -.36), \(y0) tibble::tibble(
+    u = seq(.36, .84, length.out = 30), v = y0 + .015 * sin(seq(0, 12, length.out = 30)), parte = paste0("folha", y0)))
+  tronco <- tibble::tibble(u = c(.12, .22, .36, .4), v = c(-.32, -.78, -.76, -.34))
+  areas <- dplyr::bind_rows(mutate(tronco, parte = "1tronco"), mutate(cerebelo, parte = "2cerebelo"),
+                            mutate(contorno, parte = "3cerebro")) |> mutate(tipo = "area")
+  linhas <- dplyr::bind_rows(giros, fissuras, folhas) |> mutate(tipo = "linha")
+  dplyr::bind_rows(areas, linhas) |> mutate(x = cx + k * u, y = cy + k * v / 1.4)
+}
+
+# ---------------------------------------------------------------------------
 # "Galaxy brain": quatro níveis de iluminação, cada um com uma frase do
 # slide. O cérebro brilha mais e o fundo vira galáxia a cada nível. `k`
 # mostra só os k primeiros níveis (para revelar um por vez nos slides).
@@ -239,17 +277,9 @@ fig_galaxy_brain <- function(k = 4,
   fundos <- c("#f3eee3", "#a9c3d4", "#2e4a6b", "#0b1026")
   niveis <- tibble::tibble(nivel = 1:4, y0 = 4 - (1:4), fundo = fundos, frase = frases)
 
-  # contorno do cérebro: elipse centrada em (cx, cy)
   t <- seq(0, 2 * pi, length.out = 120)
-  bossa <- 1 + .05 * sin(11 * t)   # contorno ondulado, com cara de cérebro
   esc <- c(.7, .8, .9, 1)          # o cérebro cresce a cada nível
-  cerebro <- purrr::map_dfr(1:4, \(i) tibble::tibble(nivel = i, x = 8 + .9 * esc[i] * bossa * cos(t), y = 4.5 - i + .36 * esc[i] * bossa * sin(t)))
-  # sulcos: linhas onduladas dentro da elipse
-  sulcos <- purrr::map_dfr(1:4, \(i) purrr::map_dfr(c(-.18, 0, .18) * esc[i], \(dy) {
-    x <- seq(7.25, 8.75, by = .01)
-    tibble::tibble(nivel = i, id = paste(i, dy), x = x, y = 4.5 - i + dy + .045 * sin(14 * x)) |>
-      filter(((x - 8) / (.9 * esc[i]))^2 + ((y - (4.5 - i)) / (.36 * esc[i]))^2 < .85)
-  }))
+  partes <- purrr::map_dfr(1:4, \(i) cerebro_lateral(8, 4.5 - i, .72 * esc[i]) |> mutate(nivel = i))
   # brilho: círculos concêntricos, mais numerosos a cada nível
   brilho <- purrr::map_dfr(1:4, \(i) tibble::tibble(nivel = i, f = seq(0, 1, length.out = 2 * i + 1)[-1])) |>
     mutate(rx = .95 + f * .22 * nivel, ry = .38 + f * .02 * nivel, alpha = .10 + .03 * nivel)
@@ -273,10 +303,11 @@ fig_galaxy_brain <- function(k = 4,
     { if (k >= 4) geom_point(data = estrelas, aes(x, y, size = s), colour = "white", alpha = .8, show.legend = FALSE) } +
     { if (k >= 4) geom_segment(data = raios, aes(x, y, xend = xend, yend = yend), colour = "#ffe9a8", linewidth = 1.1, alpha = .8) } +
     geom_polygon(data = mostra(circ), aes(x, y, group = id, alpha = I(alpha)), fill = "#ffd76a", colour = NA) +
-    geom_polygon(data = mostra(cerebro), aes(x, y, group = nivel,
+    geom_polygon(data = mostra(filter(partes, tipo == "area")), aes(x, y, group = interaction(nivel, parte),
                  fill = I(c("#e9a8ad", "#f2c0b5", "#ffe2a8", "#fff7dd")[nivel])),
                  colour = "#7a3b44", linewidth = .6) +
-    geom_path(data = mostra(sulcos), aes(x, y, group = id), colour = "#7a3b44", linewidth = .45) +
+    geom_path(data = mostra(filter(partes, tipo == "linha")), aes(x, y, group = interaction(nivel, parte)),
+              colour = "#7a3b44", linewidth = .45, lineend = "round") +
     geom_text(data = mostra(niveis), aes(x = .3, y = y0 + .5, label = frase), hjust = 0, size = 5.6,
               lineheight = .95, colour = cores[["texto"]], fontface = ifelse(mostra(niveis)$nivel == 4, "bold", "plain")) +
     scale_size_identity() +

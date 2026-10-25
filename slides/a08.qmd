@@ -380,12 +380,19 @@ $$\nu = n_1 + n_2 - 2$$
 
 ## Exemplo: tamanho do corpo de uma rã
 
-![](../assets/livro-aer/teste-t-independente.png){width="50%" fig-align="center" fig-alt="Boxplots do comprimento rostro-cloacal de Physalaemus nattereri na estação chuvosa e na seca, com os pontos de cada indivíduo: as rãs da estação chuvosa são maiores, mediana perto de 3,8 contra 3,2."}
+:::: {.columns}
+::: {.column width="62%"}
+![](../assets/livro-aer/teste-t-independente.png){width="84%" fig-alt="Boxplots do comprimento rostro-cloacal de Physalaemus nattereri na estação chuvosa e na seca, com os pontos de cada indivíduo: as rãs da estação chuvosa são maiores, mediana perto de 3,8 contra 3,2."}
+:::
+::: {.column width="38%"}
+![*Physalaemus nattereri*](../assets/terceiros/physalaemus-nattereri-sacramento.jpg){height="340px" fig-alt="Fotografia de Physalaemus nattereri vista de trás, sobre folhas verdes: as duas manchas pretas grandes na região inguinal parecem olhos, a postura de defesa da espécie."}
+:::
+::::
 
 Tamanho do corpo (CRC) de *Physalaemus nattereri* em duas estações.
 
 ::: {.ref}
-Figura do cap. 7 de Da Silva et al. 2022, [*Análises ecológicas no R*](https://paternogbc.github.io/livro_aer/cap7.html), CC BY-NC 4.0.
+Figura do cap. 7 de Da Silva et al. 2022, [*Análises ecológicas no R*](https://paternogbc.github.io/livro_aer/cap7.html), CC BY-NC 4.0. Foto: Mario Sacramento, via CalPhotos; uso autorizado pelo autor.
 :::
 
 ---
@@ -414,7 +421,7 @@ fig_lagartos()
 ```
 :::
 ::: {.column width="45%"}
-![](../assets/phylopic/lagarto-chifres.svg){width="45%" fig-alt="Silhueta de lagarto-de-chifre."}
+![](../assets/fotos/phrynosoma-mcallii.jpg){width="52%" fig-alt="Fotografia de um lagarto-de-chifre-de-cauda-achatada sobre uma rocha escura: corpo achatado e espinhoso, com os chifres da cabeça bem visíveis."}
 
 | Grupo | Média | Desvio | *n* |
 |---|---|---|---|
@@ -422,17 +429,12 @@ fig_lagartos()
 | Mortos | 21,99 | 2,71 | 30 |
 
 $t = `r num_tex(t_lagartos, 2)`$, com 182 graus de liberdade; `r p_txt(p_lagartos)`
-
-::: {.nota}
-Silhueta de *Phrynosoma hernandesi* por Caleb M. Gordon, via PhyloPic,
-CC0 1.0.
-:::
 :::
 ::::
 
 ::: {.ref}
 Médias, desvios e tamanhos do exemplo de Whitlock & Schluter 2020, cap.
-12; histogramas com dados simulados.
+12; histogramas com dados simulados. Foto: U.S. Fish and Wildlife Service, domínio público.
 :::
 
 ---
@@ -788,14 +790,14 @@ variável resposta (Y): **Peso_Final** (em gramas).
 Vamos ver o que acontece quando colocamos essa variável *dummy* na nossa
 equação:
 
-$$\text{Peso\_Final}_i = \alpha + \beta \times \text{Suplemento\_dummy}_i$$
+$$\text{Peso final}_i = \alpha + \beta \times \text{Suplemento (dummy)}_i$$
 
 - Para um rato do grupo **Controle** (Suplemento_dummy = 0):
-  $\text{Peso\_Final}_{Controle} = \alpha + \beta \cdot 0 = \alpha$
+  $\text{Peso final}_{Controle} = \alpha + \beta \cdot 0 = \alpha$
   - **Interpretação:** o coeficiente α (o intercepto) é a média de peso do
     grupo de referência (o grupo Controle).
 - Para um rato do grupo **Suplemento** (Suplemento_dummy = 1):
-  $\text{Peso\_Final}_{Suplemento} = \alpha + \beta \cdot 1 = \alpha + \beta$
+  $\text{Peso final}_{Suplemento} = \alpha + \beta \cdot 1 = \alpha + \beta$
   - **Interpretação:** a média de peso do grupo Suplemento é a média do
     grupo Controle (α) mais o valor de β.
 
