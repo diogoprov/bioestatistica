@@ -328,6 +328,9 @@ continua em `slides/`, então não apague os PDFs.
 - A bibliografia básica vem do PPC e não pode mudar; a complementar pode.
 - Pacotes já em uso: `ggplot2`, `dplyr`, `tidyr`, `purrr`, `tibble`,
   `patchwork`, `ape`, `here` e `knitr`. Pergunte antes de adicionar outro.
+  Autorizados depois (out/2026): `png` (o galaxy brain da Aula 8 lê PNGs) e,
+  só para gerar esses PNGs uma vez, `cerebroViz` (GitHub, ethanbahl) e `rsvg`,
+  em `R/cerebros_galaxy.R`; o render dos slides não precisa deles.
 - **R no navegador (webR, extensão quarto-live em `_extensions/r-wasm/`)**:
   o "Brinque com o código" das 11 páginas de aula roda no navegador (só
   nas páginas, não nos slides). As Aulas 9 e 11 também levam os CSVs de
