@@ -14,8 +14,10 @@ resources:
 Teste *t*, ANOVA, regressão e ANCOVA são o **mesmo modelo linear**,
 *y* = α + β*x* + ε, com preditores diferentes. Escolha um conjunto de dados,
 arraste a **resposta** e os **preditores** e veja qual teste você acabou de
-montar. A equação e o gráfico são calculados no seu navegador; o código em
-R ao lado faz a mesma conta no seu computador.
+montar. A equação e o gráfico aparecem na hora. Para ver os valores-p, a
+tabela de ANOVA e os resíduos, clique em **Carregar o R**: o R roda no
+próprio navegador, sem instalar nada, e o código mostrado é o mesmo que você
+pode rodar no RStudio.
 
 ::: {.callout-tip appearance="simple"}
 **Antes de arrastar, escreva a sua hipótese.** Testar modelo atrás de

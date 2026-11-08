@@ -375,15 +375,165 @@
   function formula() {
     return `${estado.y} ~ ${estado.xs.length ? estado.xs.join(` ${estado.op} `) : "1"}`;
   }
-  function codigoR() {
+  // Fixa a ordem dos níveis: o 1º é a referência. Sem isso, o R ordena pelo
+  // locale, e "Açude" vem depois de "Temporária" no locale C (o do webR).
+  function linhasFator() {
+    return estado.xs.map(varPorNome).filter((v) => v.tipo === "fator").map((v) =>
+      `dados$${v.nome} <- factor(dados$${v.nome}, levels = c(${v.niveis.map((n) => JSON.stringify(n)).join(", ")}))  # o 1º nível é a referência`);
+  }
+  // O "caminho clássico" que dá o mesmo valor-p do lm, quando existe um.
+  function classico() {
+    const xs = estado.xs.map(varPorNome);
+    if (xs.length !== 1) return null;
+    const x = xs[0], y = estado.y;
+    if (x.tipo === "num")
+      return { codigo: `cor.test(dados$${x.nome}, dados$${y})`, nome: "na correlação de Pearson", pLm: `summary(modelo)$coefficients[2, 4]` };
+    if (x.niveis.length === 2)
+      return { codigo: `t.test(${y} ~ ${x.nome}, data = dados, var.equal = TRUE)`, nome: "no teste t", pLm: `summary(modelo)$coefficients[2, 4]` };
+    return { codigo: `oneway.test(${y} ~ ${x.nome}, data = dados, var.equal = TRUE)`, nome: "na ANOVA de um fator (oneway.test)", pLm: `anova(modelo)[1, "Pr(>F)"]` };
+  }
+  function codigoR(arquivo) {
     const c = CONJUNTOS[estado.chave];
+    const cl = classico();
     return [
-      `dados <- read.csv("${SITE}${c.arquivo}")`,
+      `dados <- read.csv("${arquivo || SITE + c.arquivo}")`,
+      ...linhasFator(),
       `modelo <- lm(${formula()}, data = dados)`,
       `summary(modelo)   # coeficientes, erros padrão e valores-p`,
       estado.xs.length ? `anova(modelo)     # tabela de ANOVA (testes F)` : null,
       `plot(modelo)      # gráficos dos resíduos`,
+      cl ? `${cl.codigo}   # o mesmo valor-p, pelo caminho clássico` : null,
     ].filter(Boolean).join("\n");
+  }
+
+  // ---------- R de verdade (webR, carregado só quando o aluno pede) ----------
+  const WEBR_URL = "https://webr.r-wasm.org/v0.6.0/"; // a mesma versão do quarto-live das aulas
+  const R = { estado: "parado", webR: null, escritos: new Set(), cache: new Map(), pedido: 0 };
+
+  async function iniciaR() {
+    if (R.estado !== "parado" && R.estado !== "erro") return;
+    R.estado = "carregando";
+    desenha();
+    try {
+      const { WebR } = await import(WEBR_URL + "webr.mjs");
+      R.webR = new WebR({ baseUrl: WEBR_URL });
+      await R.webR.init();
+      await R.webR.evalRVoid("options(width = 72)");
+      R.estado = "pronto";
+    } catch (e) {
+      console.error(e);
+      R.estado = "erro";
+    }
+    desenha();
+  }
+
+  async function rodaR() {
+    const cl = classico();
+    const chave = estado.chave + "|" + formula();
+    if (R.cache.has(chave)) return R.cache.get(chave);
+    const c = CONJUNTOS[estado.chave];
+    const caminho = "/home/web_user/" + c.arquivo.split("/").pop();
+    if (!R.escritos.has(caminho)) {
+      await R.webR.FS.writeFile(caminho, new TextEncoder().encode(estado.csvTexto));
+      R.escritos.add(caminho);
+    }
+    const w = R.webR;
+    const texto = async (cod) => w.evalRString(`paste(capture.output(${cod}), collapse = "\\n")`);
+    const numeros = async (cod) => w.evalRRaw(`as.numeric(${cod})`, "number[]");
+    try {
+      await w.evalRVoid([`dados <- read.csv("${caminho}", encoding = "UTF-8")`, ...linhasFator(), `modelo <- lm(${formula()}, data = dados)`].join("\n"));
+      const out = {
+        summary: await texto("summary(modelo)"),
+        anova: estado.xs.length ? await texto("anova(modelo)") : null,
+        ajustados: await numeros("fitted(modelo)"),
+        residuos: await numeros("residuals(modelo)"),
+        qq: await numeros(`unlist(qqnorm(rstandard(modelo), plot.it = FALSE))`),
+      };
+      if (cl) {
+        await w.evalRVoid(`classico <- ${cl.codigo}`);
+        out.classico = { nome: cl.nome, codigo: cl.codigo, texto: await texto("classico"), p: (await numeros("c(classico$p.value, " + cl.pLm + ")")) };
+      }
+      R.cache.set(chave, out);
+      return out;
+    } catch (e) {
+      return { erro: String(e.message || e) };
+    }
+  }
+
+  function dispersao({ x, y, xlab, ylab, ref }) {
+    const ns = "http://www.w3.org/2000/svg";
+    const W = 320, H = 240, m = { l: 46, r: 10, t: 10, b: 38 };
+    const svg = document.createElementNS(ns, "svg");
+    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    svg.setAttribute("class", "cm-svg");
+    svg.setAttribute("role", "img");
+    const s = (tag, attrs, t) => { const e = document.createElementNS(ns, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+    const ext = (a) => { let lo = Math.min(...a), hi = Math.max(...a); const p = (hi - lo) * 0.06 || 1; return [lo - p, hi + p]; };
+    let [x0, x1] = ext(x), [y0, y1] = ext(y);
+    if (ref === "identidade") { x0 = y0 = Math.min(x0, y0); x1 = y1 = Math.max(x1, y1); }
+    const X = (v) => m.l + (W - m.l - m.r) * (v - x0) / (x1 - x0);
+    const Y = (v) => m.t + (H - m.t - m.b) * (1 - (v - y0) / (y1 - y0));
+    s("line", { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, class: "cm-eixo" });
+    s("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: "cm-eixo" });
+    const marcas = (a, b) => { const passo = Math.pow(10, Math.floor(Math.log10((b - a) / 4))); const k = [1, 2, 5, 10].find((f) => (b - a) / (f * passo) <= 4) * passo; const o = []; for (let v = Math.ceil(a / k) * k; v <= b; v += k) o.push(+v.toFixed(10)); return o; };
+    marcas(y0, y1).forEach((t) => s("text", { x: m.l - 5, y: Y(t) + 4, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+    marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 15, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+    if (ref === "zero") s("line", { x1: m.l, x2: W - m.r, y1: Y(0), y2: Y(0), class: "cm-ref" });
+    else s("line", { x1: X(x0), x2: X(x1), y1: Y(x0), y2: Y(x1), class: "cm-ref" });
+    x.forEach((v, i) => s("circle", { cx: X(v), cy: Y(y[i]), r: x.length > 300 ? 1.8 : 3.2, fill: PALETA[0], class: "cm-ponto" }));
+    s("text", { x: (W + m.l) / 2, y: H - 5, "text-anchor": "middle", class: "cm-rotulo" }, xlab);
+    s("text", { x: 11, y: (H - m.b + m.t) / 2, transform: `rotate(-90 11 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, ylab);
+    return svg;
+  }
+
+  function painelR() {
+    const box = el("div", { class: "cm-r" }, el("span", { class: "cm-rot" }, "Saída do R"));
+    if (R.estado === "parado" || R.estado === "erro") {
+      box.append(
+        el("p", { class: "cm-nota" }, "Até aqui, as contas foram feitas pela página. Para ver os valores-p, a tabela de ANOVA e os resíduos, rode o modelo no R, aqui mesmo no navegador."),
+        el("button", { type: "button", class: "btn btn-primary btn-sm", onclick: iniciaR }, "Carregar o R"),
+        R.estado === "erro" ? el("div", { class: "cm-alerta cm-pequeno" }, "Não consegui carregar o R. Confira a conexão e tente de novo, ou copie o código abaixo para o RStudio.") : null);
+      return box;
+    }
+    if (R.estado === "carregando") {
+      box.append(el("p", { class: "cm-instrucao" }, "Carregando o R no navegador… na primeira vez leva alguns segundos."));
+      return box;
+    }
+    const alvo = el("div", {}, el("p", { class: "cm-instrucao" }, "Rodando lm()…"));
+    box.append(alvo);
+    const meu = ++R.pedido;
+    rodaR().then((out) => {
+      if (meu !== R.pedido) return; // o aluno já mudou o modelo
+      if (out.erro) { alvo.replaceChildren(el("div", { class: "cm-alerta" }, "O R devolveu um erro: " + out.erro)); return; }
+      const pre = (t) => el("pre", { class: "cm-saida" }, el("code", {}, t));
+      const partes = [
+        el("p", { class: "cm-nota" }, "Em ", el("code", {}, "Estimate"), " estão os mesmos números da equação acima; ", el("code", {}, "Pr(>|t|)"), " é o valor-p de cada coeficiente (H₀: o coeficiente é zero)."),
+        el("div", { class: "cm-sub" }, el("code", {}, "summary(modelo)")), pre(out.summary),
+      ];
+      if (out.anova) partes.push(
+        el("div", { class: "cm-sub" }, el("code", {}, "anova(modelo)")),
+        el("p", { class: "cm-nota" }, "Um teste F por termo. Com fatores de vários níveis, é aqui que se lê se o fator importa como um todo."),
+        pre(out.anova));
+      if (out.classico) {
+        const [pc, pl] = out.classico.p;
+        const fmt = (p) => (p < 0.001 ? p.toExponential(2).replace(".", ",") : num(p, 4));
+        partes.push(
+          el("div", { class: "cm-sub" }, "O mesmo teste pelo caminho clássico: ", el("code", {}, out.classico.codigo)),
+          pre(out.classico.texto),
+          el("div", { class: "cm-igual" }, `Valor-p no lm(): ${fmt(pl)} · ${out.classico.nome}: ${fmt(pc)}. `,
+            Math.abs(pc - pl) <= 1e-8 + 1e-6 * pl ? el("strong", {}, "É o mesmo teste.") : "Diferem: confira os pressupostos."));
+      }
+      const n = out.ajustados.length;
+      partes.push(
+        el("div", { class: "cm-sub" }, "Os resíduos estão bem-comportados?"),
+        el("div", { class: "cm-residuos" },
+          el("figure", {}, dispersao({ x: out.ajustados, y: out.residuos, xlab: "valores ajustados", ylab: "resíduos", ref: "zero" }),
+            el("figcaption", {}, "Resíduos × ajustados: procure uma nuvem sem forma, de largura constante em torno do zero. Um funil indica variâncias diferentes; uma curva, relação não linear.")),
+          el("figure", {}, dispersao({ x: out.qq.slice(0, n), y: out.qq.slice(n), xlab: "quantis teóricos (normal)", ylab: "resíduos padronizados", ref: "identidade" }),
+            el("figcaption", {}, "Gráfico Q-Q: se os resíduos forem normais, os pontos seguem a diagonal. Desvios nas pontas indicam caudas pesadas ou assimetria."))));
+      alvo.replaceChildren(...partes);
+    });
+    return box;
   }
 
   function painelResultado() {
@@ -433,6 +583,7 @@
     box.append(el("details", { class: "cm-detalhes", open: true }, el("summary", {}, "O que cada coeficiente quer dizer"), lista));
 
     box.append(grafico(fit));
+    box.append(painelR());
 
     // código
     const codigo = codigoR();
@@ -444,7 +595,7 @@
     if (estado.tentados.size >= LIMITE_PESCARIA)
       box.append(el("div", { class: "cm-alerta" },
         el("strong", {}, `Você já montou ${estado.tentados.size} modelos diferentes. `),
-        "Se fosse testar todos, a chance de achar um valor-p < 0,05 só por acaso cresceria a cada tentativa. O modelo que você testa deve sair da hipótese, não da pescaria (",
+        "A cada modelo testado, cresce a chance de achar um valor-p < 0,05 só por acaso. O modelo que você testa deve sair da hipótese, não da pescaria (",
         el("a", { href: "aula-07-teste-hipoteses/index.html" }, "Aula 7"), ")."));
     return box;
   }
@@ -499,7 +650,8 @@
     try {
       const resp = await fetch(CONJUNTOS[chave].arquivo);
       if (!resp.ok) throw new Error(resp.status);
-      estado.linhas = lerCSV(await resp.text());
+      estado.csvTexto = await resp.text();
+      estado.linhas = lerCSV(estado.csvTexto);
       estado.vars = descreveVars(estado.linhas, CONJUNTOS[chave].ignorar);
     } catch (e) {
       raiz.replaceChildren(el("div", { class: "cm-alerta" }, "Não consegui carregar os dados. Abra esta página pelo site (não direto do arquivo)."));
