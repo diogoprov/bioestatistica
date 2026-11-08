@@ -229,6 +229,15 @@ continua em `slides/`, então não apague os PDFs.
   `python3 quiz/kahoot_xlsx.py modelo.xlsx`. O Kahoot limita a pergunta a
   120 caracteres e cada alternativa a 75, e não importa caracteres
   especiais (o script troca letras gregas e símbolos por texto).
+- **Construa um modelo** (`construa-um-modelo.qmd`, menu "Estudar", nov/2026):
+  construtor de fórmulas do `lm()` com drag-and-drop, inspirado no esquisse.
+  A interface e a equação são JS puro (`construtor/`); o botão "Carregar o R"
+  traz o webR v0.6.0 direto (sem quarto-live, só R base) para `summary()`,
+  `anova()`, o teste clássico com o mesmo valor-p, resíduos, tamanho do efeito
+  (IC, *d*, *r*, η² parcial; rótulos de Cohen 1988) e um texto "Como escrever
+  o resultado" (inspirado no pacote report). Dados em `data/` (girinos_2x2,
+  galton e girinos_lagoas, simulado em `R/construtor.R`). Atalhos por URL
+  (`?dados=&y=&x=&op=`) nas páginas das Aulas 8, 9 e 11.
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 

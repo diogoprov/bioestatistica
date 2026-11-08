@@ -40,6 +40,8 @@ website:
         menu:
           - href: exercicios-swirl.qmd
             text: Exercícios no R
+          - href: construa-um-modelo.qmd
+            text: Construa um modelo
           - href: revisao.qmd
             text: Revisão e Kahoots
           - href: glossario.qmd

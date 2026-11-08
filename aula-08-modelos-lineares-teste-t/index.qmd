@@ -127,6 +127,16 @@ O código da reta com intercepto e inclinação está em
 [`R/aula08.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula08.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
+## Construa um modelo
+
+Monte o teste *t* como modelo linear, arrastando variáveis: `massa_mg` na
+resposta e `predador` nos preditores. Clique em **Carregar o R** e compare o
+valor-p do `lm()` com o do `t.test()`. Depois veja a diferença entre as
+médias com o intervalo de confiança, o *d* de Cohen e um modelo de texto
+para escrever o resultado.
+
+[{{< fa solid puzzle-piece >}} Abrir o construtor com os girinos](../construa-um-modelo.html?dados=girinos_2x2&y=massa_mg&x=predador){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Vídeo da aula — Parte I](https://www.youtube.com/watch?v=qXJSlaRW1oU)
