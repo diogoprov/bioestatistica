@@ -172,3 +172,11 @@
   font-size: .95rem;
   line-height: 1.55;
 }
+
+/* regressão múltipla */
+.cm-simples { stroke-width: 2; stroke-dasharray: 6 4; }
+.cm-legenda-parcial { font-size: .82rem; color: var(--bsl-muted, #6c757d); margin-bottom: .4rem; }
+.cm-traco { display: inline-block; width: 26px; height: 0; vertical-align: middle; border-top: 3px solid #a15e3f; }
+.cm-traco-simples { border-top: 2px dashed #8a8172; }
+.cm-colin { margin-top: 1rem; }
+.cm-ruim td { background: #fbf0e6; }

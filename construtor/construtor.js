@@ -18,6 +18,12 @@
       ignorar: ["individuo"],
       descricao: "Massa na metamorfose (mg) de 45 girinos de lagoas temporárias, permanentes e açudes, criados em temperaturas de 20 a 32 °C.",
     },
+    girinos_mesocosmos: {
+      rotulo: "Girinos em mesocosmos: três preditores numéricos (dados simulados)",
+      arquivo: "data/girinos_mesocosmos.csv",
+      ignorar: ["mesocosmo"],
+      descricao: "Massa na metamorfose (mg) em 60 mesocosmos com cobertura do dossel (%), temperatura da água (°C) e densidade de girinos (por litro). Bom para a regressão múltipla: compare massa_mg ~ dossel_pct com massa_mg ~ dossel_pct + temperatura_c.",
+    },
     galton: {
       rotulo: "Galton (1886): altura de pais e filhos (dados reais)",
       arquivo: "data/galton.csv",
@@ -230,8 +236,112 @@
     return { termo: c.nome, valor, txt: `interação: quanto o efeito de ${numericas[0]} muda a cada unidade a mais de ${numericas.slice(1).join(" e ")}` };
   }
 
+  // ---------- regressão múltipla: efeito parcial e colinearidade ----------
+  const media = (a) => a.reduce((s, v) => s + v, 0) / a.length;
+  const dp = (a) => { const m = media(a); return Math.sqrt(a.reduce((s, v) => s + (v - m) ** 2, 0) / (a.length - 1)); };
+  const correl = (a, b) => { const ma = media(a), mb = media(b); let sab = 0, saa = 0, sbb = 0; a.forEach((v, i) => { sab += (v - ma) * (b[i] - mb); saa += (v - ma) ** 2; sbb += (b[i] - mb) ** 2; }); return sab / Math.sqrt(saa * sbb); };
+  // mínimos quadrados genérico (colunas de X já com o intercepto); devolve os coeficientes ou null
+  function mmq(X, y) {
+    const p = X[0].length;
+    const A = Array.from({ length: p }, (_, i) => {
+      const l = new Array(p + 1).fill(0);
+      X.forEach((xr, k) => { for (let j = 0; j < p; j++) l[j] += xr[i] * xr[j]; l[p] += xr[i] * y[k]; });
+      return l;
+    });
+    for (let c = 0; c < p; c++) {
+      let piv = c;
+      for (let r = c + 1; r < p; r++) if (Math.abs(A[r][c]) > Math.abs(A[piv][c])) piv = r;
+      if (Math.abs(A[piv][c]) < 1e-12) return null;
+      [A[c], A[piv]] = [A[piv], A[c]];
+      for (let r = 0; r < p; r++) if (r !== c) { const f = A[r][c] / A[c][c]; for (let j = c; j <= p; j++) A[r][j] -= f * A[c][j]; }
+    }
+    return A.map((l, i) => l[p] / l[i]);
+  }
+  const numericos = () => estado.xs.map(varPorNome).filter((v) => v.tipo === "num");
+  // painéis de efeito parcial só quando há 2+ numéricas e nenhuma interação
+  const usaParcial = () => numericos().length >= 2 && estado.op === "+";
+
+  function colinearidade() {
+    const nums = numericos();
+    if (nums.length < 2) return null;
+    const col = (n) => estado.linhas.map((r) => r[n]);
+    return nums.map((v) => {
+      const outros = nums.filter((o) => o !== v);
+      const b = mmq(estado.linhas.map((r) => [1, ...outros.map((o) => r[o.nome])]), col(v.nome));
+      let vif = Infinity;
+      if (b) {
+        const yv = col(v.nome), m = media(yv);
+        const prev = estado.linhas.map((r) => b[0] + outros.reduce((s, o, j) => s + b[j + 1] * r[o.nome], 0));
+        const r2 = 1 - yv.reduce((s, val, i) => s + (val - prev[i]) ** 2, 0) / yv.reduce((s, val) => s + (val - m) ** 2, 0);
+        vif = 1 / (1 - r2);
+      }
+      const rs = outros.map((o) => ({ com: o.nome, r: correl(col(v.nome), col(o.nome)) }));
+      const maior = rs.reduce((a, c) => (Math.abs(c.r) > Math.abs(a.r) ? c : a));
+      return { nome: v.nome, vif, maior };
+    });
+  }
+
+  function painelColinearidade() {
+    const c = colinearidade();
+    if (!c) return null;
+    const problema = c.filter((l) => l.vif > 5 || Math.abs(l.maior.r) > 0.7);
+    const tabela = el("table", { class: "table table-sm cm-efeitos" },
+      el("thead", {}, el("tr", {}, ...["Preditor", "Correlação mais forte", "VIF"].map((h) => el("th", {}, h)))),
+      el("tbody", {}, ...c.map((l) => el("tr", { class: l.vif > 5 ? "cm-ruim" : "" },
+        el("td", {}, el("code", {}, l.nome)), el("td", {}, `r = ${num(l.maior.r)} com ${l.maior.com}`), el("td", {}, isFinite(l.vif) ? num(l.vif) : "∞")))));
+    return el("div", { class: "cm-colin" },
+      el("div", { class: "cm-sub" }, "Os preditores estão correlacionados entre si?"),
+      el("p", { class: "cm-nota" }, "O VIF (fator de inflação da variância) diz quantas vezes a variância de um coeficiente aumenta porque aquele preditor pode ser previsto pelos outros. VIF = 1: nenhuma sobreposição; acima de 5, cuidado."),
+      tabela,
+      problema.length ? el("div", { class: "cm-alerta cm-pequeno" },
+        el("strong", {}, "Colinearidade. "),
+        `${problema.map((l) => l.nome).join(" e ")} carregam quase a mesma informação. O modelo tem dificuldade para separar o efeito de cada um: os erros padrão incham e os coeficientes podem mudar muito ao tirar ou pôr um preditor. Compare o modelo com e sem cada um deles.`) : null);
+  }
+
+  function graficoParcial(fit) {
+    const ns = "http://www.w3.org/2000/svg";
+    const L = estado.linhas, y = L.map((r) => r[estado.y]);
+    const ybar = media(y);
+    const res = L.map((r, i) => y[i] - fit.prediz(r));
+    const paineis = numericos().map((v) => {
+      const x = L.map((r) => r[v.nome]), xbar = media(x);
+      const bj = fit.b[fit.cols.findIndex((c) => c.nome === v.nome)];
+      const bs = correl(x, y) * dp(y) / dp(x); // inclinação da regressão simples, só com este preditor
+      const yp = x.map((xi, i) => ybar + res[i] + bj * (xi - xbar)); // resíduo parcial, centrado na média de y
+      const W = 320, H = 250, m = { l: 48, r: 10, t: 12, b: 40 };
+      const svg = document.createElementNS(ns, "svg");
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "cm-svg"); svg.setAttribute("role", "img");
+      svg.setAttribute("aria-label", `Efeito parcial de ${v.nome}: inclinação ${num(bj)} com os outros preditores fixos, contra ${num(bs)} sozinho.`);
+      const s = (tag, a, t) => { const e = document.createElementNS(ns, tag); for (const [k, val] of Object.entries(a)) e.setAttribute(k, val); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
+      const ext = (a) => { const lo = Math.min(...a), hi = Math.max(...a), p = (hi - lo) * 0.06 || 1; return [lo - p, hi + p]; };
+      const [x0, x1] = ext(x);
+      const [y0, y1] = ext([...yp, ...y]);
+      const X = (val) => m.l + (W - m.l - m.r) * (val - x0) / (x1 - x0);
+      const Y = (val) => m.t + (H - m.t - m.b) * (1 - (val - y0) / (y1 - y0));
+      const marcas = (a, b) => { const passo = Math.pow(10, Math.floor(Math.log10((b - a) / 4))); const k = [1, 2, 5, 10].find((f) => (b - a) / (f * passo) <= 4) * passo; const o = []; for (let val = Math.ceil(a / k) * k; val <= b; val += k) o.push(+val.toFixed(10)); return o; };
+      s("line", { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, class: "cm-eixo" });
+      s("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: "cm-eixo" });
+      marcas(y0, y1).forEach((t) => s("text", { x: m.l - 5, y: Y(t) + 4, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+      marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 15, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+      yp.forEach((val, i) => s("circle", { cx: X(x[i]), cy: Y(val), r: 3.2, fill: PALETA[0], class: "cm-ponto" }));
+      const linha = (b, cls, cor) => s("line", { x1: X(x0), x2: X(x1), y1: Y(ybar + b * (x0 - xbar)), y2: Y(ybar + b * (x1 - xbar)), stroke: cor, class: cls });
+      linha(bs, "cm-simples", "#8a8172");
+      linha(bj, "cm-ajuste", PALETA[1]);
+      s("text", { x: (W + m.l) / 2, y: H - 5, "text-anchor": "middle", class: "cm-rotulo" }, v.nome);
+      s("text", { x: 11, y: (H - m.b + m.t) / 2, transform: `rotate(-90 11 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, `${estado.y} (ajustada)`);
+      return el("figure", {}, svg, el("figcaption", {}, `Parcial: ${num(bj)} por unidade · sozinho: ${num(bs)}`));
+    });
+    return el("div", { class: "cm-figura" },
+      el("div", { class: "cm-legenda-parcial" },
+        el("span", { class: "cm-traco cm-traco-parcial" }), " inclinação com os outros preditores fixos (o coeficiente do modelo)   ",
+        el("span", { class: "cm-traco cm-traco-simples" }), " inclinação sozinho (regressão simples)"),
+      el("div", { class: "cm-residuos" }, ...paineis),
+      el("p", { class: "cm-nota" }, `Cada painel mostra ${estado.y} depois de descontar o efeito dos outros preditores (resíduos parciais). Quando as duas linhas discordam, parte do efeito "sozinho" era, na verdade, de outro preditor correlacionado com ele.`));
+  }
+
   // ---------- gráfico (SVG) ----------
   function grafico(fit) {
+    if (fit && usaParcial()) return graficoParcial(fit);
     const W = 640, H = 340, m = { l: 62, r: 16, t: 14, b: 48 };
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, class: "cm-svg", role: "img" });
     const ns = "http://www.w3.org/2000/svg";
@@ -397,6 +507,18 @@
     if (!xs.length) return [];
     if (xs.length === 1 && xs[0].tipo === "num") return [`summary(modelo)$r.squared   # R²; o r (com IC) está no cor.test()`];
     if (xs.length === 1 && xs[0].niveis.length === 2) return [`coef(modelo)[2] / sigma(modelo)   # d de Cohen: diferença ÷ desvio padrão combinado`];
+    if (xs.every((v) => v.tipo === "num") && estado.op === "+") {
+      const nomes = xs.map((v) => v.nome);
+      const vifs = nomes.map((n) => `1 / (1 - summary(lm(${n} ~ ${nomes.filter((o) => o !== n).join(" + ")}, data = dados))$r.squared)   # VIF de ${n}`);
+      return [
+        `coef(lm(scale(${estado.y}) ~ ${nomes.map((n) => `scale(${n})`).join(" + ")}, data = dados))   # coeficientes padronizados`,
+        `ct <- coef(summary(modelo))[-1, ]; ct[, "t value"]^2 / (ct[, "t value"]^2 + df.residual(modelo))   # η² parcial`,
+        ``,
+        `# Colinearidade`,
+        `cor(dados[c(${nomes.map((n) => JSON.stringify(n)).join(", ")})])`,
+        ...vifs,
+      ];
+    }
     return [
       `tab <- anova(modelo)`,
       `sq <- tab[["Sum Sq"]]; sq_res <- sq[length(sq)]`,
@@ -575,6 +697,34 @@
       frases.push(`Com ${x.nome} = ${lv}, ${y} foi em média ${num(Math.abs(c.b))} ${sentido(c.b)} do que com ${x.nome} = ${ref} (${ic(c.li, c.ls)}; t(${G.gl}) = ${num(c.t)}; ${fP(c.p)}), uma diferença ${rotulo(d, CORTES.d) === "desprezível" ? "desprezível" : "de tamanho " + rotulo(d, CORTES.d)} (d de Cohen = ${num(d)}).`);
       return { linhas, frases };
     }
+    // Regressão múltipla sem interação: testes t do summary() (não dependem da
+    // ordem dos termos), η² parcial = t² / (t² + gl) e coeficiente padronizado.
+    if (xs.every((v) => v.tipo === "num") && estado.op === "+") {
+      const sdY = dp(estado.linhas.map((r) => r[y]));
+      const colin = colinearidade() || [];
+      const preds = xs.map((v) => v.nome);
+      frases.push(`Ajustamos uma regressão linear múltipla de ${y} em função de ${preds.slice(0, -1).join(", ")} e ${preds[preds.length - 1]} (n = ${G.n}). O modelo explicou ${num(G.r2 * 100, 1)}% da variação em ${y} (R² = ${num(G.r2)}; F(${G.gl1}, ${G.gl2}) = ${num(G.F)}; ${fP(G.p)}).`);
+      for (const v of xs) {
+        const c = coef(v.nome);
+        const beta = c.b * dp(estado.linhas.map((r) => r[v.nome])) / sdY;
+        const eta = (c.t * c.t) / (c.t * c.t + G.gl);
+        linhas.push([`inclinação de ${v.nome}`, num(c.b), `${num(c.li)} a ${num(c.ls)}`, "na unidade dos dados"]);
+        linhas.push([`↳ padronizada (em desvios padrão)`, num(beta), "—", "compara preditores"]);
+        linhas.push([`↳ η² parcial`, num(eta), "—", rotulo(eta, CORTES.eta2)]);
+        frases.push(c.p < 0.05
+          ? `Com os outros preditores fixos, ${y} ${c.b >= 0 ? "aumentou" : "diminuiu"} ${num(Math.abs(c.b))} a cada unidade a mais de ${v.nome} (${ic(c.li, c.ls)}; t(${G.gl}) = ${num(c.t)}; ${fP(c.p)}; coeficiente padronizado = ${num(beta)}).`
+          : `Com os outros preditores fixos, não detectamos efeito de ${v.nome} (inclinação = ${num(c.b)}; ${ic(c.li, c.ls)}; t(${G.gl}) = ${num(c.t)}; ${fP(c.p)}).`);
+      }
+      linhas.push(["R² do modelo", num(G.r2), "—", ""]);
+      const ruins = colin.filter((l) => l.vif > 5);
+      if (ruins.length) {
+        // um par por vez, sem repetir (a com b e b com a)
+        const pares = [...new Map(ruins.map((l) => [[l.nome, l.maior.com].sort().join("|"), l])).values()];
+        const vifs = ruins.map((l) => `${l.nome} = ${num(l.vif)}`).join(", ");
+        frases.push(`${pares.map((l) => `${l.nome} e ${l.maior.com} (r = ${num(l.maior.r)})`).join("; ")} estavam fortemente correlacionados (VIF: ${vifs}), o que aumenta a incerteza sobre o efeito de cada um.`);
+      }
+      return { linhas, frases };
+    }
     // ANOVA de um ou mais fatores, ANCOVA e afins: um teste F e um η² parcial por termo
     if (estado.op === "+" || xs.length === 1) {
       // sem interação, cada coeficiente é uma diferença ou inclinação com IC, na unidade dos dados
@@ -678,7 +828,8 @@
       ];
       if (out.anova) partes.push(
         el("div", { class: "cm-sub" }, el("code", {}, "anova(modelo)")),
-        el("p", { class: "cm-nota" }, "Um teste F por termo. Com fatores de vários níveis, é aqui que se lê se o fator importa como um todo."),
+        el("p", { class: "cm-nota" }, "Um teste F por termo. Com fatores de vários níveis, é aqui que se lê se o fator importa como um todo.",
+          estado.xs.length > 1 ? " Atenção: a anova() testa os termos em sequência (soma de quadrados tipo I), e cada F só desconta os termos que vêm antes dele. Com preditores correlacionados, mudar a ordem muda os F. Os testes t do summary(), ao contrário, comparam cada coeficiente com todos os outros já no modelo." : ""),
         pre(out.anova));
       if (out.classico) {
         const [pc, pl] = out.classico.p;
@@ -750,6 +901,8 @@
     box.append(el("details", { class: "cm-detalhes", open: true }, el("summary", {}, "O que cada coeficiente quer dizer"), lista));
 
     box.append(grafico(fit));
+    const colin = painelColinearidade();
+    if (colin) box.append(colin);
     box.append(painelR());
 
     // código

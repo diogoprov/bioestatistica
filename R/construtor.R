@@ -31,3 +31,31 @@ simula_girinos_lagoas <- function(n_por_lagoa = 15, inclinacao = 3,
     massa_mg = round(massa, 1)
   )
 }
+
+#' Girinos em mesocosmos: três preditores numéricos (regressão múltipla)
+#'
+#' A massa cresce com a temperatura e cai com a densidade de girinos. A
+#' cobertura do dossel não tem efeito próprio, mas sombreia a água: quanto
+#' mais dossel, mais fria a água. Sozinha, ela parece reduzir a massa; com a
+#' temperatura no modelo, o efeito some. É a lição do "mantidos os outros
+#' fixos" e da colinearidade.
+#'
+#' Grave com:
+#'   simula_girinos_mesocosmos() |> write.csv(here::here("data/girinos_mesocosmos.csv"), row.names = FALSE)
+#'
+#' @param n número de mesocosmos
+#' @param seed semente
+simula_girinos_mesocosmos <- function(n = 60, seed = 7) {
+  set.seed(seed)
+  dossel <- round(runif(n, 0, 90))                               # % de cobertura
+  temperatura <- round(31 - 0.09 * dossel + rnorm(n, 0, 1.2), 1)  # °C, mais fria sob o dossel
+  densidade <- round(runif(n, 0.5, 6), 1)                         # girinos por litro
+  massa <- 20 + 3.5 * temperatura - 6 * densidade + rnorm(n, 0, 7)
+  data.frame(
+    mesocosmo = seq_len(n),
+    dossel_pct = dossel,
+    temperatura_c = temperatura,
+    densidade_l = densidade,
+    massa_mg = round(massa, 1)
+  )
+}
