@@ -392,6 +392,17 @@
       return { codigo: `t.test(${y} ~ ${x.nome}, data = dados, var.equal = TRUE)`, nome: "no teste t", pLm: `summary(modelo)$coefficients[2, 4]` };
     return { codigo: `oneway.test(${y} ~ ${x.nome}, data = dados, var.equal = TRUE)`, nome: "na ANOVA de um fator (oneway.test)", pLm: `anova(modelo)[1, "Pr(>F)"]` };
   }
+  function efeitoR() {
+    const xs = estado.xs.map(varPorNome);
+    if (!xs.length) return [];
+    if (xs.length === 1 && xs[0].tipo === "num") return [`summary(modelo)$r.squared   # R²; o r (com IC) está no cor.test()`];
+    if (xs.length === 1 && xs[0].niveis.length === 2) return [`coef(modelo)[2] / sigma(modelo)   # d de Cohen: diferença ÷ desvio padrão combinado`];
+    return [
+      `tab <- anova(modelo)`,
+      `sq <- tab[["Sum Sq"]]; sq_res <- sq[length(sq)]`,
+      `setNames(sq / (sq + sq_res), rownames(tab))[-length(sq)]   # η² parcial de cada termo`,
+    ];
+  }
   function codigoR(arquivo) {
     const c = CONJUNTOS[estado.chave];
     const cl = classico();
@@ -403,6 +414,10 @@
       estado.xs.length ? `anova(modelo)     # tabela de ANOVA (testes F)` : null,
       `plot(modelo)      # gráficos dos resíduos`,
       cl ? `${cl.codigo}   # o mesmo valor-p, pelo caminho clássico` : null,
+      ``,
+      `# Tamanho do efeito`,
+      `confint(modelo)   # IC 95% de cada coeficiente`,
+      ...efeitoR(),
     ].filter(Boolean).join("\n");
   }
 
@@ -439,7 +454,9 @@
     }
     const w = R.webR;
     const texto = async (cod) => w.evalRString(`paste(capture.output(${cod}), collapse = "\\n")`);
-    const numeros = async (cod) => w.evalRRaw(`as.numeric(${cod})`, "number[]");
+    // o webR não converte NA para number[]: vira um sentinela no R e NaN aqui
+    const numeros = async (cod) => (await w.evalRRaw(`local({ x <- as.numeric(${cod}); x[is.na(x)] <- -9.87654e300; x })`, "number[]"))
+      .map((v) => (v === -9.87654e300 ? NaN : v));
     try {
       await w.evalRVoid([`dados <- read.csv("${caminho}", encoding = "UTF-8")`, ...linhasFator(), `modelo <- lm(${formula()}, data = dados)`].join("\n"));
       const out = {
@@ -449,9 +466,35 @@
         residuos: await numeros("residuals(modelo)"),
         qq: await numeros(`unlist(qqnorm(rstandard(modelo), plot.it = FALSE))`),
       };
+      // números para os tamanhos de efeito e o texto do resultado
+      await w.evalRVoid([
+        "s <- summary(modelo)",
+        "fst <- if (is.null(s$fstatistic)) c(NA, NA, NA) else s$fstatistic",
+        "ct <- cbind(coef(s), confint(modelo))",
+        "av <- anova(modelo)",
+      ].join("\n"));
+      const g = await numeros("c(nobs(modelo), df.residual(modelo), s$r.squared, fst, pf(fst[1], fst[2], fst[3], lower.tail = FALSE), sigma(modelo))");
+      out.global = { n: g[0], gl: g[1], r2: g[2], F: g[3], gl1: g[4], gl2: g[5], p: g[6], sigma: g[7] };
+      const nc = await numeros("ct"); // por coluna: estimativa, EP, t, P, IC inferior, IC superior
+      const k = nc.length / 6;
+      out.coefs = (await w.evalRRaw("rownames(ct)", "string[]")).map((nome, i) => ({
+        nome, b: nc[i], ep: nc[k + i], t: nc[2 * k + i], p: nc[3 * k + i], li: nc[4 * k + i], ls: nc[5 * k + i],
+      }));
+      if (estado.xs.length) {
+        const na = await numeros('c(av$Df, av[["Sum Sq"]], av[["F value"]], av[["Pr(>F)"]])');
+        const m = na.length / 4;
+        const ssRes = na[2 * m - 1];
+        out.termos = (await w.evalRRaw("rownames(av)", "string[]")).slice(0, m - 1).map((nome, i) => ({
+          nome: nome.trim(), gl: na[i], F: na[2 * m + i], p: na[3 * m + i], eta2p: na[m + i] / (na[m + i] + ssRes),
+        }));
+      }
       if (cl) {
         await w.evalRVoid(`classico <- ${cl.codigo}`);
         out.classico = { nome: cl.nome, codigo: cl.codigo, texto: await texto("classico"), p: (await numeros("c(classico$p.value, " + cl.pLm + ")")) };
+        if (cl.codigo.startsWith("cor.test")) {
+          const [r, li, ls] = await numeros("c(classico$estimate, classico$conf.int)");
+          out.r = { r, li, ls };
+        }
       }
       R.cache.set(chave, out);
       return out;
@@ -484,6 +527,129 @@
     s("text", { x: (W + m.l) / 2, y: H - 5, "text-anchor": "middle", class: "cm-rotulo" }, xlab);
     s("text", { x: 11, y: (H - m.b + m.t) / 2, transform: `rotate(-90 11 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, ylab);
     return svg;
+  }
+
+  // ---------- tamanho do efeito e texto do resultado ----------
+  // Convenções de Cohen (1988): rótulos gerais, não substituem o julgamento biológico.
+  const rotulo = (v, cortes) => {
+    const a = Math.abs(v);
+    return a < cortes[0] ? "desprezível" : a < cortes[1] ? "pequeno" : a < cortes[2] ? "médio" : "grande";
+  };
+  const CORTES = { d: [0.2, 0.5, 0.8], r: [0.1, 0.3, 0.5], eta2: [0.01, 0.06, 0.14] };
+  const fP = (p) => (p < 0.001 ? "P < 0,001" : `P = ${num(p, 3)}`);
+  const ic = (li, ls) => `IC 95%: ${num(li)} a ${num(ls)}`;
+  const nomeTermo = (t) => (t.includes(":") ? `interação ${t.split(":").join(" × ")}` : t);
+
+  function analisaResultado(out) {
+    const y = estado.y, G = out.global;
+    const xs = estado.xs.map(varPorNome);
+    const coef = (nome) => out.coefs.find((c) => c.nome === nome);
+    const linhas = []; // tabela de tamanhos de efeito: [medida, valor, IC, leitura]
+    const frases = [];
+    const sentido = (b) => (b >= 0 ? "maior" : "menor");
+
+    if (!xs.length) {
+      const c = out.coefs[0];
+      linhas.push(["média de " + y, num(c.b), ic(c.li, c.ls).replace("IC 95%: ", ""), "—"]);
+      frases.push(`A média de ${y} foi ${num(c.b)} (${ic(c.li, c.ls)}; n = ${G.n}).`);
+      return { linhas, frases };
+    }
+    const tipo = nomeDoTeste().nome.replace(/ \((.*)\)$/, ", $1"); // sem parênteses dentro de parênteses
+    if (xs.length === 1 && xs[0].tipo === "num") {
+      const x = xs[0].nome, c = coef(x);
+      linhas.push([`inclinação (${y} por unidade de ${x})`, num(c.b), `${num(c.li)} a ${num(c.ls)}`, "na unidade dos dados"]);
+      if (out.r) linhas.push(["correlação r de Pearson", num(out.r.r), `${num(out.r.li)} a ${num(out.r.ls)}`, rotulo(out.r.r, CORTES.r)]);
+      linhas.push(["R² (variação explicada)", num(G.r2), "—", ""]);
+      frases.push(`Ajustamos uma regressão linear simples de ${y} em função de ${x} (n = ${G.n}).`);
+      frases.push(`${y} ${c.b >= 0 ? "aumentou" : "diminuiu"} em média ${num(Math.abs(c.b))} a cada unidade a mais de ${x} (${ic(c.li, c.ls)}; t(${G.gl}) = ${num(c.t)}; ${fP(c.p)}).`);
+      frases.push(`O modelo explicou ${num(G.r2 * 100, 1)}% da variação em ${y} (R² = ${num(G.r2)})` +
+        (out.r ? `, e a correlação foi de tamanho ${rotulo(out.r.r, CORTES.r)} (r = ${num(out.r.r)}; IC 95%: ${num(out.r.li)} a ${num(out.r.ls)}).` : "."));
+      return { linhas, frases };
+    }
+    if (xs.length === 1 && xs[0].niveis.length === 2) {
+      const x = xs[0], lv = x.niveis[1], ref = x.niveis[0], c = coef(x.nome + lv);
+      const d = c.b / G.sigma;
+      linhas.push([`diferença (${lv} − ${ref})`, num(c.b), `${num(c.li)} a ${num(c.ls)}`, "na unidade dos dados"]);
+      linhas.push(["d de Cohen (diferença ÷ desvio padrão)", num(d), "—", rotulo(d, CORTES.d)]);
+      frases.push(`Comparamos ${y} entre os dois níveis de ${x.nome} com um modelo linear, equivalente ao teste t para amostras independentes com variâncias iguais (n = ${G.n}).`);
+      frases.push(`Com ${x.nome} = ${lv}, ${y} foi em média ${num(Math.abs(c.b))} ${sentido(c.b)} do que com ${x.nome} = ${ref} (${ic(c.li, c.ls)}; t(${G.gl}) = ${num(c.t)}; ${fP(c.p)}), uma diferença ${rotulo(d, CORTES.d) === "desprezível" ? "desprezível" : "de tamanho " + rotulo(d, CORTES.d)} (d de Cohen = ${num(d)}).`);
+      return { linhas, frases };
+    }
+    // ANOVA de um ou mais fatores, ANCOVA e afins: um teste F e um η² parcial por termo
+    if (estado.op === "+" || xs.length === 1) {
+      // sem interação, cada coeficiente é uma diferença ou inclinação com IC, na unidade dos dados
+      for (const v of xs) {
+        if (v.tipo === "num") { const c = coef(v.nome); linhas.push([`inclinação de ${v.nome}`, num(c.b), `${num(c.li)} a ${num(c.ls)}`, "na unidade dos dados"]); }
+        else for (const lv of v.niveis.slice(1)) { const c = coef(v.nome + lv); linhas.push([`diferença ${v.nome}: ${lv} − ${v.niveis[0]}`, num(c.b), `${num(c.li)} a ${num(c.ls)}`, "na unidade dos dados"]); }
+      }
+    }
+    for (const t of out.termos) linhas.push([`η² parcial de ${nomeTermo(t.nome)}`, num(t.eta2p), "—", rotulo(t.eta2p, CORTES.eta2)]);
+    linhas.push(["R² do modelo", num(G.r2), "—", ""]);
+    const preds = estado.xs.join(estado.op === "*" ? " e " : " e ");
+    frases.push(`Ajustamos um modelo linear (${tipo}) com ${y} como resposta e ${preds} como ${xs.length > 1 ? "preditores" : "preditor"} (n = ${G.n}; R² = ${num(G.r2)}).`);
+    const inter = out.termos.filter((t) => t.nome.includes(":"));
+    const principais = out.termos.filter((t) => !t.nome.includes(":"));
+    const desc = (t) => `F(${t.gl}, ${G.gl}) = ${num(t.F)}; ${fP(t.p)}; η²p = ${num(t.eta2p)}`;
+    for (const t of principais) {
+      frases.push(t.p < 0.05
+        ? `O efeito de ${t.nome} sobre ${y} foi significativo e ${rotulo(t.eta2p, CORTES.eta2)} (${desc(t)}).`
+        : `Não detectamos efeito de ${t.nome} sobre ${y} (${desc(t)}).`);
+    }
+    for (const t of inter) {
+      const [a, b] = t.nome.split(":");
+      frases.push(t.p < 0.05
+        ? `A ${nomeTermo(t.nome)} foi significativa (${desc(t)}): o efeito de ${a} depende do nível de ${b}. Por isso, descreva o efeito de cada variável separadamente para cada grupo (veja o gráfico), em vez de interpretar os efeitos principais sozinhos.`
+        : `A ${nomeTermo(t.nome)} não foi significativa (${desc(t)}): não há evidência de que o efeito de ${a} dependa de ${b}, e o modelo sem interação (com +) é mais simples.`);
+    }
+    if (!inter.length) for (const x of xs.filter((v) => v.tipo === "fator")) {
+      const ref = x.niveis[0];
+      const comps = x.niveis.slice(1).map((lv) => { const c = coef(x.nome + lv); return `${x.nome} = ${lv} teve ${y} ${num(Math.abs(c.b))} ${sentido(c.b)} (${ic(c.li, c.ls)}; ${fP(c.p)})`; });
+      const fixos = xs.length > 1 ? `Com ${xs.filter((v) => v !== x).map((v) => v.nome).join(" e ")} ${xs.length > 2 ? "fixos" : "fixo"}, em` : "Em";
+      frases.push(`${fixos} relação a ${x.nome} = ${ref}, ${comps.join("; ")}.` +
+        (x.niveis.length > 2 ? " Estas são comparações com o grupo de referência; para comparar todos os pares, use o teste de Tukey (Aula 11)." : ""));
+    }
+    if (!inter.length) for (const v of xs.filter((v) => v.tipo === "num")) {
+      const c = coef(v.nome);
+      frases.push(`Com os outros preditores fixos, ${y} ${c.b >= 0 ? "aumentou" : "diminuiu"} ${num(Math.abs(c.b))} a cada unidade a mais de ${v.nome} (${ic(c.li, c.ls)}; ${fP(c.p)}).`);
+    }
+    return { linhas, frases };
+  }
+
+  // A anova() testa os termos em sequência (soma de quadrados tipo I): o F de
+  // um fator posto antes da covariável não está ajustado por ela.
+  function avisoOrdem() {
+    const xs = estado.xs.map(varPorNome);
+    const iNum = xs.findIndex((v) => v.tipo === "num"), iFat = xs.findIndex((v) => v.tipo === "fator");
+    if (iNum < 0 || iFat < 0 || iFat > iNum) return null;
+    return el("div", { class: "cm-alerta cm-pequeno" },
+      el("strong", {}, "A ordem importa. "),
+      "A anova() testa os termos em sequência: o F de ", el("code", {}, xs[iFat].nome),
+      " foi calculado antes de descontar o efeito de ", el("code", {}, xs[iNum].nome),
+      ". Numa ANCOVA, a pergunta costuma ser a diferença entre grupos com a covariável fixa: arraste a covariável para o primeiro lugar (tire e devolva o fator).");
+  }
+
+  function blocoResultado(out) {
+    const { linhas, frases } = analisaResultado(out);
+    const tabela = el("table", { class: "table table-sm cm-efeitos" },
+      el("thead", {}, el("tr", {}, ...["Medida", "Valor", "IC 95%", "Leitura (Cohen 1988)"].map((h) => el("th", {}, h)))),
+      el("tbody", {}, ...linhas.map((l) => el("tr", {}, ...l.map((c) => el("td", {}, c))))));
+    const texto = frases.join(" ");
+    const copiar = el("button", { type: "button", class: "btn btn-sm btn-outline-primary", onclick: () => {
+      navigator.clipboard?.writeText(texto).then(() => { copiar.textContent = "Copiado!"; setTimeout(() => (copiar.textContent = "Copiar texto"), 1500); });
+    } }, "Copiar texto");
+    return [
+      el("div", { class: "cm-sub" }, "Tamanho do efeito"),
+      el("p", { class: "cm-nota" }, "O valor-p diz se o efeito é distinguível de zero; o tamanho do efeito diz se ele é grande. Comece pela diferença ou pela inclinação na unidade dos dados (mg, °C, polegadas): é ela que tem sentido biológico."),
+      tabela,
+      el("p", { class: "cm-nota" }, "Os rótulos (pequeno, médio, grande) são convenções gerais de Cohen (1988), pensadas para as ciências do comportamento. Se uma diferença de 10 mg importa para um girino é uma pergunta de biologia, não de estatística (",
+        el("a", { href: "aula-07-teste-hipoteses/index.html" }, "Aula 7"), ")."),
+      avisoOrdem(),
+      el("div", { class: "cm-sub cm-sub-topo" }, el("span", {}, "Como escrever o resultado"), copiar),
+      el("blockquote", { class: "cm-relato" }, texto),
+      el("p", { class: "cm-nota" }, "Texto gerado automaticamente, inspirado no pacote ",
+        el("a", { href: "https://easystats.github.io/report/" }, "report"),
+        ", do easystats. É um ponto de partida: confira os resíduos acima antes de usá-lo, comece pela resposta à sua hipótese e diga o que o efeito significa para o organismo."),
+    ];
   }
 
   function painelR() {
@@ -531,6 +697,7 @@
             el("figcaption", {}, "Resíduos × ajustados: procure uma nuvem sem forma, de largura constante em torno do zero. Um funil indica variâncias diferentes; uma curva, relação não linear.")),
           el("figure", {}, dispersao({ x: out.qq.slice(0, n), y: out.qq.slice(n), xlab: "quantis teóricos (normal)", ylab: "resíduos padronizados", ref: "identidade" }),
             el("figcaption", {}, "Gráfico Q-Q: se os resíduos forem normais, os pontos seguem a diagonal. Desvios nas pontas indicam caudas pesadas ou assimetria."))));
+      partes.push(...blocoResultado(out).filter(Boolean));
       alvo.replaceChildren(...partes);
     });
     return box;

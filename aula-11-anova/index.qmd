@@ -134,6 +134,18 @@ O código da variação entre e dentro dos grupos está em
 [`R/aula11.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula11.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
+## Construa um modelo
+
+A ANOVA de dois fatores da aula prática, montada arrastando variáveis. Troque
+`*` por `+` e veja o que muda quando o modelo deixa de ter interação. Na
+ANCOVA, compare retas paralelas (`+`) com inclinações diferentes (`*`), e
+veja por que a ordem dos preditores importa na tabela de ANOVA. Clique em
+**Carregar o R** para ver os testes F, o η² parcial e um modelo de texto
+para escrever o resultado.
+
+[{{< fa solid puzzle-piece >}} ANOVA de dois fatores (girinos)](../construa-um-modelo.html?dados=girinos_2x2&y=massa_mg&x=predador,alimento&op=%2A){.btn .btn-outline-primary}
+[{{< fa solid puzzle-piece >}} ANCOVA (girinos de três lagoas)](../construa-um-modelo.html?dados=girinos_lagoas&y=massa_mg&x=temperatura_c,lagoa){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Como realizar ANOVA com um fator](https://youtu.be/E_acxED30xg)

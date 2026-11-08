@@ -129,6 +129,16 @@ O código dos quatro padrões de correlação está em
 [`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
 
+## Construa um modelo
+
+Monte a regressão de Galton (`child ~ parent`) arrastando variáveis. Clique
+em **Carregar o R** e compare o valor-p da inclinação com o da correlação
+(`cor.test()`): é o mesmo teste. Confira os resíduos, veja a inclinação e o
+*r* com seus intervalos de confiança e um modelo de texto para escrever o
+resultado.
+
+[{{< fa solid puzzle-piece >}} Abrir o construtor com os dados de Galton](../construa-um-modelo.html?dados=galton&y=child&x=parent){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Seeing Theory — análise de regressão](https://seeing-theory.brown.edu/regression-analysis/index.html)
