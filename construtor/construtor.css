@@ -75,7 +75,7 @@
 .cm-zona.cm-sobre { border-color: var(--bsl-accent, #1c6e8c); background: #eef6f9; }
 .cm-zona-titulo { font-size: .82rem; font-weight: 600; margin-bottom: .35rem; }
 .cm-zona-chips { min-height: 2rem; }
-.cm-vazio { font-size: .85rem; color: var(--bsl-muted, #6c757d); font-style: italic; }
+.cm-vazio { font-size: .85rem; color: #555c63; font-style: italic; }
 .cm-til { text-align: center; font-family: var(--bs-font-monospace, monospace); font-size: 1.3rem; color: var(--bsl-muted, #6c757d); line-height: 1.6; }
 .cm-op { font-family: var(--bs-font-monospace, monospace); font-weight: 700; color: var(--bsl-accent-dark, #144f64); }
 .cm-ops { display: flex; gap: .4rem; margin-top: .55rem; }
