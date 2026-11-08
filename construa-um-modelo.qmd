@@ -1,0 +1,44 @@
+---
+title: "Construa um modelo"
+subtitle: "Arraste as variáveis e veja a fórmula, o teste e a equação que saem delas"
+toc: false
+page-layout: full
+resources:
+  - construtor/construtor.js
+  - construtor/construtor.css
+  - data/girinos_2x2.csv
+  - data/girinos_lagoas.csv
+  - data/galton.csv
+---
+
+Teste *t*, ANOVA, regressão e ANCOVA são o **mesmo modelo linear**,
+*y* = α + β*x* + ε, com preditores diferentes. Escolha um conjunto de dados,
+arraste a **resposta** e os **preditores** e veja qual teste você acabou de
+montar. A equação e o gráfico são calculados no seu navegador; o código em
+R ao lado faz a mesma conta no seu computador.
+
+::: {.callout-tip appearance="simple"}
+**Antes de arrastar, escreva a sua hipótese.** Testar modelo atrás de
+modelo até achar um "significativo" é pescar resultado
+([Aula 7](aula-07-teste-hipoteses/index.qmd)). O construtor conta quantos
+modelos você já tentou.
+:::
+
+```{=html}
+<link rel="stylesheet" href="construtor/construtor.css">
+<div id="construtor" class="cm"></div>
+<script src="construtor/construtor.js"></script>
+```
+
+---
+
+Protótipo. Os dados dos girinos de três lagoas foram simulados em
+[`R/construtor.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/construtor.R);
+a origem dos outros conjuntos está em
+[`data/FONTES.md`](https://github.com/diogoprov/bioestatistica/blob/main/data/FONTES.md).
+Para ir além, veja Lindeløv,
+[*Common statistical tests as linear models*](https://lindeloev.github.io/tests-as-linear/),
+e, em português, a tabela de operadores de fórmula do R (`A:B`, `A*B*C`,
+`A/B`, `(A+B+C)^2`…) em Zeviani (2012),
+[*Semântica para descrever modelos*](https://ridiculas.wordpress.com/2012/07/23/semantica-para-descrever-modelos/),
+no blog Ridículas.
