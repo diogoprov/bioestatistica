@@ -9,6 +9,7 @@ resources:
   - data/girinos_2x2.csv
   - data/girinos_lagoas.csv
   - data/galton.csv
+  - data/girinos_mesocosmos.csv
 ---
 
 Teste *t*, ANOVA, regressão e ANCOVA são o **mesmo modelo linear**,

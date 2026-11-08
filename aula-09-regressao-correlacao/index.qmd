@@ -139,6 +139,14 @@ resultado.
 
 [{{< fa solid puzzle-piece >}} Abrir o construtor com os dados de Galton](../construa-um-modelo.html?dados=galton&y=child&x=parent){.btn .btn-outline-primary}
 
+**Regressão múltipla.** Nos mesocosmos de girinos, a cobertura do dossel
+parece reduzir a massa na metamorfose. Comece com `massa_mg ~ dossel_pct`,
+depois arraste `temperatura_c` para os preditores: o que acontece com o
+efeito do dossel? Veja a inclinação "sozinho" × "com os outros fixos" e o
+VIF, que mede quanto dois preditores se sobrepõem.
+
+[{{< fa solid puzzle-piece >}} Regressão múltipla (mesocosmos)](../construa-um-modelo.html?dados=girinos_mesocosmos&y=massa_mg&x=dossel_pct){.btn .btn-outline-primary}
+
 ## Recursos externos
 
 - [Seeing Theory — análise de regressão](https://seeing-theory.brown.edu/regression-analysis/index.html)
