@@ -330,9 +330,9 @@
       const bj = fit.b[fit.cols.findIndex((c) => c.nome === v.nome)];
       const bs = correl(x, y) * dp(y) / dp(x); // inclinação da regressão simples, só com este preditor
       const yp = x.map((xi, i) => ybar + res[i] + bj * (xi - xbar)); // resíduo parcial, centrado na média de y
-      const W = 320, H = 250, m = { l: 48, r: 10, t: 12, b: 40 };
+      const W = 320, H = 260, m = { l: 58, r: 12, t: 12, b: 50 };
       const svg = document.createElementNS(ns, "svg");
-      svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "cm-svg"); svg.setAttribute("role", "img");
+      svg.setAttribute("viewBox", `0 0 ${W} ${H}`); svg.setAttribute("class", "cm-svg cm-svg-peq"); svg.setAttribute("role", "img");
       svg.setAttribute("aria-label", `Efeito parcial de ${v.nome}: inclinação ${num(bj)} com os outros preditores fixos, contra ${num(bs)} sozinho.`);
       const s = (tag, a, t) => { const e = document.createElementNS(ns, tag); for (const [k, val] of Object.entries(a)) e.setAttribute(k, val); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
       const ext = (a) => { const lo = Math.min(...a), hi = Math.max(...a), p = (hi - lo) * 0.06 || 1; return [lo - p, hi + p]; };
@@ -343,14 +343,14 @@
       const marcas = (a, b) => { const passo = Math.pow(10, Math.floor(Math.log10((b - a) / 5))); const k = [1, 2, 2.5, 5, 10].find((f) => (b - a) / (f * passo) <= 5) * passo; const o = []; for (let val = Math.ceil(a / k) * k; val <= b; val += k) o.push(+val.toFixed(10)); return o; };
       s("line", { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, class: "cm-eixo" });
       s("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: "cm-eixo" });
-      marcas(y0, y1).forEach((t) => s("text", { x: m.l - 5, y: Y(t) + 4, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
-      marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 15, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+      marcas(y0, y1).forEach((t) => s("text", { x: m.l - 6, y: Y(t) + 5, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+      marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 19, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
       yp.forEach((val, i) => s("circle", { cx: X(x[i]), cy: Y(val), r: 3.2, fill: PALETA[0], class: "cm-ponto" }));
       const linha = (b, cls, cor) => s("line", { x1: X(x0), x2: X(x1), y1: Y(ybar + b * (x0 - xbar)), y2: Y(ybar + b * (x1 - xbar)), stroke: cor, class: cls });
       linha(bs, "cm-simples", "#8a8172");
       linha(bj, "cm-ajuste", PALETA[1]);
       s("text", { x: (W + m.l) / 2, y: H - 5, "text-anchor": "middle", class: "cm-rotulo" }, v.nome);
-      s("text", { x: 11, y: (H - m.b + m.t) / 2, transform: `rotate(-90 11 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, `${estado.y} sem os outros`);
+      s("text", { x: 14, y: (H - m.b + m.t) / 2, transform: `rotate(-90 14 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, `${estado.y} sem os outros`);
       return el("figure", {}, svg, el("figcaption", {}, `Parcial: ${num(bj)} por unidade · sozinho: ${num(bs)}`));
     });
     return el("div", { class: "cm-figura" },
@@ -671,10 +671,10 @@
 
   function dispersao({ x, y, xlab, ylab, ref }) {
     const ns = "http://www.w3.org/2000/svg";
-    const W = 320, H = 240, m = { l: 46, r: 10, t: 10, b: 38 };
+    const W = 320, H = 250, m = { l: 56, r: 12, t: 10, b: 48 };
     const svg = document.createElementNS(ns, "svg");
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    svg.setAttribute("class", "cm-svg");
+    svg.setAttribute("class", "cm-svg cm-svg-peq");
     svg.setAttribute("role", "img");
     const s = (tag, attrs, t) => { const e = document.createElementNS(ns, tag); for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v); if (t !== undefined) e.textContent = t; svg.appendChild(e); return e; };
     const ext = (a) => { let lo = Math.min(...a), hi = Math.max(...a); const p = (hi - lo) * 0.06 || 1; return [lo - p, hi + p]; };
@@ -685,13 +685,13 @@
     s("line", { x1: m.l, x2: m.l, y1: m.t, y2: H - m.b, class: "cm-eixo" });
     s("line", { x1: m.l, x2: W - m.r, y1: H - m.b, y2: H - m.b, class: "cm-eixo" });
     const marcas = (a, b) => { const passo = Math.pow(10, Math.floor(Math.log10((b - a) / 5))); const k = [1, 2, 2.5, 5, 10].find((f) => (b - a) / (f * passo) <= 5) * passo; const o = []; for (let v = Math.ceil(a / k) * k; v <= b; v += k) o.push(+v.toFixed(10)); return o; };
-    marcas(y0, y1).forEach((t) => s("text", { x: m.l - 5, y: Y(t) + 4, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
-    marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 15, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+    marcas(y0, y1).forEach((t) => s("text", { x: m.l - 6, y: Y(t) + 5, "text-anchor": "end", class: "cm-tick" }, t.toLocaleString("pt-BR")));
+    marcas(x0, x1).forEach((t) => s("text", { x: X(t), y: H - m.b + 19, "text-anchor": "middle", class: "cm-tick" }, t.toLocaleString("pt-BR")));
     if (ref === "zero") s("line", { x1: m.l, x2: W - m.r, y1: Y(0), y2: Y(0), class: "cm-ref" });
     else s("line", { x1: X(x0), x2: X(x1), y1: Y(x0), y2: Y(x1), class: "cm-ref" });
     x.forEach((v, i) => s("circle", { cx: X(v), cy: Y(y[i]), r: x.length > 300 ? 1.8 : 3.2, fill: PALETA[0], class: "cm-ponto" }));
     s("text", { x: (W + m.l) / 2, y: H - 5, "text-anchor": "middle", class: "cm-rotulo" }, xlab);
-    s("text", { x: 11, y: (H - m.b + m.t) / 2, transform: `rotate(-90 11 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, ylab);
+    s("text", { x: 14, y: (H - m.b + m.t) / 2, transform: `rotate(-90 14 ${(H - m.b + m.t) / 2})`, "text-anchor": "middle", class: "cm-rotulo" }, ylab);
     return svg;
   }
 
@@ -986,8 +986,8 @@
     if (avisoVivo.textContent !== t) avisoVivo.textContent = t;
   }
 
-  function painelResultado() {
-    const box = el("div", { class: "cm-resultado" });
+  function painelResultado(montagem) {
+    const box = el("div", { class: "cm-resultado" }, montagem);
     if (!estado.y) {
       box.append(el("p", { class: "cm-instrucao" }, "Comece arrastando uma variável numérica para a caixa Resposta (y)."));
       return box;
@@ -1003,7 +1003,7 @@
     if (estado.xs.length) estado.tentados.add(f);
     const teste = nomeDoTeste();
     box.append(
-      el("div", { class: "cm-formula" }, el("span", { class: "cm-rot" }, "Fórmula"), el("code", {}, f)),
+      el("div", { class: "cm-formula" }, el("span", { class: "cm-rot" }, "Fórmula no R"), el("code", {}, f)),
       el("div", { class: "cm-teste" },
         el("div", { class: "cm-teste-nome" }, teste.nome),
         el("p", {}, teste.texto, " ", ...teste.aulas.flatMap((a, i) => [i ? " · " : "Veja a ", el("a", { href: a.href }, a.nome)]), "."))
@@ -1090,17 +1090,22 @@
       el("div", { class: "cm-rot" }, "3. Variáveis"),
       poolZona,
       el("div", { class: "cm-legenda-tipos" }, el("span", { class: "cm-chip cm-num cm-mini" }, "num"), " numérica  ", el("span", { class: "cm-chip cm-fator cm-mini" }, "fator"), " categórica"),
+      el("p", { class: "cm-nota" }, "Arraste cada variável para as caixas do passo 4 (ou clique nela).")
+    );
+    // A montagem fica na ordem da fórmula do R: resposta ~ preditores.
+    const montagem = el("div", { class: "cm-montagem" },
       el("div", { class: "cm-rot" }, "4. Monte o modelo"),
-      caixa("Resposta (y)", "arraste uma variável numérica", "y", estado.y ? [chip(varPorNome(estado.y), "y")] : []),
-      el("div", { class: "cm-til" }, "~"),
-      caixa("Preditores (x)", "arraste um ou mais preditores, ou deixe vazio", "x", xsChips),
+      el("div", { class: "cm-barra" },
+        caixa("Resposta (y)", "arraste uma variável numérica", "y", estado.y ? [chip(varPorNome(estado.y), "y")] : []),
+        el("div", { class: "cm-til", "aria-hidden": "true" }, "~"),
+        caixa("Preditores (x)", "arraste um ou mais preditores, ou deixe vazio", "x", xsChips)),
       opBotoes,
       opAjuda,
       estado.y || estado.xs.length ? el("button", { type: "button", class: "btn btn-sm btn-link cm-limpar", onclick: () => { estado.y = null; estado.xs = []; desenha(); } }, "Recomeçar") : null
     );
     const foco = document.activeElement && raiz.contains(document.activeElement)
       ? document.activeElement.closest("[data-foco]")?.getAttribute("data-foco") : null;
-    raiz.replaceChildren(el("div", { class: "cm-grade-layout" }, painel, painelResultado()));
+    raiz.replaceChildren(el("div", { class: "cm-grade-layout" }, painel, painelResultado(montagem)));
     if (foco) raiz.querySelector(`[data-foco="${CSS.escape(foco)}"]`)?.focus();
     anuncia();
   }

@@ -100,7 +100,10 @@
   background: var(--bsl-bg-soft, #f3eee3);
   border-radius: 6px;
   color: var(--bsl-accent-dark, #144f64);
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
+@media (max-width: 560px) { .cm-formula code { font-size: 1.1rem; } }
 .cm-teste {
   margin-top: 1rem;
   border-left: 4px solid #96661f;
@@ -180,3 +183,23 @@
 .cm-traco-simples { border-top: 2px dashed #8a8172; }
 .cm-colin { margin-top: 1rem; }
 .cm-ruim td { background: #fbf0e6; }
+
+/* figuras pequenas (resíduos, efeitos parciais): o viewBox de 320 encolhe na
+   tela, então a letra é maior em unidades do SVG para sair com ~12–13 px */
+.cm-svg-peq .cm-tick { font-size: 15px; }
+.cm-svg-peq .cm-rotulo { font-size: 16px; }
+
+/* montagem do modelo na ordem da fórmula: [resposta] ~ [preditores] */
+.cm-montagem { margin-bottom: 1.1rem; padding-bottom: .9rem; border-bottom: 1px solid var(--bsl-border, #e3dccd); }
+.cm-montagem > .cm-rot:first-child { margin-top: 0; }
+.cm-barra {
+  display: grid;
+  grid-template-columns: minmax(150px, 1fr) auto minmax(0, 2fr);
+  gap: .6rem;
+  align-items: stretch;
+}
+.cm-barra .cm-til { align-self: center; font-size: 2rem; line-height: 1; padding: 0 .1rem; }
+@media (max-width: 560px) {
+  .cm-barra { grid-template-columns: minmax(0, 1fr); }
+  .cm-barra .cm-til { font-size: 1.5rem; }
+}
