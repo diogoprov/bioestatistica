@@ -33,7 +33,7 @@
   ],
   "correta": 1,
   "tempo": 20,
-  "explicacao": "Como P ≤ α, rejeitamos H₀: o resultado é estatisticamente significante."
+  "explicacao": "Como P ≤ α, rejeitamos H₀: o resultado é estatisticamente significativo."
  },
  {
   "pergunta": "O erro do tipo I é:",

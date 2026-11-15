@@ -60,7 +60,7 @@ público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tre
 2. A **regressão** ajusta *y* = α + β*x* por mínimos quadrados; β é a mudança média em *y* para cada unidade de *x*.
 3. **R²** é a fração da variação de *y* explicada pelo modelo; olhe os resíduos antes de interpretar.
 
-**Erro comum:** confiar no valor de *r* sem olhar o gráfico (o quarteto de Anscombe) ou ler correlação como causa.
+**Erro comum:** confiar no valor de *r* sem olhar o gráfico (o quarteto de Anscombe) ou interpretar correlação como causa.
 :::
 
 ## Conteúdo

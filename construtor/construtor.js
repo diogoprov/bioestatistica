@@ -939,7 +939,7 @@
       ];
       if (out.anova) partes.push(
         el("div", { class: "cm-sub" }, el("code", {}, "anova(modelo)")),
-        el("p", { class: "cm-nota" }, "Um teste F por termo. Com fatores de vários níveis, é aqui que se lê se o fator importa como um todo.",
+        el("p", { class: "cm-nota" }, "Um teste F por termo. Com fatores de vários níveis, é este teste que se interpreta para saber se o fator importa como um todo.",
           estado.xs.length > 1 ? " Atenção: a anova() testa os termos em sequência (soma de quadrados tipo I), e cada F só desconta os termos que vêm antes dele. Com preditores correlacionados ou grupos de tamanhos diferentes, mudar a ordem muda os F." : ""),
         pre(out.anova));
       if (out.drop1 && estado.xs.length > 1) partes.push(

@@ -485,7 +485,7 @@ fig_valor_critico(gl = 5)
 
 **Definição de valor crítico:** para a distribuição normal padrão, um
 valor crítico é o escore-Z no limite que separa os escores-Z
-significantemente baixos ou significantemente altos.
+significativamente baixos ou significativamente altos.
 
 ```{r}
 #| fig-width: 9

@@ -695,7 +695,7 @@ coef(modelo)
 
 ---
 
-## Como ler a inclinação
+## Como interpretar a inclinação
 
 ::: {.definicao}
 Compare famílias cujos pais diferem em **1 polegada** de altura média: os

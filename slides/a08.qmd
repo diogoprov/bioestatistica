@@ -977,7 +977,7 @@ referência: Controle):
 3. Qual era a hipótese nula que o teste *t* estaria avaliando? E qual a
    hipótese nula correspondente no modelo linear?
 4. Com um nível de significância de α = 0,05, o fármaco teve um efeito
-   estatisticamente significante? Por quê?
+   estatisticamente significativo? Por quê?
 :::
 
 ---
@@ -993,7 +993,7 @@ referência: Controle):
 3. Qual era a hipótese nula que o teste *t* estaria avaliando?
    - H₀: $\mu_{Controle} = \mu_{Tratado}$
    - E qual a hipótese nula correspondente no modelo linear? **H₀: β = 0**
-4. Com α = 0,05, o fármaco teve um efeito estatisticamente significante?
+4. Com α = 0,05, o fármaco teve um efeito estatisticamente significativo?
    - **Sim**, pois o valor de *P* (0,003) do coeficiente GrupoTratado é
      menor que 0,05.
 

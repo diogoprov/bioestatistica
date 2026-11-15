@@ -773,9 +773,9 @@ $P \leq \alpha$.
 - **Decisão:** se o valor de *P* for menor ou igual ao nível de
   significância α, você rejeita H₀.
   - **Se $P \leq \alpha$ → rejeita-se H₀** (resultado estatisticamente
-    significante)
+    significativo)
   - **Se $P > \alpha$ → não se rejeita H₀** (resultado não
-    estatisticamente significante)
+    estatisticamente significativo)
 
 ---
 
@@ -1009,15 +1009,15 @@ Votem sozinhos, discutam com quem está ao lado e votem de novo.
 
 ::: {.fragment}
 ::: {.definicao}
-**Alternativa 3.** Um resultado "significante" ao lado de um "não
-significante" não prova que os dois efeitos são diferentes. É preciso
+**Alternativa 3.** Um resultado "significativo" ao lado de um "não
+significativo" não prova que os dois efeitos são diferentes. É preciso
 estimar e testar a diferença A − B.
 :::
 :::
 
 ---
 
-## A diferença entre "significante" e "não significante" não é significante
+## A diferença entre "significativo" e "não significativo" não é significativa
 
 ```{r}
 #| fig-width: 10
@@ -1081,7 +1081,7 @@ rochoso). O `t.test()` usa por padrão a fórmula com variâncias separadas
 
 ---
 
-## Lendo a saída do R
+## Interpretando a saída do R
 
 ```{r}
 tt_pinus <- t.test(altura ~ solo, data = pinus, alternative = "greater")
@@ -1259,7 +1259,7 @@ fig_pinus_boxplot(pinus)
   rejeitá-la.
 - A decisão é feita comparando o **valor de *P*** com o **nível de
   significância (α)**.
-- Se $P \leq \alpha$, o resultado é estatisticamente significante e
+- Se $P \leq \alpha$, o resultado é estatisticamente significativo e
   rejeitamos H₀.
 - Relate o tamanho do efeito com o seu IC: o IC mostra a decisão do teste
   e quanto o efeito pode valer.

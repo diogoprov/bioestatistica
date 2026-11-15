@@ -59,7 +59,7 @@ público, via Wikimedia Commons.
 2. **Valor de *P***: probabilidade de um resultado tão ou mais extremo que o observado, supondo H₀ verdadeira.
 3. **Erro tipo I** (rejeitar H₀ verdadeira, α) e **tipo II** (não rejeitar H₀ falsa, β); o **poder** (1 − β) cresce com *n* e com o tamanho do efeito.
 
-**Erro comum:** "aceitar H₀", ou ler *P* > 0,05 como prova de que não há efeito. O certo é "não rejeitar H₀".
+**Erro comum:** "aceitar H₀", ou interpretar *P* > 0,05 como prova de que não há efeito. O certo é "não rejeitar H₀".
 :::
 
 ## Conteúdo

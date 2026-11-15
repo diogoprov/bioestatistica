@@ -79,7 +79,7 @@ silhuetas, do PhyloPic (CC0).
 - Pense-pareie-compartilhe: hipóteses para o peixe nativo e a espécie
   invasora.
 - [Kahoot: Teste t](https://create.kahoot.it/details/095cb8f0-fc9f-437a-9449-105b02de0750).
-- Desafio do coeficiente: ler a saída de um modelo linear.
+- Desafio do coeficiente: interpretar a saída de um modelo linear.
 - [Kahoot: Introdução aos Modelos Lineares](https://create.kahoot.it/details/dfd7caf5-696f-4d48-8d54-cdfb347ae74c).
 
 ## Teste-se

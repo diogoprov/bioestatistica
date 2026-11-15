@@ -423,7 +423,7 @@ fig_ic_teste <- function(t_obs = 1.80, n = 30, s = 5, mu0 = 30) {
 }
 
 # ---------------------------------------------------------------------------
-# Gelman & Stern (2006): A é "significante", B não, mas a diferença A − B
+# Gelman & Stern (2006): A é "significativo", B não, mas a diferença A − B
 # também não é. Efeitos em cm, cada um com erro padrão de 1 cm.
 # ---------------------------------------------------------------------------
 dados_gelman_stern <- function(a = 2.5, b = 1, ep = 1) {
