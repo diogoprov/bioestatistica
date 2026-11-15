@@ -973,6 +973,70 @@ fig_cetico_otimista()
 
 ---
 
+## Teste e intervalo de confiança contam a mesma história
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.2
+#| fig-alt: "Intervalo de confiança de 95% da altura média das plantas com o fertilizante, de 29,8 a 33,5 cm, com a média de 31,6 cm no centro. A linha tracejada vermelha de H0, em 30 cm, cai dentro do intervalo."
+fig_ic_teste()
+```
+
+- Supondo *s* = 5 cm, o *t* = 1,80 do cético vira uma média de
+  `r num_br(ic_fertilizante()[["media"]], 1)` cm. O IC de 95% inclui os 30 cm de H₀.
+- **Teste bicaudal a 5% e IC de 95% sempre concordam:** não rejeitamos H₀
+  exatamente quando o valor de H₀ cai dentro do IC.
+- O IC diz mais que o "sim ou não": o efeito do fertilizante pode ir de
+  quase nada (−0,2 cm) a +3,5 cm. **Relate o efeito com o seu IC, não só
+  o *P*.**
+
+---
+
+## Pergunta para a turma {.smaller}
+
+::: {.atividade}
+Dois fertilizantes foram testados, cada um contra o seu controle. O
+fertilizante A aumentou a altura em 2,5 cm (*P* = 0,01); o B, em 1,0 cm
+(*P* = 0,32). O que podemos concluir?
+
+1. A funciona e B não; logo, A é melhor que B.
+2. A é melhor que B, porque o *P* de A é menor.
+3. Para comparar A com B, precisamos testar a diferença entre eles.
+4. Nada, porque um dos testes não foi significativo.
+
+Votem sozinhos, discutam com quem está ao lado e votem de novo.
+:::
+
+::: {.fragment}
+::: {.definicao}
+**Alternativa 3.** Um resultado "significante" ao lado de um "não
+significante" não prova que os dois efeitos são diferentes. É preciso
+estimar e testar a diferença A − B.
+:::
+:::
+
+---
+
+## A diferença entre "significante" e "não significante" não é significante
+
+```{r}
+#| fig-width: 10
+#| fig-height: 3.0
+#| fig-alt: "Estimativas com IC de 95%. Fertilizante A: 2,5 cm, IC que não inclui o zero, P = 0,01. Fertilizante B: 1,0 cm, IC que inclui o zero, P = 0,32. Diferença A − B: 1,5 cm, IC de −1,3 a 4,3 cm, que inclui o zero, P = 0,29."
+fig_gelman_stern()
+```
+
+- A diferença entre os fertilizantes (1,5 cm) tem um IC que inclui o zero:
+  **não há evidência de que A seja melhor que B.**
+- O limiar de 0,05 é arbitrário. Compare os efeitos e seus IC, não a
+  posição de cada *P* em relação ao limiar.
+
+::: {.ref}
+Dados fictícios. Inspirado no exemplo de Gelman & Stern 2006.
+:::
+
+---
+
 ## De volta aos *Pinus*: os dados
 
 ```{r}
@@ -1197,6 +1261,8 @@ fig_pinus_boxplot(pinus)
   significância (α)**.
 - Se $P \leq \alpha$, o resultado é estatisticamente significante e
   rejeitamos H₀.
+- Relate o tamanho do efeito com o seu IC: o IC mostra a decisão do teste
+  e quanto o efeito pode valer.
 :::
 
 ---
@@ -1216,6 +1282,7 @@ fig_pinus_boxplot(pinus)
 
 ::: {.nota}
 - Fisher, R.A. 1925. *Statistical methods for research workers*. Oliver & Boyd.
+- Gelman, A. & Stern, H. 2006. [The difference between "significant" and "not significant" is not itself statistically significant](https://doi.org/10.1198/000313006X152649). *The American Statistician* 60:328–331.
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*.
 - Hubbard, R. & Bayarri, M.J. 2003. [Confusion over measures of evidence (*p*'s) versus errors (α's) in classical statistical testing](https://doi.org/10.1198/0003130031856). *The American Statistician* 57:171–178.
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*.

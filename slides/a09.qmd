@@ -674,27 +674,6 @@ Inspirado na Figura 5.12 de Quinn & Keough (p. 100).
 
 ---
 
-## Estimando os parâmetros {.medio}
-
-| Parâmetro | Estimativa OLS | Erro padrão |
-|---|---|---|
-| $\beta_1$ (*slope*) | $b_1 = \dfrac{\sum_{i=1}^{n} \left[(x_i - \bar{x})(y_i - \bar{y})\right]}{\sum_{i=1}^{n} (x_i - \bar{x})^2}$ | $s_{b_1} = \sqrt{\dfrac{MS_{Residual}}{\sum_{i=1}^{n} (x_i - \bar{x})^2}}$ |
-| $\beta_0$ (intercepto) | $b_0 = \bar{y} - b_1 \bar{x}$ | $s_{b_0} = \sqrt{MS_{Residual} \left[\dfrac{1}{n} + \dfrac{\bar{x}^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}\right]}$ |
-| $\varepsilon_i$ (resíduo) | $e_i = y_i - \hat{y}_i$ | $\sqrt{MS_{Residual}}$ (aprox.) |
-
-- **Numerador de $b_1$:** diferença entre cada x e a sua média vezes a
-  diferença entre cada y e a sua média. **Denominador:** diferença entre
-  cada x e a sua média, ao quadrado.
-- **$b_0$:** média de Y menos o *slope* vezes a média de X.
-- **$e_i$:** cada valor individual de Y menos o valor predito pelo modelo
-  (a reta).
-
-::: {.ref}
-Inspirado na Tabela 5.2 de Quinn & Keough 2002.
-:::
-
----
-
 ## Estimando os parâmetros: os dados de Galton
 
 ```{r}
@@ -713,6 +692,39 @@ xb <- mean(galton$parent); yb <- mean(galton$child)
 modelo <- lm(child ~ parent, data = galton)
 coef(modelo)
 ```
+
+---
+
+## Como ler a inclinação
+
+::: {.definicao}
+Compare famílias cujos pais diferem em **1 polegada** de altura média: os
+filhos das famílias de pais mais altos são, **em média**,
+`r num_br(cf["parent", "Estimate"], 2)` polegada mais altos
+(IC 95%: `r num_br(confint(m_galton)["parent", 1], 2)` a
+`r num_br(confint(m_galton)["parent", 2], 2)`).
+:::
+
+- A inclinação é uma **comparação entre grupos**, na unidade de Y por
+  unidade de X, e não uma promessa sobre cada indivíduo.
+- Ela vale dentro da faixa de X observada; extrapolar é arriscado.
+- Relate a inclinação com o seu IC. O *P* do teste a seguir diz só se o
+  IC inclui o zero.
+
+---
+
+## A regressão recupera a inclinação verdadeira?
+
+```{r}
+#| fig-width: 11
+#| fig-height: 4.4
+#| fig-alt: "À esquerda, um experimento simulado com 30 girinos: tempo até a metamorfose cai com a temperatura da água; a reta ajustada, com inclinação −3,67, fica perto da reta verdadeira tracejada, de −3,5. À direita, histograma das inclinações de 1000 experimentos simulados, centrado em −3,5, com a maioria entre −4 e −3; o IC de 95% incluiu o valor verdadeiro em 94% deles."
+fig_recupera_inclinacao()
+```
+
+Simulamos girinos com uma regra conhecida (β = −3,5 dias por °C) e
+estimamos β a partir dos dados. Cada experimento erra um pouco, mas as
+estimativas se concentram no valor verdadeiro (dados simulados).
 
 ---
 
@@ -775,29 +787,7 @@ Tabela de ANOVA generalizada para modelos lineares; inspirada na Tabela
 
 ---
 
-## Particionando a variância numa regressão
-
-- No entanto, a SQ é dependente do número de observações, e aumenta com o
-  aumento das observações
-- Logo, precisamos de uma medida de variabilidade *independente* do número
-  de observações
-  - Este é o **quadrado médio** (*mean squares*)
-- Porém, o quadrado médio (QM) não tem a mesma propriedade aditiva, como a
-  SQ
-  - $QM_{regressão} + QM_{resíduos} \neq QM_{total}$
-- O $QM_{resíduos}$ estima a variância do erro ($\sigma^2_\varepsilon$)
-
----
-
-## Tabela de ANOVA para a regressão linear simples
-
-| Fonte de variação | SQ | gl | QM | QM esperado |
-|---|---|---|---|---|
-| Regressão | $\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2$ | 1 | $\dfrac{\sum (\hat{y}_i - \bar{y})^2}{1}$ | $\sigma^2_\varepsilon + \beta_1^2 \sum (x_i - \bar{x})^2$ |
-| Residual | $\sum_{i=1}^{n} (y_i - \hat{y}_i)^2$ | $n - 2$ | $\dfrac{\sum (y_i - \hat{y}_i)^2}{n - 2}$ | $\sigma^2_\varepsilon$ |
-| Total | $\sum_{i=1}^{n} (y_i - \bar{y})^2$ | $n - 1$ | | |
-
-**Nos dados de Galton:**
+## Tabela de ANOVA nos dados de Galton
 
 | Fonte de variação | SQ | gl | QM | F |
 |---|---|---|---|---|
@@ -805,9 +795,9 @@ Tabela de ANOVA generalizada para modelos lineares; inspirada na Tabela
 | Residual | `r num_br(av["Residuals", "Sum Sq"], 1)` | `r av["Residuals", "Df"]` | `r num_br(av["Residuals", "Mean Sq"], 2)` | |
 | Total | `r num_br(sum(av[["Sum Sq"]]), 1)` | `r sum(av[["Df"]])` | | |
 
-::: {.ref}
-Inspirado na Tabela 5.3 de Quinn & Keough. F = `r num_br(av["parent", "F value"], 2)` = *t*².
-:::
+- O quadrado médio é a SQ dividida pelos seus graus de liberdade:
+  $QM = SQ / gl$. O $QM_{resíduos}$ estima a variância do erro.
+- $F = QM_{regressão} / QM_{resíduos}$ = `r num_br(av["parent", "F value"], 2)` = *t*².
 
 ---
 
@@ -1171,6 +1161,55 @@ Inspirado na Figura 6.9 de Quinn & Keough (dados de Loyn 1987).
 ## Kahoot! {.secao}
 
 [Kahoot: Correlação, regressão e armadilhas na análise de dados](https://create.kahoot.it/details/747d4b86-8cb4-4d54-93af-6aba4f7c3a0d)
+
+# Para saber mais {.secao}
+
+## Estimando os parâmetros: as fórmulas {.medio}
+
+| Parâmetro | Estimativa OLS | Erro padrão |
+|---|---|---|
+| $\beta_1$ (*slope*) | $b_1 = \dfrac{\sum_{i=1}^{n} \left[(x_i - \bar{x})(y_i - \bar{y})\right]}{\sum_{i=1}^{n} (x_i - \bar{x})^2}$ | $s_{b_1} = \sqrt{\dfrac{MS_{Residual}}{\sum_{i=1}^{n} (x_i - \bar{x})^2}}$ |
+| $\beta_0$ (intercepto) | $b_0 = \bar{y} - b_1 \bar{x}$ | $s_{b_0} = \sqrt{MS_{Residual} \left[\dfrac{1}{n} + \dfrac{\bar{x}^2}{\sum_{i=1}^{n} (x_i - \bar{x})^2}\right]}$ |
+| $\varepsilon_i$ (resíduo) | $e_i = y_i - \hat{y}_i$ | $\sqrt{MS_{Residual}}$ (aprox.) |
+
+- **Numerador de $b_1$:** diferença entre cada x e a sua média vezes a
+  diferença entre cada y e a sua média. **Denominador:** diferença entre
+  cada x e a sua média, ao quadrado.
+- **$b_0$:** média de Y menos o *slope* vezes a média de X.
+- **$e_i$:** cada valor individual de Y menos o valor predito pelo modelo
+  (a reta).
+
+::: {.ref}
+Inspirado na Tabela 5.2 de Quinn & Keough 2002.
+:::
+
+---
+
+## O quadrado médio
+
+- A SQ depende do número de observações: aumenta quando há mais
+  observações
+- Logo, precisamos de uma medida de variabilidade *independente* do número
+  de observações
+  - Este é o **quadrado médio** (*mean squares*)
+- Porém, o quadrado médio (QM) não tem a mesma propriedade aditiva, como a
+  SQ
+  - $QM_{regressão} + QM_{resíduos} \neq QM_{total}$
+- O $QM_{resíduos}$ estima a variância do erro ($\sigma^2_\varepsilon$)
+
+---
+
+## Tabela de ANOVA: as fórmulas
+
+| Fonte de variação | SQ | gl | QM | QM esperado |
+|---|---|---|---|---|
+| Regressão | $\sum_{i=1}^{n} (\hat{y}_i - \bar{y})^2$ | 1 | $\dfrac{\sum (\hat{y}_i - \bar{y})^2}{1}$ | $\sigma^2_\varepsilon + \beta_1^2 \sum (x_i - \bar{x})^2$ |
+| Residual | $\sum_{i=1}^{n} (y_i - \hat{y}_i)^2$ | $n - 2$ | $\dfrac{\sum (y_i - \hat{y}_i)^2}{n - 2}$ | $\sigma^2_\varepsilon$ |
+| Total | $\sum_{i=1}^{n} (y_i - \bar{y})^2$ | $n - 1$ | | |
+
+::: {.ref}
+Inspirado na Tabela 5.3 de Quinn & Keough.
+:::
 
 ---
 

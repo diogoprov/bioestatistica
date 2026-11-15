@@ -387,3 +387,50 @@ fig_rota <- function() {
                       arrow = arrow(ends = "both", length = unit(.22, "cm"), type = "closed"))
   g
 }
+
+# ---------------------------------------------------------------------------
+# A regressão recupera a inclinação? Girinos criados entre 18 e 30 °C, com
+# tempo até a metamorfose = 138 − 3,5 × temperatura + erro (dados simulados;
+# a história vem da ficha de regressão do curso). Repetimos o experimento
+# muitas vezes e vemos onde caem as inclinações estimadas.
+# ---------------------------------------------------------------------------
+girinos_temperatura <- function(n = 30, a = 138, b = -3.5, ruido = 6) {
+  temperatura <- runif(n, 18, 30)
+  tibble::tibble(temperatura, tempo = a + b * temperatura + rnorm(n, 0, ruido))
+}
+
+recupera_inclinacao <- function(n = 30, b = -3.5, ruido = 6, reps = 1000, seed = 11) {
+  set.seed(seed)
+  purrr::map_dfr(seq_len(reps), function(i) {
+    m <- lm(tempo ~ temperatura, data = girinos_temperatura(n, b = b, ruido = ruido))
+    ic <- confint(m)["temperatura", ]
+    tibble::tibble(rep = i, b_est = coef(m)[["temperatura"]], li = ic[[1]], ls = ic[[2]])
+  }) |>
+    mutate(acerta = li <= b & ls >= b)
+}
+
+fig_recupera_inclinacao <- function(n = 30, b = -3.5, ruido = 6, reps = 1000, seed = 11) {
+  set.seed(seed)
+  um <- girinos_temperatura(n, b = b, ruido = ruido)
+  b1 <- coef(lm(tempo ~ temperatura, data = um))[["temperatura"]]
+  sim <- recupera_inclinacao(n, b, ruido, reps, seed + 1)
+  p1 <- ggplot(um, aes(temperatura, tempo)) +
+    geom_abline(intercept = 138, slope = b, colour = cores[["texto"]],
+                linetype = "dashed", linewidth = 1) +
+    geom_smooth(method = "lm", formula = y ~ x, se = FALSE, colour = vermelho, linewidth = 1.3) +
+    geom_point(shape = 21, fill = azul_ponto, colour = "white", size = 3) +
+    labs(x = "Temperatura da água (°C)", y = "Tempo até a\nmetamorfose (dias)",
+         title = paste0("Um experimento: b = ", num_br(b1, 2)),
+         subtitle = "tracejada: reta verdadeira · vermelha: reta ajustada") +
+    tema_aula(base = 14)
+  p2 <- ggplot(sim, aes(b_est)) +
+    geom_histogram(binwidth = .1, fill = azul_ponto, colour = cores[["papel"]]) +
+    geom_vline(xintercept = b, colour = cores[["texto"]], linetype = "dashed", linewidth = 1) +
+    labs(x = "Inclinação estimada (dias por °C)", y = "Número de experimentos",
+         title = paste0(reps, " experimentos: b médio = ", num_br(mean(sim$b_est), 2)),
+         subtitle = paste0("IC de 95% incluiu o β verdadeiro em ",
+                           round(100 * mean(sim$acerta)), "% deles")) +
+    scale_x_continuous(breaks = seq(-5, -2, .5)) +
+    tema_aula(base = 14)
+  p1 + p2 + fundo_papel
+}

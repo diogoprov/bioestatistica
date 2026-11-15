@@ -125,6 +125,14 @@ Compare `n = 10` com o padrão (`n = 40`) e troque `seed`. Quanto o *r* varia em
 fig_correlacoes(n = 10)
 ```
 
+A regressão recupera a inclinação verdadeira? Os girinos foram simulados
+com β = −3,5 dias por °C. Diminua `n` para 10 ou aumente o `ruido` para 15:
+o que acontece com o histograma das inclinações estimadas?
+
+```{webr}
+fig_recupera_inclinacao(n = 30, ruido = 6, reps = 300)
+```
+
 O código dos quatro padrões de correlação está em
 [`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).

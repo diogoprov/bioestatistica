@@ -387,3 +387,69 @@ fig_permutacao <- function(d = dados_pinus(), b = 5000, seed = 12) {
                            "P = ", num_br(p, 3), " (proporção à direita)")) +
     tema_aula(14)
 }
+
+# ---------------------------------------------------------------------------
+# Teste e IC contam a mesma história: o fertilizante (t = 1,80, n = 30),
+# supondo s = 5 cm. O IC bicaudal de 95% inclui 30 cm exatamente quando o
+# teste bicaudal não rejeita H0 a 5%.
+# ---------------------------------------------------------------------------
+ic_fertilizante <- function(t_obs = 1.80, n = 30, s = 5, mu0 = 30, nivel = .95) {
+  ep <- s / sqrt(n)
+  media <- mu0 + t_obs * ep
+  tc <- qt(1 - (1 - nivel) / 2, n - 1)
+  c(media = media, ep = ep, li = media - tc * ep, ls = media + tc * ep,
+    p = 2 * pt(-abs(t_obs), n - 1))
+}
+
+fig_ic_teste <- function(t_obs = 1.80, n = 30, s = 5, mu0 = 30) {
+  ic <- ic_fertilizante(t_obs, n, s, mu0)
+  ggplot() +
+    annotate("rect", xmin = ic[["li"]], xmax = ic[["ls"]], ymin = -Inf, ymax = Inf,
+             fill = cores[["neutro_cl"]], alpha = .6) +
+    geom_vline(xintercept = mu0, linetype = "dashed", colour = vermelho, linewidth = 1) +
+    annotate("segment", x = ic[["li"]], xend = ic[["ls"]], y = 0, yend = 0,
+             colour = cores[["accent"]], linewidth = 2.2) +
+    annotate("point", x = ic[["media"]], y = 0, size = 6, shape = 21,
+             fill = cores[["accent"]], colour = "white", stroke = 1.2) +
+    annotate("text", x = mu0, y = .62, label = "H0: µ = 30 cm", hjust = 1.05,
+             colour = vermelho, size = 5) +
+    annotate("text", x = ic[["media"]], y = -.38, size = 5, colour = cores[["texto"]],
+             label = paste0("média = ", num_br(ic[["media"]], 1), " cm · IC 95%: ",
+                            num_br(ic[["li"]], 1), " a ", num_br(ic[["ls"]], 1), " cm")) +
+    scale_y_continuous(limits = c(-.8, .8), breaks = NULL) +
+    scale_x_continuous(limits = c(28.5, 35), breaks = 28:35) +
+    labs(x = "Altura média das plantas com o fertilizante (cm)", y = NULL) +
+    tema_aula()
+}
+
+# ---------------------------------------------------------------------------
+# Gelman & Stern (2006): A é "significante", B não, mas a diferença A − B
+# também não é. Efeitos em cm, cada um com erro padrão de 1 cm.
+# ---------------------------------------------------------------------------
+dados_gelman_stern <- function(a = 2.5, b = 1, ep = 1) {
+  tibble::tibble(
+    termo = factor(c("Fertilizante A", "Fertilizante B", "Diferença A − B"),
+                   levels = rev(c("Fertilizante A", "Fertilizante B", "Diferença A − B"))),
+    est = c(a, b, a - b),
+    ep = c(ep, ep, sqrt(2) * ep)
+  ) |>
+    mutate(li = est - 1.96 * ep, ls = est + 1.96 * ep,
+           p = 2 * pnorm(-abs(est / ep)),
+           rotulo = paste0("P = ", num_br(p, 2)))
+}
+
+fig_gelman_stern <- function(d = dados_gelman_stern()) {
+  ggplot(d, aes(est, termo)) +
+    geom_vline(xintercept = 0, linetype = "dashed", colour = cores[["neutro"]], linewidth = 1) +
+    geom_errorbar(aes(xmin = li, xmax = ls, colour = p < .05), width = .18,
+                  linewidth = 1.6, orientation = "y") +
+    geom_point(aes(fill = p < .05), shape = 21, colour = "white", size = 5, stroke = 1.2) +
+    geom_text(aes(x = ls, label = rotulo), hjust = -.15, size = 5, colour = cores[["texto"]]) +
+    scale_colour_manual(values = c(`TRUE` = cores[["accent"]], `FALSE` = cores[["neutro"]]),
+                        guide = "none") +
+    scale_fill_manual(values = c(`TRUE` = cores[["accent"]], `FALSE` = cores[["neutro"]]),
+                      guide = "none") +
+    scale_x_continuous(limits = c(-2.5, 6.8), breaks = -2:5) +
+    labs(x = "Efeito na altura das plantas (cm), com IC de 95%", y = NULL) +
+    tema_aula()
+}
