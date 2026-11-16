@@ -80,8 +80,7 @@ Commons.
   o significado de F e o que a ANOVA conclui.
 - Decodificando a tabela de ANOVA (quatro grupos, cinco observações cada).
 - Interpretando uma ANOVA do mundo real (20 minutos): esponjas e mangue.
-- Aula prática: ANOVA de dois fatores no jamovi com os dados dos girinos
-  ([`data/girinos_2x2.csv`](https://github.com/diogoprov/bioestatistica/tree/main/data)).
+- [Ficha prática](#ficha-prática-predador-alimento-e-a-massa-dos-girinos): ANOVA de dois fatores com os girinos, predador e alimento, no navegador.
 - [Kahoot: ANOVA, ANCOVA e testes de hipóteses](https://create.kahoot.it/details/07605bb6-f29e-4e74-92a5-3390ee797242).
 
 ## Teste-se
@@ -133,6 +132,189 @@ fig_variacao(n = 30)
 O código da variação entre e dentro dos grupos está em
 [`R/aula11.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula11.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
+
+## Ficha prática: predador, alimento e a massa dos girinos
+
+Uma prática guiada de cerca de 90 minutos, toda no navegador. Ela segue o
+ciclo PPDAC e treina o ponto central da ANOVA de dois fatores: **testar a
+interação primeiro** e só então interpretar os efeitos de cada fator. Os
+dados são fictícios, criados para esta aula prática.
+
+### 1. Problema
+
+Girinos que sentem a pista química de um predador costumam ficar menos
+ativos: escapam de ser comidos, mas comem menos e crescem menos. Num
+experimento, girinos foram criados com ou sem pista de predador na água e
+com alimento alto ou baixo, e mediu-se a **massa na metamorfose** (mg).
+
+- **Pergunta:** a pista de predador e a falta de alimento reduzem a massa?
+  O efeito do predador depende da quantidade de alimento?
+- **Hipótese:** o predador reduz a massa, e a redução é maior quando o
+  alimento é escasso (interação).
+
+### 2. Dados
+
+São 32 girinos, 8 em cada uma das quatro combinações. O delineamento é
+**fatorial 2 × 2** e **balanceado** (o mesmo *n* em todas as combinações).
+
+| Variável | Tipo | Papel |
+|---|---|---|
+| `individuo` | identificador | — |
+| `predador` | categórica (Ausente, Presente) | fator 1 |
+| `alimento` | categórica (Alto, Baixo) | fator 2 |
+| `massa_mg` | contínua | resposta |
+
+**Antes de rodar o código, no papel:** desenhe o gráfico de interação que
+você espera, com o alimento no eixo *x* e uma linha para cada nível de
+predador. As linhas são paralelas?
+
+```{webr}
+girinos <- read.csv("data/girinos_2x2.csv")
+head(girinos)
+table(girinos$predador, girinos$alimento)
+```
+
+### 3. Análise
+
+**Médias de cada combinação.**
+
+```{webr}
+aggregate(massa_mg ~ predador + alimento, data = girinos,
+          FUN = function(x) round(c(media = mean(x), dp = sd(x)), 1))
+```
+
+**Gráfico de interação.** Cada ponto é a média de uma combinação, com o
+seu IC de 95%; os pontos claros são os girinos.
+
+```{webr}
+ic95 <- function(x) {
+  e <- qt(.975, length(x) - 1) * sd(x) / sqrt(length(x))
+  data.frame(y = mean(x), ymin = mean(x) - e, ymax = mean(x) + e)
+}
+ggplot(girinos, aes(alimento, massa_mg, colour = predador, group = predador)) +
+  geom_point(position = position_jitterdodge(jitter.width = .1, dodge.width = .3),
+             alpha = .35) +
+  stat_summary(fun.data = ic95, position = position_dodge(.3),
+               size = .8) +
+  stat_summary(fun = mean, geom = "line", position = position_dodge(.3)) +
+  labs(x = "Alimento", y = "Massa na metamorfose (mg)", colour = "Predador")
+```
+
+**O modelo.** O `*` inclui os dois efeitos principais e a interação. Na
+tabela de ANOVA, **comece pela linha da interação**
+(`predador:alimento`), a última antes dos resíduos.
+
+```{webr}
+m <- lm(massa_mg ~ predador * alimento, data = girinos)
+anova(m)
+```
+
+**Tamanho do efeito.** O η² parcial é a fração da variação que cada termo
+explica, descontados os outros termos: SQ do termo / (SQ do termo + SQ dos
+resíduos).
+
+```{webr}
+tab <- anova(m)
+sq <- tab[["Sum Sq"]]
+eta2p <- sq[1:3] / (sq[1:3] + sq[4])
+round(setNames(eta2p, rownames(tab)[1:3]), 2)
+```
+
+**Onde estão as diferenças?** Com interação, compare as combinações entre
+si. O teste de Tukey corrige para as seis comparações. Olhe com atenção
+duas delas: o efeito do predador com alimento alto
+(`Presente:Alto-Ausente:Alto`) e com alimento baixo
+(`Presente:Baixo-Ausente:Baixo`).
+
+```{webr}
+TukeyHSD(aov(massa_mg ~ predador * alimento, data = girinos),
+         which = "predador:alimento")
+```
+
+**Pressupostos.** Os resíduos devem ter variância parecida nas quatro
+combinações (gráfico da esquerda) e distribuição aproximadamente normal
+(gráfico da direita).
+
+```{webr}
+par(mfrow = c(1, 2))
+plot(m, which = 1:2)
+```
+
+::: {.callout-tip collapse="true"}
+## Confira seus resultados
+
+| Combinação | Massa média (mg) |
+|---|:---:|
+| Sem predador, alimento alto | 117,0 |
+| Com predador, alimento alto | 103,2 |
+| Sem predador, alimento baixo | 107,3 |
+| Com predador, alimento baixo | 56,4 |
+
+| Termo | *F* (gl = 1 e 28) | *P* | η² parcial |
+|---|:---:|:---:|:---:|
+| `predador` | 99,6 | < 0,001 | 0,78 |
+| `alimento` | 76,3 | < 0,001 | 0,73 |
+| `predador:alimento` | **32,9** | **< 0,001** | **0,54** |
+
+Efeito do predador (Tukey): −13,8 mg com alimento alto (IC de 95%: −26,3
+a −1,2) e −50,9 mg com alimento baixo (IC de 95%: −63,4 a −38,4).
+:::
+
+### 4. Interpretação
+
+- **A interação vem primeiro.** Ela foi significativa: o efeito do
+  predador depende do alimento. Por isso, não faz sentido dizer "o
+  predador reduz a massa em X mg" sem dizer em qual nível de alimento.
+- **Descreva a interação com números.** Com alimento alto, o predador
+  reduziu a massa em cerca de 14 mg; com alimento baixo, em cerca de 51
+  mg, quase quatro vezes mais. É isso que as linhas não paralelas mostram.
+- **Os efeitos principais, sozinhos, enganam.** O *F* do predador é
+  grande, mas resume duas situações muito diferentes numa média só.
+- **η² parcial.** A interação explica, sozinha, mais da metade da variação
+  que sobra depois dos efeitos principais. Ela não é um detalhe.
+- **Por que o balanceamento importa.** Com o mesmo *n* em todas as
+  combinações, a ordem dos fatores no modelo não muda a tabela de ANOVA.
+  Com *n* desiguais, ou com uma covariável como na ANCOVA, muda.
+
+### 5. Conclusão
+
+Complete o parágrafo:
+
+> A pista de predador e o alimento interagiram no efeito sobre a massa na
+> metamorfose (*F* = \_\_\_, gl = 1 e 28, *P* \_\_\_; η² parcial = \_\_\_). Com
+> alimento alto, o predador reduziu a massa em \_\_\_ mg (IC de 95%: \_\_\_ a
+> \_\_\_); com alimento baixo, em \_\_\_ mg (IC de 95%: \_\_\_ a \_\_\_).
+> Biologicamente, isso sugere que \_\_\_ (uma ou duas frases; pense no custo
+> de se esconder quando a comida é escassa).
+
+**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico de
+interação, o parágrafo e as respostas.
+
+1. Seu desenho acertou? As linhas ficaram paralelas?
+2. Por que não se interpretam os efeitos principais quando a interação é
+   significativa?
+3. Em quais combinações o teste de Tukey não encontrou diferença? Isso
+   combina com o gráfico?
+4. Os pressupostos foram atendidos? Como você sabe?
+
+| Critério | Pontos |
+|---|:---:|
+| Gráfico de interação correto e descrição do padrão | 2 |
+| Testa a interação primeiro e tira a conclusão certa sobre ela | 3 |
+| Descreve o efeito do predador em cada nível de alimento, com IC | 3 |
+| Comenta os pressupostos e relata *F*, gl e *P* corretamente | 2 |
+| **Total** | **10** |
+
+: Rubrica da ficha {tbl-colwidths="[85,15]"}
+
+**Extensão (opcional).** Ajuste o modelo sem interação (troque `*` por
+`+`). O que acontece com o QM dos resíduos? Para onde foi a variação da
+interação?
+
+```{webr}
+m_sem <- lm(massa_mg ~ predador + alimento, data = girinos)
+anova(m_sem)
+```
 
 ## Construa um modelo
 

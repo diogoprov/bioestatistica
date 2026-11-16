@@ -977,7 +977,8 @@ fig_interacao_girinos()
   alimento alto ou baixo (8 por combinação).
 - **O efeito do predador sobre a massa depende do nível de alimento?** As
   linhas não paralelas sugerem que sim.
-- Na aula prática, vocês ajustam essa ANOVA de dois fatores no jamovi.
+- Na ficha prática da página da aula, vocês ajustam essa ANOVA de dois
+  fatores no navegador.
 :::
 ::::
 

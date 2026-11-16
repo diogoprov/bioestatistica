@@ -34,10 +34,11 @@ A nota final segue a fórmula (P1 + P2) / 2, em que:
 
 - **P1** — Prova escrita (na oferta de fevereiro de 2027: segunda-feira, 22/02, sobre as Aulas 1 a 6)
 - **P2** — Atividades práticas: a média entre os questionários do Moodle (Q)
-  e as três fichas práticas (F), P2 = (Q + F) / 2. As fichas ficam nas páginas
+  e as quatro fichas práticas (F), P2 = (Q + F) / 2. As fichas ficam nas páginas
   das Aulas [8](aula-08-modelos-lineares-teste-t/index.qmd#ficha-prática-dimorfismo-sexual-em-anuros),
-  [9](aula-09-regressao-correlacao/index.qmd#ficha-prática-temperatura-e-metamorfose-dos-girinos)
-  e [10](aula-10-qui-quadrado/index.qmd#ficha-prática-partição-de-micro-habitat-em-anuros),
+  [9](aula-09-regressao-correlacao/index.qmd#ficha-prática-temperatura-e-metamorfose-dos-girinos),
+  [10](aula-10-qui-quadrado/index.qmd#ficha-prática-partição-de-micro-habitat-em-anuros)
+  e [11](aula-11-anova/index.qmd#ficha-prática-predador-alimento-e-a-massa-dos-girinos),
   rodam no navegador e são entregues no Moodle (uma página por ficha). Cada
   ficha vale 10 pontos, pela rubrica publicada no fim dela.
 - **PO** — Prova substitutiva optativa (substitui a menor das anteriores)

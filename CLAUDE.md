@@ -241,9 +241,11 @@ continua em `slides/`, então não apague os PDFs.
 - **Fichas práticas** (nov/2026): as fichas do Cowork (pensadas para o
   jamovi) viraram seções `## Ficha prática: ...` com células webR nas
   páginas das Aulas 8 (teste *t*, `data/anuros_dimorfismo.csv`), 9
-  (regressão, `data/girinos_temperatura.csv`) e 10 (qui-quadrado,
-  `data/anuros_microhabitat.csv`), com PPDAC, "Confira seus resultados"
-  recolhido e parágrafo para completar. Nada de software para instalar.
+  (regressão, `data/girinos_temperatura.csv`), 10 (qui-quadrado,
+  `data/anuros_microhabitat.csv`) e 11 (ANOVA de dois fatores,
+  `data/girinos_2x2.csv`), com PPDAC, "Confira seus resultados"
+  recolhido, parágrafo para completar e rubrica de 10 pontos. Valem nota:
+  P2 = (questionários + fichas) / 2. Nada de software para instalar.
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 
