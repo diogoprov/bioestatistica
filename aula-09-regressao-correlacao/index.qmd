@@ -255,12 +255,22 @@ Complete o parágrafo:
 > Biologicamente, isso sugere que \_\_\_ (uma ou duas frases; pense no
 > aquecimento das poças).
 
-**Para entregar** (uma página): o gráfico de dispersão com a reta, o
+**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico de dispersão com a reta, o
 parágrafo e as respostas.
 
 1. Seu esboço acertou a direção da relação?
 2. O que o IC da inclinação acrescenta que o valor de *P* sozinho não diz?
 3. Os resíduos parecem atender aos pressupostos? Como você sabe?
+
+| Critério | Pontos |
+|---|:---:|
+| Gráfico de dispersão com a reta e eixos corretos | 3 |
+| Interpreta a inclinação como comparação, com unidades | 3 |
+| Usa o IC e o R² na conclusão | 2 |
+| Comenta os pressupostos | 2 |
+| **Total** | **10** |
+
+: Rubrica da ficha {tbl-colwidths="[85,15]"}
 
 **Extensão (opcional).** E se o experimento tivesse só 8 girinos? A
 célula abaixo calcula a largura do IC da inclinação com os 30 girinos e

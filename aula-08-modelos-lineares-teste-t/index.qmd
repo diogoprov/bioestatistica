@@ -263,7 +263,7 @@ Complete o parágrafo:
 > (IC de 95%: \_\_\_ a \_\_\_ mm). Biologicamente, isso é consistente com
 > \_\_\_ (uma ou duas frases; pense em seleção por fecundidade).
 
-**Para entregar** (uma página): o gráfico, o parágrafo e as respostas.
+**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico, o parágrafo e as respostas.
 
 1. Seu palpite acertou a direção e a ordem de grandeza da diferença?
 2. Mostre que o coeficiente do modelo linear e o teste *t* levam à mesma
@@ -271,6 +271,16 @@ Complete o parágrafo:
 3. O IC da diferença é estreito ou largo? O que isso diz sobre a precisão
    da estimativa?
 4. Os pressupostos foram atendidos? Como você sabe?
+
+| Critério | Pontos |
+|---|:---:|
+| Gráfico correto e leitura da sobreposição dos grupos | 2 |
+| Diferença entre as médias com IC e *d* de Cohen | 3 |
+| Mostra que o teste *t* e o modelo linear são o mesmo teste | 3 |
+| Comenta os pressupostos e usa a redação correta ("não rejeitar") | 2 |
+| **Total** | **10** |
+
+: Rubrica da ficha {tbl-colwidths="[85,15]"}
 
 ## Construa um modelo
 

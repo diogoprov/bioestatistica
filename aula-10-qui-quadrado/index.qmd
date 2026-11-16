@@ -250,13 +250,23 @@ Complete o parágrafo:
 > espécie B, em \_\_\_. Biologicamente, isso é consistente com \_\_\_ (uma ou
 > duas frases; pense em partição de nicho).
 
-**Para entregar** (uma página): a tabela ou o gráfico, o parágrafo e as
+**Para entregar** (vale nota na P2; uma página, no Moodle): a tabela ou o gráfico, o parágrafo e as
 respostas.
 
 1. Seu palpite acertou?
 2. Quais células mais contribuíram para a associação?
 3. O que o *V* de Cramér acrescenta ao valor de *P*?
 4. As frequências esperadas atenderam ao pressuposto? Onde você conferiu?
+
+| Critério | Pontos |
+|---|:---:|
+| Tabela ou gráfico correto e descrição do padrão | 3 |
+| χ², gl e *P* relatados corretamente | 2 |
+| Usa o *V* de Cramér (tamanho do efeito) | 3 |
+| Comenta o pressuposto (esperados ≥ 5) e usa a redação correta | 2 |
+| **Total** | **10** |
+
+: Rubrica da ficha {tbl-colwidths="[85,15]"}
 
 ## Recursos externos
 

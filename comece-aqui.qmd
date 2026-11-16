@@ -22,6 +22,27 @@ Quizzes, prazos, notas e avisos da turma ficam no
    [exercícios no swirl](exercicios-swirl.qmd). Não é obrigatório saber R
    antes: a primeira lição parte do zero.
 
+## O mínimo de cada aula
+
+O site tem mais material do que dá para usar numa disciplina condensada.
+Este é o percurso mínimo; o resto é opcional.
+
+| Quando | O que fazer | Tempo |
+|---|---|:---:|
+| **Antes da aula** | Leia o **Em 3 minutos** da página da aula: três ideias e um erro comum. | 5 min |
+| **Na aula** | Participe das votações e das atividades. Os slides ficam no site, então não é preciso copiar tudo. | — |
+| **No mesmo dia** | Faça o **Teste-se** da página da aula: dez perguntas com a resposta comentada. Se errar mais de três, reveja os slides do assunto. | 15 min |
+| **Aulas 8, 9 e 10** | Faça a **ficha prática** da página e entregue no Moodle. **Vale nota** (P2). | 90 min |
+| **Antes da P1** | Use a [Revisão](revisao.qmd) das Aulas 1 a 6: os resumos e os Kahoots. | 1 h |
+
+: {tbl-colwidths="[20,68,12]"}
+
+**Opcional, para quem quiser ir além:** a leitura recomendada, as notas do
+professor nos slides (tecla **S**), as seções **Para saber mais** no fim de
+alguns slides, a lição no [swirl](exercicios-swirl.qmd), o **Brinque com o
+código**, o [Construa um modelo](construa-um-modelo.qmd) e o
+[Glossário](glossario.qmd).
+
 ## O fio condutor: o ciclo PPDAC
 
 A disciplina segue as etapas de uma pesquisa de verdade:
@@ -60,16 +81,6 @@ As aulas alternam exposição curta e **aprendizagem ativa**:
 - **Atividades em grupo**, muitas vezes com dados coletados na própria
   sala (a altura da turma, as cores de um pacote de balas).
 - **Kahoot e Slido**, para revisar e tirar dúvidas no fim da aula.
-
-## Como estudar cada aula
-
-1. **Antes:** leia o resumo e a lista de conteúdo na página da aula.
-2. **Durante:** participe das votações e das atividades; os slides ficam
-   no site, então não é preciso copiar tudo.
-3. **Depois:** reveja os slides (as notas do professor, tecla **S**, trazem
-   explicações extras), faça a leitura recomendada e, quando houver, a
-   lição no swirl. Algumas aulas terminam com uma seção **Para saber mais**,
-   com o material mais formal.
 
 ## Brinque com o código
 
