@@ -9,6 +9,7 @@
 | `carvalho.svg` | *Quercus robur* | Carlo De Rito | CC0 1.0 | <https://www.phylopic.org/images/43afe2df-ab6c-47e6-a105-c0a82b8af1c5> |
 | `folha-carvalho.svg` | *Quercus petraea* | Pablo Castro Sánchez-Bermejo | CC0 1.0 | <https://www.phylopic.org/images/5ff28c29-b0f3-4e96-bd1c-1272fa410e46> |
 | `beija-flor.svg` | Trochilidae | Ferran Sayol | CC0 1.0 | <https://www.phylopic.org/images/2bf1e800-5384-45cd-a533-ac940b8eadd6> |
+| `borboleta.svg` | *Pieris rapae* | Andy Wilson | CC0 1.0 | <https://www.phylopic.org/images/4a8bd993-9840-489e-8fbf-11286dce856f> |
 
 Os `.csv` com o mesmo nome são as silhuetas convertidas em polígonos por
 `svg2csv.py` (`python3 svg2csv.py nome.svg nome.csv`), para o ggplot desenhá-las

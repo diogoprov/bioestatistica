@@ -586,10 +586,10 @@ Bussab, W.O. & Morettin, P.A. *Estatística básica*.
 
 ## Conceitos e definições
 
-- População e amostra
-  - População
-  - Unidade amostral
-  - Espaço amostral
+- População estatística
+- Amostra e unidade amostral
+- Espaço amostral
+- Variável
 
 ---
 
@@ -599,7 +599,22 @@ Bussab, W.O. & Morettin, P.A. *Estatística básica*.
 "Conjunto de medidas sobre as quais se quer fazer alguma inferência"
 :::
 
-\* Não confundir com população ecológica.
+:::: {.columns}
+::: {.column width="50%"}
+**Exemplo**
+
+O comprimento de **todos** os girinos de uma lagoa nesta estação
+reprodutiva. É sobre eles que queremos concluir algo, mas não temos como
+medir todos.
+:::
+::: {.column width="50%"}
+**\* Não confundir com população ecológica**
+
+Em ecologia, população é o grupo de indivíduos de uma espécie que vivem
+na mesma área e se cruzam. A população estatística é um conjunto de
+**medidas**, definido pela pergunta.
+:::
+::::
 
 ---
 
@@ -611,13 +626,39 @@ prática, cujas características serão utilizadas para fazermos conclusões
 sobre a população"
 :::
 
+:::: {.columns}
+::: {.column width="50%"}
+**Exemplo**
+
+Os 30 girinos que você coletou e mediu com o paquímetro.
+:::
+::: {.column width="50%"}
+**Unidade amostral**
+
+Cada elemento medido: aqui, cada girino. Se a pergunta fosse sobre
+lagoas, a unidade amostral seria a lagoa.
+:::
+::::
+
+::: {.nota}
+Para a amostra representar a população, ela precisa ser sorteada. Isso é
+assunto da Aula 2.
+:::
+
 ---
 
-## Espaço amostral
+## Espaço amostral {.tabela-grande}
 
 ::: {.definicao}
 "O conjunto de todos os resultados possíveis de um experimento aleatório"
 :::
+
+| Experimento aleatório | Espaço amostral |
+|---|---|
+| Jogar uma moeda | {cara, coroa} |
+| Sexo de um filhote de tartaruga | {macho, fêmea} |
+| Quantos de 3 girinos chegam à metamorfose | {0, 1, 2, 3} |
+| Estágio de desenvolvimento de um girino | {estágio 25, 26, ..., 46} |
 
 ---
 
@@ -625,11 +666,15 @@ sobre a população"
 
 ```{r}
 #| fig-width: 11
-#| fig-height: 5.4
-#| out-width: "92%"
-#| fig-alt: "À esquerda, uma nuvem de 400 pontos representa a população, com média mu e desvio-padrão sigma. Quinze pontos destacados formam a amostra, à direita, com média x-barra e desvio-padrão s. Uma seta embaixo, da população para a amostra, é o processo de amostragem; outra em cima, da amostra para a população, é o processo de inferência."
+#| fig-height: 5
+#| out-width: "100%"
+#| fig-alt: "À esquerda, a população: 90 silhuetas de borboletas de 14 cores e tamanhos variados, com média mu e desvio-padrão sigma do comprimento da asa. Doze delas, sorteadas, formam a amostra, à direita, com média x-barra e desvio-padrão s; a amostra tem só 6 das 14 cores. Uma seta embaixo, da população para a amostra, é o processo de amostragem; outra em cima, da amostra para a população, é o processo de inferência."
 fig_populacao_amostra()
 ```
+
+::: {.nota}
+A amostra traz só parte da variação da população: aqui, 6 das 14 cores. Silhueta de *Pieris rapae* por Andy Wilson (PhyloPic, CC0 1.0).
+:::
 
 ---
 
@@ -672,11 +717,24 @@ pesquisador quer estimar.
 
 ---
 
-## Variável
+## Variável {.tabela-grande}
 
 ::: {.definicao}
 "Uma característica ou atributo que está sendo estudado e que pode assumir
 diferentes valores."
+:::
+
+Numa planilha, cada **coluna** é uma variável e cada **linha** é uma
+unidade amostral (aqui, uma lagoa):
+
+| Lagoa | Bioma | Área (m²) | Nº de espécies de anuros | Turbidez |
+|---:|---|---:|---:|---|
+| 1 | Cerrado | 1.250,5 | 8 | baixa |
+| 2 | Pantanal | 4.380,0 | 14 | alta |
+| 3 | Cerrado | 612,8 | 5 | média |
+
+::: {.nota}
+Dados fictícios. Cada coluna é de um tipo diferente, como veremos a seguir.
 :::
 
 ---
@@ -717,25 +775,26 @@ fig_tipos_variaveis(3)
 ## Pergunta para a turma
 
 ::: {.atividade}
-**Em um estudo com girinos, qual destas variáveis é *qualitativa
-ordinal*?**
+**Num estudo em uma lagoa, qual destas variáveis é *quantitativa
+discreta*?**
 
-A. Número de ovos por desova
+A. Temperatura da água (°C)
 
-B. Estágio de desenvolvimento de Gosner
+B. Número de ovos por desova
 
-C. Comprimento rostro-cloacal
+C. Turbidez da água (baixa, média, alta)
 
-D. Espécie
+D. Espécie de girino
 :::
 
 Votem sozinhos, discutam com quem está ao lado e votem de novo.
 
 ::: {.fragment}
 ::: {.definicao}
-**B.** Os estágios de Gosner têm ordem (o 30 vem depois do 25), mas não
-são uma medida. Número de ovos é quantitativa discreta, comprimento é
-quantitativa contínua, e espécie é qualitativa nominal.
+**B.** Ovos se contam: só há valores inteiros (0, 1, 2, ...). A
+temperatura é medida e pode ter vírgula (quantitativa contínua); a
+turbidez tem categorias com ordem (qualitativa ordinal); e a espécie tem
+categorias sem ordem (qualitativa nominal).
 :::
 :::
 

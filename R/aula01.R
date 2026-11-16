@@ -107,39 +107,65 @@ fig_previsao <- function(seed = 3) {
 # ---------------------------------------------------------------------------
 # População e amostra: amostragem num sentido, inferência no outro.
 # ---------------------------------------------------------------------------
-fig_populacao_amostra <- function(seed = 4, n_pop = 400, n_am = 15) {
+fig_populacao_amostra <- function(seed = 4, n_am = 12, n_cores = 14) {
   set.seed(seed)
-  pop <- tibble::tibble(t = runif(n_pop, 0, 2 * pi), r = sqrt(runif(n_pop))) |>
-    mutate(x = -1.8 + 1.15 * r * cos(t), y = .35 + .75 * r * sin(t),
-           tamanho = rnorm(n_pop, 32, 6))
+  paleta <- c("#c0392b", "#e67e22", "#f1c40f", "#7fb800", "#27ae60",
+              "#16a085", "#2980b9", "#5b4bb7", "#9b59b6", "#d35490",
+              "#8e5a2b", "#5d7a8c", "#a3a33a", "#e8a0b4")[seq_len(n_cores)]
+  # população: borboletas numa grade com ruído, dentro de uma elipse
+  grade <- expand.grid(gx = seq(-1, 1, by = .15), gy = seq(-1, 1, by = .21))
+  pop <- tibble::as_tibble(grade) |>
+    mutate(gx = gx + runif(n(), -.03, .03), gy = gy + runif(n(), -.04, .04)) |>
+    filter(gx^2 + gy^2 <= .93) |>
+    mutate(id = row_number(), cx = -1.8 + 1.2 * gx, cy = .3 + .8 * gy,
+           asa = rnorm(n(), 32, 6),
+           cor = factor(sample(paleta, n(), replace = TRUE), levels = paleta))
+  # amostra: grade que cabe na caixa da direita para qualquer n
+  n_am <- min(n_am, nrow(pop))
+  nc <- ceiling(sqrt(n_am * 1.2)); nr <- ceiling(n_am / nc)
+  dx <- 1.32 / nc; dy <- .76 / nr
   am <- slice_sample(pop, n = n_am) |>
-    mutate(x2 = 1.8 + runif(n_am, -.55, .55), y2 = -.55 + runif(n_am, -.32, .32))
+    mutate(k = row_number(),
+           cx2 = 1.8 + (((k - 1) %% nc) - (nc - 1) / 2) * dx,
+           cy2 = -.55 + ((nr - 1) / 2 - (k - 1) %/% nc) * dy)
+  desenha <- function(d, x, y, esc) {
+    purrr::pmap_dfr(list(d$id, d[[x]], d[[y]], d$asa, as.character(d$cor)),
+      function(id, cx, cy, asa, cor) {
+        s <- silhueta("borboleta", cx, cy - .45 * esc * asa / 32,
+                      altura = esc * asa / 32, id = id)
+        s$cor <- cor; s
+      })
+  }
+  sp <- desenha(pop, "cx", "cy", .13)
+  sa <- desenha(am, "cx2", "cy2", min(.16, dx / 2.2, dy * .7))
   num <- function(v) format(round(v, 1), nsmall = 1, decimal.mark = ",")
-  lab_pop <- sprintf("População\nμ = %s mm   σ = %s mm",
-                     num(mean(pop$tamanho)), num(sd(pop$tamanho)))
-  lab_am <- sprintf("Amostra (n = %d)\nx̄ = %s mm   s = %s mm",
-                    n_am, num(mean(am$tamanho)), num(sd(am$tamanho)))
+  lab_pop <- sprintf("População: %d borboletas, %d cores\nμ = %s mm   σ = %s mm",
+                     nrow(pop), n_distinct(pop$cor), num(mean(pop$asa)), num(sd(pop$asa)))
+  lab_am <- sprintf("Amostra (n = %d): %d cores\nx̄ = %s mm   s = %s mm",
+                    n_am, n_distinct(am$cor), num(mean(am$asa)), num(sd(am$asa)))
   ggplot() +
-    geom_point(data = pop, aes(x, y), colour = cores[["accent"]], alpha = .35, size = 1.6) +
-    geom_point(data = am, aes(x, y), colour = cores[["ferrugem"]], size = 2.4) +
-    annotate("rect", xmin = 1.15, xmax = 2.45, ymin = -.97, ymax = -.13,
+    geom_polygon(data = sp, aes(x, y, group = interaction(id, parte), fill = cor),
+                 alpha = ifelse(sp$id %in% am$id, 1, .45),
+                 colour = ifelse(sp$id %in% am$id, cores[["texto"]], NA), linewidth = .4) +
+    annotate("rect", xmin = 1.08, xmax = 2.52, ymin = -.97, ymax = -.13,
              fill = "#f3e3d3", colour = NA) +
-    geom_point(data = am, aes(x2, y2), colour = cores[["ferrugem"]], size = 2.6) +
-    annotate("curve", x = -1.2, y = -.55, xend = 1.05, yend = -.62,
+    geom_polygon(data = sa, aes(x, y, group = interaction(id, parte), fill = cor)) +
+    scale_fill_identity() +
+    annotate("curve", x = -.45, y = -.55, xend = 1.05, yend = -.62,
              curvature = .25, linewidth = 1.4, colour = cores[["texto"]],
              arrow = arrow(length = unit(.35, "cm"), type = "closed")) +
-    annotate("curve", x = 1.8, y = .02, xend = -.55, yend = .75,
+    annotate("curve", x = 1.8, y = .02, xend = -.45, yend = .9,
              curvature = .25, linewidth = 1.4, colour = cores[["texto"]],
              arrow = arrow(length = unit(.35, "cm"), type = "closed")) +
-    annotate("text", x = -.05, y = -1.12, label = "Processo de amostragem",
+    annotate("text", x = .35, y = -1.12, label = "Processo de amostragem",
              fontface = "bold", size = 5.2) +
-    annotate("text", x = .75, y = 1.12, label = "Processo de inferência",
+    annotate("text", x = .75, y = 1.25, label = "Processo de inferência",
              fontface = "bold", size = 5.2) +
-    annotate("text", x = -1.8, y = 1.32, label = lab_pop, size = 4.8,
+    annotate("text", x = -1.8, y = 1.42, label = lab_pop, size = 4.8,
              lineheight = 1, colour = cores[["accent_dark"]], fontface = "bold") +
     annotate("text", x = 1.8, y = -1.35, label = lab_am, size = 4.8,
              lineheight = 1, colour = cores[["ferrugem"]], fontface = "bold") +
-    coord_equal(xlim = c(-3.1, 2.6), ylim = c(-1.6, 1.6), clip = "off") +
+    coord_equal(xlim = c(-3.05, 2.6), ylim = c(-1.5, 1.55), clip = "off") +
     theme_void() +
     theme(plot.background = element_rect(fill = cores[["papel"]], colour = NA))
 }

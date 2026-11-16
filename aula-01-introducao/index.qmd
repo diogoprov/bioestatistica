@@ -25,10 +25,12 @@ webr:
     - ../R/tema.R
     - ../R/aula02_pergunta.R
     - ../R/aula01.R
+    - ../assets/phylopic/borboleta.csv
 resources:
   - ../R/tema.R
   - ../R/aula02_pergunta.R
   - ../R/aula01.R
+  - ../assets/phylopic/borboleta.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -120,10 +122,10 @@ mensagem de carregamento sumir.
 for (f in c("R/tema.R", "R/aula02_pergunta.R", "R/aula01.R")) source(f, local = TRUE)
 ```
 
-Troque `n_am` (o tamanho da amostra) e `seed` (o sorteio). Com que tamanho a amostra começa a lembrar a população? Edite o código e clique em **Run Code**.
+Troque `n_am` (o tamanho da amostra, até 90) e `seed` (o sorteio). Com que tamanho a amostra passa a ter as 14 cores da população? E a partir de quando x̄ e *s* ficam perto de μ e σ? Edite o código e clique em **Run Code**.
 
 ```{webr}
-fig_populacao_amostra(n_am = 50)
+fig_populacao_amostra(n_am = 12, seed = 4)
 ```
 
 O código da figura da população e da amostra está em
