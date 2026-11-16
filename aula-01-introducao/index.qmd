@@ -75,7 +75,7 @@ Commons.
 6. **Tipos de variáveis**: quantitativas (discretas e contínuas) e
    qualitativas (nominais e ordinais).
 7. **A estatística na pesquisa biológica**: o ciclo PPDAC e as
-   recomendações do GAISE.
+   recomendações do GAISE College Report (versão de 2026).
 8. **Atividade prática**: adivinhação de idades.
 
 ## Atividades

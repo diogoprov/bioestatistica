@@ -804,25 +804,43 @@ ppdac_topicos(list(
 
 ---
 
-## O que diz o GAISE
+## O que diz o GAISE {.smaller}
 
-*Guidelines for Assessment and Instruction in Statistics Education*
-(GAISE), College Report 2016, da American Statistical Association:
+*Guidelines for Assessment and Instruction in Statistics and Data Science
+Education* (GAISE) College Report, da American Statistical Association.
+Desde 2026 é um relatório "vivo", atualizado em
+<https://asacollegegaise.org>.
 
-1. Teach statistical thinking.
-   - Teach statistics as an investigative process of problem-solving and
-     decision-making.
-   - Give students experience with multivariable thinking.
-2. Focus on conceptual understanding.
-3. Integrate real data with a context and purpose.
-4. **Foster active learning.**
-5. Use technology to explore concepts and analyze data.
-6. Use assessments to improve and evaluate student learning.
+:::: {.columns}
+::: {.column width="55%"}
+1. Teach statistics and data science as processes of gleaning insights
+   from data to inform evidence-based decisions.
+2. Emphasize effective written and oral communication of results.
+3. Focus on conceptual understanding rather than algebraic manipulation
+   and formulas.
+4. Integrate real data with a context and purpose.
+5. Encourage multivariable thinking.
+6. Incorporate software/apps to explore concepts and work with data.
+7. Emphasize responsible and ethical conduct with data.
+8. **Employ evidence-based pedagogies that actively engage students.**
+9. Use a variety of formative and summative assessments.
+10. Implement inclusive strategies.
+:::
+::: {.column width="45%"}
+![](../assets/terceiros/gaise-college-2026.png){fig-alt="Captura de tela da página inicial do GAISE College Report em asacollegegaise.org, com o título do relatório e uma ilustração de curvas de distribuição e pontos de dados." width="100%"}
 
 ::: {.nota}
-O item 4 é o motivo das atividades, das perguntas para a turma e dos
+O item 8 é o motivo das atividades, das perguntas para a turma e dos
 Kahoots ao longo da disciplina.
 :::
+
+::: {.ref}
+American Statistical Association (2026). GAISE College Report.
+Captura de tela de asacollegegaise.org (nov/2026). Itens resumidos da
+página *Recommendations*.
+:::
+:::
+::::
 
 ---
 
