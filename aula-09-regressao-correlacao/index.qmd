@@ -26,11 +26,13 @@ webr:
     - ../R/aula02_pergunta.R
     - ../R/aula09.R
     - ../data/galton.csv
+    - ../data/girinos_temperatura.csv
 resources:
   - ../R/tema.R
   - ../R/aula02_pergunta.R
   - ../R/aula09.R
   - ../data/galton.csv
+  - ../data/girinos_temperatura.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -81,6 +83,7 @@ público, em [`data/galton.csv`](https://github.com/diogoprov/bioestatistica/tre
 - Três perguntas para a turma (*peer instruction*): o quarteto de
   Anscombe, a interpretação do R² e os padrões nos resíduos.
 - [Kahoot: Correlação, regressão e armadilhas na análise de dados](https://create.kahoot.it/details/747d4b86-8cb4-4d54-93af-6aba4f7c3a0d).
+- [Ficha prática](#ficha-prática-temperatura-e-metamorfose-dos-girinos): temperatura e metamorfose dos girinos, com a inclinação e o seu IC, no navegador.
 
 ## Teste-se
 
@@ -136,6 +139,141 @@ fig_recupera_inclinacao(n = 30, ruido = 6, reps = 300)
 O código dos quatro padrões de correlação está em
 [`R/aula09.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula09.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
+
+## Ficha prática: temperatura e metamorfose dos girinos
+
+Uma prática guiada de cerca de 90 minutos, toda no navegador. Ela segue o
+ciclo PPDAC e treina o principal da aula: interpretar a inclinação como
+uma comparação, com a sua incerteza. Os dados são fictícios, inspirados
+num fenômeno real.
+
+### 1. Problema
+
+A temperatura da água afeta o desenvolvimento dos girinos. Em poças mais
+quentes, o metabolismo acelera e a metamorfose tende a vir mais cedo, o
+que importa num cenário de aquecimento dos corpos d'água. Num experimento,
+girinos foram criados em temperaturas diferentes e mediu-se o **tempo até
+a metamorfose** (dias) de cada um.
+
+- **Pergunta:** o tempo de desenvolvimento varia com a temperatura? Se
+  varia, quanto muda a cada grau a mais?
+- **Hipótese:** quanto mais quente a água, menor o tempo até a metamorfose.
+
+### 2. Dados
+
+São 30 girinos, cada um criado numa temperatura medida.
+
+| Variável | Tipo | Papel |
+|---|---|---|
+| `individuo` | identificador | — |
+| `temperatura_C` | contínua | preditora (*X*) |
+| `tempo_dias` | contínua | resposta (*Y*) |
+
+**Antes de rodar o código, no papel:** esboce o gráfico de dispersão que
+você espera. A nuvem de pontos sobe ou desce da esquerda para a direita?
+
+```{webr}
+girinos <- read.csv("data/girinos_temperatura.csv")
+head(girinos)
+summary(girinos[, -1])
+```
+
+### 3. Análise
+
+**Gráfico primeiro.** Lembre do quarteto de Anscombe: nenhum número
+substitui o gráfico.
+
+```{webr}
+ggplot(girinos, aes(temperatura_C, tempo_dias)) +
+  geom_point(size = 2.5, alpha = .7) +
+  geom_smooth(method = "lm", formula = y ~ x) +
+  labs(x = "Temperatura da água (°C)", y = "Tempo até a metamorfose (dias)")
+```
+
+**Correlação.** Repare no sinal de *r*.
+
+```{webr}
+cor.test(~ temperatura_C + tempo_dias, data = girinos)
+```
+
+**Regressão linear.** A inclinação está na linha `temperatura_C`; o R² e o
+teste *F* estão no fim do `summary()`.
+
+```{webr}
+m <- lm(tempo_dias ~ temperatura_C, data = girinos)
+summary(m)
+confint(m)
+```
+
+**Pressupostos.** No gráfico da esquerda (resíduos contra valores
+ajustados), procure uma nuvem sem curva nem funil. No da direita, os
+pontos devem ficar perto da diagonal.
+
+```{webr}
+par(mfrow = c(1, 2))
+plot(m, which = 1:2)
+```
+
+::: {.callout-tip collapse="true"}
+## Confira seus resultados
+
+| Quantidade | Valor aproximado |
+|---|---|
+| Inclinação | **−3,7 dias por °C** |
+| IC de 95% da inclinação | −4,2 a −3,2 |
+| Intercepto | 142,5 dias |
+| R² | **0,88** |
+| *r* de Pearson | **−0,94** |
+| Teste do modelo | *F* = 208, gl = 1 e 28, *P* < 0,001 |
+
+Repare que *r*² = R² (−0,94² ≈ 0,88): correlação e regressão olham para a
+mesma relação por ângulos diferentes.
+:::
+
+### 4. Interpretação
+
+- **A inclinação é uma comparação.** −3,7 quer dizer: girinos criados em
+  água 1 °C mais quente chegaram à metamorfose, em média, cerca de 3,7
+  dias antes. Essa é a frase do resultado, não a soma de quadrados.
+- **O IC é a sua incerteza.** A inclinação não é só −3,7: fica entre −4,2
+  e −3,2 dias por °C, com 95% de confiança. Isso informa mais do que dizer
+  "*P* < 0,05".
+- **O R² é quanto o modelo explica.** A temperatura explica cerca de 88%
+  da variação no tempo de desenvolvimento.
+- **O sinal de *r*** acompanha o sinal da inclinação.
+- **Cuidado com a extrapolação.** A reta vale dentro da faixa medida (18 a
+  29 °C). Prever o tempo a 5 °C ou a 40 °C com ela é ir além do que os
+  dados sustentam.
+
+### 5. Conclusão
+
+Complete o parágrafo:
+
+> A temperatura da água afetou o tempo de desenvolvimento larval (R² =
+> \_\_\_, *F* = \_\_\_, gl = 1 e 28, *P* \_\_\_): cada 1 °C a mais reduziu o tempo
+> até a metamorfose em cerca de \_\_\_ dias (IC de 95%: \_\_\_ a \_\_\_).
+> Biologicamente, isso sugere que \_\_\_ (uma ou duas frases; pense no
+> aquecimento das poças).
+
+**Para entregar** (uma página): o gráfico de dispersão com a reta, o
+parágrafo e as respostas.
+
+1. Seu esboço acertou a direção da relação?
+2. O que o IC da inclinação acrescenta que o valor de *P* sozinho não diz?
+3. Os resíduos parecem atender aos pressupostos? Como você sabe?
+
+**Extensão (opcional).** E se o experimento tivesse só 8 girinos? A
+célula abaixo calcula a largura do IC da inclinação com os 30 girinos e
+com cinco sorteios de 8. O que acontece com a largura? Por quê? (Pense no
+erro padrão da Aula 6.) Cada clique em **Run Code** sorteia outros girinos.
+
+```{webr}
+largura_ic <- function(d) {
+  unname(diff(confint(lm(tempo_dias ~ temperatura_C, data = d))[2, ]))
+}
+largura_ic(girinos)                                        # os 30 girinos
+replicate(5, largura_ic(girinos[sample(nrow(girinos), 8), ]))  # 5 sorteios de 8
+```
 
 ## Construa um modelo
 

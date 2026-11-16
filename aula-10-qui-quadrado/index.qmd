@@ -25,10 +25,12 @@ webr:
     - ../R/tema.R
     - ../R/aula02_pergunta.R
     - ../R/aula10.R
+    - ../data/anuros_microhabitat.csv
 resources:
   - ../R/tema.R
   - ../R/aula02_pergunta.R
   - ../R/aula10.R
+  - ../data/anuros_microhabitat.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -77,6 +79,7 @@ rã, do PhyloPic (CC0).
 - A ecologia das balas: aderência das cores de M&M's.
 - Atividade 3: "O revisor de periódico" (qui-quadrado ou Fisher?).
 - [Kahoot: Qui-quadrado e Teste G](https://create.kahoot.it/details/24e6dd0f-ab42-4583-9b42-602515a0843c).
+- [Ficha prática](#ficha-prática-partição-de-micro-habitat-em-anuros): partição de micro-habitat em anuros, com o *V* de Cramér, no navegador.
 
 ## Teste-se
 
@@ -122,6 +125,138 @@ fig_qui_quadrado(gl = 10, obs = 15)
 O código da distribuição qui-quadrado com o valor de *P* está em
 [`R/aula10.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula10.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
+
+## Ficha prática: partição de micro-habitat em anuros
+
+Uma prática guiada de cerca de 90 minutos, toda no navegador. Ela segue o
+ciclo PPDAC e treina o qui-quadrado de independência com o tamanho do
+efeito. Os dados são fictícios, inspirados num fenômeno real.
+
+### 1. Problema
+
+Espécies que coexistem podem dividir o espaço usando micro-habitats
+diferentes (**partição de nicho**). Numa reserva, anotou-se para cada
+indivíduo de duas espécies de anuros o micro-habitat onde ele foi
+encontrado: solo, vegetação herbácea ou vegetação arbustiva.
+
+- **Pergunta:** o uso do micro-habitat é independente da espécie, ou as
+  espécies se associam a micro-habitats diferentes?
+- **H₀:** as duas variáveis são independentes; as duas espécies usam os
+  micro-habitats nas mesmas proporções.
+
+### 2. Dados
+
+São 120 indivíduos, um por linha, cada um com duas variáveis categóricas.
+
+| Variável | Tipo | Papel |
+|---|---|---|
+| `individuo` | identificador | — |
+| `especie` | categórica (Espécie A, Espécie B) | variável 1 |
+| `microhabitat` | categórica (Solo, Herbácea, Arbustiva) | variável 2 |
+
+**Antes de rodar o código, no papel:** você espera que as duas espécies
+usem os micro-habitats do mesmo jeito ou de jeitos diferentes?
+
+```{webr}
+anuros <- read.csv("data/anuros_microhabitat.csv")
+anuros$microhabitat <- factor(anuros$microhabitat,
+                              levels = c("Solo", "Herbácea", "Arbustiva"))
+head(anuros)
+```
+
+### 3. Análise
+
+**A tabela de contingência.** O `table()` conta os indivíduos em cada
+combinação; não é preciso uma coluna de contagens. As porcentagens por
+linha mostram o padrão.
+
+```{webr}
+tab <- table(anuros$especie, anuros$microhabitat)
+addmargins(tab)
+round(100 * prop.table(tab, margin = 1), 1)
+```
+
+**Gráfico.**
+
+```{webr}
+ggplot(anuros, aes(microhabitat, fill = especie)) +
+  geom_bar(position = "dodge") +
+  labs(x = "Micro-habitat", y = "Número de indivíduos", fill = NULL)
+```
+
+**O teste.** Guarde o resultado num objeto para ver as frequências
+esperadas, que conferem o pressuposto (todas ≥ 5).
+
+```{webr}
+teste <- chisq.test(tab)
+teste
+round(teste$expected, 1)
+```
+
+**Onde está a associação?** A diferença entre o observado e o esperado
+mostra quais células puxam o resultado.
+
+```{webr}
+round(teste$observed - teste$expected, 1)
+```
+
+**Tamanho do efeito.** O *V* de Cramér vai de 0 (nenhuma associação) a 1
+(associação completa) e não depende do tamanho da amostra como o χ².
+
+```{webr}
+n <- sum(tab)
+as.numeric(sqrt(teste$statistic / (n * (min(dim(tab)) - 1))))
+```
+
+Se alguma frequência esperada fosse menor que 5, a alternativa seria o
+teste exato de Fisher: `fisher.test(tab)`.
+
+::: {.callout-tip collapse="true"}
+## Confira seus resultados
+
+|  | Solo | Herbácea | Arbustiva | Total |
+|---|---|---|---|---|
+| **Espécie A** | 28 | 14 | 8 | 50 |
+| **Espécie B** | 12 | 26 | 32 | 70 |
+| **Total** | 40 | 40 | 40 | 120 |
+
+| Quantidade | Valor aproximado |
+|---|---|
+| χ² (gl = 2) | **21,7** |
+| *P* | < 0,001 |
+| *V* de Cramér | **0,42** |
+| Menor frequência esperada | 16,7 (todas ≥ 5) |
+:::
+
+### 4. Interpretação
+
+- **A decisão.** Como *P* < 0,05, rejeitamos H₀: o uso do micro-habitat
+  não é independente da espécie.
+- **O padrão.** Compare o observado com o esperado: a espécie A aparece no
+  solo mais do que o esperado, e a espécie B, na vegetação arbustiva. É
+  isso que sugere partição de micro-habitat.
+- **A força.** O *P* diz que a associação existe; o *V* de Cramér (0,42)
+  diz que ela é moderada a forte. Relate os dois: "significativo" sozinho
+  não mede tamanho.
+- **Redação.** Se não houvesse associação, diríamos "não há evidência de
+  associação", nunca "as variáveis são independentes".
+
+### 5. Conclusão
+
+Complete o parágrafo:
+
+> O uso do micro-habitat esteve associado à espécie (χ² = \_\_\_, gl = \_\_\_,
+> *P* \_\_\_; *V* de Cramér = \_\_\_): a espécie A concentrou-se em \_\_\_ e a
+> espécie B, em \_\_\_. Biologicamente, isso é consistente com \_\_\_ (uma ou
+> duas frases; pense em partição de nicho).
+
+**Para entregar** (uma página): a tabela ou o gráfico, o parágrafo e as
+respostas.
+
+1. Seu palpite acertou?
+2. Quais células mais contribuíram para a associação?
+3. O que o *V* de Cramér acrescenta ao valor de *P*?
+4. As frequências esperadas atenderam ao pressuposto? Onde você conferiu?
 
 ## Recursos externos
 

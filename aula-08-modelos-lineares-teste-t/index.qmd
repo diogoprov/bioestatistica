@@ -25,10 +25,12 @@ webr:
     - ../R/tema.R
     - ../R/aula02_pergunta.R
     - ../R/aula08.R
+    - ../data/anuros_dimorfismo.csv
 resources:
   - ../R/tema.R
   - ../R/aula02_pergunta.R
   - ../R/aula08.R
+  - ../data/anuros_dimorfismo.csv
 ---
 
 {{< include ../_extensions/r-wasm/live/_knitr.qmd >}}
@@ -81,6 +83,7 @@ silhuetas, do PhyloPic (CC0).
 - [Kahoot: Teste t](https://create.kahoot.it/details/095cb8f0-fc9f-437a-9449-105b02de0750).
 - Desafio do coeficiente: interpretar a saída de um modelo linear.
 - [Kahoot: Introdução aos Modelos Lineares](https://create.kahoot.it/details/dfd7caf5-696f-4d48-8d54-cdfb347ae74c).
+- [Ficha prática](#ficha-prática-dimorfismo-sexual-em-anuros): o dimorfismo sexual em anuros, do teste *t* ao modelo linear, no navegador.
 
 ## Teste-se
 
@@ -126,6 +129,148 @@ fig_reta_parametros(a = 5, b = -1)
 O código da reta com intercepto e inclinação está em
 [`R/aula08.R`](https://github.com/diogoprov/bioestatistica/blob/main/R/aula08.R).
 Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-o-código).
+
+## Ficha prática: dimorfismo sexual em anuros
+
+Uma prática guiada de cerca de 90 minutos, toda no navegador. Ela segue o
+ciclo PPDAC e fecha a ideia central da aula: **o teste *t* é um modelo
+linear**. Os dados são fictícios, inspirados num fenômeno real.
+
+### 1. Problema
+
+Em muitos anuros, fêmeas e machos têm tamanhos diferentes (**dimorfismo
+sexual de tamanho**). Como a fecundidade costuma aumentar com o tamanho da
+fêmea, é comum que as fêmeas sejam maiores, mas isso varia entre espécies.
+Mediu-se o **comprimento rostro-cloacal** (CRC, em mm) de fêmeas e machos
+adultos de uma população.
+
+- **Pergunta:** o CRC médio difere entre os sexos? Se difere, de quanto?
+- **Hipótese:** as fêmeas têm CRC médio maior que os machos.
+
+### 2. Dados
+
+São 40 indivíduos, 20 fêmeas e 20 machos. As amostras são
+**independentes**: cada indivíduo foi medido uma vez e não há pares.
+
+| Variável | Tipo | Papel |
+|---|---|---|
+| `individuo` | identificador | — |
+| `sexo` | categórica (Fêmea, Macho) | preditora |
+| `crc_mm` | contínua | resposta |
+
+**Antes de rodar o código, no papel:** qual sexo você espera que seja
+maior, e por quantos milímetros? Guarde o palpite.
+
+```{webr}
+dimorf <- read.csv("data/anuros_dimorfismo.csv")
+head(dimorf)
+table(dimorf$sexo)
+```
+
+### 3. Análise
+
+**Gráfico primeiro.** Olhe quanto as duas caixas se sobrepõem antes de
+qualquer teste.
+
+```{webr}
+ggplot(dimorf, aes(sexo, crc_mm)) +
+  geom_boxplot(width = .4, outlier.shape = NA) +
+  geom_jitter(width = .08, alpha = .6) +
+  labs(x = NULL, y = "CRC (mm)")
+```
+
+**Médias, desvios-padrão e o teste *t*.** O `t.test()` faz o teste de
+Welch, que não exige variâncias iguais; é a escolha segura por padrão.
+
+```{webr}
+aggregate(crc_mm ~ sexo, data = dimorf,
+          FUN = function(x) round(c(media = mean(x), dp = sd(x), n = length(x)), 2))
+t.test(crc_mm ~ sexo, data = dimorf)
+```
+
+**Tamanho do efeito.** O *d* de Cohen é a diferença entre as médias em
+unidades de desvio-padrão (aqui, a média das duas variâncias, porque os
+grupos têm o mesmo *n*).
+
+```{webr}
+medias <- tapply(dimorf$crc_mm, dimorf$sexo, mean)
+dps <- tapply(dimorf$crc_mm, dimorf$sexo, sd)
+unname((medias["Fêmea"] - medias["Macho"]) / sqrt(mean(dps^2)))
+```
+
+**A ponte com o modelo linear.** Rode o mesmo problema com `lm()` e
+compare com o teste *t*:
+
+- o **intercepto** é a média do grupo de referência (Fêmea, a primeira em
+  ordem alfabética);
+- o **coeficiente `sexoMacho`** é a diferença entre as médias (Macho −
+  Fêmea);
+- o *t* e o *P* desse coeficiente são os do teste *t* com variâncias
+  iguais (`var.equal = TRUE`). Com grupos do mesmo tamanho, o *t* de Welch
+  também é igual; só os graus de liberdade mudam um pouco.
+
+```{webr}
+m <- lm(crc_mm ~ sexo, data = dimorf)
+summary(m)
+confint(m)
+t.test(crc_mm ~ sexo, data = dimorf, var.equal = TRUE)
+```
+
+**Pressupostos.** Os resíduos devem ter variância parecida nos dois grupos
+(gráfico da esquerda) e distribuição aproximadamente normal (pontos perto
+da diagonal no gráfico da direita).
+
+```{webr}
+par(mfrow = c(1, 2))
+plot(m, which = 1:2)
+```
+
+::: {.callout-tip collapse="true"}
+## Confira seus resultados
+
+| Quantidade | Valor aproximado |
+|---|---|
+| Média do CRC das fêmeas | 50,3 mm |
+| Média do CRC dos machos | 46,7 mm |
+| Diferença (Fêmea − Macho) | **3,6 mm** |
+| IC de 95% da diferença | **0,7 a 6,5 mm** |
+| *d* de Cohen | **0,80** |
+| Teste *t* | *t* ≈ 2,54; *P* ≈ 0,015 (Welch e Student quase iguais) |
+| Coeficiente `sexoMacho` | −3,6; *t* e *P* iguais aos do teste *t* |
+:::
+
+### 4. Interpretação
+
+- **O teste *t* é um modelo linear.** O coeficiente `sexoMacho` (−3,6) é a
+  diferença entre as médias, e o teste dele (β = 0) é o próprio teste *t*.
+  Não são dois procedimentos para decorar, é um só.
+- **Comece pela estimativa.** As fêmeas são 3,6 mm maiores, mas o IC de
+  95% vai de 0,7 a 6,5 mm. Há diferença (*P* < 0,05), mas o tamanho dela é
+  incerto: pode ser quase irrelevante ou bem grande. A diferença com IC e
+  *d* diz muito mais que "*P* < 0,05".
+- **Tamanho do efeito.** Um *d* de 0,8 é "grande" pela regra de bolso de
+  Cohen (0,2, 0,5 e 0,8), mas pense na biologia: 3,6 mm importam para esta
+  espécie?
+- **Redação.** Se não houvesse diferença, diríamos "não há evidência de
+  diferença no CRC entre os sexos", nunca "os sexos têm o mesmo CRC".
+
+### 5. Conclusão
+
+Complete o parágrafo:
+
+> O CRC médio diferiu entre os sexos (*t* = \_\_\_, gl = \_\_\_, *P* = \_\_\_;
+> *d* = \_\_\_): as fêmeas foram, em média, \_\_\_ mm maiores que os machos
+> (IC de 95%: \_\_\_ a \_\_\_ mm). Biologicamente, isso é consistente com
+> \_\_\_ (uma ou duas frases; pense em seleção por fecundidade).
+
+**Para entregar** (uma página): o gráfico, o parágrafo e as respostas.
+
+1. Seu palpite acertou a direção e a ordem de grandeza da diferença?
+2. Mostre que o coeficiente do modelo linear e o teste *t* levam à mesma
+   conclusão. Por que isso acontece?
+3. O IC da diferença é estreito ou largo? O que isso diz sobre a precisão
+   da estimativa?
+4. Os pressupostos foram atendidos? Como você sabe?
 
 ## Construa um modelo
 

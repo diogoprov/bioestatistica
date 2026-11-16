@@ -238,6 +238,12 @@ continua em `slides/`, então não apague os PDFs.
   o resultado" (inspirado no pacote report). Dados em `data/` (girinos_2x2,
   galton e girinos_lagoas, simulado em `R/construtor.R`). Atalhos por URL
   (`?dados=&y=&x=&op=`) nas páginas das Aulas 8, 9 e 11.
+- **Fichas práticas** (nov/2026): as fichas do Cowork (pensadas para o
+  jamovi) viraram seções `## Ficha prática: ...` com células webR nas
+  páginas das Aulas 8 (teste *t*, `data/anuros_dimorfismo.csv`), 9
+  (regressão, `data/girinos_temperatura.csv`) e 10 (qui-quadrado,
+  `data/anuros_microhabitat.csv`), com PPDAC, "Confira seus resultados"
+  recolhido e parágrafo para completar. Nada de software para instalar.
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 
