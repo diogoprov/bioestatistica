@@ -987,7 +987,7 @@ Para revisar depois: [Kahoot: Estimativa pontual e intervalar](https://create.ka
 ## Atividade de hoje (parte da lista de exercícios)
 
 ::: {.atividade}
-- Ler o item 11.6 do cap. 11 de Morettin & Bussab (PDF no Moodle)
+- Ler o item 11.6 do cap. 11 de Morettin & Bussab (PDF no Google Classroom)
 - Fazer os exercícios 14 a 16 e 20
 :::
 

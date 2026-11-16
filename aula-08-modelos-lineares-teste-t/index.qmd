@@ -263,7 +263,7 @@ Complete o parágrafo:
 > (IC de 95%: \_\_\_ a \_\_\_ mm). Biologicamente, isso é consistente com
 > \_\_\_ (uma ou duas frases; pense em seleção por fecundidade).
 
-**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico, o parágrafo e as respostas.
+**Para entregar** (vale nota na P2; uma página, no Google Classroom): o gráfico, o parágrafo e as respostas.
 
 1. Seu palpite acertou a direção e a ordem de grandeza da diferença?
 2. Mostre que o coeficiente do modelo linear e o teste *t* levam à mesma
@@ -303,5 +303,5 @@ para escrever o resultado.
 
 ---
 
-*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
-avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*
+*Volta para o [índice do curso](../index.qmd) · Questionários, entregas e notas no
+[Google Classroom](https://classroom.google.com) da turma.*

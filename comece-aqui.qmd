@@ -6,8 +6,9 @@ toc: true
 
 ::: {.callout-tip appearance="minimal"}
 **Para alunos matriculados:** este site tem os materiais públicos do curso.
-Quizzes, prazos, notas e avisos da turma ficam no
-[Moodle UFMS](https://ava.ufms.br).
+Os questionários que valem nota, a entrega das fichas, os prazos, as notas e
+os avisos da turma ficam no [Google Classroom](https://classroom.google.com), com a conta @ufms.br. O código da turma é
+dado na primeira aula.
 :::
 
 ## Antes da primeira aula
@@ -32,7 +33,7 @@ Este é o percurso mínimo; o resto é opcional.
 | **Antes da aula** | Leia o **Em 3 minutos** da página da aula: três ideias e um erro comum. | 5 min |
 | **Na aula** | Participe das votações e das atividades. Os slides ficam no site, então não é preciso copiar tudo. | — |
 | **No mesmo dia** | Faça o **Teste-se** da página da aula: dez perguntas com a resposta comentada. Se errar mais de três, reveja os slides do assunto. | 15 min |
-| **Aulas 8 a 11** | Faça a **ficha prática** da página e entregue no Moodle. **Vale nota** (P2). | 90 min |
+| **Aulas 8 a 11** | Faça a **ficha prática** da página e entregue no Google Classroom. **Vale nota** (P2). | 90 min |
 | **Antes da P1** | Use a [Revisão](revisao.qmd) das Aulas 1 a 6: os resumos e os Kahoots. | 1 h |
 
 : {tbl-colwidths="[20,68,12]"}
@@ -118,7 +119,7 @@ que acontece com a figura. É um bom jeito de criar intuição.
 
 ## Dúvidas
 
-Dúvidas sobre a matéria: em sala, no Moodle ou por e-mail
+Dúvidas sobre a matéria: em sala, no Google Classroom ou por e-mail
 ([diogo.provete@ufms.br](mailto:diogo.provete@ufms.br)). Encontrou um erro
 no site ou nos slides? Avise por e-mail ou abra uma *issue* no
 [GitHub](https://github.com/diogoprov/bioestatistica/issues).

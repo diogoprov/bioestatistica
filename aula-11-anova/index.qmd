@@ -287,7 +287,7 @@ Complete o parágrafo:
 > Biologicamente, isso sugere que \_\_\_ (uma ou duas frases; pense no custo
 > de se esconder quando a comida é escassa).
 
-**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico de
+**Para entregar** (vale nota na P2; uma página, no Google Classroom): o gráfico de
 interação, o parágrafo e as respostas.
 
 1. Seu desenho acertou? As linhas ficaram paralelas?
@@ -334,5 +334,5 @@ para escrever o resultado.
 
 ---
 
-*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
-avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*
+*Volta para o [índice do curso](../index.qmd) · Questionários, entregas e notas no
+[Google Classroom](https://classroom.google.com) da turma.*

@@ -112,8 +112,8 @@ Wild, C.J. & Pfannkuch, M. 1999. *International Statistical Review* 67:223–248
 
 - **2 componentes**, com nota final (P1 + P2) / 2
   - **P1**: prova teórica escrita
-  - **P2**: questionários (listas de exercícios) referentes a cada aula,
-    no Moodle
+  - **P2**: questionários de cada aula e fichas práticas (Aulas 8 a 11),
+    no Google Classroom
 - Prova substitutiva optativa: substitui a menor das duas notas
 - Abarcar múltiplas habilidades, competências e neurodiversidade
 

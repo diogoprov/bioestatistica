@@ -145,5 +145,5 @@ Para rodar no seu computador, veja [Comece aqui](../comece-aqui.qmd#brinque-com-
 
 ---
 
-*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
-avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*
+*Volta para o [índice do curso](../index.qmd) · Questionários, entregas e notas no
+[Google Classroom](https://classroom.google.com) da turma.*

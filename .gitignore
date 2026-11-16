@@ -10,3 +10,6 @@ _site/
 .RData
 .Ruserdata
 *.DS_Store
+
+# Banco de questões e gabaritos dos questionários avaliativos (não publicar)
+moodle-bioestatistica/

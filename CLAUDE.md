@@ -246,6 +246,14 @@ continua em `slides/`, então não apague os PDFs.
   `data/girinos_2x2.csv`), com PPDAC, "Confira seus resultados"
   recolhido, parágrafo para completar e rubrica de 10 pontos. Valem nota:
   P2 = (questionários + fichas) / 2. Nada de software para instalar.
+- **Sem Moodle** (nov/2026): questionários, entregas e notas ficam no
+  Google Classroom da turma. Os questionários avaliativos são Google Forms
+  (modo teste, conta @ufms.br), criados pelo Apps Script
+  `moodle-bioestatistica/criar_formularios.gs`. A pasta
+  `moodle-bioestatistica/` está no `.gitignore` porque tem os gabaritos:
+  **nunca versionar nem publicar**. Para mudar uma questão, edite
+  `montar_questionarios.py` e rode-o; depois rode `gerar_apps_script.py`
+  (`questionarios-revisao.md` mostra tudo com o gabarito).
 - Se mudar a trilha ou as etapas de uma aula, atualize também a trilha em
   `index.qmd`, que é escrita à mão.
 

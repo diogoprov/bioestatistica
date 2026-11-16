@@ -255,7 +255,7 @@ Complete o parágrafo:
 > Biologicamente, isso sugere que \_\_\_ (uma ou duas frases; pense no
 > aquecimento das poças).
 
-**Para entregar** (vale nota na P2; uma página, no Moodle): o gráfico de dispersão com a reta, o
+**Para entregar** (vale nota na P2; uma página, no Google Classroom): o gráfico de dispersão com a reta, o
 parágrafo e as respostas.
 
 1. Seu esboço acertou a direção da relação?
@@ -313,5 +313,5 @@ VIF, que mede quanto dois preditores se sobrepõem.
 
 ---
 
-*Volta para o [índice do curso](../index.qmd) · Acesso a quizzes e
-avaliações pelo [Moodle UFMS](https://ava.ufms.br) (turma atual).*
+*Volta para o [índice do curso](../index.qmd) · Questionários, entregas e notas no
+[Google Classroom](https://classroom.google.com) da turma.*
