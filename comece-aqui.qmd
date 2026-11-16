@@ -32,7 +32,7 @@ Este é o percurso mínimo; o resto é opcional.
 |---|---|:---:|
 | **Antes da aula** | Leia o **Em 3 minutos** da página da aula: três ideias e um erro comum. | 5 min |
 | **Na aula** | Participe das votações e das atividades. Os slides ficam no site, então não é preciso copiar tudo. | — |
-| **No mesmo dia** | Faça o **Teste-se** da página da aula: dez perguntas com a resposta comentada. Se errar mais de três, reveja os slides do assunto. | 15 min |
+| **No mesmo dia** | Faça o **Teste-se** da página da aula: dez perguntas com a resposta comentada. Se errar mais de três, reveja os slides do assunto. Depois, responda ao **Questionário** da aula, que **vale nota** (P2): uma tentativa, com a conta @ufms.br. | 30 min |
 | **Aulas 8 a 11** | Faça a **ficha prática** da página e entregue no Google Classroom. **Vale nota** (P2). | 90 min |
 | **Antes da P1** | Use a [Revisão](revisao.qmd) das Aulas 1 a 6: os resumos e os Kahoots. | 1 h |
 

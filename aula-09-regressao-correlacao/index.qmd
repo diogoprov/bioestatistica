@@ -93,6 +93,13 @@ para ver a resposta comentada.
 ::: {.quiz-teste-se data-quiz="../quiz/a09.json"}
 :::
 
+## Questionário (vale nota)
+
+Depois do Teste-se, responda ao questionário da aula: 10 questões,
+uma tentativa só, com a conta @ufms.br. Ele vale nota na P2.
+
+[{{< fa solid clipboard-check >}} Responder ao questionário](https://docs.google.com/forms/d/e/1FAIpQLSe8eyvpuVbOhlnWIPXpTSnY0lyFtb7LKJ9O65FGvIj4Mnd0yg/viewform){.btn .btn-primary}
+
 ## Leituras recomendadas
 
 - Gotelli, N.J. & Ellison, A.M. *Princípios de estatística em ecologia*, cap. 9 (regressão).

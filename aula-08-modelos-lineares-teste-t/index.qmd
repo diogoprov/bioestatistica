@@ -93,6 +93,13 @@ para ver a resposta comentada.
 ::: {.quiz-teste-se data-quiz="../quiz/a08.json"}
 :::
 
+## Questionário (vale nota)
+
+Depois do Teste-se, responda ao questionário da aula: 10 questões,
+uma tentativa só, com a conta @ufms.br. Ele vale nota na P2.
+
+[{{< fa solid clipboard-check >}} Responder ao questionário](https://docs.google.com/forms/d/e/1FAIpQLScujpAgUcmtovX15_j76axpMv9gYqCbYgTOJAbT9Qv6ZvliTA/viewform){.btn .btn-primary}
+
 ## Leituras recomendadas
 
 - Vieira, S. *Estatística básica*, caps. 10 e 11 (teste t).

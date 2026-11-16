@@ -83,6 +83,13 @@ para ver a resposta comentada.
 ::: {.quiz-teste-se data-quiz="../quiz/a04.json"}
 :::
 
+## Questionário (vale nota)
+
+Depois do Teste-se, responda ao questionário da aula: 11 questões,
+uma tentativa só, com a conta @ufms.br. Ele vale nota na P2.
+
+[{{< fa solid clipboard-check >}} Responder ao questionário](https://docs.google.com/forms/d/e/1FAIpQLScU3OzYq_hP30ZynQay9eG7ft3vBl5_A2cLZ-DMfcPmsFRG3A/viewform){.btn .btn-primary}
+
 ## Leituras recomendadas
 
 - Bussab, W.O. & Morettin, P.A. *Estatística básica*, cap. 3.
